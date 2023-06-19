@@ -1,0 +1,22 @@
+.footer {
+  display: flex;
+  width: 97%;
+  padding: 0 109px 18px 117px;
+  justify-content: space-between;
+  margin: 0 auto 42px;
+  &-item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    a {
+      color: #ffffff;
+      font-size: 24px;
+      text-decoration: none;
+      margin-left: 16px;
+    }
+    &:hover {
+      border: 1px solid white;
+      border-radius: 20px;
+    }
+  }
+}
