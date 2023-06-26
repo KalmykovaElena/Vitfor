@@ -13,6 +13,7 @@ import Services from './pages/services';
 import Tourism from './pages/tourism';
 import Weather from './pages/weather';
 import NotFound from './pages/not-found';
+import Authorization from './pages/authorization';
 
 const App = () => (
   <div className="App">
@@ -28,6 +29,10 @@ const App = () => (
       <Route path="/services" element={<Services />} />
       <Route path="/tourism" element={<Tourism />} />
       <Route path="/weather" element={<Weather />} />
+      <Route path="/authorization" element={<Authorization />} />
+      <Route path="/recovery" element={<Authorization />} />
+      <Route path="/registration" element={<Authorization />} />
+      <Route path="/confirm" element={<Authorization />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   </div>

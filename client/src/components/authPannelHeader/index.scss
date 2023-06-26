@@ -1,0 +1,23 @@
+.authPannel-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  &__controls {
+    display: flex;
+    height: 38px;
+    div {
+      width: 50%;
+      cursor: pointer;
+    }
+    .controls-button {
+      color: #fff;
+      font-weight: 500;
+      line-height: 1.375rem;
+      text-decoration: none;
+      width: 50%;
+    }
+    & .active {
+        border-bottom: 1px solid #ffffff;
+      }
+  }
+}

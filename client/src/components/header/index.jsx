@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './index.scss';
 import logo from '../../assets/logo.png';
 import Button from '../common/button';
@@ -17,7 +17,9 @@ const Header = () => (
       <NavLink to="/questions"> Вопрос-ответ</NavLink>
       <NavLink to="/aboutus"> О нас</NavLink>
     </nav>
-    <Button name="Вход" />
+    <Link to="/authorization">
+      <Button name="Вход" />
+    </Link>
   </header>
 );
 

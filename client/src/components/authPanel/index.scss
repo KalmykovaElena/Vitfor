@@ -1,0 +1,74 @@
+.authPannel {
+  width: 432px;
+  background: #3d3d3db2;
+  padding: 24px 16px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    &__input {
+      margin-top: 20px;
+      width: 100%;
+      height: 40px;
+      border-radius: 20px;
+      padding: 8px;
+      color: #000000;
+      outline: none;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 18px;
+      &:placeholder-shown {
+        background-color: transparent;
+        &:hover {
+          color: #ffffff;
+          background: rgba(255, 255, 255, 0.2);
+          &::placeholder {
+            color: #ffffff;
+          }
+        }
+        
+      }
+      
+    }
+    .inputError {
+      border-radius: 20px;
+      border: 1px solid #f5222d;
+    }
+  
+    &__button {
+      background: #f67f17;
+      width: 100%;
+      height: 56px;
+      border-radius: 10px;
+      margin-top: 16px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      &:disabled{
+        background:  #CCC;
+      }
+    }
+    &___inputLabel {
+      text-align: start;
+      position: relative;
+      span {
+        display: block;
+        margin-top: auto;
+        position: relative;
+        top: 15px;
+      }
+    }
+     }
+  &__redirect{
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color:#F67F17;
+    text-decoration: none;
+  }
+}
