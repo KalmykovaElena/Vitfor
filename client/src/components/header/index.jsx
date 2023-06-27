@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './index.scss';
-import logo from '../../assets/logo.png';
-import Button from '../common/button';
+import logo from 'assets/logo.png';
+import Button from 'components/common/button';
 
 const Header = () => (
   <header className="header">

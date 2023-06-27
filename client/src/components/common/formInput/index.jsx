@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import icon from '../../../assets/eye.png';
-import icon2 from '../../../assets/eye2.png';
+import icon from 'assets/eye.png';
+import icon2 from 'assets/eye2.png';
 import './index.scss';
-import ToolTip from '../toolTip';
+import ToolTip from 'components/common/toolTip';
 
 const FormInput = ({ data, ...inputProps }) => {
   const [passwordShown, setPasswordShown] = useState(false);

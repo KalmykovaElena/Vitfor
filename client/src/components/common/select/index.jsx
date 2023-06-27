@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './index.scss';
-import CaretDown from '../../../assets/CaretDown.png';
-import CaretUp from '../../../assets/CaretUp.png';
+import CaretDown from 'assets/CaretDown.png';
+import CaretUp from 'assets/CaretUp.png';
 
 const Select = ({ data }) => {
   const [selectActive, setSelectActive] = useState('');
@@ -19,7 +19,15 @@ const Select = ({ data }) => {
       </div>
       <ul className={`select__drop-down ${selectActive}`}>
         {data.map((e) => (
-          <li key={`select-${e}`} className="select__item" role="presentation" onClick={() => setSelectedValue(e)}>
+          <li
+            key={`select-${e}`}
+            className="select__item"
+            role="presentation"
+            onClick={() => {
+              setSelectActive('');
+              setSelectedValue(e);
+            }}
+          >
             {e}{' '}
           </li>
         ))}

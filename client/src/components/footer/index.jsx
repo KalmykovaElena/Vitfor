@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { footerData } from '../../constants/footerData';
+import { footerData } from 'constants/footerData';
 import './index.scss';
 
 const Footer = () => (

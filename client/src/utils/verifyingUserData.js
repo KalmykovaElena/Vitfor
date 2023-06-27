@@ -31,7 +31,6 @@ export const verifyingUserData = (data, currentPage, dispatch, reset) => {
     } else {
       dispatch(setAuthErrors({}));
       redirect('/confirm');
-
       reset();
     }
   }

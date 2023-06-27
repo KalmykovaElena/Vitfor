@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import logo from '../../assets/logo.png';
-import photo1 from '../../assets/photo-1.png';
-import photo2 from '../../assets/photo-2.png';
-import photo3 from '../../assets/photo-3.png';
-import photo4 from '../../assets/photo-4.png';
+import logo from 'assets/logo.png';
+import photo1 from 'assets/photo-1.png';
+import photo2 from 'assets/photo-2.png';
+import photo3 from 'assets/photo-3.png';
+import photo4 from 'assets/photo-4.png';
 import './index.scss';
-import CurrentWeather from '../currentWeather';
-import CurrentTime from '../currentTime';
+import CurrentWeather from 'components/currentWeather';
+import CurrentTime from 'components/currentTime';
 
 const CurrentInfo = () => {
   const [timeLoading, setTimeLoading] = useState(true);

@@ -3,11 +3,11 @@ import './index.scss';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { NavLink, useLocation } from 'react-router-dom';
-import AuthPannelHeader from '../authPannelHeader';
-import { authInputs } from '../../constants/inputs';
-import FormInput from '../common/formInput';
-import { verifyingUserData } from '../../utils/verifyingUserData';
-import { setAuthErrors } from '../../redux/reducers/authReducer';
+import AuthPannelHeader from 'components/authPannelHeader';
+import { authInputs } from 'constants/inputs';
+import FormInput from 'components/common/formInput';
+import { verifyingUserData } from 'utils/verifyingUserData';
+import { setAuthErrors } from 'redux/reducers/authReducer';
 
 export default function AuthPanel() {
   const location = useLocation();

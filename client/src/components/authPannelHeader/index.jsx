@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import logo from '../../assets/Vector-7.png';
+import logo from 'assets/Vector-7.png';
 import './index.scss';
 
 const AuthPannelHeader = () => {
