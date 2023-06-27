@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { redirect } from 'react-router-dom';
 import { setAuthErrors } from '../redux/reducers/authReducer';
 import { checkUserExist } from './checkUserExist';

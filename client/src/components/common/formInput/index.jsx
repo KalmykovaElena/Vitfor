@@ -11,7 +11,7 @@ const FormInput = ({ data, ...inputProps }) => {
   const [currentValue, setCurrentValue] = useState('');
   const { inputLabel, id, inputType, placeholder, inputName, inputValue, validateInput } = data;
   const { register, error, watch, isDirty, isValid } = inputProps;
-  const currentError = useSelector((state) => state.auth.currentError);
+  const currentError = useSelector((state) => state.auth.authError);
   const location = useLocation();
   const currentPage = location.pathname.slice(1);
   const togglePasswordVisiblity = () => {
@@ -32,7 +32,9 @@ const FormInput = ({ data, ...inputProps }) => {
         <label className={`formInput-label formInput-label__${inputType}`} htmlFor={id}>
           <span>{inputLabel}</span>
           <input
-            className={`${error[inputType] ? 'formInput_inputError ' : ''}formInput formInput-${inputType}`}
+            className={`${
+              error[inputName] ? `formInput_inputError formInput-${inputType}_error ` : ''
+            }formInput formInput-${inputType}`}
             type={inputType === 'password' ? currentType : inputType}
             placeholder={placeholder}
             id={id}

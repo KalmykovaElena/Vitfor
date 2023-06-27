@@ -30,7 +30,7 @@ export default function AuthPanel() {
   const onSubmit = (data) => {
     verifyingUserData(data, currentPage, dispatch, reset);
   };
-
+  console.log(errors);
   const renderInputs = authInputs.filter((e) => e.pages.includes(currentPage));
   return (
     <div className="authPannel">
