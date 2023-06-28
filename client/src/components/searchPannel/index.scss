@@ -1,0 +1,59 @@
+.search-form {
+  width: 46%;
+  height: 32px;
+  margin: 38px auto 0;
+  display: flex;
+  border: 1px solid #ffffff;
+  border-radius: 20px;
+  transition: all 0.5s;
+  overflow: hidden;
+  &__input {
+    height: 32px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    &:focus {
+      background-color: #ffffff20;
+    }
+  }
+  .text-input {
+    flex: 1;
+    padding: 0 12px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 400;
+    &__filled {
+      flex: 1;
+      padding: 0 12px;
+      background-color: #ffffff;
+      color: #000000;
+    }
+    &::placeholder {
+      font-size: 14px;
+      color: #ffffff;
+    }
+  }
+  .search-input {
+    position: relative;
+    width: 32px;
+    border-left: 1px solid #ffffff;
+    background: url('../../assets/Vector-6.png');
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    background-position: center;
+    &__filled {
+      width: 32px;
+      background: url('../../assets/Vector-8.png');
+      background-color: #cccccc;
+      background-repeat: no-repeat;
+      background-size: 14px 14px;
+      background-position: center;
+    }
+  }
+  &__icon {
+    position: absolute;
+  }
+  &:hover {
+    background-color: #ffffff2d;
+  }
+}

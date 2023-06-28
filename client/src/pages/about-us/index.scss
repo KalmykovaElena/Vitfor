@@ -1,0 +1,15 @@
+.aboutUs {
+    height: 100vh;
+  .header {
+    &-nav {
+      a {
+        color: #080808;
+      }
+    }
+  }
+  .footer-item{
+    a {
+      color: #080808;
+    }
+  }
+}

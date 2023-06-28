@@ -1,0 +1,26 @@
+.footer {
+  display: flex;
+  width: 97%;
+  padding: 0 6.8rem 1.1rem 7.3rem;
+  justify-content: space-between;
+  margin: 0 auto 2.6rem;
+  &-item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid transparent;
+    a {
+      color: #ffffff;
+      font-size: 1.5rem;
+      text-decoration: none;
+      margin-left: 1rem;
+      @media screen and (max-width: 1368px){
+        font-size: 0.9rem;
+      }
+    }
+    &:hover {
+      border: 1px solid #ffffff;
+      border-radius: 20px;
+    }
+  }
+}
