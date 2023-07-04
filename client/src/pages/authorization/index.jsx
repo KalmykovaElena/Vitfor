@@ -10,7 +10,7 @@ export default function Authorization() {
     <>
       <header className="authorization-header">
         <Logo />
-        <Select data={['РУС', 'EN', 'BY']} />
+        <Select data={['РУС', 'EN', 'BY']} onchangeSelect={(e) => console.log(e)} />
       </header>
       <main className="authorization" style={{ backgroundImage: `url(${background})` }}>
         <AuthPanel />

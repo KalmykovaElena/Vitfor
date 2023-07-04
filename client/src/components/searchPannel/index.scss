@@ -1,14 +1,14 @@
 .search-form {
   width: 46%;
-  height: 32px;
-  margin: 38px auto 0;
+  height: 2rem;
+  margin: 2.375rem auto 0;
   display: flex;
   border: 1px solid #ffffff;
   border-radius: 20px;
   transition: all 0.5s;
   overflow: hidden;
   &__input {
-    height: 32px;
+    height: 2rem;
     border: none;
     outline: none;
     background-color: transparent;
@@ -18,35 +18,35 @@
   }
   .text-input {
     flex: 1;
-    padding: 0 12px;
+    padding: 0 0.75rem;
     color: #ffffff;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 400;
     &__filled {
       flex: 1;
-      padding: 0 12px;
+      padding: 0 0.75rem;
       background-color: #ffffff;
       color: #000000;
     }
     &::placeholder {
-      font-size: 14px;
+      font-size: 0.875rem;
       color: #ffffff;
     }
   }
   .search-input {
     position: relative;
-    width: 32px;
+    width: 2rem;
     border-left: 1px solid #ffffff;
     background: url('../../assets/Vector-6.png');
     background-repeat: no-repeat;
-    background-size: 14px 14px;
+    background-size: 0.875rem 0.875rem;
     background-position: center;
     &__filled {
       width: 32px;
       background: url('../../assets/Vector-8.png');
       background-color: #cccccc;
       background-repeat: no-repeat;
-      background-size: 14px 14px;
+      background-size: 0.875rem 0.875rem;
       background-position: center;
     }
   }

@@ -1,24 +1,23 @@
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 16px 48px;
+  padding: 2rem 3rem;
   color: #ffffff;
-  margin-top: 9px;
-  
+  margin-top: 0.5625rem; 
   &-logo {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 16px;
+    gap: 0.5rem;
+    font-size: 2rem;
     font-weight: 800;
     cursor:default;
     img {
-      width: 40px;
-      height: 40px;
+      width: 2.5rem;
+      height: 2.5rem;
     }
   }
   &-nav {
-    padding: 10px 0;
+    padding: 0.625rem 0;
     a {
       color: #ffffff;
       text-decoration: none;
@@ -30,7 +29,7 @@
     }
     min-width: 38.99%;
     display: flex;
-    gap: 24px;
+    gap: 1.5rem;
     transition: all 1s;
   }
  
