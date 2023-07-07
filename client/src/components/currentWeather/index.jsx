@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 const CurrentWeather = () => {
   const [temp, setTemp] = useState('');
   const apiKey = 'be37b681b59f77fe1aaf8f4ce71fa5ad';
+
   useEffect(() => {
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=Vitebsk&lang=ru&units=metric&APPID=${apiKey}`)
       .then((res) => {

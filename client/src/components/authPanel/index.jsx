@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './index.scss';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import AuthPannelHeader from 'components/authPannelHeader';
 import { authInputs } from 'constants/inputs';
 import FormInput from 'components/common/formInput';
@@ -11,30 +11,38 @@ import { setAuthErrors } from 'redux/reducers/authReducer';
 
 export default function AuthPanel() {
   const location = useLocation();
-  const currentPage = location.pathname.slice(1);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors, isValid, isDirty },
     reset,
     watch,
+    setError,
   } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
   });
+  const headerError = errors.password?.message || false;
+  const currentPage = location.pathname.slice(1);
+  const renderInputs = authInputs.filter((e) => e.pages.includes(currentPage));
+
+  const onSubmit = (data, e) => {
+    e.preventDefault();
+    console.log(data);
+    verifyingUserData(data, currentPage, dispatch, reset, setError, navigate);
+  };
+  console.log(errors);
   useEffect(() => {
     reset();
     dispatch(setAuthErrors({}));
   }, [dispatch, location, reset]);
-  const onSubmit = (data) => {
-    verifyingUserData(data, currentPage, dispatch, reset);
-  };
-  console.log(errors);
-  const renderInputs = authInputs.filter((e) => e.pages.includes(currentPage));
+
   return (
     <div className="authPannel">
-      <AuthPannelHeader reset={reset} />
+      <AuthPannelHeader reset={reset} errors={headerError} />
       <form className="authPannel-form " onSubmit={handleSubmit(onSubmit)}>
         {renderInputs.map((e) => (
           <FormInput

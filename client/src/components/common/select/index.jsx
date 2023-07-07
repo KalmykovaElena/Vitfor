@@ -1,19 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { ReactComponent as Caret } from 'assets/CaretDown.svg';
 import './index.scss';
-import CaretDown from 'assets/CaretDown.png';
-import CaretUp from 'assets/CaretUp.png';
+import { useOnClickOutside } from 'hooks/useOnClickOutside';
 
-const Select = ({ data }) => {
+const Select = ({ data, placeholder, onchangeSelect, error }) => {
   const [selectActive, setSelectActive] = useState('');
-  const [selectedValue, setSelectedValue] = useState(data[0]);
+  const [selected, setSelected] = useState(false);
+  const [selectedValue, setSelectedValue] = useState(placeholder || data[0]);
+  const ref = useRef();
+  useOnClickOutside(ref, () => setSelectActive(''));
+
+  useEffect(() => {
+    if (!data.includes(selectedValue)) {
+      setSelectedValue(placeholder || data[0]);
+    }
+  }, [data, placeholder, selectedValue]);
+
   return (
-    <div className="select">
+    <div
+      className={
+        error && selectedValue === placeholder ? 'select select__error' : selected ? 'select select__filled' : 'select'
+      }
+      ref={ref}
+    >
       <div className="select__label">
         {selectedValue}
-        <img
-          role="presentation"
-          src={selectActive ? CaretUp : CaretDown}
-          alt="arrow down"
+        <Caret
+          className={selectActive ? 'caret-down' : 'caret'}
           onClick={() => setSelectActive(selectActive ? '' : 'active')}
         />
       </div>
@@ -26,6 +39,8 @@ const Select = ({ data }) => {
             onClick={() => {
               setSelectActive('');
               setSelectedValue(e);
+              onchangeSelect(e);
+              setSelected(true);
             }}
           >
             {e}{' '}

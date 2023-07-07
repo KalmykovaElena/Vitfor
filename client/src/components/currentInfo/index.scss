@@ -12,9 +12,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
     position: relative;
-    bottom: 30px;
+    bottom: 1.875rem;
     transition: opacity 0.7s 1s;
   }
   &-logo{
@@ -38,10 +38,10 @@
   &-date {
     width: 74%;
     background-color: #3f3c30cc;
-    max-height: 68px;
+    max-height: 4.25rem;
     border-radius: 20px;
-    margin-top: 8px;
-    padding: 16px;
+    margin-top: 0.5rem;
+    padding: 1rem;
     transition: opacity .7s .2s;
     &__details {
       display: flex;
@@ -54,7 +54,7 @@
     position: relative;
     width: 11.9rem;
     height: 51px;
-    font-size: 12px;
+    font-size: 0.75rem;
     display: flex;
     justify-content: flex-end;
     align-items: center;

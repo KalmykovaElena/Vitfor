@@ -8,8 +8,8 @@ export const authInputs = [
     required: 'Электронная почта обязательна',
     validateInput: {
       maxLength: {
-        value: 50,
-        message: 'Не более 50 символов',
+        value: 30,
+        message: 'Не более 30 символов',
       },
       required: 'Электронная почта обязательна',
       pattern: {
@@ -35,8 +35,31 @@ export const authInputs = [
         message: 'Введите не менее 8 символов',
       },
       required: 'Пароль обязателен',
+      pattern: {
+        value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+        message: 'Пароль должен содержать минимум одну цифру, 1 заглавную и 1 строчную буквы',
+      },
     },
-    pages: 'authorization,registration,confirm',
+    pages: 'registration',
+  },
+  {
+    inputLabel: 'Пароль',
+    id: 'input-password',
+    inputType: 'password',
+    placeholder: 'Не менее 8 символов',
+    inputName: 'password',
+    validateInput: {
+      maxLength: {
+        value: 20,
+        message: 'Не более 20 символов',
+      },
+      minLength: {
+        value: 8,
+        message: 'Введите не менее 8 символов',
+      },
+      required: 'Пароль обязателен',
+    },
+    pages: 'authorization,confirm,Auth/ResetPassword',
   },
   {
     inputLabel: 'Я соглашаюсь с политикой конфиденциальности',
@@ -57,6 +80,56 @@ export const authInputs = [
       recovery: 'Запросить',
       confirm: 'Подтвердить',
     },
-    pages: 'authorization,registration,recovery,confirm',
+    pages: 'authorization,registration,recovery,confirm,Auth/ResetPassword',
+  },
+];
+
+export const personalDataInputs = [
+  {
+    inputLabel: 'Отображаемое имя',
+    id: 'input-nickName',
+    inputType: 'text',
+    inputName: 'nickName',
+    placeholder: 'Ann.Rad.Use@mail.ru',
+    validateInput: {
+      maxLength: {
+        value: 30,
+        message: 'Не более 30 символов',
+      },
+      required: 'Обязательное поле',
+      pattern: {
+        value: /^[a-zA-ZА-Яа-я0-9_!@#$%^&*()_+"-={}|>?[\]]*$/,
+        message: 'Неверное имя',
+      },
+    },
+  },
+  {
+    inputLabel: 'Имя пользователя',
+    id: 'input-name',
+    inputType: 'text',
+    inputName: 'name',
+    placeholder: 'Имя',
+    validateInput: {
+      maxLength: {
+        value: 30,
+        message: 'Не более 30 символов',
+      },
+      required: 'Обязательное поле',
+      pattern: {
+        value: /^[a-zA-ZА-Яа-я0-9_!@#$%^&*()_+"-={}|>?[\]]*$/,
+        message: 'Неверное имя',
+      },
+    },
+  },
+  {
+    renderType: 'select-block',
+    label: 'Дата рождения',
+  },
+  {
+    inputType: 'submit',
+    id: 'input-submit',
+    inputValue: {
+      personal_info: 'Сохранить',
+    },
   },
 ];

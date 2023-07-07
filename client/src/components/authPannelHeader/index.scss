@@ -1,10 +1,10 @@
 .authPannel-header {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1rem;
   &__controls {
     display: flex;
-    height: 38px;
+    height: 2.375rem;
     div {
       width: 50%;
       cursor: pointer;
@@ -19,5 +19,10 @@
     & .active {
         border-bottom: 1px solid #ffffff;
       }
+  }
+  &__error{
+    color: #f5222d;
+    font-size: 0.75rem;
+    font-weight: 500;
   }
 }

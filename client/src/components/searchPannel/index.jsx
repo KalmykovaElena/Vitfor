@@ -5,11 +5,13 @@ import './index.scss';
 const SearchPannel = () => {
   const [inputValue, setInputValue] = useState(null);
   const { register, handleSubmit, reset } = useForm();
+
   const onSubmit = (value) => {
     console.log(value.searchValue);
     setInputValue(null);
     reset();
   };
+
   return (
     <form className="search-form" onSubmit={handleSubmit(onSubmit)}>
       <input

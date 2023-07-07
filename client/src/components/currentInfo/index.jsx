@@ -10,6 +10,7 @@ import CurrentTime from 'components/currentTime';
 
 const CurrentInfo = () => {
   const [timeLoading, setTimeLoading] = useState(true);
+
   return (
     <div className="currentInfo">
       <div className={`currentInfo-wrapper${timeLoading ? ' partialhidden' : ' show'}`}>
