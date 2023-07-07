@@ -9,7 +9,7 @@ export const verifyingUserData = (data, currentPage, dispatch, reset, setError, 
   // const existUser = checkUserExist(data);
   console.log(data);
   if (currentPage === 'registration') {
-    fetch(`${url}/Auth/Register`, {
+    fetch(`/Auth/Register`, {
       method: 'POST',
       headers: {
         Accept: 'application/json, text/plain',
