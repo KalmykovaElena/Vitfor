@@ -21,7 +21,7 @@ const DateSelect = ({ register, setValue, clearErrors, errors }) => {
       if (!checkDate(selectedDay, mounthNumber, selectedYear)) {
         setDaysArray(range(1, setDaysNumber(selectedYear, mounthNumber)));
       }
-      setValue('birthday', { day: selectedDay, mounth: mounthNumber, year: selectedYear });
+      setValue('birthday', { day: selectedDay, mounth: mounthNumber + 1, year: selectedYear });
       clearErrors('birthday');
     }
     if (selectedMounth && selectedYear) {

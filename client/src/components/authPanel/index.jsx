@@ -13,12 +13,14 @@ export default function AuthPanel() {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors, isValid, isDirty },
     reset,
     watch,
+    setError,
   } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
@@ -27,10 +29,12 @@ export default function AuthPanel() {
   const currentPage = location.pathname.slice(1);
   const renderInputs = authInputs.filter((e) => e.pages.includes(currentPage));
 
-  const onSubmit = (data) => {
-    verifyingUserData(data, currentPage, dispatch, reset, navigate);
+  const onSubmit = (data, e) => {
+    e.preventDefault();
+    console.log(data);
+    verifyingUserData(data, currentPage, dispatch, reset, setError, navigate);
   };
-
+  console.log(errors);
   useEffect(() => {
     reset();
     dispatch(setAuthErrors({}));

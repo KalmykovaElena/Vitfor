@@ -5,6 +5,7 @@ const initialState = {
   approval: false,
   authError: {},
   profileData: {},
+  user: {},
 };
 
 const authPageSlice = createSlice({
@@ -23,9 +24,12 @@ const authPageSlice = createSlice({
     setProfileData: (state, action) => {
       state.profileData = action.payload;
     },
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
   },
 });
 
-export const { setIsAuth, setAuthErrors, setProfileData, setApproval } = authPageSlice.actions;
+export const { setIsAuth, setAuthErrors, setProfileData, setApproval, setUser } = authPageSlice.actions;
 
 export default authPageSlice.reducer;

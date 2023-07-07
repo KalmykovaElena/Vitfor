@@ -6,9 +6,11 @@ import './index.scss';
 import DateSelect from 'components/dateSelect';
 import checkmark from 'assets/checkmark-circle.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsAuth, setProfileData } from 'redux/reducers/authReducer';
+import { setProfileData } from 'redux/reducers/authReducer';
 import ImageCropper from 'components/ImageCropper';
 import { Tooltip, ColorPicker } from 'antd';
+import { updateUserData } from 'utils/updateUserData';
+import { useNavigate } from 'react-router-dom';
 
 const PersonalData = () => {
   const [isSend, setIsSend] = useState(false);
@@ -18,6 +20,7 @@ const PersonalData = () => {
   const [profileColor, setProfileColor] = useState();
   const dispatch = useDispatch();
   const profileName = useSelector((state) => state.auth.profileData.nickName);
+  const navigate = useNavigate();
   const {
     register,
     setValue,
@@ -29,7 +32,7 @@ const PersonalData = () => {
     mode: 'onSubmit',
     reValidateMode: 'onChange',
   });
-
+  // console.log(new Date(2003-01-25 00:00:00));
   const handleFileChange = (e) => {
     console.log('change');
     if (e.target.files.length > 0) {
@@ -43,17 +46,25 @@ const PersonalData = () => {
     setIsCropeOpen(false);
   };
   const onSubmit = (data) => {
-    let formData = data;
+    let formData = {
+      nickName: data.nickName,
+      userName: data.name,
+      dayOfBirth: data.birthday.day,
+      monthOfBirth: data.birthday.mounth,
+      yearOfBirth: data.birthday.mounth,
+    };
 
     if (savedlImage) {
-      formData = { ...data, file: savedlImage };
+      formData = { ...formData, photo: savedlImage };
     } else if (profileColor) {
-      formData = { ...data, profileColor };
+      formData = { ...formData, photo: profileColor };
     }
+    // const setNewData = (result) => dispatch(setUser(result));
     dispatch(setProfileData(formData));
-    dispatch(setIsAuth(true));
+    // dispatch(setIsAuth(true));
     setIsSend(true);
-
+    console.log(data);
+    updateUserData(formData, dispatch, navigate);
     return () => setIsSend(false);
   };
 

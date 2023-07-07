@@ -37,7 +37,7 @@ export const authInputs = [
       required: 'Пароль обязателен',
       pattern: {
         value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-        message: 'Пароль должен содержать по крайней мере одну цифру, одну заглавную строчную буквы',
+        message: 'Пароль должен содержать минимум одну цифру, 1 заглавную и 1 строчную буквы',
       },
     },
     pages: 'registration',
@@ -59,7 +59,7 @@ export const authInputs = [
       },
       required: 'Пароль обязателен',
     },
-    pages: 'authorization,confirm',
+    pages: 'authorization,confirm,Auth/ResetPassword',
   },
   {
     inputLabel: 'Я соглашаюсь с политикой конфиденциальности',
@@ -80,7 +80,7 @@ export const authInputs = [
       recovery: 'Запросить',
       confirm: 'Подтвердить',
     },
-    pages: 'authorization,registration,recovery,confirm',
+    pages: 'authorization,registration,recovery,confirm,Auth/ResetPassword',
   },
 ];
 

@@ -9,7 +9,7 @@ const AuthPannelHeader = ({ errors }) => {
 
   return (
     <div className="authPannel-header">
-      {currentPage === 'recovery' || currentPage === 'confirm' ? (
+      {currentPage === 'recovery' || currentPage === 'Auth/ResetPassword' ? (
         <div>Восстановление пароля</div>
       ) : (
         <>

@@ -3,19 +3,8 @@
   justify-content: space-between;
   padding: 2rem 3rem;
   color: #ffffff;
-  margin-top: 0.5625rem; 
-  &-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 2rem;
-    font-weight: 800;
-    cursor:default;
-    img {
-      width: 2.5rem;
-      height: 2.5rem;
-    }
-  }
+  margin-top: 0.5625rem;
+  position: relative;
   &-nav {
     padding: 0.625rem 0;
     a {
@@ -32,5 +21,33 @@
     gap: 1.5rem;
     transition: all 1s;
   }
- 
+  .logo {
+    &-app {
+      cursor: default;
+      .logo-img {
+        max-width: 2.5rem;
+      }
+    }
+    &-userlogo {
+      .logo-img {
+        width: 3.5rem;
+        height: 3.5rem;
+        background-color: #676767;
+      }
+      .logo-text {
+        &__name {
+          font-size: 1rem;
+          font-weight: 500;
+          color: #000000;
+          line-height: 135%
+        }
+        &__subname {
+          color: #cccccc;
+          font-size: 0.75rem;
+          line-height: 135%
+        }
+      }
+    }
+  }
+
 }
