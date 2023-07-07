@@ -2,7 +2,7 @@
 import { setIsAuth, setUser } from '../redux/reducers/authReducer';
 // import { checkUserExist } from './checkUserExist';
 
-const url = process.env.REACT_APP_BASEURL;
+const url = process.env.SERVER_URL;
 export const verifyingUserData = (data, currentPage, dispatch, reset, setError, navigate) => {
   const goToPage = (page) => navigate(`/${page}`);
 
