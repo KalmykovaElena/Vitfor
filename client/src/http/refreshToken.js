@@ -1,8 +1,9 @@
+import { url } from 'constants/url';
 // eslint-disable-next-line camelcase
 import jwt_decode from 'jwt-decode';
 import { setIsAuth } from 'redux/reducers/authReducer';
-// url, token, navigate, updateUserData, formData
-export const refreshToken = (url, token, navigate, funk, dispatch, data) => {
+
+export const refreshToken = (token, navigate, funk, dispatch, data) => {
   const refToken = localStorage.getItem('refreshToken');
   const decoded = jwt_decode(token);
   fetch(`${url}/Auth/RefreshToken`, {

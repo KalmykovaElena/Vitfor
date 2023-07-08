@@ -1,14 +1,12 @@
 /* eslint-disable no-alert */
-import { url } from 'http/url';
+import { url } from 'constants/url';
 import { setIsAuth, setUser } from '../redux/reducers/authReducer';
-// import { checkUserExist } from './checkUserExist';
-
+import { getUserProfile } from './getUserProfile';
 
 export const verifyingUserData = (data, currentPage, dispatch, reset, setError, navigate) => {
   const goToPage = (page) => navigate(`/${page}`);
   console.log(url);
-  // const existUser = checkUserExist(data);
-  console.log(data);
+
   if (currentPage === 'registration') {
     fetch(`${url}/Auth/Register`, {
       method: 'POST',
@@ -41,7 +39,6 @@ export const verifyingUserData = (data, currentPage, dispatch, reset, setError, 
         dispatch(setUser(result));
         localStorage.setItem('token', result.token);
         localStorage.setItem('refreshToken', result.refreshToken);
-        // token
         reset();
       })
       .catch((err) => {
@@ -71,7 +68,7 @@ export const verifyingUserData = (data, currentPage, dispatch, reset, setError, 
         return response.json();
       })
       .then((result) => {
-        console.log(result);
+        getUserProfile(result.token, navigate, dispatch);
         goToPage('');
         dispatch(setIsAuth(true));
         dispatch(setUser(result));

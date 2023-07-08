@@ -1,8 +1,8 @@
+import { url } from 'constants/url';
 import { setIsAuth, setUser } from 'redux/reducers/authReducer';
-import { refreshToken } from 'utils/refreshToken';
+import { refreshToken } from 'http/refreshToken';
 
 export const getUserProfile = (token, navigate, dispatch) => {
-  const url = process.env.REACT_APP_BASEURL;
   fetch(`${url}/Account/GetUserProfile`, {
     // method: 'GET',
     // // mode: 'no-cors',
@@ -17,7 +17,7 @@ export const getUserProfile = (token, navigate, dispatch) => {
       console.log(response);
       if (!response.ok) {
         if (response.status === 401) {
-          refreshToken(url, token, navigate, getUserProfile, dispatch, token);
+          refreshToken(token, navigate, getUserProfile, dispatch, token);
         }
         const res = await response.text();
         throw new Error(res);

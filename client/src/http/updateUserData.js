@@ -1,10 +1,8 @@
-// import { setUser } from 'redux/reducers/authReducer';
-
 import { setUser } from 'redux/reducers/authReducer';
+import { url } from 'constants/url';
 import { refreshToken } from './refreshToken';
 
 export const updateUserData = (formData, dispatch, navigate) => {
-  const url = process.env.REACT_APP_BASEURL;
   const token = localStorage.getItem('token');
 
   fetch(`${url}/Account/FillingAccountInfo`, {
@@ -19,7 +17,7 @@ export const updateUserData = (formData, dispatch, navigate) => {
     .then(async (response) => {
       if (!response.ok) {
         if (response.status === 401) {
-          refreshToken(url, token, navigate, updateUserData, dispatch, formData);
+          refreshToken(token, navigate, updateUserData, dispatch, formData);
         }
         const res = await response.text();
         throw new Error(res);

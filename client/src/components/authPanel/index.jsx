@@ -6,8 +6,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import AuthPannelHeader from 'components/authPannelHeader';
 import { authInputs } from 'constants/inputs';
 import FormInput from 'components/common/formInput';
-import { verifyingUserData } from 'utils/verifyingUserData';
-import { setAuthErrors } from 'redux/reducers/authReducer';
+import { verifyingUserData } from 'http/verifyingUserData';
 
 export default function AuthPanel() {
   const location = useLocation();
@@ -34,10 +33,9 @@ export default function AuthPanel() {
     console.log(data);
     verifyingUserData(data, currentPage, dispatch, reset, setError, navigate);
   };
-  console.log(errors);
+
   useEffect(() => {
     reset();
-    dispatch(setAuthErrors({}));
   }, [dispatch, location, reset]);
 
   return (

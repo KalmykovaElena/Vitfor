@@ -6,79 +6,85 @@ import { Menu, Switch } from 'antd';
 import './index.scss';
 import Icon from '@ant-design/icons/lib/components/Icon';
 import { useOnClickOutside } from 'hooks/useOnClickOutside';
-import SubMenu from 'antd/es/menu/SubMenu';
 import { useDispatch } from 'react-redux';
 import { setIsAuth } from 'redux/reducers/authReducer';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import switch1 from 'assets/swtch1.png';
+import switch2 from 'assets/switch2.png';
 
 const exit = () => <img src={exitPng} alt="exit" />;
 const profile = () => <img src={profilePng} alt="profile" />;
 const settings = () => <img src={settingsPng} alt="profile" />;
-// function getItem(label, key, icon, children, type) {
-//   return {
-//     key,
-//     icon,
-//     children,
-//     label,
-//     type,
-//   };
-// }
+function getItem(label, key, onClick, icon, children, type) {
+  return {
+    key,
+    icon,
+    children,
+    label,
+    type,
+    onClick,
+  };
+}
 
-// const items = [
-//   getItem('Мой профиль', 'profile', <Icon component={profile} />),
-//   getItem('Настройки профиля', 'settings', <Icon component={settings} />),
-//   getItem('Выход', 'sub1', <Icon component={exit} />, [
-//     getItem('Вы уверены, что хотите выйти?', 'g1', null, [getItem('Да', 'exit'), getItem('Нет', 'return')], 'group'),
-//   ]),
-// ];
 const ModalMenu = ({ setIsMenuOpen }) => {
   const [theme, setTheme] = useState('dark');
+  const [openKeys, setOpenKeys] = useState([]);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const ref = useRef();
   useOnClickOutside(ref, () => setIsMenuOpen(false));
 
-  const changeTheme = (value) => {
-    console.log(value);
-    setTheme(value ? 'light' : 'dark');
-  };
-  const onClick = () => {
+  const onExit = () => {
     dispatch(setIsAuth(false));
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
   };
+  const onOpenChange = (keys) => {
+    const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+
+    setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+  };
+  const items = [
+    getItem('Мой профиль', 'profile', null, <Icon component={profile} />),
+    getItem('Настройки профиля', 'settings', () => navigate('personal_info/data'), <Icon component={settings} />),
+    getItem('Выход', 'sub1', null, <Icon component={exit} />, [
+      getItem(
+        'Вы уверены, что хотите выйти?',
+        'g1',
+        null,
+        null,
+        [getItem('Да', 'exit', onExit), getItem('Нет', 'return', () => setOpenKeys([]))],
+        'group'
+      ),
+    ]),
+  ];
+  const changeTheme = (value) => {
+    console.log(value);
+    setTheme(value ? 'light' : 'dark');
+  };
+
   return (
     <div ref={ref} className={theme === 'dark' ? 'modal-menu modal-menu_dark' : 'modal-menu modal-menu_light'}>
-      <Switch
-        onChange={changeTheme}
-        checkedChildren="день"
-        unCheckedChildren="ночь"
-        style={{ backgroundColor: theme === 'dark' ? '#6b2e5a' : 'orange' }}
-      />
+      <div className="modal-menu-switch">
+        <img src={switch1} alt="day" />
+        <Switch
+          onChange={changeTheme}
+          checkedChildren="день"
+          unCheckedChildren="ночь"
+          style={{ backgroundColor: theme === 'dark' ? '#6b2e5a' : 'orange' }}
+        />
+        <img src={switch2} alt="night" />
+      </div>
       <Menu
-        // onClick={onClick}
+        openKeys={openKeys}
+        onOpenChange={onOpenChange}
         style={{
           width: 317,
         }}
         mode="inline"
-        // items={items}
+        items={items}
         theme={theme}
-      >
-        <Menu.Item key="setting:3" icon={<Icon component={profile} />}>
-          Мой профиль
-        </Menu.Item>
-        <Menu.Item key="setting:4" icon={<Icon component={settings} />}>
-          Настройки профиля
-          <Link to="personal_info/data"></Link>
-        </Menu.Item>
-        <SubMenu key="SubMenu" icon={<Icon component={exit} />} title="Выход">
-          <Menu.ItemGroup title="Вы уверены, что хотите выйти?">
-            <Menu.Item key="setting:1" onClick={onClick}>
-              Да
-            </Menu.Item>
-            <Menu.Item key="setting:2">Нет</Menu.Item>
-          </Menu.ItemGroup>
-        </SubMenu>
-      </Menu>
+      />
     </div>
   );
 };

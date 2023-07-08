@@ -10,7 +10,6 @@ const FormInput = ({ data, ...inputProps }) => {
   const [passwordShown, setPasswordShown] = useState(false);
   const [currentValue, setCurrentValue] = useState('');
   const dispatch = useDispatch();
-  const currentError = useSelector((state) => state.auth.authError);
   const approval = useSelector((state) => state.auth.approval);
   const location = useLocation();
   const currentPage = location.pathname.slice(1);
@@ -63,8 +62,7 @@ const FormInput = ({ data, ...inputProps }) => {
             />
           )}
           <div className={`formInput-label__error error-${inputType}`}>
-            {(error[inputName]?.message.length < 70 && error[inputName]?.message?.toString()) ||
-              currentError[inputName]}
+            {(error[inputName]?.message.length < 70 && error[inputName]?.message?.toString()) || ''}
           </div>
         </label>
       )}

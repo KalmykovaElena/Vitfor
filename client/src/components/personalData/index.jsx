@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setProfileData } from 'redux/reducers/authReducer';
 import ImageCropper from 'components/ImageCropper';
 import { Tooltip, ColorPicker } from 'antd';
-import { updateUserData } from 'utils/updateUserData';
+import { updateUserData } from 'http/updateUserData';
 import { useNavigate } from 'react-router-dom';
 
 const PersonalData = () => {
