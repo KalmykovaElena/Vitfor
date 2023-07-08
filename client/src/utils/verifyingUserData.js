@@ -3,9 +3,11 @@ import { setIsAuth, setUser } from '../redux/reducers/authReducer';
 // import { checkUserExist } from './checkUserExist';
 
 const url = process.env.REACT_APP_BASEURL;
+const url2 = process.env.SERVER_URL;
 export const verifyingUserData = (data, currentPage, dispatch, reset, setError, navigate) => {
   const goToPage = (page) => navigate(`/${page}`);
   console.log(url);
+  console.log(url2);
   // const existUser = checkUserExist(data);
   console.log(data);
   if (currentPage === 'registration') {
