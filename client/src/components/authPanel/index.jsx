@@ -7,6 +7,7 @@ import AuthPannelHeader from 'components/authPannelHeader';
 import { authInputs } from 'constants/inputs';
 import FormInput from 'components/common/formInput';
 import { verifyingUserData } from 'http/verifyingUserData';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 export default function AuthPanel() {
   const location = useLocation();
@@ -40,7 +41,9 @@ export default function AuthPanel() {
 
   return (
     <div className="authPannel">
-      <AuthPannelHeader reset={reset} errors={headerError} />
+      <GoogleOAuthProvider clientId="235213662998-9eqe351jifk2urdcj1q6k38hfru1bcme.apps.googleusercontent.com">
+        <AuthPannelHeader reset={reset} errors={headerError} />
+      </GoogleOAuthProvider>
       <form className="authPannel-form " onSubmit={handleSubmit(onSubmit)}>
         {renderInputs.map((e) => (
           <FormInput

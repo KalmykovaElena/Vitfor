@@ -14,7 +14,6 @@ export const getUserProfile = (token, navigate, dispatch) => {
     },
   })
     .then(async (response) => {
-      console.log(response);
       if (!response.ok) {
         if (response.status === 401) {
           refreshToken(token, navigate, getUserProfile, dispatch, token);

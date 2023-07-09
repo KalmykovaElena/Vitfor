@@ -17,7 +17,7 @@ const CurrentInfo = () => {
         <div className="currentInfo-logo">
           <img src={logo} alt="logo" />
         </div>
-        <h1 className="currentInfo-name">ВитФор</h1>
+        <h1 className="currentInfo-name">VitFor</h1>
         <div className="currentInfo-description">Сообщество города Витебска</div>
         <div className={`currentInfo-date${timeLoading ? ' hidden' : ' show'}`}>
           <div className={`currentInfo-date__details${timeLoading ? ' hidden' : ' show'}`}>

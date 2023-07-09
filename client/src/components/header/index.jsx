@@ -22,7 +22,7 @@ const Header = () => {
 
   return (
     <header className="header">
-      <Logo name="app" img={logo} text="ВИТФОР" textLocation="right" />
+      <Logo name="app" img={logo} text="VitFor" textLocation="right" />
       <nav className="header-nav">
         <NavLink to="/"> Главная</NavLink>
         <NavLink to="/news"> Новости</NavLink>

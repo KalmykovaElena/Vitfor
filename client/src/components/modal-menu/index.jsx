@@ -46,7 +46,7 @@ const ModalMenu = ({ setIsMenuOpen }) => {
   };
   const items = [
     getItem('Мой профиль', 'profile', null, <Icon component={profile} />),
-    getItem('Настройки профиля', 'settings', () => navigate('personal_info/data'), <Icon component={settings} />),
+    getItem('Настройки профиля', 'settings', () => navigate('/personal_info/data'), <Icon component={settings} />),
     getItem('Выход', 'sub1', null, <Icon component={exit} />, [
       getItem(
         'Вы уверены, что хотите выйти?',

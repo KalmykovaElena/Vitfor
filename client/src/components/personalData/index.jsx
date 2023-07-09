@@ -1,6 +1,6 @@
 import FormInput from 'components/common/formInput';
 import { personalDataInputs } from 'constants/inputs';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './index.scss';
 import DateSelect from 'components/dateSelect';
@@ -59,14 +59,14 @@ const PersonalData = () => {
     } else if (profileColor) {
       formData = { ...formData, photo: profileColor };
     }
-    // const setNewData = (result) => dispatch(setUser(result));
     dispatch(setProfileData(formData));
-    // dispatch(setIsAuth(true));
-    setIsSend(true);
-    console.log(data);
-    updateUserData(formData, dispatch, navigate);
-    return () => setIsSend(false);
+    updateUserData(formData, dispatch, navigate, setIsSend);
+    // return () => setIsSend(false);
   };
+
+  useEffect(() => {
+    setIsSend(false);
+  }, []);
 
   return (
     <section className="personalData">
