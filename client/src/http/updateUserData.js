@@ -2,7 +2,7 @@ import { setUser } from 'redux/reducers/authReducer';
 import { url } from 'constants/url';
 import { refreshToken } from './refreshToken';
 
-export const updateUserData = (formData, dispatch, navigate) => {
+export const updateUserData = (formData, dispatch, navigate, setIsSend) => {
   const token = localStorage.getItem('token');
 
   fetch(`${url}/Account/FillingAccountInfo`, {
@@ -19,18 +19,17 @@ export const updateUserData = (formData, dispatch, navigate) => {
         if (response.status === 401) {
           refreshToken(token, navigate, updateUserData, dispatch, formData);
         }
-        const res = await response.text();
-        throw new Error(res);
+        const res = await response.json();
+        console.log(res);
+        throw new Error(res.message);
       }
       console.log(response);
       return response.json();
     })
     .then((result) => {
       console.log(result);
-      // goToPage('personal_info/data');
-      // dispatch(setIsAuth(true));
+      setIsSend(true);
       dispatch(setUser(result));
-      // token
     })
     .catch((err) => {
       console.log(err);
