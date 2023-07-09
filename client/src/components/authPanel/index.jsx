@@ -33,10 +33,10 @@ export default function AuthPanel() {
     console.log(data);
     verifyingUserData(data, currentPage, dispatch, reset, setError, navigate);
   };
-
+  console.log(errors);
   useEffect(() => {
     reset();
-  }, [dispatch, location, reset]);
+  }, [reset]);
 
   return (
     <div className="authPannel">

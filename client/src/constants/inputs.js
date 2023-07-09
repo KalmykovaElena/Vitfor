@@ -36,8 +36,14 @@ export const authInputs = [
       },
       required: 'Пароль обязателен',
       pattern: {
-        value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-        message: 'Пароль должен содержать минимум одну цифру, 1 заглавную и 1 строчную буквы',
+        value: /^[a-zA-ZА-Я0-9_!@#$%^&*()_+"-={}|>?[\]]*$/,
+        message:
+          'Пароль может содержать следующие символы: ! @ # $ % ^ & * ( ) _ + - = { } [ ]  | : ; " \' < > , . ? /, A-Z, 0-9',
+      },
+      validate: {
+        characters: (value) =>
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/.test(value) ||
+          'Пароль должен содержать минимум одну цифру, 1 заглавную и 1 строчную буквы',
       },
     },
     pages: 'registration',
@@ -90,7 +96,7 @@ export const personalDataInputs = [
     id: 'input-nickName',
     inputType: 'text',
     inputName: 'nickName',
-    placeholder: 'Ann.Rad.Use@mail.ru',
+    placeholder: 'Отображаемое имя',
     validateInput: {
       maxLength: {
         value: 30,
