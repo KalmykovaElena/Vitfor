@@ -19,7 +19,7 @@ const PersonalData = () => {
   const [savedlImage, setSavedImage] = useState();
   const [profileColor, setProfileColor] = useState();
   const dispatch = useDispatch();
-  const profileName = useSelector((state) => state.auth.profileData.nickName);
+  const profileName = useSelector((state) => state.auth.profileData.userName);
   const navigate = useNavigate();
   const {
     register,
@@ -32,7 +32,7 @@ const PersonalData = () => {
     mode: 'onSubmit',
     reValidateMode: 'onChange',
   });
-  // console.log(new Date(2003-01-25 00:00:00));
+
   const handleFileChange = (e) => {
     console.log('change');
     if (e.target.files.length > 0) {
@@ -61,7 +61,6 @@ const PersonalData = () => {
     }
     dispatch(setProfileData(formData));
     updateUserData(formData, dispatch, navigate, setIsSend);
-    // return () => setIsSend(false);
   };
 
   useEffect(() => {
