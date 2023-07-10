@@ -73,6 +73,7 @@ const ModalMenu = ({ setIsMenuOpen }) => {
         <img src={switch1} alt="day" />
         <Switch
           onChange={changeTheme}
+          checked={theme !== 'dark'}
           checkedChildren="день"
           unCheckedChildren="ночь"
           style={{ backgroundColor: theme === 'dark' ? '#6b2e5a' : 'orange' }}
