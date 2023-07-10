@@ -2,13 +2,12 @@
   display: flex;
   justify-content: space-between;
   padding: 2rem 3rem;
-  color: #ffffff;
   margin-top: 0.5625rem;
   position: relative;
   &-nav {
     padding: 0.625rem 0;
     a {
-      color: #ffffff;
+      color: inherit;
       text-decoration: none;
       font-size: 16px;
     }
@@ -19,7 +18,6 @@
     min-width: 38.99%;
     display: flex;
     gap: 1.5rem;
-    transition: all 1s;
   }
   .logo {
     &-app {
@@ -39,15 +37,31 @@
           font-size: 1rem;
           font-weight: 500;
           color: #000000;
-          line-height: 135%
+          line-height: 135%;
         }
         &__subname {
-          color: #cccccc;
+          
           font-size: 0.75rem;
-          line-height: 135%
+          line-height: 135%;
         }
       }
     }
   }
-
+  &_light {
+    .logo {
+      &-userlogo {
+        .logo-img {
+          background-color: #67676777;
+        }
+      }
+      &-text__subname{
+        color: #2b2b2b
+      }
+    }
+  }
+  &_dark{
+    .logo-text__subname{
+      color: #cccccc;
+    }
+  }
 }

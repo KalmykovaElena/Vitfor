@@ -6,11 +6,6 @@
     .select {
       width: 6.5rem;
       margin-top: 0.5rem;
-      &__drop-down {
-        &.active {
-          background-color: #2f3530;
-        }
-      }
     }
   }
   &__error {

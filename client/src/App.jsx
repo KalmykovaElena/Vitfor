@@ -19,12 +19,13 @@ import PersonalData from 'components/personalData';
 import SafetyNavigation from 'components/safety-components/safety-navigation';
 import SafetySending from 'components/safety-components/safety-sending';
 import Privacy from 'pages/privacy';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getUserProfile } from 'http/getUserProfile';
 
 const App = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const theme = useSelector((state) => state.auth.theme);
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -33,7 +34,7 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <div className="App">
+    <div className={`App App_${theme}`}>
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/aboutus" element={<AboutUs />} />

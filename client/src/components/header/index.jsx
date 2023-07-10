@@ -12,6 +12,7 @@ const Header = () => {
   const userImg = useSelector((state) => state.auth.user.photo);
   const userName = useSelector((state) => state.auth.user.userName);
   const nickName = useSelector((state) => state.auth.user.nickName);
+  const theme = useSelector((state) => state.auth.theme);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const color = userImg?.includes('data:image') ? '' : userImg;
@@ -21,7 +22,7 @@ const Header = () => {
   };
 
   return (
-    <header className="header">
+    <header className={`header header_${theme}`}>
       <Logo name="app" img={logo} text="VitFor" textLocation="right" />
       <nav className="header-nav">
         <NavLink to="/"> Главная</NavLink>

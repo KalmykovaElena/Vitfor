@@ -7,9 +7,11 @@ import photo4 from 'assets/photo-4.png';
 import './index.scss';
 import CurrentWeather from 'components/currentWeather';
 import CurrentTime from 'components/currentTime';
+import { useSelector } from 'react-redux';
 
 const CurrentInfo = () => {
   const [timeLoading, setTimeLoading] = useState(true);
+  const theme = useSelector((state) => state.auth.theme);
 
   return (
     <div className="currentInfo">
@@ -18,8 +20,8 @@ const CurrentInfo = () => {
           <img src={logo} alt="logo" />
         </div>
         <h1 className="currentInfo-name">VitFor</h1>
-        <div className="currentInfo-description">Сообщество города Витебска</div>
-        <div className={`currentInfo-date${timeLoading ? ' hidden' : ' show'}`}>
+        <div className={`currentInfo-description_${theme}`}>Сообщество города Витебска</div>
+        <div className={`currentInfo-date currentInfo-date_${theme} ${timeLoading ? 'hidden' : 'show'}`}>
           <div className={`currentInfo-date__details${timeLoading ? ' hidden' : ' show'}`}>
             <div>{`${new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'numeric' })}`}</div>
             <CurrentWeather />

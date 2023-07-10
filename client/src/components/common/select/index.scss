@@ -2,7 +2,7 @@
   background: none;
   border: 1px solid #ffffff;
   border-radius: 10px;
-  color: #ffffff;
+  color: inherit;
   padding: 0.5rem;
   position: relative;
   &__label {
@@ -72,5 +72,16 @@
     .caret-down * {
       fill: #000000;
     }
+  }
+  &_dark{
+    .select__drop-down.active {
+      background-color: #2f3530;
+  }
+  }
+  &_light{
+    border-color: #000000;
+    .select__drop-down.active {
+      background-color: #cccfcd;
+  }
   }
 }

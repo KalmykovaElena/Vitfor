@@ -1,6 +1,5 @@
 .sideBar {
   padding: 2rem 1rem;
-  background-color: #ffffff33;
   &-item {
     padding: 0.5rem 1rem;
     border: 1px solid transparent;
@@ -8,7 +7,7 @@
     align-items: center;
     gap: 0.5rem;
     text-decoration: none;
-    color: #fff;
+    color: inherit;
     font-size: 1rem;
     font-weight: 500;
     line-height: 1.375rem;
@@ -28,5 +27,22 @@
     padding: 0.5rem;
     background-repeat: no-repeat;
     background-position: center center;
+  }
+  &_dark {
+    background-color: #ffffff33;
+  }
+  &_light {
+    background-color: #a0a0a0;
+    .sideBar {
+      &-item {
+        &:hover,
+        &_active {
+          border-color: #000000;
+        }
+      }
+      &-img {
+        filter: invert(1);
+      }
+    }
   }
 }

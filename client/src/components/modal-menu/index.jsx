@@ -6,8 +6,8 @@ import { Menu, Switch } from 'antd';
 import './index.scss';
 import Icon from '@ant-design/icons/lib/components/Icon';
 import { useOnClickOutside } from 'hooks/useOnClickOutside';
-import { useDispatch } from 'react-redux';
-import { setIsAuth } from 'redux/reducers/authReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsAuth, setTheme } from 'redux/reducers/authReducer';
 import { useLocation, useNavigate } from 'react-router-dom';
 import switch1 from 'assets/swtch1.png';
 import switch2 from 'assets/switch2.png';
@@ -27,11 +27,11 @@ function getItem(label, key, onClick, icon, children, type) {
 }
 
 const ModalMenu = ({ setIsMenuOpen }) => {
-  const [theme, setTheme] = useState('dark');
   const [openKeys, setOpenKeys] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const theme = useSelector((state) => state.auth.theme);
   const ref = useRef();
   useOnClickOutside(ref, () => setIsMenuOpen(false));
 
@@ -64,7 +64,7 @@ const ModalMenu = ({ setIsMenuOpen }) => {
   ];
   const changeTheme = (value) => {
     console.log(value);
-    setTheme(value ? 'light' : 'dark');
+    dispatch(setTheme(value ? 'light' : 'dark'));
   };
 
   return (

@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #ffffff;
+  color: inherit;
   font-size: 1.5rem;
   margin-top: 2.5rem;
   cursor:default;
@@ -33,11 +33,15 @@
     }
   }
   &-description {
-    color: #cccccc;
+    &_dark{
+      color: #cccccc;
+    }
+    &_light{
+      color: #2b2b2b
+    }
   }
   &-date {
     width: 74%;
-    background-color: #3f3c30cc;
     max-height: 4.25rem;
     border-radius: 20px;
     margin-top: 0.5rem;
@@ -48,6 +52,12 @@
       justify-content: space-around;
       transition: opacity 0.9s .4s;
       font-weight: 600;
+    }
+    &_dark{
+      background-color: #3f3c30cc;
+    }
+    &_light{
+      background-color: #c1c1c180;
     }
   }
   &-photos {

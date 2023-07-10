@@ -5,6 +5,7 @@ const initialState = {
   approval: false,
   profileData: {},
   user: {},
+  theme: 'dark',
 };
 
 const authPageSlice = createSlice({
@@ -23,9 +24,12 @@ const authPageSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
     },
+    setTheme: (state, action) => {
+      state.theme = action.payload;
+    },
   },
 });
 
-export const { setIsAuth, setProfileData, setApproval, setUser } = authPageSlice.actions;
+export const { setIsAuth, setProfileData, setApproval, setUser, setTheme } = authPageSlice.actions;
 
 export default authPageSlice.reducer;

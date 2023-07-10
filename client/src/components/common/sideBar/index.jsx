@@ -1,13 +1,15 @@
 import React from 'react';
 import './index.scss';
 import { Link, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const SideBar = ({ data }) => {
   const location = useLocation();
   const activeData = location.pathname.split('/');
+  const theme = useSelector((state) => state.auth.theme);
 
   return (
-    <aside className="sideBar">
+    <aside className={`sideBar sideBar_${theme}`}>
       {data.map((e) => (
         <Link
           key={e.id}

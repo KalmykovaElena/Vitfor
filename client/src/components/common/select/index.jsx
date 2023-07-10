@@ -2,11 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ReactComponent as Caret } from 'assets/CaretDown.svg';
 import './index.scss';
 import { useOnClickOutside } from 'hooks/useOnClickOutside';
+import { useSelector } from 'react-redux';
 
 const Select = ({ data, placeholder, onchangeSelect, error }) => {
   const [selectActive, setSelectActive] = useState('');
   const [selected, setSelected] = useState(false);
   const [selectedValue, setSelectedValue] = useState(placeholder || data[0]);
+  const theme = useSelector((state) => state.auth.theme);
   const ref = useRef();
   useOnClickOutside(ref, () => setSelectActive(''));
 
@@ -19,7 +21,11 @@ const Select = ({ data, placeholder, onchangeSelect, error }) => {
   return (
     <div
       className={
-        error && selectedValue === placeholder ? 'select select__error' : selected ? 'select select__filled' : 'select'
+        error && selectedValue === placeholder
+          ? 'select select__error'
+          : selected
+          ? `select select_${theme} select__filled`
+          : `select select_${theme}`
       }
       ref={ref}
     >

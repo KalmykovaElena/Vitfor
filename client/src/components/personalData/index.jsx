@@ -21,6 +21,7 @@ const PersonalData = () => {
   const dispatch = useDispatch();
   const profileName = useSelector((state) => state.auth.profileData.userName);
   const navigate = useNavigate();
+  const theme = useSelector((state) => state.auth.theme);
   const {
     register,
     setValue,
@@ -114,7 +115,7 @@ const PersonalData = () => {
               onColorResult={(color) => color.hex}
             >
               <Tooltip title="сменить цвет" color="orange" overlayInnerStyle={{ color: 'black' }}>
-                <div className="personalData-image__src personal-logo">
+                <div className={`personalData-image__src personalData-image__src_${theme} personal-logo`}>
                   <span style={{ color: profileColor }}>
                     {profileName ? profileName.slice(0, 1).toUpperCase() : 'V'}
                   </span>

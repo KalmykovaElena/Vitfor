@@ -1,4 +1,11 @@
 .App {
   text-align: center;
+  transition: all 1s;
+  &_dark{
+    color: #ffffff;
+  }
+  &_light{
+    color: #000000;
+  }
 }
 

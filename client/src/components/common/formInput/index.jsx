@@ -11,6 +11,7 @@ const FormInput = ({ data, ...inputProps }) => {
   const [currentValue, setCurrentValue] = useState('');
   const dispatch = useDispatch();
   const approval = useSelector((state) => state.auth.approval);
+  const theme = useSelector((state) => state.auth.theme);
   const location = useLocation();
   const currentPage = location.pathname.slice(1);
   const { inputLabel, id, inputType, placeholder, inputName, inputValue, validateInput } = data;
@@ -42,7 +43,7 @@ const FormInput = ({ data, ...inputProps }) => {
           <input
             className={`${
               error[inputName] ? `formInput_inputError formInput-${inputType}_error ` : ''
-            }formInput formInput-${inputType}`}
+            }formInput formInput-${inputType} formInput_${theme}`}
             type={inputType === 'password' ? currentType : inputType}
             placeholder={placeholder}
             id={id}

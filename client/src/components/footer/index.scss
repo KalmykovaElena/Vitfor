@@ -10,7 +10,7 @@
     padding: 1.25rem;
     border: 1px solid transparent;
     a {
-      color: #ffffff;
+      color: inherit;
       font-size: 1.5rem;
       text-decoration: none;
       margin-left: 1rem;
@@ -21,6 +21,11 @@
     &:hover {
       border: 1px solid #ffffff;
       border-radius: 20px;
+    }
+  }
+  &_light{
+    img{
+      filter: invert(1);
     }
   }
 }
