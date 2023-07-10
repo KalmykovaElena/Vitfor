@@ -24,7 +24,7 @@ export const verifyingUserData = (data, currentPage, dispatch, reset, setError, 
         if (!response.ok) {
           const res = await response.json();
           console.log(res);
-          if (res.message.includes('is already taken')) {
+          if (res.message.includes('already exists')) {
             setError('email', { type: '400', message: 'Такая почта уже зарегистрирована в системе!' });
           }
           throw new Error(res.message);
