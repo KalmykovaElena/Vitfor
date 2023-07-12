@@ -46,7 +46,7 @@ export const authInputs = [
           'Пароль должен содержать минимум одну цифру, 1 заглавную и 1 строчную буквы',
       },
     },
-    pages: 'registration,Auth/ResetPassword',
+    pages: 'registration',
   },
   {
     inputLabel: 'Пароль',
@@ -64,6 +64,16 @@ export const authInputs = [
         message: 'Введите не менее 8 символов',
       },
       required: 'Пароль обязателен',
+      pattern: {
+        value: /^[a-zA-ZА-Я0-9_!@#$%^&*()_+"-={}|>?[\]]*$/,
+        message:
+          'Пароль может содержать следующие символы: ! @ # $ % ^ & * ( ) _ + - = { } [ ]  | : ; " \' < > , . ? /, A-Z, 0-9',
+      },
+      validate: {
+        characters: (value) =>
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/.test(value) ||
+          'Пароль должен содержать минимум одну цифру, 1 заглавную и 1 строчную буквы',
+      },
     },
     pages: 'authorization,confirm,Auth/ResetPassword',
   },
