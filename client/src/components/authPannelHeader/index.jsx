@@ -10,7 +10,10 @@ const AuthPannelHeader = ({ errors }) => {
   return (
     <div className="authPannel-header">
       {currentPage === 'recovery' || currentPage === 'Auth/ResetPassword' ? (
-        <div>Восстановление пароля</div>
+        <>
+          <div>Восстановление пароля</div>
+          {errors.length > 50 && <div className="authPannel-header__error">{errors}</div>}
+        </>
       ) : (
         <>
           <div className="authPannel-header__controls">
