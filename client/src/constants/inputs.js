@@ -46,37 +46,9 @@ export const authInputs = [
           'Пароль должен содержать минимум одну цифру, 1 заглавную и 1 строчную буквы',
       },
     },
-    pages: 'registration',
+    pages: 'registration,Auth/ResetPassword',
   },
-  {
-    inputLabel: 'Пароль',
-    id: 'input-password',
-    inputType: 'password',
-    placeholder: 'Не менее 8 символов',
-    inputName: 'password',
-    validateInput: {
-      maxLength: {
-        value: 20,
-        message: 'Не более 20 символов',
-      },
-      minLength: {
-        value: 8,
-        message: 'Введите не менее 8 символов',
-      },
-      required: 'Пароль обязателен',
-      pattern: {
-        value: /^[a-zA-ZА-Я0-9_!@#$%^&*()_+"-={}|>?[\]]*$/,
-        message:
-          'Пароль может содержать следующие символы: ! @ # $ % ^ & * ( ) _ + - = { } [ ]  | : ; " \' < > , . ? /, A-Z, 0-9',
-      },
-      validate: {
-        characters: (value) =>
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/.test(value) ||
-          'Пароль должен содержать минимум одну цифру, 1 заглавную и 1 строчную буквы',
-      },
-    },
-    pages: 'authorization,confirm,Auth/ResetPassword',
-  },
+
   {
     inputLabel: 'Я соглашаюсь с политикой конфиденциальности',
     id: 'input-checkbox',
