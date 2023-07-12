@@ -79,7 +79,6 @@ export const verifyingUserData = (data, location, dispatch, reset, setError, nav
       .catch((err) => {
         console.log(err);
       });
-    // восстановление сделать
   } else if (currentPage === 'recovery') {
     fetch(`${url}/Auth/ForgotPassword`, {
       method: 'POST',
@@ -112,7 +111,6 @@ export const verifyingUserData = (data, location, dispatch, reset, setError, nav
   } else if (currentPage === 'Auth/ResetPassword') {
     const searchData = parseSearch(location.search);
     console.log(searchData);
-    // const searchToken = location.search.split('Token').slice(-1)[0].slice(1);
     fetch(`${url}/Auth/ResetPassword?userEmail=${searchData.userEmail}&resetToken=${searchData.resetToken}`, {
       method: 'POST',
       // mode: 'cors',
@@ -121,8 +119,6 @@ export const verifyingUserData = (data, location, dispatch, reset, setError, nav
         'Content-Type': 'application/json;charset=UTF-8',
         'ngrok-skip-browser-warning': '1',
         Host: 'https://e1b7-37-215-47-243.ngrok-free.app',
-        // resetToken: searchData.resetToken,
-        // userEmail: searchData.userEmail,
       },
       body: JSON.stringify({
         password: data.password,
@@ -130,16 +126,13 @@ export const verifyingUserData = (data, location, dispatch, reset, setError, nav
     })
       .then(async (response) => {
         if (!response.ok) {
-          console.log(response);
-          // setError('email', { type: '400', message: 'Неверный адрес электронной почты или пароль' });
           const text = await response.json();
-          console.log(text);
           throw new Error(text.message);
         }
         return response.json();
       })
       .then((result) => {
-        // setMessage(true);
+        goToPage('authorization');
         console.log(result);
       })
       .catch((err) => {
