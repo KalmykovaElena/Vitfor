@@ -94,7 +94,7 @@ export const authInputs = [
       authorization: 'Войти',
       registration: 'Зарегистрироваться',
       recovery: 'Запросить',
-      confirm: 'Подтвердить',
+      'Auth/ResetPassword': 'Подтвердить',
     },
     pages: 'authorization,registration,recovery,confirm,Auth/ResetPassword',
   },
