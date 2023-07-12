@@ -1,11 +1,12 @@
 /* eslint-disable no-alert */
 import { url } from 'constants/url';
+import { parseSearch } from 'utils/parseSearch';
 import { setIsAuth, setUser } from '../redux/reducers/authReducer';
 import { getUserProfile } from './getUserProfile';
 
-export const verifyingUserData = (data, currentPage, dispatch, reset, setError, navigate) => {
+export const verifyingUserData = (data, location, dispatch, reset, setError, navigate, setMessage) => {
   const goToPage = (page) => navigate(`/${page}`);
-  console.log(url);
+  const currentPage = location.pathname.slice(1);
 
   if (currentPage === 'registration') {
     fetch(`${url}/Auth/Register`, {
@@ -102,7 +103,43 @@ export const verifyingUserData = (data, currentPage, dispatch, reset, setError, 
         return response.json();
       })
       .then((result) => {
-        /// выводим сообщение пройти по ссылке на почте
+        setMessage(true);
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else if (currentPage === 'Auth/ResetPassword') {
+    const searchData = parseSearch(location.search);
+    console.log(searchData);
+    // const searchToken = location.search.split('Token').slice(-1)[0].slice(1);
+    fetch(`${url}/Auth/ResetPassword?userEmail=${searchData.userEmail}&resetToken=${searchData.resetToken}`, {
+      method: 'POST',
+      // mode: 'cors',
+      headers: {
+        Accept: 'application/json, text/plain',
+        'Content-Type': 'application/json;charset=UTF-8',
+        'ngrok-skip-browser-warning': '1',
+        Host: 'https://e1b7-37-215-47-243.ngrok-free.app',
+        // resetToken: searchData.resetToken,
+        // userEmail: searchData.userEmail,
+      },
+      body: JSON.stringify({
+        password: data.password,
+      }),
+    })
+      .then(async (response) => {
+        if (!response.ok) {
+          console.log(response);
+          // setError('email', { type: '400', message: 'Неверный адрес электронной почты или пароль' });
+          const text = await response.json();
+          console.log(text);
+          throw new Error(text.message);
+        }
+        return response.json();
+      })
+      .then((result) => {
+        // setMessage(true);
         console.log(result);
       })
       .catch((err) => {

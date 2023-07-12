@@ -1,0 +1,53 @@
+.confidentiality {
+  height: 100vh;
+  overflow-y: scroll;
+  background-color:#2f3530 ;
+  text-align: start;
+  &-wrapper {
+    width: 55.5rem;
+    margin: 0 auto;
+  }
+  &-block {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    line-height: 1.375rem;
+   &-item:before{
+    font-size: 1.5rem;
+   }
+    h2 {
+      display: inline;
+    }
+  }
+  &-content {
+    margin-top: 1rem;
+    &-item {
+      list-style-type: decimal;
+      list-style-position: outside;
+      text-align: left;
+      
+    }
+  }
+ 
+  ol {
+    counter-reset: item;
+  }
+
+  li {
+    display: block;
+  }
+
+  li:before {
+    content: counters(item, '.') '. ';
+    counter-increment: item;
+    margin-left: -2rem;
+  }
+  .link{
+    cursor: pointer;
+    color:#F67F17;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}

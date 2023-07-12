@@ -1,11 +1,11 @@
 .authPannel {
   width: 432px;
   background: #3d3d3db2;
-  padding: 24px 16px;
+  padding: 1.5rem 1rem;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1rem;
   &-form {
     display: flex;
     flex-direction: column;
@@ -49,6 +49,12 @@
     .checkbox-confidentiality {
       cursor: pointer;
     }
+    &-img {
+      display: inline-block;
+      width: 2.875rem;
+      height: 2.875rem;
+      margin: 0 auto;
+    }
   }
   &__redirect {
     cursor: pointer;
@@ -57,4 +63,5 @@
     color: #f67f17;
     text-decoration: none;
   }
+
 }

@@ -6,6 +6,7 @@ import Button from 'components/common/button';
 import Logo from 'components/logo';
 import { useSelector } from 'react-redux';
 import ModalMenu from 'components/modal-menu';
+import { news } from 'constants/url';
 
 const Header = () => {
   const isAuth = useSelector((state) => state.auth.isAuth);
@@ -26,10 +27,12 @@ const Header = () => {
       <Logo name="app" img={logo} text="VitFor" textLocation="right" />
       <nav className="header-nav">
         <NavLink to="/"> Главная</NavLink>
-        <NavLink to="/news"> Новости</NavLink>
+        {/* <NavLink to="/news"> Новости</NavLink> */}
+        <NavLink to={news}> Новости</NavLink>
         <NavLink to="/weather"> Погода</NavLink>
         <NavLink to="/categories"> Категории</NavLink>
         <NavLink to="/questions"> Вопрос-ответ</NavLink>
+        {/* <NavLink to="/aboutus"> О нас</NavLink> */}
         <NavLink to="/aboutus"> О нас</NavLink>
       </nav>
       {isAuth ? (

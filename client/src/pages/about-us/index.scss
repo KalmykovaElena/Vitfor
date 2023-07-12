@@ -1,15 +1,26 @@
 .aboutUs {
-    height: 100vh;
-  .header {
-    &-nav {
-      a {
-        color: #080808;
-      }
-    }
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  .header{
+    margin:0;
+    flex-shrink: 0;
+  }  
+  .footer{
+    flex-shrink: 0;
+  }  
+  &_dark {
+    background-color: #2f3530;
   }
-  .footer-item{
-    a {
-      color: #080808;
-    }
+  &_light {
+    background-color: #C9C9C9;
+  }
+  &-content{
+    flex-grow: 1;
+    .confidentiality {
+      height: 77vh;
+      background-color:inherit;
+  }
   }
 }

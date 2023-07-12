@@ -37,6 +37,7 @@ const App = () => {
     <div className={`App App_${theme}`}>
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="//" element={<Main />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/events" element={<Events />} />
