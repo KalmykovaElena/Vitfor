@@ -1,9 +1,71 @@
-.weather{
-    height: 100vh;
+.weather {
+  height: 100vh;
+  background-size: 100% 100%;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
   .header {
-    &-nav {
-      a {
-        color: #080808;
+    color: #ffffff;
+  }
+  &-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    .current-block {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      .weather {
+        &-img {
+          width: 7rem;
+          img {
+            width: 100%;
+          }
+        }
+        &-value {
+          font-size: 4.5rem;
+          span {
+            color: #fff065;
+          }
+        }
+        &-description {
+          display: flex;
+          height: 11rem;
+          width: 14rem;
+          padding: 1rem;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+          border-radius: 1.25rem;
+          background: #ffffff1a;
+        }
+      }
+    }
+  }
+  .feature-block {
+    display: flex;
+    justify-content: space-around;
+    &__item {
+      display: flex;
+      width: 11rem;
+      padding: 1rem;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      align-self: stretch;
+      font-size: 1.25rem;
+      line-height: 1rem;
+      border-radius: 1.25rem;
+      &:hover {
+        background-color: #ffffff1a;
+        cursor: pointer;
+      }
+      .weather-img {
+        // img {
+        //   width: 3.5rem;
+        // }
       }
     }
   }
