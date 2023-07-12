@@ -27,7 +27,6 @@ const Header = () => {
       <Logo name="app" img={logo} text="VitFor" textLocation="right" />
       <nav className="header-nav">
         <NavLink to="/"> Главная</NavLink>
-        {/* <NavLink to="/news"> Новости</NavLink> */}
         <NavLink to={news}> Новости</NavLink>
         <NavLink to="/weather"> Погода</NavLink>
         <NavLink to="/categories"> Категории</NavLink>
