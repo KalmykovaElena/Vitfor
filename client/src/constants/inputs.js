@@ -46,7 +46,7 @@ export const authInputs = [
           'Пароль должен содержать минимум одну цифру, 1 заглавную и 1 строчную буквы',
       },
     },
-    pages: 'registration',
+    pages: 'registration,Auth/ResetPassword',
   },
   {
     inputLabel: 'Пароль',
