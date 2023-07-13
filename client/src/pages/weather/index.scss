@@ -32,7 +32,6 @@
         }
         &-description {
           display: flex;
-          height: 11rem;
           width: 14rem;
           padding: 1rem;
           flex-direction: column;
@@ -40,6 +39,19 @@
           gap: 1rem;
           border-radius: 1.25rem;
           background: #ffffff1a;
+        }
+      }
+      .weather-time{
+        display:flex;
+        flex-wrap: wrap;
+        max-width: 440px;
+        border-radius: 1.25rem;
+        background: #ffffff1a;
+        padding: 1rem;
+        &-item{
+          &__icon{
+
+          }
         }
       }
     }
@@ -62,11 +74,8 @@
         background-color: #ffffff1a;
         cursor: pointer;
       }
-      .weather-img {
-        // img {
-        //   width: 3.5rem;
-        // }
-      }
+   
     }
+   
   }
 }
