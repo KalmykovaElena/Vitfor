@@ -20,17 +20,19 @@ export const transformWeatherData = (res) => {
               dt_txt,
               main: { temp, grnd_level, humidity },
               wind: { speed: wind },
-              weather: [{ description, icon }],
+              weather: [{ id, description, icon }],
             },
           ] = dataItem;
           const grnd = (grnd_level * 0.750063755419211).toFixed(0);
           acc = {
+            id: getWeatherCategory(id),
+            date: dt_txt.split(' ')[0],
             dt_txt,
-            temp,
+            temp: temp > 0 ? `+ ${Math.round(temp)}` : temp,
             grnd,
             humidity,
             wind,
-            description,
+            description: description.charAt(0).toUpperCase() + description.slice(1),
             icon,
           };
         }
@@ -41,16 +43,18 @@ export const transformWeatherData = (res) => {
             dt_txt,
             main: { temp, grnd_level, humidity },
             wind: { speed: wind },
-            weather: [{ description, icon }],
+            weather: [{ id, description, icon }],
           } = arr[0];
           const grnd = (grnd_level * 0.750063755419211).toFixed(0);
           const renderData = {
+            id: getWeatherCategory(id),
+            date: dt_txt.split(' ')[0],
             dt_txt,
-            temp,
+            temp: temp > 0 ? `+ ${Math.round(temp)}` : temp,
             grnd,
             humidity,
             wind,
-            description,
+            description: description.charAt(0).toUpperCase() + description.slice(1),
             icon,
             weatherArray,
           };
@@ -77,4 +81,23 @@ function getWeatherArray(arr) {
     time: elem.dt_txt.split(' ').slice(1).join('').split(':').slice(0, 2).join(':'),
     icon: elem.weather[0].icon,
   }));
+}
+
+function getWeatherCategory(num) {
+  if (num === 800) {
+    return 'clear';
+  }
+  if (num === 803 || num === 804) {
+    return 'cloudy';
+  }
+  if (num >= 600 && num <= 622) {
+    return 'snow';
+  }
+  if (num >= 200 && num <= 232) {
+    return 'thunderstorm';
+  }
+  if ((num >= 500 && num <= 531) || (num >= 300 && num <= 321)) {
+    return 'rain';
+  }
+  return 'fewclouds';
 }

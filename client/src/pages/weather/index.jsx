@@ -1,16 +1,18 @@
+/* eslint-disable react/jsx-curly-brace-presence */
 import React, { useEffect, useState } from 'react';
 import './index.scss';
 import Header from 'components/header';
 import { getCurrentDate } from 'utils/getCurrentDate';
-import bg from 'assets/bg-weather.png';
-import day from 'assets/sunny.png';
 import windy from 'assets/🦆 icon _strong wind_.svg';
 import { transformWeatherData } from 'utils/transformWeatherData';
+// import { weatherIcon } from 'constants/weatherIcon';
+import { useSelector } from 'react-redux';
 
 const Weather = () => {
   const apiKey = 'be37b681b59f77fe1aaf8f4ce71fa5ad';
   const [renderData, setRenderData] = useState('');
   const [renderlist, setRenderList] = useState('');
+  const theme = useSelector((state) => state.auth.theme);
 
   useEffect(() => {
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=Vitebsk&lang=ru&units=metric&APPID=${apiKey}`)
@@ -33,18 +35,19 @@ const Weather = () => {
   }, []);
 
   return (
-    <div className="weather" style={{ backgroundImage: `url(${bg})` }}>
+    <div className={`weather weather-${theme} weather-${theme}__${renderData.id}`}>
       <Header />
       {renderData && (
         <div className="weather-wrapper">
           <div className="current-block">
             <div className="weather-img">
               <img src={`http://openweathermap.org/img/wn/${renderData.icon}@2x.png`} alt="" />
+              {/* <img src={weatherIcon['01d']} alt="" /> */}
             </div>
             <div>
-              <div>{getCurrentDate(renderData.dt_txt, 'short', 'ru', 'numeric')}</div>
+              <div className="weather-title">{getCurrentDate(renderData.dt_txt, 'short', 'ru', 'numeric')}</div>
               <div className="weather-value">
-                <span>{Math.round(renderData.temp)}</span>°C
+                <span>{renderData.temp}</span>°C
               </div>
             </div>
             <div className="weather-description">
@@ -53,10 +56,13 @@ const Weather = () => {
                 {' '}
                 <img src={windy} alt="wind" /> {renderData.wind}м/с
               </div>
-              <div> влажность</div>
-              <div>{renderData.humidity} %</div>
-              <div>давление</div>
-              <div>{renderData.grnd} мм.рт.ст</div>
+              <div> Влажность</div>
+              <div className="weather-description__value">{renderData.humidity} %</div>
+              <div> Давление</div>
+              <div className="weather-description__value">
+                {renderData.grnd}
+                <span> мм.рт.ст</span>{' '}
+              </div>
             </div>
             <div className="weather-time">
               {renderData.weatherArray.map((el) => (
@@ -76,16 +82,18 @@ const Weather = () => {
               return (
                 <div
                   key={item.dt_txt}
-                  className="feature-block__item"
+                  className={
+                    item.date === renderData.date
+                      ? 'feature-block__item feature-block__item_selected'
+                      : 'feature-block__item'
+                  }
                   onClick={() => setRenderData(el.renderData ? el.renderData : el)}
                 >
                   <div>{getCurrentDate(item.dt_txt, 'short', 'ru')}</div>
                   <div className="weather-img">
                     <img src={`http://openweathermap.org/img/wn/${item.icon}@2x.png`} alt="" />
                   </div>
-                  <div>
-                    <img src={day} alt="day" /> {Math.round(item.temp)} °C
-                  </div>
+                  <div className="weather-value">{item.temp} °C</div>
                 </div>
               );
             })}
