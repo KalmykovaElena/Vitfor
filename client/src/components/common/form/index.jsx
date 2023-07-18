@@ -21,6 +21,7 @@ const Form = ({ name, inputList, input, nameSubmit, handlerSubmit, setError, ...
 
   useEffect(() => {
     setError(passwordError);
+    console.log(passwordError);
   }, [passwordError, setError]);
 
   return (

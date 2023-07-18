@@ -1,23 +1,26 @@
 .aboutUs {
-  overflow-y: visible;
-  .header{
-    margin:0;
-    
-  }  
-  .footer{
+  height: 100vh;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+  .footer {
     margin: auto;
-  }  
+  }
   &_dark {
     background-color: #2f3530;
   }
   &_light {
-    background-color: #C9C9C9;
+    background-color: #c9c9c9;
   }
-  &-content{
+  &-content {
     .confidentiality {
       height: auto;
-      background-color:inherit;
+      background-color: inherit;
       overflow: auto;
-  }
+    }
   }
 }

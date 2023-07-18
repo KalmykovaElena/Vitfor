@@ -114,6 +114,9 @@ export const personalDataInputs = [
     label: 'Дата рождения',
   },
   {
+    renderType: 'safety-data',
+  },
+  {
     inputType: 'submit',
     id: 'input-submit',
     inputValue: {

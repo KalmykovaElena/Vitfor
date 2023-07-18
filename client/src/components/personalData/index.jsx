@@ -11,6 +11,7 @@ import ImageCropper from 'components/ImageCropper';
 import { Tooltip, ColorPicker } from 'antd';
 import { updateUserData } from 'http/updateUserData';
 import { useNavigate } from 'react-router-dom';
+import SafetyData from 'components/safetyData';
 
 const PersonalData = () => {
   const [isSend, setIsSend] = useState(false);
@@ -85,6 +86,9 @@ const PersonalData = () => {
                   errors={errors}
                 />
               );
+            }
+            if (e.renderType === 'safety-data') {
+              return <SafetyData key={e.renderType} />;
             }
             return (
               <FormInput

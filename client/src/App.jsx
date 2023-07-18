@@ -22,6 +22,7 @@ import Privacy from 'pages/privacy';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserProfile } from 'http/getUserProfile';
 import HelpSection from 'components/helpSection';
+import ResetPassword from 'components/resetPassword';
 
 const App = () => {
   const navigate = useNavigate();
@@ -63,6 +64,8 @@ const App = () => {
           <Route path="safety/phone" element={<SafetySending />} />
           <Route path="safety/phone/confirm" element={<SafetySending />} />
           <Route path="help" element={<HelpSection />} />
+          <Route path="data/password" element={<ResetPassword />} />
+          <Route path="data/resetpassword" element={<ResetPassword />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
