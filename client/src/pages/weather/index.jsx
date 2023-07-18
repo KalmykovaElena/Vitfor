@@ -25,7 +25,6 @@ const Weather = () => {
       })
       .then((res) => {
         const data = transformWeatherData(res);
-        console.log(data);
         setRenderList(data);
         setRenderData(data[0].renderData);
       })

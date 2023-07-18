@@ -43,7 +43,7 @@ export const authInputs = [
       validate: {
         characters: (value) =>
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/.test(value) ||
-          'Пароль должен содержать минимум одну цифру, 1 заглавную и 1 строчную буквы',
+          'Пароль должен содержать минимум 1 цифру, 1 заглавную и 1 строчную буквы',
       },
     },
     pages: 'authorization,registration,Auth/ResetPassword',

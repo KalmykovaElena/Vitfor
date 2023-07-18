@@ -24,7 +24,6 @@ export const verifyingUserData = (data, location, dispatch, reset, setError, nav
       .then(async (response) => {
         if (!response.ok) {
           const res = await response.json();
-          console.log(res);
           if (res.message.includes('already exists')) {
             setError('email', { type: '400', message: 'Такая почта уже зарегистрирована в системе!' });
           }
@@ -34,7 +33,6 @@ export const verifyingUserData = (data, location, dispatch, reset, setError, nav
         return response.json();
       })
       .then((result) => {
-        console.log(result);
         goToPage('personal_info/data');
         dispatch(setIsAuth(true));
         dispatch(setUser(result));
@@ -60,10 +58,8 @@ export const verifyingUserData = (data, location, dispatch, reset, setError, nav
     })
       .then(async (response) => {
         if (!response.ok) {
-          console.log(response);
           setError('email', { type: '400', message: 'Неверный адрес электронной почты или пароль' });
           const text = await response.json();
-          console.log(text);
           throw new Error(text.message);
         }
         return response.json();
@@ -93,10 +89,8 @@ export const verifyingUserData = (data, location, dispatch, reset, setError, nav
     })
       .then(async (response) => {
         if (!response.ok) {
-          console.log(response);
           setError('email', { type: '400', message: 'Неверный адрес электронной почты или пароль' });
           const text = await response.json();
-          console.log(text);
           throw new Error(text.message);
         }
         return response.json();
@@ -110,7 +104,6 @@ export const verifyingUserData = (data, location, dispatch, reset, setError, nav
       });
   } else if (currentPage === 'Auth/ResetPassword') {
     const searchData = parseSearch(location.search);
-    console.log(searchData);
     fetch(`${url}/Auth/ResetPassword?userEmail=${searchData.userEmail}&resetToken=${searchData.resetToken}`, {
       method: 'POST',
       // mode: 'cors',
@@ -118,7 +111,7 @@ export const verifyingUserData = (data, location, dispatch, reset, setError, nav
         Accept: 'application/json, text/plain',
         'Content-Type': 'application/json;charset=UTF-8',
         'ngrok-skip-browser-warning': '1',
-        Host: 'https://e1b7-37-215-47-243.ngrok-free.app',
+        Host: `${url}`,
       },
       body: JSON.stringify({
         password: data.password,

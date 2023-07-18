@@ -1,13 +1,12 @@
 import { url } from 'constants/url';
 import { setIsAuth, setUser } from 'redux/reducers/authReducer';
 import { refreshToken } from 'http/refreshToken';
+// eslint-disable-next-line camelcase
+import jwt_decode from 'jwt-decode';
 
 export const getUserProfile = (token, navigate, dispatch) => {
   fetch(`${url}/Account/GetUserProfile`, {
-    // method: 'GET',
-    // // mode: 'no-cors',
     headers: {
-      // Accept: 'application/json, text/plain',
       'Content-Type': 'application/json;charset=UTF-8',
       'ngrok-skip-browser-warning': '1',
       Authorization: `Bearer ${token}`,
@@ -21,15 +20,12 @@ export const getUserProfile = (token, navigate, dispatch) => {
         const res = await response.text();
         throw new Error(res);
       }
-      console.log(response);
       return response.json();
     })
     .then((result) => {
-      console.log(result);
-      // goToPage('personal_info/data');
+      const decoded = jwt_decode(token);
       dispatch(setIsAuth(true));
-      dispatch(setUser(result));
-      // token
+      dispatch(setUser({ ...result, email: decoded.email }));
     })
     .catch((err) => {
       console.log(err);

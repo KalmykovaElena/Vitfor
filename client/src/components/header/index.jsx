@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import './index.scss';
 import logo from 'assets/logo.png';
 import Button from 'components/common/button';
@@ -15,6 +15,7 @@ const Header = () => {
   const nickName = useSelector((state) => state.auth.user.nickName);
   const theme = useSelector((state) => state.auth.theme);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const color = userImg?.includes('data:image') ? '' : userImg;
 
@@ -24,7 +25,14 @@ const Header = () => {
 
   return (
     <header className={`header header_${theme}`}>
-      <Logo name="app" img={logo} text="VitFor" textLocation="right" />
+      <Logo
+        name="app"
+        img={logo}
+        text="VitFor"
+        textLocation="right"
+        handler={() => navigate('/')}
+        isTextActive="true"
+      />
       <nav className="header-nav">
         <NavLink to="/"> Главная</NavLink>
         <NavLink to={news}> Новости</NavLink>

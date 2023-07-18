@@ -39,7 +39,7 @@ const ModalMenu = ({ setIsMenuOpen }) => {
     dispatch(setIsAuth(false));
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
-    if (location.pathname === '/personal_info/data') {
+    if (location.pathname.includes('personal_info')) {
       navigate('/');
     }
   };
@@ -63,7 +63,6 @@ const ModalMenu = ({ setIsMenuOpen }) => {
     ]),
   ];
   const changeTheme = (value) => {
-    console.log(value);
     dispatch(setTheme(value ? 'light' : 'dark'));
   };
 

@@ -35,9 +35,7 @@ const PersonalData = () => {
   });
 
   const handleFileChange = (e) => {
-    console.log('change');
     if (e.target.files.length > 0) {
-      console.log(e.target.files.length);
       setInitialImage(URL.createObjectURL(e.target.files[0]));
       setIsCropeOpen(true);
     }

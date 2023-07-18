@@ -1,23 +1,25 @@
-import { setUser } from 'redux/reducers/authReducer';
 import { url } from 'constants/url';
 import { refreshToken } from './refreshToken';
 
-export const updateUserData = (formData, dispatch, navigate, setIsSend) => {
+export const changePhoneNumber = (data, navigate, dispatch, setSuccess) => {
   const token = localStorage.getItem('token');
 
-  fetch(`${url}/Account/FillingAccountInfo`, {
+  fetch(`${url}/Account/ChangePhoneNumber`, {
     method: 'POST',
     headers: {
       Accept: 'application/json, text/plain',
       'Content-Type': 'application/json;charset=UTF-8',
       Authorization: `Bearer ${token}`,
+      Host: `${url}`,
     },
-    body: JSON.stringify(formData),
+    body: JSON.stringify({
+      newPhoneNumber: data.phone,
+    }),
   })
     .then(async (response) => {
       if (!response.ok) {
         if (response.status === 401) {
-          refreshToken(token, navigate, updateUserData, dispatch, formData);
+          refreshToken(token, navigate, changePhoneNumber, dispatch, data);
         }
         const res = await response.json();
         throw new Error(res.message);
@@ -25,8 +27,8 @@ export const updateUserData = (formData, dispatch, navigate, setIsSend) => {
       return response.json();
     })
     .then((result) => {
-      setIsSend(true);
-      dispatch(setUser(result));
+      console.log(result);
+      setSuccess(true);
     })
     .catch((err) => {
       console.log(err);

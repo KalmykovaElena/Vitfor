@@ -16,7 +16,6 @@ const DateSelect = ({ register, setValue, clearErrors, errors }) => {
   const mounthNumber = months.indexOf(selectedMounth);
 
   useEffect(() => {
-    console.log('useEffect data select');
     if (selectedDay && selectedMounth && selectedYear) {
       if (!checkDate(selectedDay, mounthNumber, selectedYear)) {
         setDaysArray(range(1, setDaysNumber(selectedYear, mounthNumber)));

@@ -3,7 +3,6 @@ import { setIsAuth, setUser } from 'redux/reducers/authReducer';
 import { getUserProfile } from './getUserProfile';
 
 export const verifyingGoogleResponse = (tokenResponse, dispatch, navigate, page) => {
-  console.log(tokenResponse);
   fetch(`${url}/Auth/GoogleAuthentication`, {
     method: 'POST',
     headers: {
@@ -22,7 +21,6 @@ export const verifyingGoogleResponse = (tokenResponse, dispatch, navigate, page)
       return response.json();
     })
     .then((result) => {
-      console.log(result);
       navigate(`/${page}`);
       dispatch(setIsAuth(true));
       dispatch(setUser(result));

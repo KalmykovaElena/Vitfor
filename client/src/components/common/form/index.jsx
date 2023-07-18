@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import FormInput from '../formInput';
 
-const Form = ({ name, inputList, input, nameSubmit, handlerSubmit, ...props }) => {
+const Form = ({ name, inputList, input, nameSubmit, handlerSubmit, setError, ...props }) => {
   const {
     register,
     handleSubmit,
@@ -13,12 +13,15 @@ const Form = ({ name, inputList, input, nameSubmit, handlerSubmit, ...props }) =
     mode: 'onSubmit',
     reValidateMode: 'onChange',
   });
-
+  const passwordError = useMemo(() => (errors.password ? errors.password : ''), [errors.password]);
   const onSubmit = (data) => {
     handlerSubmit(data);
-    console.log(data);
     reset();
   };
+
+  useEffect(() => {
+    setError(passwordError);
+  }, [passwordError, setError]);
 
   return (
     <form className={name ? `form form-${name}` : 'form'} onSubmit={handleSubmit(onSubmit)}>

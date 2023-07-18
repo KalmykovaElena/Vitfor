@@ -20,7 +20,6 @@ export const refreshToken = (token, navigate, funk, dispatch, data) => {
     }),
   })
     .then(async (response) => {
-      console.log(response);
       if (!response.ok) {
         localStorage.removeItem('token');
         localStorage.removeItem('refreshToken');

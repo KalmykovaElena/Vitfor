@@ -33,7 +33,6 @@ export default function AuthPanel() {
 
   const onSubmit = (data, e) => {
     e.preventDefault();
-    console.log(data);
     verifyingUserData(data, location, dispatch, reset, setError, navigate, setMessage);
   };
 

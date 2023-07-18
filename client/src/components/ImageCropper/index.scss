@@ -2,13 +2,21 @@
   border: 1px solid #ffffff;
   border-radius: 20px;
   margin: auto;
+  margin-left: 3rem;
+  padding: 5.56rem 11.38rem 6.22rem 9.5rem;
   .crop-main-block {
     position: relative;
     width: 100%;
-    height: 70vh;
-    .advanced-cropper-boundary__stretcher {
-      width: 600px !important;
+    &-bg {
+      background-color: red;
     }
+    .advanced-cropper-boundary__stretcher {
+      width: 378px !important;
+    }
+    // .advanced-cropper-background-image{
+    //   width: 378px !important;
+    //   height: auto !important;
+    // }
     &__rotate {
       position: absolute;
       bottom: 0.5rem;
@@ -26,6 +34,7 @@
     }
     .userCropper {
       width: 100%;
+      background: #5c695c;
       .advanced-cropper__background-wrapper {
         width: 100%;
         display: flex;
@@ -41,13 +50,13 @@
     &__button {
       padding: 0.5rem;
       border-radius: 1.25rem;
-      border: 1px solid #1d60e2;
       color: #ffffff;
       font-size: 1rem;
-      background-color: transparent;
+      background-color: #fa541c;
+      border: 1px solid transparent;
       cursor: pointer;
-      &:hover {
-        background-color: #326aab;
+      &-cancel {
+        background-color: transparent;
       }
     }
   }

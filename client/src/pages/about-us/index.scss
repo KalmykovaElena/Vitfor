@@ -1,14 +1,11 @@
 .aboutUs {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+  overflow-y: visible;
   .header{
     margin:0;
-    flex-shrink: 0;
+    
   }  
   .footer{
-    flex-shrink: 0;
+    margin: auto;
   }  
   &_dark {
     background-color: #2f3530;
@@ -17,10 +14,10 @@
     background-color: #C9C9C9;
   }
   &-content{
-    flex-grow: 1;
     .confidentiality {
-      height: 77vh;
+      height: auto;
       background-color:inherit;
+      overflow: auto;
   }
   }
 }

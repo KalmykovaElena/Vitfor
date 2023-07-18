@@ -7,8 +7,7 @@ const SearchPannel = () => {
   const [inputValue, setInputValue] = useState(null);
   const { register, handleSubmit, reset } = useForm();
   const theme = useSelector((state) => state.auth.theme);
-  const onSubmit = (value) => {
-    console.log(value.searchValue);
+  const onSubmit = () => {
     setInputValue(null);
     reset();
   };
@@ -20,9 +19,7 @@ const SearchPannel = () => {
         type="text"
         {...register('searchValue', {
           onChange: (e) => {
-            console.log(e);
             setInputValue(e.target.value);
-            console.log(e.nativeEvent.data);
           },
         })}
         placeholder="Поиск"

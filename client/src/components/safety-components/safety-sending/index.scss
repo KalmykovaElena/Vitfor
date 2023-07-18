@@ -44,5 +44,29 @@
       width: 20rem;
       margin: 0 auto;
     }
+    .formInput-label__error {
+      line-height: 1rem;
+    }
+  }
+  &-success {
+    display: flex;
+    width: 19.875rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    &-link {
+      border-radius: 1.25rem;
+      background: #fa541c;
+      display: flex;
+      height: 3.5rem;
+      padding: 0.25rem 0.9375rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.625rem;
+      color: #ffffff;
+      &:hover{
+        cursor: pointer;
+      }
+    }
   }
 }

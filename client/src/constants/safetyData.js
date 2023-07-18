@@ -1,26 +1,8 @@
-import mail from 'assets/Mail.png';
 import phone from 'assets/Phone.png';
+import lock from 'assets/Lock.png';
+import check from 'assets/Vector-13.png';
 
 export const safetyPageData = {
-  mail: {
-    title: 'Привязка новой почты',
-    title2: 'Введите адрес почты, которую Вы собираетесь привязать',
-    label: 'Новая почта',
-    type: 'email',
-    placeholder: 'E-mail',
-    icon: mail,
-    validateInput: {
-      maxLength: {
-        value: 30,
-        message: 'Не более 30 символов',
-      },
-      required: 'Электронная почта обязательна',
-      pattern: {
-        value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-        message: 'Неверный адрес электронной почты',
-      },
-    },
-  },
   phone: {
     title: 'Введите номер телефона/никнейм',
     title2: 'Введите новый номер телефона, который будет привязан к вашему аккаунту в Telegram/никнейм',
@@ -36,8 +18,81 @@ export const safetyPageData = {
       },
       required: 'Обязательное поле',
       pattern: {
-        value: /^\+?[0-9]{7,13}$/,
-        message: 'Неверный телефон',
+        value: /^\+?[0-9]{1,13}$/,
+        message: 'допустимые символы: + 0-9',
+      },
+    },
+  },
+  confirm: {
+    title: 'Подтверждение номера телефона',
+    title2: 'Введите код отправленный вам в смс',
+    label: 'Код',
+    type: 'tel',
+    placeholder: 'Код',
+    icon: check,
+    validateInput: {
+      required: 'Введите код из смс',
+      pattern: {
+        value: /^[0-9]{4,8}$/,
+        message: 'допустимые символы: 0-9',
+      },
+    },
+  },
+  password: {
+    title: 'Введите старый пароль',
+    title2: 'Для привязки нового пароля необходимо ввести старый пароль',
+    label: 'Пароль',
+    type: 'password',
+    placeholder: 'Пароль',
+    icon: lock,
+    validateInput: {
+      maxLength: {
+        value: 20,
+        message: 'Не более 20 символов',
+      },
+      minLength: {
+        value: 8,
+        message: 'Введите не менее 8 символов',
+      },
+      required: 'Пароль обязателен',
+      pattern: {
+        value: /^[a-zA-ZА-Я0-9_!@#$%^&*()_+"-={}|>?[\]]*$/,
+        message:
+          'Пароль может содержать следующие символы: ! @ # $ % ^ & * ( ) _ + - = { } [ ]  | : ; " \' < > , . ? /, A-Z, 0-9',
+      },
+      validate: {
+        characters: (value) =>
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/.test(value) ||
+          'Пароль должен содержать минимум 1 цифру, 1 заглавную и 1 строчную буквы',
+      },
+    },
+  },
+  resetpassword: {
+    title: 'Привязка нового пароля',
+    title2: 'Введите новый пароль',
+    label: 'Пароль',
+    type: 'password',
+    placeholder: 'Пароль',
+    icon: lock,
+    validateInput: {
+      maxLength: {
+        value: 20,
+        message: 'Не более 20 символов',
+      },
+      minLength: {
+        value: 8,
+        message: 'Введите не менее 8 символов',
+      },
+      required: 'Пароль обязателен',
+      pattern: {
+        value: /^[a-zA-ZА-Я0-9_!@#$%^&*()_+"-={}|>?[\]]*$/,
+        message:
+          'Пароль может содержать следующие символы: ! @ # $ % ^ & * ( ) _ + - = { } [ ]  | : ; " \' < > , . ? /, A-Z, 0-9',
+      },
+      validate: {
+        characters: (value) =>
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/.test(value) ||
+          'Пароль должен содержать минимум одну цифру, 1 заглавную и 1 строчную буквы',
       },
     },
   },
