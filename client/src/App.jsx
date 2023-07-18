@@ -16,8 +16,6 @@ import NotFound from 'pages/not-found';
 import Authorization from 'pages/authorization';
 import PersonalInfo from 'pages/personal-info';
 import PersonalData from 'components/personalData';
-import SafetyNavigation from 'components/safety-components/safety-navigation';
-import SafetySending from 'components/safety-components/safety-sending';
 import Privacy from 'pages/privacy';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserProfile } from 'http/getUserProfile';
@@ -57,12 +55,6 @@ const App = () => {
         <Route path="/registration/privacy" element={<Privacy />} />
         <Route path="personal_info/*" element={<PersonalInfo />}>
           <Route path="data" element={<PersonalData />} />
-          <Route path="safety" element={<SafetyNavigation />} />
-          <Route path="safety/mail" element={<SafetySending />} />
-          <Route path="safety/password" element={<SafetySending />} />
-          <Route path="safety/resetpassword" element={<SafetySending />} />
-          <Route path="safety/phone" element={<SafetySending />} />
-          <Route path="safety/phone/confirm" element={<SafetySending />} />
           <Route path="help" element={<HelpSection />} />
           <Route path="data/password" element={<ResetPassword />} />
           <Route path="data/resetpassword" element={<ResetPassword />} />

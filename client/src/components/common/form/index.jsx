@@ -2,12 +2,13 @@ import React, { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import FormInput from '../formInput';
 
-const Form = ({ name, inputList, input, nameSubmit, handlerSubmit, setError, ...props }) => {
+const Form = ({ name, inputList, input, nameSubmit, handlerSubmit, setPasswordError, leterReset, ...props }) => {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid, isDirty },
     reset,
+    setError,
     watch,
   } = useForm({
     mode: 'onSubmit',
@@ -15,14 +16,16 @@ const Form = ({ name, inputList, input, nameSubmit, handlerSubmit, setError, ...
   });
   const passwordError = useMemo(() => (errors.password ? errors.password : ''), [errors.password]);
   const onSubmit = (data) => {
-    handlerSubmit(data);
-    reset();
+    handlerSubmit(data, setError, reset);
+    if (!leterReset) {
+      reset();
+    }
   };
 
   useEffect(() => {
-    setError(passwordError);
+    setPasswordError(passwordError);
     console.log(passwordError);
-  }, [passwordError, setError]);
+  }, [passwordError, setPasswordError]);
 
   return (
     <form className={name ? `form form-${name}` : 'form'} onSubmit={handleSubmit(onSubmit)}>

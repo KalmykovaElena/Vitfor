@@ -17,7 +17,7 @@ export const resetPasswordData = {
         value: 8,
         message: 'Введите не менее 8 символов',
       },
-      required: 'Пароль обязателен',
+      required: 'Обязательно для заполнения',
       pattern: {
         value: /^[a-zA-ZА-Я0-9_!@#$%^&*()_+"-={}|>?[\]]*$/,
         message:

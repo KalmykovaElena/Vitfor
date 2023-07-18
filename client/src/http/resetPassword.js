@@ -1,7 +1,7 @@
 import { url } from 'constants/url';
 import { refreshToken } from './refreshToken';
 
-export const resetPassword = (currentPage, data, navigate, dispatch, setSuccess) => {
+export const resetPassword = (currentPage, data, navigate, dispatch, setSuccess, setError, reset) => {
   const token = localStorage.getItem('token');
   if (currentPage === 'password') {
     fetch(`${url}/Account/CheckPassword`, {
@@ -22,6 +22,8 @@ export const resetPassword = (currentPage, data, navigate, dispatch, setSuccess)
             refreshToken(token, navigate, resetPassword, dispatch, data);
           }
           const res = await response.json();
+          console.log(res.message);
+          setError('password', { type: '400', message: 'Неверный пароль' });
           throw new Error(res.message);
         }
         return response.json();
@@ -29,6 +31,7 @@ export const resetPassword = (currentPage, data, navigate, dispatch, setSuccess)
       .then((result) => {
         console.log(result);
         navigate('/personal_info/data/resetpassword');
+        reset();
       })
       .catch((err) => {
         console.log(err);
@@ -54,6 +57,9 @@ export const resetPassword = (currentPage, data, navigate, dispatch, setSuccess)
             refreshToken(token, navigate, resetPassword, dispatch, data);
           }
           const res = await response.json();
+          if (res.message.includes('Passwords are identical')) {
+            setError('resetpassword', { type: '400', message: 'Пароль должен отличаться от предыдущего' });
+          }
           throw new Error(res.message);
         }
         return response.json();

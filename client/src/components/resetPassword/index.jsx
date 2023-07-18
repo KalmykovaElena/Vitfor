@@ -7,28 +7,21 @@ import img from 'assets/CheckCircle.png';
 import { resetPasswordData } from 'constants/resetPasswordData';
 import { resetPassword } from 'http/resetPassword';
 import { useDispatch } from 'react-redux';
+// import { useForm } from 'react-hook-form';
 
 const ResetPassword = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
-  const [error, setError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  // const { setError } = useForm();
   const [success, setSuccess] = useState(false);
   const currentPage = location.pathname.split('/').slice(-1)[0];
   const renderData = resetPasswordData[currentPage];
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // if (currentPage === 'password') {
-    //     (data, navigate, dispatch, setSuccess);
-    //   navigate('/personal_info/data/resetpassword');
-    // }
-    // if (currentPage === 'resetpassword') {
-    //   setSuccess(true);
-    // }
-    resetPassword(currentPage, data, navigate, dispatch, setSuccess);
+  const onSubmit = (data, setError, reset) => {
+    resetPassword(currentPage, data, navigate, dispatch, setSuccess, setError, reset);
   };
-
   return (
     <section className="password">
       {success && currentPage === 'resetpassword' ? (
@@ -46,12 +39,15 @@ const ResetPassword = () => {
           <div className="password-title">
             <div className="main-title">{renderData.title}</div>
             <div className="title">{renderData.title2}</div>
-            {error.message?.length > 50 && <div className="formInput-label__error">{error.message}</div>}
+            {passwordError.message?.length > 70 && (
+              <div className="formInput-label__error">{passwordError.message}</div>
+            )}
           </div>
           <Form
             name="safety"
             handlerSubmit={onSubmit}
-            setError={setError}
+            setPasswordError={setPasswordError}
+            leterReset="true"
             nameSubmit="Подтвердить"
             {...renderData.attrs}
             input={{

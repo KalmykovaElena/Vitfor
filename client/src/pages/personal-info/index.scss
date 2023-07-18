@@ -7,8 +7,8 @@
         display: flex;
         height: 100%;
         .sideBar{
-            width: 25.56%;
-          
+            width: 23rem;
+          flex-shrink: 0;
         }
         .settingsPannel{
             flex-grow: 1;
