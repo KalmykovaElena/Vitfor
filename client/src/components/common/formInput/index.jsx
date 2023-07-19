@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import icon from 'assets/eye.png';
@@ -21,10 +21,7 @@ const FormInput = ({ data, ...inputProps }) => {
   const togglePasswordVisiblity = () => {
     setPasswordShown(!passwordShown);
   };
-  useEffect(() => {
-    console.log(inputType);
-    console.log(currentValue);
-  }, [currentValue, inputType]);
+
   return (
     <>
       {inputType === 'submit' ? (

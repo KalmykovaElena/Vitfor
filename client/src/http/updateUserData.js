@@ -25,6 +25,7 @@ export const updateUserData = (formData, dispatch, navigate, setIsSend) => {
       return response.json();
     })
     .then((result) => {
+      console.log(result);
       setIsSend(true);
       dispatch(setUser(result));
     })

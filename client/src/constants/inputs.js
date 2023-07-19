@@ -120,7 +120,7 @@ export const personalDataInputs = [
     inputType: 'submit',
     id: 'input-submit',
     inputValue: {
-      personal_info: 'Сохранить',
+      'personal_info/data': 'Сохранить',
     },
   },
 ];
