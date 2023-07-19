@@ -1,5 +1,7 @@
 import { setUser } from 'redux/reducers/authReducer';
 import { url } from 'constants/url';
+// eslint-disable-next-line camelcase
+import jwt_decode from 'jwt-decode';
 import { refreshToken } from './refreshToken';
 
 export const updateUserData = (formData, dispatch, navigate, setIsSend) => {
@@ -26,8 +28,9 @@ export const updateUserData = (formData, dispatch, navigate, setIsSend) => {
     })
     .then((result) => {
       console.log(result);
+      const decoded = jwt_decode(token);
       setIsSend(true);
-      dispatch(setUser(result));
+      dispatch(setUser({ ...result, userEmail: decoded.email }));
     })
     .catch((err) => {
       console.log(err);

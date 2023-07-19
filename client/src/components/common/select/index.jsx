@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from 'react';
 import { ReactComponent as Caret } from 'assets/CaretDown.svg';
 import './index.scss';
 import { useOnClickOutside } from 'hooks/useOnClickOutside';
 import { useSelector } from 'react-redux';
 
-const Select = ({ data, placeholder, onchangeSelect, error }) => {
+const Select = ({ data, placeholder, onchangeSelect, error, defaultValue }) => {
   const [selectActive, setSelectActive] = useState('');
   const [selected, setSelected] = useState(false);
   const [selectedValue, setSelectedValue] = useState(placeholder || data[0]);
@@ -14,9 +15,19 @@ const Select = ({ data, placeholder, onchangeSelect, error }) => {
 
   useEffect(() => {
     if (!data.includes(selectedValue)) {
-      setSelectedValue(placeholder || data[0]);
+      setSelectedValue(defaultValue || placeholder || data[0]);
+    }
+    if (defaultValue) {
+      setSelected(true);
     }
   }, [data, placeholder, selectedValue]);
+
+  // useEffect(() => {
+  //   if (defaultValue) {
+  //     setSelectedValue(defaultValue);
+  //     setSelected(true);
+  //   }
+  // }, []);
 
   return (
     <div

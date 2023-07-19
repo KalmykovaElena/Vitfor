@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import icon from 'assets/eye.png';
@@ -15,13 +15,17 @@ const FormInput = ({ data, ...inputProps }) => {
   const location = useLocation();
   const currentPage = location.pathname.slice(1);
   const { inputLabel, id, inputType, placeholder, inputName, inputValue, validateInput } = data;
-  const { register, error, watch, isDirty, isValid, defaultValue, ...restProps } = inputProps;
+  const { register, error, watch, isDirty, isValid, setValue, defaultValue, ...restProps } = inputProps;
   const currentType = passwordShown ? 'text' : 'password';
 
   const togglePasswordVisiblity = () => {
     setPasswordShown(!passwordShown);
   };
-
+  useEffect(() => {
+    if (defaultValue && setValue) {
+      setValue(`${inputName}`, defaultValue);
+    }
+  }, [defaultValue, inputName, setValue]);
   return (
     <>
       {inputType === 'submit' ? (

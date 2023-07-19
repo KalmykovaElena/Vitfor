@@ -20,7 +20,8 @@ const PersonalData = () => {
   const [savedlImage, setSavedImage] = useState();
   const [profileColor, setProfileColor] = useState();
   const dispatch = useDispatch();
-  const profileName = useSelector((state) => state.auth.profileData.userName);
+  const user = useSelector((state) => state.auth.user);
+  const avatar = user.photo?.includes('data:image') ? user.photo : null;
   const navigate = useNavigate();
   const theme = useSelector((state) => state.auth.theme);
   const {
@@ -46,12 +47,13 @@ const PersonalData = () => {
     setIsCropeOpen(false);
   };
   const onSubmit = (data) => {
+    console.log(data);
     let formData = {
       nickName: data.nickName,
-      userName: data.name,
+      userName: data.userName,
       dayOfBirth: data.birthday.day,
       monthOfBirth: data.birthday.mounth,
-      yearOfBirth: data.birthday.mounth,
+      yearOfBirth: data.birthday.year,
     };
     console.log(formData);
     if (savedlImage) {
@@ -84,6 +86,7 @@ const PersonalData = () => {
                   setValue={setValue}
                   clearErrors={clearErrors}
                   errors={errors}
+                  defaultValue={user.birthDate}
                 />
               );
             }
@@ -99,6 +102,8 @@ const PersonalData = () => {
                 watch={watch}
                 isDirty={isDirty}
                 isValid={isValid}
+                setValue={setValue}
+                defaultValue={user[e.inputName]}
               />
             );
           })}
@@ -107,9 +112,9 @@ const PersonalData = () => {
           </div>
         </div>
         <div className="personalData-image">
-          {savedlImage ? (
+          {savedlImage || avatar ? (
             <div className="personalData-image__src">
-              <img src={savedlImage} alt="profile avatar" />
+              <img src={savedlImage || avatar} alt="profile avatar" />
             </div>
           ) : (
             <ColorPicker
@@ -118,8 +123,8 @@ const PersonalData = () => {
             >
               <Tooltip title="сменить цвет" color="orange" overlayInnerStyle={{ color: 'black' }}>
                 <div className={`personalData-image__src personalData-image__src_${theme} personal-logo`}>
-                  <span style={{ color: profileColor }}>
-                    {profileName ? profileName.slice(0, 1).toUpperCase() : 'V'}
+                  <span style={{ color: profileColor || user.photo }}>
+                    {user.userName ? user.userName.slice(0, 1).toUpperCase() : 'V'}
                   </span>
                 </div>
               </Tooltip>

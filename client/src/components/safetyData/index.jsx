@@ -4,7 +4,7 @@ import './index.scss';
 import { useSelector } from 'react-redux';
 
 const SafetyData = () => {
-  const email = useSelector((state) => state.auth.user.email);
+  const email = useSelector((state) => state.auth.user.userEmail);
   return (
     <section className="safety">
       <div className="safety-item">
