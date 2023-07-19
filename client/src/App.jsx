@@ -52,6 +52,7 @@ const App = () => {
         <Route path="/recovery" element={<Authorization />} />
         <Route path="/registration" element={<Authorization />} />
         <Route path="/Auth/ResetPassword" element={<Authorization />} />
+        <Route path="/confirm" element={<Authorization />} />
         <Route path="/registration/privacy" element={<Privacy />} />
         <Route path="personal_info/*" element={<PersonalInfo />}>
           <Route path="data" element={<PersonalData />} />

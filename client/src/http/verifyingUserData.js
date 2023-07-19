@@ -43,7 +43,7 @@ export const verifyingUserData = (data, location, dispatch, reset, setError, nav
       .catch((err) => {
         console.log(err);
       });
-  } else if (currentPage === 'authorization') {
+  } else if (currentPage === 'authorization' || currentPage === 'confirm') {
     fetch(`${url}/Auth/Login`, {
       method: 'POST',
       headers: {
@@ -66,11 +66,15 @@ export const verifyingUserData = (data, location, dispatch, reset, setError, nav
       })
       .then((result) => {
         getUserProfile(result.token, navigate, dispatch);
-        goToPage('');
-        dispatch(setIsAuth(true));
         dispatch(setUser(result));
         localStorage.setItem('token', result.token);
         localStorage.setItem('refreshToken', result.refreshToken);
+        if (currentPage === 'confirm') {
+          setMessage('Доступ успешно восстановлен');
+        } else {
+          goToPage('');
+          dispatch(setIsAuth(true));
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -89,14 +93,14 @@ export const verifyingUserData = (data, location, dispatch, reset, setError, nav
     })
       .then(async (response) => {
         if (!response.ok) {
-          setError('email', { type: '400', message: 'Неверный адрес электронной почты или пароль' });
+          setError('email', { type: '400', message: 'Неверный адрес электронной почты' });
           const text = await response.json();
           throw new Error(text.message);
         }
         return response.json();
       })
       .then((result) => {
-        setMessage(true);
+        setMessage('Письмо отправлено на почту');
         console.log(result);
       })
       .catch((err) => {
@@ -120,12 +124,15 @@ export const verifyingUserData = (data, location, dispatch, reset, setError, nav
       .then(async (response) => {
         if (!response.ok) {
           const text = await response.json();
+          if (text.message.includes('identical')) {
+            setError('password', { type: '400', message: 'Пароль должен отличаться от предыдущего' });
+          }
           throw new Error(text.message);
         }
         return response.json();
       })
       .then((result) => {
-        goToPage('authorization');
+        goToPage('confirm');
         console.log(result);
       })
       .catch((err) => {

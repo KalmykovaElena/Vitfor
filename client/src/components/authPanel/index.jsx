@@ -9,6 +9,7 @@ import FormInput from 'components/common/formInput';
 import { verifyingUserData } from 'http/verifyingUserData';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import img from 'assets/CheckCircle.png';
+import { setIsAuth } from 'redux/reducers/authReducer';
 
 export default function AuthPanel() {
   const location = useLocation();
@@ -38,18 +39,32 @@ export default function AuthPanel() {
 
   useEffect(() => {
     reset();
-  }, [reset]);
+  }, [currentPage, reset]);
 
   return (
     <div className="authPannel">
-      <GoogleOAuthProvider clientId="235213662998-9eqe351jifk2urdcj1q6k38hfru1bcme.apps.googleusercontent.com">
-        <AuthPannelHeader reset={reset} errors={headerError} />
-      </GoogleOAuthProvider>
-      {currentPage === 'recovery' && message ? (
+      {currentPage !== 'confirm' && (
+        <GoogleOAuthProvider clientId="235213662998-9eqe351jifk2urdcj1q6k38hfru1bcme.apps.googleusercontent.com">
+          <AuthPannelHeader reset={reset} errors={headerError} />
+        </GoogleOAuthProvider>
+      )}
+      {(currentPage === 'recovery' || currentPage === 'confirm') && message ? (
         <div className="authPannel-form ">
           <img className="authPannel-form-img" src={img} alt="success" />
           <h2>Успех</h2>
-          <div>Письмо отправлено на почту</div>
+          <div>{message}</div>
+          {currentPage === 'confirm' && (
+            <button
+              type="button"
+              className="form-button"
+              onClick={() => {
+                navigate('/');
+                dispatch(setIsAuth(true));
+              }}
+            >
+              ОК
+            </button>
+          )}
         </div>
       ) : (
         <form className="authPannel-form " onSubmit={handleSubmit(onSubmit)}>
