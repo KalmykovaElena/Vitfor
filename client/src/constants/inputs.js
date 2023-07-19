@@ -77,7 +77,7 @@ export const personalDataInputs = [
     inputLabel: 'Отображаемое имя',
     id: 'input-nickName',
     inputType: 'text',
-    inputName: 'name',
+    inputName: 'nickName',
     placeholder: 'Отображаемое имя',
     validateInput: {
       maxLength: {
@@ -95,7 +95,7 @@ export const personalDataInputs = [
     inputLabel: 'Имя пользователя',
     id: 'input-name',
     inputType: 'text',
-    inputName: 'nickName',
+    inputName: 'name',
     placeholder: 'Имя',
     validateInput: {
       maxLength: {

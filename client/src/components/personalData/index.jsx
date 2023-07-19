@@ -53,7 +53,7 @@ const PersonalData = () => {
       monthOfBirth: data.birthday.mounth,
       yearOfBirth: data.birthday.mounth,
     };
-
+    console.log(formData);
     if (savedlImage) {
       formData = { ...formData, photo: savedlImage };
     } else if (profileColor) {
