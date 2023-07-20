@@ -9,10 +9,9 @@
     align-items: center;
     padding: 1.25rem;
     border: 1px solid transparent;
-    a {
+     span{
       color: inherit;
       font-size: 1.5rem;
-      text-decoration: none;
       margin-left: 1rem;
       @media screen and (max-width: 1368px){
         font-size: 0.9rem;
@@ -21,6 +20,7 @@
     &:hover {
       border: 1px solid #ffffff;
       border-radius: 20px;
+      cursor: pointer;
     }
   }
   &_light{
@@ -29,6 +29,7 @@
     }
     .footer-item:hover{
       border-color: #000000;
+      cursor: pointer;
     }
   }
 }
