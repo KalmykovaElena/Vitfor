@@ -7,6 +7,8 @@ import Logo from 'components/logo';
 import { useSelector } from 'react-redux';
 import ModalMenu from 'components/modal-menu';
 import { news } from 'constants/url';
+import { Menu } from 'antd';
+import { categories } from 'constants/categories';
 
 const Header = () => {
   const isAuth = useSelector((state) => state.auth.isAuth);
@@ -16,7 +18,11 @@ const Header = () => {
   const theme = useSelector((state) => state.auth.theme);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-
+  const [current, setCurrent] = useState('mail');
+  const onClick = (e) => {
+    navigate(e.key);
+    setCurrent(e.key);
+  };
   const color = userImg?.includes('data:image') ? '' : userImg;
 
   const togleOpenMenu = () => {
@@ -37,9 +43,19 @@ const Header = () => {
         <NavLink to="/"> Главная</NavLink>
         <NavLink to={news}> Новости</NavLink>
         <NavLink to="/weather"> Погода</NavLink>
-        <NavLink to="/categories"> Категории</NavLink>
+        <div className="submenu">
+          Категории
+          <Menu
+            onClick={onClick}
+            selectedKeys={[current]}
+            mode="horizontal"
+            items={categories}
+            triggerSubMenuAction="click"
+            className="submenu-menu"
+            theme="dark"
+          />
+        </div>
         <NavLink to="/questions"> Вопрос-ответ</NavLink>
-        {/* <NavLink to="/aboutus"> О нас</NavLink> */}
         <NavLink to="/aboutus"> О нас</NavLink>
       </nav>
       {isAuth ? (

@@ -18,6 +18,35 @@
     min-width: 38.99%;
     display: flex;
     gap: 1.5rem;
+    .submenu{
+      position: relative;
+      background-color: transparent;
+      &-menu{
+        line-height: normal;
+        background-color: transparent;
+        color: transparent;
+        position: absolute;
+        top:0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        .ant-menu-overflow-item, .ant-menu-submenu-title{
+          position: absolute;
+          top:0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+        }
+        .ant-menu-submenu-title:hover{
+          color: transparent !important;
+        }
+        .ant-menu-horizontal, .ant-menu-item::after, .ant-menu-submenu::after {
+          border: none !important;
+      }
+      
+      }
+    }
   }
   .logo {
     &-app {
@@ -62,5 +91,12 @@
     .logo-text__subname{
       color: #cccccc;
     }
+   
+  }
+}
+.ant-menu-dark {
+  background-color: #272727;
+  .ant-menu-sub {
+    background-color: #272727 !important;
   }
 }

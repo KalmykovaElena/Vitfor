@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import './App.scss';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import AboutUs from 'pages/about-us';
-import Categories from 'pages/categories';
 import Events from 'pages/events';
 import Finds from 'pages/finds';
 import Main from 'pages/main';
@@ -37,9 +36,7 @@ const App = () => {
     <div className={`App App_${theme}`}>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="//" element={<Main />} />
         <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/categories" element={<Categories />} />
         <Route path="/events" element={<Events />} />
         <Route path="/finds" element={<Finds />} />
         <Route path="/news" element={<News />} />
