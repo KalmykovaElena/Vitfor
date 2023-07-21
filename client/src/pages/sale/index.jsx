@@ -6,7 +6,6 @@ import Footer from 'components/footer';
 
 const Sale = () => {
   const theme = useSelector((state) => state.auth.theme);
-  console.log(theme);
   return (
     <section className={`sale sale_${theme}`}>
       <Header />

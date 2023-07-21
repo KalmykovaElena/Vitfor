@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import './index.scss';
 import logo from 'assets/logo.png';
 import Button from 'components/common/button';
@@ -17,13 +17,17 @@ const Header = () => {
   const userName = useSelector((state) => state.auth.user.userName);
   const nickName = useSelector((state) => state.auth.user.nickName);
   const theme = useSelector((state) => state.auth.theme);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const [current, setCurrent] = useState('mail');
+  const location = useLocation();
+  const [current, setCurrent] = useState(location.pathname);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  console.log(location);
   const onClick = (e) => {
     navigate(e.key);
     setCurrent(e.key);
+    console.log(e.key);
   };
+  console.log(current);
   const color = userImg?.includes('data:image') ? '' : userImg;
 
   const togleOpenMenu = () => {
@@ -59,24 +63,26 @@ const Header = () => {
         <NavLink to="/questions"> Вопрос-ответ</NavLink>
         <NavLink to="/aboutus"> О нас</NavLink>
       </nav>
-      <Select data={['РУС', 'EN', 'BY']} onchangeSelect={(e) => console.log(e)} />
-      {isAuth ? (
-        <>
-          <Logo
-            name="userlogo"
-            img={userImg}
-            color={color}
-            text={userName}
-            subtext={nickName}
-            handler={togleOpenMenu}
-          />
-          {isMenuOpen && <ModalMenu setIsMenuOpen={setIsMenuOpen} />}
-        </>
-      ) : (
-        <Link to="/authorization">
-          <Button name="Вход" type="enter" />
-        </Link>
-      )}
+      <div className="header-controls">
+        <Select data={['РУС', 'EN', 'BY']} onchangeSelect={(e) => console.log(e)} />
+        {isAuth ? (
+          <>
+            <Logo
+              name="userlogo"
+              img={userImg}
+              color={color}
+              text={userName}
+              subtext={nickName}
+              handler={togleOpenMenu}
+            />
+            {isMenuOpen && <ModalMenu setIsMenuOpen={setIsMenuOpen} />}
+          </>
+        ) : (
+          <Link to="/authorization">
+            <Button name="Вход" type="enter" />
+          </Link>
+        )}
+      </div>
     </header>
   );
 };

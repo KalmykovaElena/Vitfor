@@ -4,7 +4,7 @@
   padding: 2rem 3rem;
   margin-top: 0.5625rem;
   position: relative;
-  gap:1.5rem;
+  
   &-nav {
     padding: 0.625rem 0;
     a {
@@ -19,6 +19,7 @@
     min-width: 38.99%;
     display: flex;
     gap: 1.5rem;
+    align-items: center;
     .submenu{
       position: relative;
       background-color: transparent;
@@ -38,6 +39,7 @@
           right: 0;
           bottom: 0;
           width: 100%;
+          opacity: 0 !important;
         }
         .ant-menu-submenu-title:hover{
           color: transparent !important;
@@ -96,7 +98,6 @@
   }
   .select{
     width: 5rem;
-    margin-left: auto;
     align-self: flex-start;
     .select__drop-down{
       z-index: 2;
@@ -116,10 +117,20 @@
    .button-enter{
     padding: 0.75rem 1.5rem;
    }
+   &-controls{
+    display: flex;
+    gap:1.5rem;
+   }
 }
 .ant-menu-dark {
   background-color: #272727;
   .ant-menu-sub {
     background-color: #272727 !important;
   }
+}
+.ant-menu-item-selected, .ant-menu-item-active{
+  background-color: transparent !important;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.5rem;
 }
