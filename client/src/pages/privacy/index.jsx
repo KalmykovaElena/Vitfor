@@ -1,9 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { setApproval } from 'redux/reducers/authReducer';
 import './index.scss';
 import { confidentiality } from 'constants/confidentiality';
+import LinkParser from 'react-link-parser';
 
 const Privacy = () => {
   const navigate = useNavigate();
@@ -15,7 +17,13 @@ const Privacy = () => {
     dispatch(setApproval(true));
     navigate(-1);
   };
-
+  const watchers = [
+    {
+      type: 'startsWith',
+      watchFor: 'https:',
+      render: (tag) => <a href={`${tag}`}>{tag}</a>,
+    },
+  ];
   return (
     <main className="confidentiality">
       <section className="confidentiality-wrapper">
@@ -25,7 +33,9 @@ const Privacy = () => {
             <li className="confidentiality-block-item">
               <h2>{e.heading}</h2>
               {e.content.length === 1 ? (
-                <div className="confidentiality-content">{e.content[0]}</div>
+                <div className="confidentiality-content">
+                  <LinkParser watchers={watchers}>{e.content[0]}</LinkParser>
+                </div>
               ) : (
                 <ol className="confidentiality-content">
                   {e.content.map((el) => {
@@ -33,12 +43,18 @@ const Privacy = () => {
                       return (
                         <>
                           {el.map((item) => (
-                            <div className="confidentiality-content-item">{item}</div>
+                            <div className="confidentiality-content-item">
+                              <LinkParser watchers={watchers}>{item}</LinkParser>
+                            </div>
                           ))}
                         </>
                       );
                     }
-                    return <li className="confidentiality-content-item">{el}</li>;
+                    return (
+                      <li className="confidentiality-content-item">
+                        <LinkParser watchers={watchers}>{el}</LinkParser>
+                      </li>
+                    );
                   })}
                 </ol>
               )}

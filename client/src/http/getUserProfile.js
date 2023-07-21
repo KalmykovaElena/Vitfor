@@ -24,6 +24,7 @@ export const getUserProfile = (token, navigate, dispatch) => {
     })
     .then((result) => {
       const decoded = jwt_decode(token);
+      console.log(decoded);
       dispatch(setIsAuth(true));
       dispatch(setUser({ ...result, userEmail: decoded.email }));
     })

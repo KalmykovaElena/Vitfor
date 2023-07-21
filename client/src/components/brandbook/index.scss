@@ -1,0 +1,218 @@
+.brandbook {
+  font-size: 1.25rem;
+  padding-top: 9rem;
+  padding-bottom: 5.6rem;
+  position: relative;
+  @media screen and (max-width: 1420px) {
+    font-size: 1rem;
+  }
+  &-title {
+    position: absolute;
+    top: 0;
+    &_left {
+      left: 0;
+    }
+    &_right {
+      right: 0;
+    }
+  }
+  &-logo {
+    display: flex;
+    justify-content: center;
+    .logo {
+      cursor: default;
+      &-img {
+        max-width: 7.1875rem;
+        max-height: 5.25rem;
+        width: 7.1875rem;
+        img {
+          width: 7.1875rem;
+          height: 5.25rem;
+        }
+      }
+      &-text {
+        h3 {
+          font-size: 6.25rem;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+  .button {
+    border: 1px solid transparent;
+    border-radius: 1.25rem;
+    position: relative;
+    background: transparent;
+    border: none;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    transition: 0.3s;
+    &-logo:before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      padding: 1px;
+      border-radius: 20px;
+      background: linear-gradient(#00b090, #ffffff00);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+    &:hover {
+      background-color: #55f7de09;
+    }
+  }
+
+  &-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+
+    &__description {
+      border-radius: 1.25rem 1.25rem 1.25rem 0rem;
+      border: 1px solid #fff;
+      padding: 1.5rem;
+      max-width: 46.625rem;
+      text-align: start;
+    }
+    &__positioned {
+      justify-content: space-around;
+      width: 67rem;
+      margin: 0 auto;
+      position: relative;
+      .button-questions {
+        position: absolute;
+        top: -3.5rem;
+        right: -4%;
+      }
+      .button-finds {
+        position: absolute;
+        top: -1.5rem;
+        left: -7%;
+        &:before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          padding: 1px;
+          border-radius: 20px;
+          background: linear-gradient(to right, #54bec5, #ffffff00);
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+        }
+      }
+      .button-tourism {
+        &:before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          padding: 1px;
+          border-radius: 20px;
+          background: linear-gradient(to left, #54bec5 24%, #ffffff00 77%);
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+        }
+      }
+      .button-questions {
+        &:before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          padding: 1px;
+          border-radius: 20px;
+          background: linear-gradient(#00b090, #ffffff00);
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+        }
+      }
+    }
+  }
+  &-map {
+    position: relative;
+    width: 63rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__item {
+      position: absolute;
+      width: 100%;
+      top: 60%;
+      left: -13%;
+      gap: 1.12rem;
+      .button-sale {
+        position: absolute;
+        top: -3.75rem;
+        left: -3%;
+        &:before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          padding: 1px;
+          border-radius: 20px;
+          background: linear-gradient(156deg, #54bebd 72%, rgba(255, 255, 255, 0) 57%);
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+        }
+      }
+      .button-news {
+        position: absolute;
+        top: -1.5rem;
+        right: -14%;
+        &:before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          padding: 1px;
+          border-radius: 20px;
+          background: linear-gradient(to left, #54bec5, #ffffff00);
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+        }
+      }
+      .button-events {
+        &:before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          padding: 1px;
+          border-radius: 20px;
+          background: linear-gradient(277deg, #54bec5, #ffffff00);
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+        }
+      }
+    }
+  }
+  &__light {
+    .button {
+      background: linear-gradient(101deg, #009d90 0%, rgba(51, 141, 162, 0.3) 100%);
+    }
+    .brandbook-item__description {
+      border-color: #000000;
+      background-color: #ffffff;
+    }
+    .vector {
+      filter: invert(1);
+    }
+    .brandbook-map {
+      img {
+        filter: invert(1);
+      }
+    }
+  }
+}
