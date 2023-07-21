@@ -3,7 +3,15 @@ import './index.scss';
 
 const Logo = ({ name, img, color, text, subtext, textLocation, handler, isTextActive }) => (
   <div
-    className={textLocation ? `logo logo-${name} logo-${textLocation}` : `logo logo-${name}`}
+    className={
+      textLocation
+        ? isTextActive
+          ? `logo logo-${name} logo-${textLocation} logo_textactive`
+          : `logo logo-${name} logo-${textLocation}`
+        : isTextActive
+        ? `logo logo-${name}`
+        : `logo logo-${name} logo_textactive`
+    }
     onClick={isTextActive ? handler : null}
   >
     <div className="logo-text">
