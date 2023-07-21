@@ -2,7 +2,9 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  
+  &_textActive{
+    cursor: pointer;
+  }
   &-right {
     flex-direction: row-reverse;
   }

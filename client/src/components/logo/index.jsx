@@ -6,11 +6,11 @@ const Logo = ({ name, img, color, text, subtext, textLocation, handler, isTextAc
     className={
       textLocation
         ? isTextActive
-          ? `logo logo-${name} logo-${textLocation} logo_textactive`
+          ? `logo logo-${name} logo-${textLocation} logo_textActive`
           : `logo logo-${name} logo-${textLocation}`
         : isTextActive
-        ? `logo logo-${name}`
-        : `logo logo-${name} logo_textactive`
+        ? `logo logo-${name} logo_textActive`
+        : `logo logo-${name}`
     }
     onClick={isTextActive ? handler : null}
   >
