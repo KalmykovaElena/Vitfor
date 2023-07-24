@@ -5,7 +5,6 @@ import Header from 'components/header';
 import { getCurrentDate } from 'utils/getCurrentDate';
 import windy from 'assets/🦆 icon _strong wind_.svg';
 import { transformWeatherData } from 'utils/transformWeatherData';
-// import { weatherIcon } from 'constants/weatherIcon';
 import { useSelector } from 'react-redux';
 
 const Weather = () => {

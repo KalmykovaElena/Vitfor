@@ -20,6 +20,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserProfile } from 'http/getUserProfile';
 import HelpSection from 'components/helpSection';
 import ResetPassword from 'components/resetPassword';
+import SaleHomePage from 'components/sale-components/sale-home-page';
+import SaleAds from 'components/sale-components/sale-ads';
 
 const App = () => {
   const navigate = useNavigate();
@@ -28,7 +30,7 @@ const App = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      getUserProfile(token, navigate, dispatch);
+      getUserProfile(navigate, dispatch);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -41,7 +43,13 @@ const App = () => {
         <Route path="/finds" element={<Finds />} />
         <Route path="/news" element={<News />} />
         <Route path="/questions" element={<Questions />} />
-        <Route path="/sale" element={<Sale />} />
+        <Route path="/sale/*" element={<Sale />}>
+          <Route path="" element={<SaleHomePage />} />
+          {/* <Route path="transport" element={<SaleAds />} /> */}
+          {/* <Route path="*" element={<SaleAds />} /> */}
+          <Route path=":category/:type" element={<SaleAds />} />
+          <Route path=":category" element={<SaleAds />} />
+        </Route>
         <Route path="/services" element={<Services />} />
         <Route path="/tourism" element={<Tourism />} />
         <Route path="/weather" element={<Weather />} />

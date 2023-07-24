@@ -19,6 +19,7 @@ const PersonalData = () => {
   const [initialImage, setInitialImage] = useState();
   const [savedlImage, setSavedImage] = useState();
   const [profileColor, setProfileColor] = useState();
+  const [error, setError] = useState('');
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const avatar = user.photo?.includes('data:image') ? user.photo : null;
@@ -38,8 +39,17 @@ const PersonalData = () => {
 
   const handleFileChange = (e) => {
     if (e.target.files.length > 0) {
-      setInitialImage(URL.createObjectURL(e.target.files[0]));
-      setIsCropeOpen(true);
+      const file = e.target.files[0];
+      const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/heic';
+      const isLt10M = file.size / 1024 / 1024 < 10;
+      if (!isJpgOrPng) {
+        setError('Ошибка загрузки файла. Допустимые форматы загружаемого фото: JPEG, PNG, HEIC');
+      } else if (!isLt10M) {
+        setError('Большой размер фотографии. Максимальный размер – 10 МБ');
+      } else {
+        setInitialImage(URL.createObjectURL(file));
+        setIsCropeOpen(true);
+      }
     }
   };
   const handleFileSave = (value) => {
@@ -47,7 +57,6 @@ const PersonalData = () => {
     setIsCropeOpen(false);
   };
   const onSubmit = (data) => {
-    console.log(data);
     let formData = {
       nickName: data.nickName,
       userName: data.userName,
@@ -55,7 +64,7 @@ const PersonalData = () => {
       monthOfBirth: data.birthday.mounth,
       yearOfBirth: data.birthday.year,
     };
-    console.log(formData);
+
     if (savedlImage) {
       formData = { ...formData, photo: savedlImage };
     } else if (profileColor) {
@@ -141,6 +150,7 @@ const PersonalData = () => {
             accept="image/*"
             onChange={handleFileChange}
           />
+          {error && <div className="file-upload__error">{error}</div>}
         </div>
       </form>
 

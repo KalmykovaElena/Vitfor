@@ -65,10 +65,10 @@ export const verifyingUserData = (data, location, dispatch, reset, setError, nav
         return response.json();
       })
       .then((result) => {
-        getUserProfile(result.token, navigate, dispatch);
-        dispatch(setUser(result));
         localStorage.setItem('token', result.token);
         localStorage.setItem('refreshToken', result.refreshToken);
+        getUserProfile(navigate, dispatch);
+        dispatch(setUser(result));
         if (currentPage === 'confirm') {
           setMessage('Доступ успешно восстановлен');
         } else {
@@ -110,7 +110,6 @@ export const verifyingUserData = (data, location, dispatch, reset, setError, nav
     const searchData = parseSearch(location.search);
     fetch(`${url}/Auth/ResetPassword?userEmail=${searchData.userEmail}&resetToken=${searchData.resetToken}`, {
       method: 'POST',
-      // mode: 'cors',
       headers: {
         Accept: 'application/json, text/plain',
         'Content-Type': 'application/json;charset=UTF-8',

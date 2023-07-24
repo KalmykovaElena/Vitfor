@@ -7,7 +7,6 @@ export const transformWeatherData = (res) => {
     acc[date] = arr.filter((item) => new Date(item.dt_txt).getDate() === date);
     return acc;
   }, {});
-  console.log(data);
   const newdata = Object.values(data)
     .slice(0, 5)
     .map((e, index) =>

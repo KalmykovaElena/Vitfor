@@ -16,9 +16,7 @@ const DateSelect = ({ register, setValue, clearErrors, errors, defaultValue }) =
   const years = range(currentYear, currentYear - 90);
   const mounthNumber = months.indexOf(selectedMounth);
   const date = defaultValue ? new Date(defaultValue) : null;
-  // console.log(date[0].toLocaleDateString('ru-RU', {  month: 'long', day: 'numeric' }));
-  console.log(date?.toLocaleDateString('ru-RU', { day: 'numeric' }));
-  console.log(date?.toLocaleDateString('ru-RU', { month: 'numeric' }));
+
   useEffect(() => {
     if (defaultValue) {
       setValue('birthday', {

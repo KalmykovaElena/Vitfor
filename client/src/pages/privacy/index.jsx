@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { useDispatch } from 'react-redux';
@@ -10,7 +11,6 @@ import LinkParser from 'react-link-parser';
 const Privacy = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const theme = useSelector((state) => state.auth.theme);
   const location = useLocation();
   const currentPage = location.pathname.slice(1);
   const handleClick = () => {
@@ -30,7 +30,7 @@ const Privacy = () => {
         <h1>Политика конфиденциальности</h1>
         <ol className="confidentiality-block">
           {confidentiality.map((e) => (
-            <li className="confidentiality-block-item">
+            <li key={e.id} className="confidentiality-block-item">
               <h2>{e.heading}</h2>
               {e.content.length === 1 ? (
                 <div className="confidentiality-content">
@@ -38,20 +38,20 @@ const Privacy = () => {
                 </div>
               ) : (
                 <ol className="confidentiality-content">
-                  {e.content.map((el) => {
+                  {e.content.map((el, ind) => {
                     if (Array.isArray(el)) {
                       return (
-                        <>
-                          {el.map((item) => (
-                            <div className="confidentiality-content-item">
+                        <React.Fragment key={ind}>
+                          {el.map((item, i) => (
+                            <div key={i + 100} className="confidentiality-content-item">
                               <LinkParser watchers={watchers}>{item}</LinkParser>
                             </div>
                           ))}
-                        </>
+                        </React.Fragment>
                       );
                     }
                     return (
-                      <li className="confidentiality-content-item">
+                      <li key={ind} className="confidentiality-content-item">
                         <LinkParser watchers={watchers}>{el}</LinkParser>
                       </li>
                     );

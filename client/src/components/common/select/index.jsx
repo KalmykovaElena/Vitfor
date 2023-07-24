@@ -22,13 +22,6 @@ const Select = ({ data, placeholder, onchangeSelect, error, defaultValue }) => {
     }
   }, [data, placeholder, selectedValue]);
 
-  // useEffect(() => {
-  //   if (defaultValue) {
-  //     setSelectedValue(defaultValue);
-  //     setSelected(true);
-  //   }
-  // }, []);
-
   return (
     <div
       className={

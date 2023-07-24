@@ -12,6 +12,7 @@ export const updateUserData = (formData, dispatch, navigate, setIsSend) => {
     headers: {
       Accept: 'application/json, text/plain',
       'Content-Type': 'application/json;charset=UTF-8',
+      'ngrok-skip-browser-warning': '1',
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(formData),
@@ -27,7 +28,6 @@ export const updateUserData = (formData, dispatch, navigate, setIsSend) => {
       return response.json();
     })
     .then((result) => {
-      console.log(result);
       const decoded = jwt_decode(token);
       setIsSend(true);
       dispatch(setUser({ ...result, userEmail: decoded.email }));

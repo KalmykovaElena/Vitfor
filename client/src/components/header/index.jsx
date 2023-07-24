@@ -21,13 +21,11 @@ const Header = () => {
   const location = useLocation();
   const [current, setCurrent] = useState(location.pathname);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  console.log(location);
+
   const onClick = (e) => {
     navigate(e.key);
     setCurrent(e.key);
-    console.log(e.key);
   };
-  console.log(current);
   const color = userImg?.includes('data:image') ? '' : userImg;
 
   const togleOpenMenu = () => {

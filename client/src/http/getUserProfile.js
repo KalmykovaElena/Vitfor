@@ -4,18 +4,20 @@ import { refreshToken } from 'http/refreshToken';
 // eslint-disable-next-line camelcase
 import jwt_decode from 'jwt-decode';
 
-export const getUserProfile = (token, navigate, dispatch) => {
+export const getUserProfile = (navigate, dispatch) => {
+  const token = localStorage.getItem('token');
   fetch(`${url}/Account/GetUserProfile`, {
     headers: {
       'Content-Type': 'application/json;charset=UTF-8',
-      'ngrok-skip-browser-warning': '1',
+      // 'ngrok-skip-browser-warning': '1',
       Authorization: `Bearer ${token}`,
     },
   })
     .then(async (response) => {
       if (!response.ok) {
         if (response.status === 401) {
-          refreshToken(token, navigate, getUserProfile, dispatch, token);
+          console.log(response);
+          refreshToken(token, navigate, getUserProfile, dispatch);
         }
         const res = await response.text();
         throw new Error(res);
@@ -24,7 +26,6 @@ export const getUserProfile = (token, navigate, dispatch) => {
     })
     .then((result) => {
       const decoded = jwt_decode(token);
-      console.log(decoded);
       dispatch(setIsAuth(true));
       dispatch(setUser({ ...result, userEmail: decoded.email }));
     })

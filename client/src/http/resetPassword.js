@@ -22,7 +22,6 @@ export const resetPassword = (currentPage, data, navigate, dispatch, setSuccess,
             refreshToken(token, navigate, resetPassword, dispatch, data);
           }
           const res = await response.json();
-          console.log(res.message);
           setError('password', { type: '400', message: 'Неверный пароль' });
           throw new Error(res.message);
         }

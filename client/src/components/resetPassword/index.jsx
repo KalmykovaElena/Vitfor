@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { useLocation, useNavigate } from 'react-router-dom';
 import './index.scss';
 import Form from 'components/common/form';
@@ -7,14 +6,12 @@ import img from 'assets/CheckCircle.png';
 import { resetPasswordData } from 'constants/resetPasswordData';
 import { resetPassword } from 'http/resetPassword';
 import { useDispatch } from 'react-redux';
-// import { useForm } from 'react-hook-form';
 
 const ResetPassword = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
   const [passwordError, setPasswordError] = useState('');
-  // const { setError } = useForm();
   const [success, setSuccess] = useState(false);
   const currentPage = location.pathname.split('/').slice(-1)[0];
   const renderData = resetPasswordData[currentPage];
