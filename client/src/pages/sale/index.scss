@@ -6,6 +6,13 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
+  height: 100vh;
+  overflow-y: scroll;
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+  &::-webkit-scrollbar {
+    display: none; 
+  }
   &_dark {
     background-color: #2f3530;
     .sale-breadCrumb__end {
@@ -20,6 +27,7 @@
   }
   main {
     flex-grow: 1;
+    
   }
   .footer {
     padding: 0;
@@ -45,6 +53,7 @@
       margin: 0;
     }
     &-name {
+      width:13%;
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -55,6 +64,7 @@
       padding: 0.5rem;
       img { 
         filter: contrast(6) invert(1);
+        max-width: 1.5rem;
     } 
     }
   }
@@ -73,4 +83,5 @@
   .breadcrumb{
     padding-left: 14.25%;
   }
+  
 }

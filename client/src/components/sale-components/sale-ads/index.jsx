@@ -7,7 +7,7 @@ const SaleAds = () => {
   const params = useParams();
   console.log(params);
   return (
-    <div>SaleAds</div>
+    <main>SaleAds</main>
   )
 }
 
