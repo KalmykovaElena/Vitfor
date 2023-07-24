@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.scss';
-import { Dropdown, Space, message } from 'antd';
+import { Dropdown, Space } from 'antd';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,7 +9,6 @@ const SaleNavigationItem = ({ item }) => {
   const theme = useSelector((state) => state.auth.theme);
   const { name, img, link, color, items } = item;
   const onClick = ({ key }) => {
-    message.info(`Click on item ${key}`);
     const path = items.filter((el) => el.key === key)[0].search;
     if (path) {
       navigate(`${link.slice(1)}/${path}`);
