@@ -5,8 +5,10 @@ import './index.scss';
 import { range } from 'utils/range';
 import { checkDate } from 'utils/checkDate';
 import { setDaysNumber } from 'utils/setDaysNumber';
+// import { useSelector } from 'react-redux';
 
 const DateSelect = ({ register, setValue, clearErrors, errors, defaultValue }) => {
+  // const DateSelect = ({ register, setValue, clearErrors, errors }) => {
   const [selectedDay, setSelectedDay] = useState('');
   const [selectedMounth, setSelectedMounth] = useState('');
   const [selectedYear, setSelectedYear] = useState('');
@@ -16,16 +18,14 @@ const DateSelect = ({ register, setValue, clearErrors, errors, defaultValue }) =
   const years = range(currentYear, currentYear - 90);
   const mounthNumber = months.indexOf(selectedMounth);
   const date = defaultValue ? new Date(defaultValue) : null;
-
   useEffect(() => {
     if (defaultValue) {
-      setValue('birthday', {
-        day: date?.toLocaleDateString('ru-RU', { day: 'numeric' }),
-        mounth: date?.toLocaleDateString('ru-RU', { month: 'numeric' }),
-        year: date?.toLocaleDateString('ru-RU', { year: 'numeric' }),
-      });
-      setSelectedDay(Number(date?.toLocaleDateString('ru-RU', { day: 'numeric' })));
+      setSelectedDay(parseInt(date?.toLocaleDateString('ru-RU', { day: 'numeric' }), 10));
+      setSelectedMounth(date?.toLocaleDateString('ru-RU', { month: 'long' }));
+      setSelectedYear(date?.toLocaleDateString('ru-RU', { year: 'numeric' }));
     }
+  }, [defaultValue]);
+  useEffect(() => {
     if (selectedDay && selectedMounth && selectedYear) {
       if (!checkDate(selectedDay, mounthNumber, selectedYear)) {
         setDaysArray(range(1, setDaysNumber(selectedYear, mounthNumber)));
@@ -37,7 +37,7 @@ const DateSelect = ({ register, setValue, clearErrors, errors, defaultValue }) =
       setDaysArray(range(1, setDaysNumber(selectedYear, mounthNumber + 1)));
     }
     register('birthday', { required: 'Обязательное поле' });
-  }, [clearErrors, defaultValue, mounthNumber, register, selectedDay, selectedMounth, selectedYear, setValue]);
+  }, [clearErrors, mounthNumber, register, selectedDay, selectedMounth, selectedYear, setValue]);
 
   return (
     <div className="date">

@@ -6,7 +6,6 @@ import { refreshToken } from './refreshToken';
 
 export const updateUserData = (formData, dispatch, navigate, setIsSend) => {
   const token = localStorage.getItem('token');
-
   fetch(`${url}/Account/FillingAccountInfo`, {
     method: 'POST',
     headers: {
