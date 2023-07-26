@@ -13,24 +13,29 @@ const Sale = () => {
   const params = useParams();
   const location = useLocation();
   const renderPage =
-    saleData.filter((item) => item.link === `/${params.category}`)[0] ||
-    saleData.filter((item) => item.link === location.pathname)[0];
+    saleData.find((item) => item.link === `/${params.category}`) ||
+    saleData.find((item) => item.link === location.pathname);
+  const path = location.pathname.split('/').slice(-1)[0];
+  const isSearchRender = path !== 'ad' && Number.isNaN(Number(path));
+
   return (
     <section className={`sale sale_${theme}`}>
       <Header />
       <BreadCrumb data={saleData} className="sale-breadCrumb" />
-      <div className="sale-search">
-        {renderPage && (
-          <div className="sale-search-name">
-            <div className="sale-search-icon">
-              <img src={renderPage.img} alt="sale" />
+      {isSearchRender && (
+        <div className="sale-search">
+          {renderPage && (
+            <div className="sale-search-name">
+              <div className="sale-search-icon">
+                <img src={renderPage.img} alt="sale" />
+              </div>
+              {renderPage.name}
             </div>
-            {renderPage.name}
-          </div>
-        )}
-        <SearchPannel />
-        <Button name="Подать объявление" type="primary" />
-      </div>
+          )}
+          <SearchPannel />
+          <Button name="Подать объявление" type="primary" />
+        </div>
+      )}
       <Outlet />
     </section>
   );

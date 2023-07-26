@@ -24,6 +24,7 @@ const DateSelect = ({ register, setValue, clearErrors, errors, defaultValue }) =
         mounth: date?.toLocaleDateString('ru-RU', { month: 'numeric' }),
         year: date?.toLocaleDateString('ru-RU', { year: 'numeric' }),
       });
+      setSelectedDay(Number(date?.toLocaleDateString('ru-RU', { day: 'numeric' })));
     }
     if (selectedDay && selectedMounth && selectedYear) {
       if (!checkDate(selectedDay, mounthNumber, selectedYear)) {
@@ -47,7 +48,7 @@ const DateSelect = ({ register, setValue, clearErrors, errors, defaultValue }) =
           placeholder="ДД"
           onchangeSelect={setSelectedDay}
           error={errors.birthday}
-          defaultValue={date?.toLocaleDateString('ru-RU', { day: 'numeric' })}
+          defaultValue={Number(date?.toLocaleDateString('ru-RU', { day: 'numeric' }))}
         />
         <Select
           data={months}

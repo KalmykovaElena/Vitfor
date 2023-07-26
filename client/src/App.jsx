@@ -22,6 +22,7 @@ import HelpSection from 'components/helpSection';
 import ResetPassword from 'components/resetPassword';
 import SaleHomePage from 'components/sale-components/sale-home-page';
 import SaleAds from 'components/sale-components/sale-ads';
+import AdCard from 'components/sale-components/ad-card';
 
 const App = () => {
   const navigate = useNavigate();
@@ -49,6 +50,7 @@ const App = () => {
           {/* <Route path="*" element={<SaleAds />} /> */}
           <Route path=":category/:type" element={<SaleAds />} />
           <Route path=":category" element={<SaleAds />} />
+          <Route path=":category/ad/:id" element={<AdCard />} />
         </Route>
         <Route path="/services" element={<Services />} />
         <Route path="/tourism" element={<Tourism />} />

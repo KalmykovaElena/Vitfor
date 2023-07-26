@@ -1,8 +1,10 @@
-main {
+.sale-main-page {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-
+  background-image: url('../../../assets/bg-sale.png');
+  background-repeat: no-repeat;
+  background-position: top center;
   .sale {
     
     &-navigation {
@@ -13,7 +15,7 @@ main {
       justify-content: center;
       gap: 1.5rem;
       @media screen and (max-width: 1400px) {
-        margin: 2.5vh auto ;
+        margin: 4vh auto ;
       }
     }
     &-ads {

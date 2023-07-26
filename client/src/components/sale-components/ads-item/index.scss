@@ -7,11 +7,13 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 0.5rem;
+  cursor: pointer;
+  width:23.7%;
   .item {
-    width:23.7%;
     &-image {
       img {
         max-width: 89.9%;
+        border-radius: 1.25rem;
       }
     }
     &-title {

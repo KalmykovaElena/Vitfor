@@ -20,7 +20,7 @@ const Select = ({ data, placeholder, onchangeSelect, error, defaultValue }) => {
     if (defaultValue) {
       setSelected(true);
     }
-  }, [data, placeholder, selectedValue]);
+  }, [data, placeholder, selectedValue, defaultValue]);
 
   return (
     <div

@@ -9,16 +9,22 @@ import vector8 from '../assets/Home.png';
 
 export const saleData = [
   {
-    id: 1,
+    name: 'Товар',
+    img: vector1,
+    link: '/ad',
+  },
+  {
+    id: '1',
     name: 'Купи-продай',
     img: vector1,
     link: '/sale',
   },
   {
-    id: 2,
+    id: '2',
     name: 'Транспорт',
     img: vector2,
     link: '/transport',
+    section: 'Transport',
     color: {
       dark: '#FFE178',
       light: '#FFC700',
@@ -52,10 +58,11 @@ export const saleData = [
     ],
   },
   {
-    id: 3,
+    id: '3',
     name: 'Электроника',
     img: vector3,
     link: '/electronics',
+    section: 'Electronics',
     color: {
       dark: '#CF60F6',
       light: '#CF60F6',
@@ -74,10 +81,11 @@ export const saleData = [
     ],
   },
   {
-    id: 4,
+    id: '4',
     name: 'Спорт и отдых',
     img: vector4,
     link: '/sport',
+    section: 'Sports and relax',
     color: {
       dark: '#FF6331',
       light: '#FF6331',
@@ -96,10 +104,11 @@ export const saleData = [
     ],
   },
   {
-    id: 5,
+    id: '5',
     name: 'Животные',
     img: vector5,
     link: '/animals',
+    section: 'Animals',
     color: {
       dark: '#DB9D41',
       light: '#DB9D41',
@@ -118,10 +127,11 @@ export const saleData = [
     ],
   },
   {
-    id: 6,
+    id: '6',
     name: 'Недвижимость',
     img: vector6,
     link: '/realty',
+    section: 'Real estate',
     color: {
       dark: '#7EAAFE',
       light: '#7EAAFE',
@@ -140,10 +150,11 @@ export const saleData = [
     ],
   },
   {
-    id: 7,
+    id: '7',
     name: 'Личные вещи',
     img: vector7,
     link: '/personalItems',
+    section: 'Clothes and personal things',
     color: {
       dark: '#FF92FB',
       light: '#FF5DF9',
@@ -162,10 +173,11 @@ export const saleData = [
     ],
   },
   {
-    id: 8,
+    id: '8',
     name: 'Для дома и дачи',
     img: vector8,
     link: '/homeItems',
+    section: 'House and garden',
     color: {
       dark: '#71E35F',
       light: '#37C620',

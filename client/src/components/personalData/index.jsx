@@ -67,6 +67,9 @@ const PersonalData = () => {
 
     if (savedlImage) {
       formData = { ...formData, photo: savedlImage };
+    }
+    if (!savedlImage && avatar) {
+      formData = { ...formData, photo: avatar };
     } else if (profileColor) {
       formData = { ...formData, photo: profileColor };
     }

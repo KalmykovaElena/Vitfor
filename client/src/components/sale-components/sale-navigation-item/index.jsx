@@ -9,7 +9,7 @@ const SaleNavigationItem = ({ item }) => {
   const theme = useSelector((state) => state.auth.theme);
   const { name, img, link, color, items } = item;
   const onClick = ({ key }) => {
-    const path = items.filter((el) => el.key === key)[0].search;
+    const path = items.find((el) => el.key === key).search;
     if (path) {
       navigate(`${link.slice(1)}/${path}`);
     } else {

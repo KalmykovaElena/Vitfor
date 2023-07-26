@@ -8,6 +8,12 @@
   &-right {
     flex-direction: row-reverse;
   }
+  &-top {
+    flex-direction: column;
+  }
+  &-bottom {
+    flex-direction: column-reverse;
+  }
   &-img {
     cursor: pointer;
     border-radius: 50%;
