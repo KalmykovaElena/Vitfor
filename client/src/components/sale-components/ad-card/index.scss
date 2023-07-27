@@ -1,5 +1,5 @@
 .add {
- width: 78.6%;
+  width: 77.5%;
   margin: 2.5rem auto;
   &-wrapper {
     display: flex;
@@ -13,7 +13,9 @@
   &-info {
     display: flex;
     flex-direction: column;
-    gap:1.5rem;
+    gap: 1.5rem;
+    height: 76vh;
+    width: 59%;
   }
   &-price {
     font-size: 2.5rem;
@@ -21,7 +23,25 @@
     line-height: 3.75rem;
     text-align: start;
   }
-  &-controls{
+  &-controls {
     flex-grow: 1;
   }
+}
+.ant-modal-content {
+  background-color: rgba(156, 152, 152, 0.123) !important;
+  border-radius: 1.25rem !important;
+  button {
+    color: #f7eded !important;
+  }
+  img {
+    width: 100%;
+  }
+}
+.ant-carousel .anticon-left,
+.ant-carousel .slick-next {
+  font-size: 4rem !important;
+  color: #ffffff !important;
+}
+.ant-carousel .slick-prev {
+  inset-inline-start: -4.7rem;
 }

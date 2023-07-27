@@ -1,25 +1,27 @@
 import React, { useState } from 'react';
 import './index.scss';
 
-const PhotoBlock = ({ files }) => {
+const PhotoBlock = ({ files, onMainClick }) => {
   const [main, setMain] = useState(files[0]);
-  // const [additionalArr, setAdditionalArr] = useState(files.slice(1));
   const handleClick = (el) => {
-    // setAdditionalArr(files.filter((e) => e !== el));
     setMain(el);
   };
 
   return (
     <div className="photo-block">
       <div className="photo-block__main">
-        <img src={main} alt="main" />
+        <img src={main} alt="main" onClick={onMainClick} />
       </div>
       <div className="photo-block__additional">
         {files.map((e) =>
           e !== main ? (
-            <img className="item-active" src={e} key={e} alt="additional" onClick={() => handleClick(e)} />
+            <div className="item item-active" key={e}>
+              <img src={e} alt="additional" onClick={() => handleClick(e)} />
+            </div>
           ) : (
-            <img className="item-hidden" src={e} key={e} alt="additional" />
+            <div className="item item-hidden" key={e}>
+              <img src={e} alt="additional" />
+            </div>
           )
         )}
       </div>

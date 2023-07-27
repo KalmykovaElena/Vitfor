@@ -1,36 +1,49 @@
 .photo-block {
-  width: 45vw;
-  display:flex;
+  width:74.54%;
+  height: 70%;
+  display: flex;
   flex-direction: column;
-  gap:1.5rem;
+  gap: 1.5rem;
   justify-content: flex-end;
+  align-items: center;
   &__main {
-    width: 100%;
-    height: 34vw;
-    display:flex;
+    height: 63%;
+    overflow: hidden;
+    display: flex;
     align-items: center;
+    border-radius: 1.25rem;
+    cursor: pointer;
     img {
       width: 100%;
       border-radius: 1.25rem;
     }
   }
-  &__additional{
+  &__additional {
     display: flex;
-    gap:1.5rem;
+    gap: 1.5rem;
     position: relative;
     height: 7.5rem;
-    .item-active{
-        width: 30.9%;
+    .item{
+      width: 30.9%;
+      border-radius: 1.25rem;
+      opacity: 1;
+      transition: all 2s;
+      overflow: hidden;
+      cursor: pointer;
+      img{
+        width: 100%;
+        min-height: 90%;
         border-radius: 1.25rem;
-        opacity: 1;
-        transition: all 2s;
-    }
-    .item-hidden{
-        opacity: 0;
-        width: 30.9%;
+      }
+      &-active { 
+        opacity: 1; 
+      }
+      &-hidden {
+        opacity: 0;  
         position: absolute;
         z-index: -1;
-        transition: all 2s;
+        
+      }
     }
   }
 }
