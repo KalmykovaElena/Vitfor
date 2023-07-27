@@ -72,6 +72,8 @@ const PersonalData = () => {
       formData = { ...formData, photo: avatar };
     } else if (profileColor) {
       formData = { ...formData, photo: profileColor };
+    } else {
+      formData = { ...formData, photo: '#ffffff' };
     }
     dispatch(setProfileData(formData));
     updateUserData(formData, dispatch, navigate, setIsSend);

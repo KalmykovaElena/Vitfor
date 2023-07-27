@@ -3,10 +3,11 @@
 /* eslint-disable camelcase */
 export const transformWeatherData = (res) => {
   const data = res.list.reduce((acc, el, i, arr) => {
-    const date = new Date(el.dt_txt).getDate();
-    acc[date] = arr.filter((item) => new Date(item.dt_txt).getDate() === date);
+    const date = el.dt_txt.split(' ')[0];
+    acc[date] = arr.filter((item) => item.dt_txt.split(' ')[0] === date);
     return acc;
   }, {});
+  console.log(data);
   const newdata = Object.values(data)
     .slice(0, 5)
     .map((e, index) =>
