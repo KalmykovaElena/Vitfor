@@ -5,10 +5,8 @@ import './index.scss';
 import { range } from 'utils/range';
 import { checkDate } from 'utils/checkDate';
 import { setDaysNumber } from 'utils/setDaysNumber';
-// import { useSelector } from 'react-redux';
 
 const DateSelect = ({ register, setValue, clearErrors, errors, defaultValue }) => {
-  // const DateSelect = ({ register, setValue, clearErrors, errors }) => {
   const [selectedDay, setSelectedDay] = useState('');
   const [selectedMounth, setSelectedMounth] = useState('');
   const [selectedYear, setSelectedYear] = useState('');
