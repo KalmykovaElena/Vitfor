@@ -1,32 +1,33 @@
 .add {
   width: 77.5%;
-  margin: 2.5rem auto;
+  margin: calc(100vh/25) auto;
   &-wrapper {
     display: flex;
   }
   &-title {
     text-align: start;
-    font-size: 1.5rem;
+    font-size: calc(12px + 0.5vw);
     font-weight: 600;
     line-height: 1.25rem;
-    position: relative;
-    &-date{
-      position: absolute;
-      top:0;
-      right:0;
+    display: flex;
+    gap: 0.5rem;
+    &-date {
+      color: #777;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1rem;
     }
   }
   &-info {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap:  calc(100vh/42);
     height: 76vh;
     width: 59%;
   }
   &-price {
     font-size: 2.5rem;
     font-weight: 800;
-    line-height: 3.75rem;
     text-align: start;
   }
   &-controls {
@@ -49,7 +50,7 @@
       gap: 1rem;
       align-self: stretch;
       .button {
-        font-size: calc(12px + 12 * (100vw / 1440));
+        font-size: calc(12px + 12 * (100vh / 1024));
         font-weight: 600;
         line-height: 1.25rem;
         display: flex;

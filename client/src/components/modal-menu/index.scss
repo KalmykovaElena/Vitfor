@@ -1,10 +1,10 @@
 .modal-menu {
-    position: absolute;
-    top: 90%;
-    right: 5%;
-    z-index: 1100;
-    padding: 1rem;
-    border-radius: 1.25rem 0rem 1.25rem 1.25rem;
+  position: absolute;
+  top: 90%;
+  right: 5%;
+  z-index: 1100;
+  padding: 1rem;
+  border-radius: 1.25rem 0rem 1.25rem 1.25rem;
   &_dark {
     background-color: #272727;
   }
@@ -35,15 +35,17 @@
           left: 0;
         }
       }
-     
+
     }
   }
   .ant-menu-item {
     &:hover {
       background-color: #8b8b8b80 !important;
+      text-decoration: none !important;
     }
     &-selected {
       background-color: #f67f17 !important;
+      text-decoration: none !important;
     }
   }
   .ant-menu-submenu-title {
@@ -60,21 +62,20 @@
       background-color: #272727 !important;
     }
   }
-  .ant-menu-light{
-    img{
+  .ant-menu-light {
+    img {
       filter: invert(100%);
     }
-
   }
-  .ant-switch{
+  .ant-switch {
     margin-bottom: 0.5rem;
   }
-  &-switch{
+  &-switch {
     display: flex;
     justify-content: flex-start;
-    gap:0.5rem;
-    padding-left:1.5rem ;
-    img{
+    gap: 0.5rem;
+    padding-left: 1.5rem;
+    img {
       width: 1.5rem;
       height: 1.5rem;
     }

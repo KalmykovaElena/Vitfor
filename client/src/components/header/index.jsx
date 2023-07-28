@@ -21,7 +21,7 @@ const Header = () => {
   const location = useLocation();
   const [current, setCurrent] = useState(location.pathname);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const renderNavigate = current !== '/authorization' && current !== '/registration';
   const onClick = (e) => {
     navigate(e.key);
     setCurrent(e.key);
@@ -42,25 +42,27 @@ const Header = () => {
         handler={() => navigate('/')}
         isTextActive="true"
       />
-      <nav className="header-nav">
-        <NavLink to="/"> Главная</NavLink>
-        <NavLink to={news}> Новости</NavLink>
-        <NavLink to="/weather"> Погода</NavLink>
-        <div className="submenu">
-          Категории
-          <Menu
-            onClick={onClick}
-            selectedKeys={[current]}
-            mode="horizontal"
-            items={categories}
-            triggerSubMenuAction="click"
-            className="submenu-menu"
-            theme="dark"
-          />
-        </div>
-        <NavLink to="/questions"> Вопрос-ответ</NavLink>
-        <NavLink to="/aboutus"> О нас</NavLink>
-      </nav>
+      {renderNavigate && (
+        <nav className="header-nav">
+          <NavLink to="/"> Главная</NavLink>
+          <NavLink to={news}> Новости</NavLink>
+          <NavLink to="/weather"> Погода</NavLink>
+          <div className="submenu">
+            Категории
+            <Menu
+              onClick={onClick}
+              selectedKeys={[current]}
+              mode="horizontal"
+              items={categories}
+              triggerSubMenuAction="click"
+              className="submenu-menu"
+              theme="dark"
+            />
+          </div>
+          <NavLink to="/questions"> Вопрос-ответ</NavLink>
+          <NavLink to="/aboutus"> О нас</NavLink>
+        </nav>
+      )}
       <div className="header-controls">
         <Select data={['РУС', 'EN', 'BY']} onchangeSelect={(e) => console.log(e)} />
         {isAuth ? (
@@ -76,8 +78,8 @@ const Header = () => {
             {isMenuOpen && <ModalMenu setIsMenuOpen={setIsMenuOpen} />}
           </>
         ) : (
-          <Link to="/authorization">
-            <Button name="Вход" type="enter" />
+          <Link to="/authorization" className={renderNavigate ? '' : 'hidden'}>
+            <Button name="Вход" type={renderNavigate ? 'enter' : 'hidden'} />
           </Link>
         )}
       </div>

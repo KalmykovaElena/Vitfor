@@ -36,7 +36,7 @@ const AdCard = () => {
             <>
               <div className="add-info">
                 <div className="add-title">
-                  {advert.title}
+                  <span>{advert.title}</span>
                   <div className="add-title-date">{date}</div>
                 </div>
                 <PhotoBlock files={advert.files} onMainClick={() => setIsModalOpen(true)} />
