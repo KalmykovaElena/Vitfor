@@ -26,6 +26,7 @@ const FormInput = ({ data, ...inputProps }) => {
       setValue(`${inputName}`, defaultValue);
     }
   }, [defaultValue, inputName, setValue]);
+
   return (
     <>
       {inputType === 'submit' ? (
@@ -67,7 +68,9 @@ const FormInput = ({ data, ...inputProps }) => {
             />
           )}
           <div className={`formInput-label__error error-${inputType}`}>
-            {(error[inputName]?.message.length < 70 && error[inputName]?.message?.toString()) || ''}
+            {inputName === 'comment'
+              ? error[inputName]?.message?.toString()
+              : (error[inputName]?.message.length < 70 && error[inputName]?.message?.toString()) || ''}
           </div>
         </label>
       )}

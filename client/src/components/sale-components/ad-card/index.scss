@@ -1,6 +1,6 @@
 .add {
   width: 77.5%;
-  margin: calc(100vh/25) auto;
+  margin: calc(100vh / 25) auto;
   &-wrapper {
     display: flex;
   }
@@ -21,9 +21,13 @@
   &-info {
     display: flex;
     flex-direction: column;
-    gap:  calc(100vh/42);
-    height: 76vh;
+    gap: calc(100vh / 42);
     width: 59%;
+    margin-bottom: 2rem;
+    &__slider{
+      height: 76vh;
+      margin-bottom: 0;
+    }
   }
   &-price {
     font-size: 2.5rem;
@@ -74,6 +78,32 @@
       align-items: center;
       gap: 0.5rem;
       align-self: stretch;
+    }
+  }
+  &-description {
+    width: 90%;
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  &-content-title {
+    margin-bottom: 3.9vh;
+    font-size: 1.5rem;
+    font-weight: 600;
+    &-comments {
+      margin-top: 5.4vh;
+      text-align: start;
+    }
+  }
+  &-photo{
+    border-radius: 1.25rem;
+    overflow: hidden;
+    max-height: 50vh;
+    img{
+      width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
   }
 }

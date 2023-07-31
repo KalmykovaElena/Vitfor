@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from 'react';
 import { ReactComponent as Caret } from 'assets/CaretDown.svg';
 import './index.scss';

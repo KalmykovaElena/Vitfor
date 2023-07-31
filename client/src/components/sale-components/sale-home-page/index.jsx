@@ -16,7 +16,7 @@ const SaleHomePage = () => (
       <div className="sale-ads__title">Объявления</div>
       <div className="sale-ads__wrapper">
         {testMain.map((e) => (
-          <AdsItem key={e.id} item={e} />
+          <AdsItem key={e.advertId} item={e} />
         ))}
       </div>
     </div>

@@ -71,8 +71,8 @@ const Header = () => {
               name="userlogo"
               img={userImg}
               color={color}
-              text={userName}
-              subtext={nickName}
+              text={nickName}
+              subtext={userName}
               handler={togleOpenMenu}
             />
             {isMenuOpen && <ModalMenu setIsMenuOpen={setIsMenuOpen} />}

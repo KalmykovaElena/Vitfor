@@ -6,14 +6,20 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: 0.96rem;
   cursor: pointer;
-  width:23.7%;
+  width: 22%;
   .item {
     &-image {
+      height: 19vh;
+      overflow: hidden;
+      border-radius: 1.25rem;
+      width: 100%;
+
       img {
-        max-width: 89.9%;
-        border-radius: 1.25rem;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
     &-title {
@@ -26,6 +32,20 @@
       font-size: 0.75rem;
       font-weight: 500;
       line-height: 150%;
+    }
+    &-description {
+      line-height: 1em;
+      max-height: 2.75rem;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      text-align: start;
+    }
+    &-price {
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 1.25rem;
     }
   }
 }

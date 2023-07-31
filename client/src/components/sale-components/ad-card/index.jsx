@@ -11,6 +11,7 @@ import { Modal } from 'antd';
 import Button from 'components/common/button';
 import phoneIcon from 'assets/Phone2.png';
 import messageIcon from 'assets/Message.png';
+import Comments from '../comments';
 
 const AdCard = () => {
   const advert = useSelector((state) => state.advert.advert);
@@ -27,19 +28,26 @@ const AdCard = () => {
   useEffect(() => {
     getAdvert(params.id, dispatch);
   }, []);
-
+  console.log(params);
   return (
     <>
       {advert.advertId && (
         <div className="add">
           <div className="add-wrapper">
             <>
-              <div className="add-info">
+              <div className={advert.files.length > 1 ? 'add-info add-info__slider' : 'add-info'}>
                 <div className="add-title">
                   <span>{advert.title}</span>
                   <div className="add-title-date">{date}</div>
                 </div>
-                <PhotoBlock files={advert.files} onMainClick={() => setIsModalOpen(true)} />
+                {advert.files.length > 1 ? (
+                  <PhotoBlock files={advert.files} onMainClick={() => setIsModalOpen(true)} />
+                ) : (
+                  <div className="add-photo">
+                    <img src={advert.files[0]} alt="advert" />
+                  </div>
+                )}
+
                 <div className="add-price">{advert.price}</div>
               </div>
               <div className="add-controls">
@@ -72,6 +80,12 @@ const AdCard = () => {
           >
             <Slider files={advert.files} />
           </Modal>
+          <div className="add-description">
+            <div className="add-content-title">Описание</div>
+            <div className="add-description-content">{advert.description}</div>
+          </div>
+          <div className="add-content-title add-content-title-comments">Комментарии пользователей</div>
+          <Comments advert={advert} />
         </div>
       )}
     </>
