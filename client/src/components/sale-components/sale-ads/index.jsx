@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import logo from 'assets/sad.png';
 import './index.scss';
 
-// import MultipleSelect from 'components/common/multipleSelect';
+import MultipleSelect from 'components/common/multipleSelect';
 import AdsItem from '../ads-item';
 
 const SaleAds = () => {
@@ -32,7 +32,7 @@ const SaleAds = () => {
       <div className="sale-ads-filter">
         <div className="sale-ads-filter__title">Объявления</div>
         {/* <div className="sale-ads-filter__item">{filterCategory}</div> */}
-        {/* <MultipleSelect items={data.items} /> */}
+        <MultipleSelect items={data.items} />
       </div>
       <div className="sale-ads">
         {renderData.length === 0 ? (
