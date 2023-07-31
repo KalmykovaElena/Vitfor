@@ -5,7 +5,6 @@ import AboutUs from 'pages/about-us';
 import Events from 'pages/events';
 import Finds from 'pages/finds';
 import Main from 'pages/main';
-import News from 'pages/news';
 import Questions from 'pages/questions';
 import Sale from 'pages/sale';
 import Services from 'pages/services';
@@ -42,12 +41,9 @@ const App = () => {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
         <Route path="/finds" element={<Finds />} />
-        <Route path="/news" element={<News />} />
         <Route path="/questions" element={<Questions />} />
         <Route path="/sale/*" element={<Sale />}>
           <Route path="" element={<SaleHomePage />} />
-          {/* <Route path="transport" element={<SaleAds />} /> */}
-          {/* <Route path="*" element={<SaleAds />} /> */}
           <Route path=":category/:type" element={<SaleAds />} />
           <Route path=":category" element={<SaleAds />} />
           <Route path=":category/:type/ad/:id" element={<AdCard />} />
