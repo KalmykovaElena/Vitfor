@@ -8,7 +8,7 @@ import AdsItem from '../ads-item';
 const SaleHomePage = () => (
   <main className="sale-main-page">
     <div className="sale-navigation">
-      {saleData.slice(2).map((e) => (
+      {saleData.slice(3).map((e) => (
         <SaleNavigationItem key={e.id} item={e} />
       ))}
     </div>

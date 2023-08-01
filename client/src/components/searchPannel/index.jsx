@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import './index.scss';
 import { useSelector } from 'react-redux';
 
-const SearchPannel = () => {
+const SearchPannel = ({ onSearch }) => {
   const [inputValue, setInputValue] = useState(null);
   const {
     register,
@@ -13,7 +13,7 @@ const SearchPannel = () => {
   } = useForm();
   const theme = useSelector((state) => state.auth.theme);
   const onSubmit = (data) => {
-    console.log(data);
+    onSearch(data.searchValue);
     setInputValue(null);
     reset();
   };

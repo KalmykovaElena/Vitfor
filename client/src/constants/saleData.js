@@ -14,11 +14,25 @@ export const saleData = [
     link: '/ad',
   },
   {
+    id: '9',
+    name: 'Товары',
+    // img: vector1,
+    link: '/search',
+    items: [
+      {
+        label: 'Товары',
+        key: '1',
+        search: 'search',
+      },
+    ],
+  },
+  {
     id: '1',
     name: 'Купи-продай',
     img: vector1,
     link: '/sale',
   },
+
   {
     id: '2',
     name: 'Транспорт',
