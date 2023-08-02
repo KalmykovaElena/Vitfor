@@ -8,7 +8,6 @@ import Main from 'pages/main';
 import Questions from 'pages/questions';
 import Sale from 'pages/sale';
 import Services from 'pages/services';
-import Tourism from 'pages/tourism';
 import Weather from 'pages/weather';
 import NotFound from 'pages/not-found';
 import Authorization from 'pages/authorization';
@@ -22,6 +21,7 @@ import ResetPassword from 'components/resetPassword';
 import SaleHomePage from 'components/sale-components/sale-home-page';
 import SaleAds from 'components/sale-components/sale-ads';
 import AdCard from 'components/sale-components/ad-card';
+import Forum from 'pages/forum';
 
 const App = () => {
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ const App = () => {
           <Route path=":category/ad/:id" element={<AdCard />} />
         </Route>
         <Route path="/services" element={<Services />} />
-        <Route path="/tourism" element={<Tourism />} />
+        <Route path="/forum" element={<Forum />} />
         <Route path="/weather" element={<Weather />} />
         <Route path="/authorization" element={<Authorization />} />
         <Route path="/recovery" element={<Authorization />} />

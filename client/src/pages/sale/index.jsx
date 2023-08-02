@@ -3,7 +3,7 @@ import './index.scss';
 import { useSelector } from 'react-redux';
 import Header from 'components/header';
 import BreadCrumb from 'components/common/breadcrumb';
-import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { saleData } from 'constants/saleData';
 import SearchPannel from 'components/searchPannel';
 import Button from 'components/common/button';
@@ -17,9 +17,11 @@ const Sale = () => {
     saleData.find((item) => item.link === `/${params.category}`) ||
     saleData.find((item) => item.link === location.pathname);
   const path = location.pathname.split('/').slice(-1)[0];
-  const isSearchRender = path !== 'ad' && Number.isNaN(Number(path));
+  const [searchParams] = useSearchParams();
+  const productsQuery = searchParams.get('products');
+  const isSearchRender = productsQuery || (path !== 'ad' && Number.isNaN(Number(path)));
   const onSearch = (value) => {
-    navigate(`/sale/search/${value}`);
+    navigate({ pathname: '/sale/search/', search: `?products=${value.toLowerCase()}` });
   };
 
   return (

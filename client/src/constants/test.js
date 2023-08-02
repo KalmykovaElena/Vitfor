@@ -79,7 +79,7 @@ export const serverResponses = [
     section: 'Transport',
     subsection: 'Autos',
     price: '8000 USD',
-    dateOfCreation: '2023-07-21T15:00:57.599',
+    dateOfCreation: '2023-08-21T15:00:57.599',
     comments: [
       {
         nickName: 'Никита',
@@ -363,7 +363,7 @@ export const serverResponses = [
     section: 'Transport',
     subsection: 'Autos',
     price: '6 020,29 BYN',
-    dateOfCreation: '2023-07-21T15:00:57.599',
+    dateOfCreation: '2023-03-21T15:00:57.599',
     comments: [
       {
         nickName: 'Никита',
@@ -434,7 +434,7 @@ export const serverResponses = [
     section: 'Transport',
     subsection: 'Autos',
     price: '10 000,00 BYN',
-    dateOfCreation: '2023-07-21T15:00:57.599',
+    dateOfCreation: '2023-03-15T15:00:57.599',
     comments: [
       {
         nickName: 'Никита',
@@ -505,7 +505,7 @@ export const serverResponses = [
     section: 'Transport',
     subsection: 'Autos',
     price: '5 300,99 BYN',
-    dateOfCreation: '2023-07-21T15:00:57.599',
+    dateOfCreation: '2023-09-21T15:00:57.599',
     comments: [
       {
         nickName: 'Никита',

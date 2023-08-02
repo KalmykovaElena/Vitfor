@@ -13,7 +13,7 @@ const SearchPannel = ({ onSearch }) => {
   } = useForm();
   const theme = useSelector((state) => state.auth.theme);
   const onSubmit = (data) => {
-    onSearch(data.searchValue);
+    onSearch(data.searchValue.toString());
     setInputValue(null);
     reset();
   };

@@ -49,7 +49,14 @@
         background-color: #fa541c;
         box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
       }
+      .filter-check{
+        &__label{
+        color:#fff;
+        display:flex;
+        gap:0.5rem;
+      }
     }
+  }
   }
   &-filter {
     padding-left: 3.3vw;
@@ -71,7 +78,7 @@
     &__item {
       border-radius: 1.25rem;
       border: 1px solid #fff;
-      width: 10.5vw;
+      width: 9.7rem;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;

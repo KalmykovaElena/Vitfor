@@ -4,15 +4,15 @@ import Header from 'components/header';
 import Footer from 'components/footer';
 import { useSelector } from 'react-redux';
 
-const Tourism = () => {
+const Forum = () => {
   const theme = useSelector((state) => state.auth.theme);
   return (
-    <section className={`tourism tourism_${theme}`}>
+    <section className={`forum forum_${theme}`}>
       <Header />
-      <main>Tourism</main>
+      <main>Forum</main>
       <Footer />
     </section>
   );
 };
 
-export default Tourism;
+export default Forum;
