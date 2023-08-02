@@ -17,16 +17,8 @@
         }
       }
     }
-    &_light {
-      border: 1px solid #000000;
 
-      .text-input {
-        &::placeholder {
-          color: #000000;
-        }
-      }
-    }
-    &__formError{
+    &__formError {
       border-color: #ff0000;
     }
     &__input {
@@ -38,6 +30,7 @@
         background-color: #ffffff20;
       }
     }
+
     .text-input {
       flex: 1;
       padding: 0 0.75rem;
@@ -65,6 +58,22 @@
         width: 32px;
         background: url('../../assets/Vector-8.png');
         background-color: #cccccc;
+        background-repeat: no-repeat;
+        background-size: 0.875rem 0.875rem;
+        background-position: center;
+      }
+    }
+    &_light {
+      border: 1px solid #000000;
+
+      .text-input {
+        &::placeholder {
+          color: #000000;
+        }
+      }
+      .search-input {
+        border-color: #000000;
+        background: url('../../assets/Vector-8-dark.png');
         background-repeat: no-repeat;
         background-size: 0.875rem 0.875rem;
         background-position: center;

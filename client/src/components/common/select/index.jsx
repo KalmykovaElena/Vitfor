@@ -35,7 +35,7 @@ const Select = ({ data, placeholder, onchangeSelect, error, defaultValue }) => {
       <div className="select__label">
         {selectedValue}
         <Caret
-          className={selectActive ? 'caret-down' : 'caret'}
+          className={selectActive ? `caret-down` : `caret`}
           onClick={() => setSelectActive(selectActive ? '' : 'active')}
         />
       </div>

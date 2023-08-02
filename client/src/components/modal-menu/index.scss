@@ -4,12 +4,17 @@
   right: 5%;
   z-index: 1100;
   padding: 1rem;
+  width: 19.875rem;
   border-radius: 1.25rem 0rem 1.25rem 1.25rem;
   &_dark {
     background-color: #272727;
   }
   &_light {
     background-color: #ffffff;
+  }
+  .ant-menu{
+    width: auto !important;
+    text-align: start;
   }
   .ant-menu-item-group-list {
     display: flex;

@@ -7,4 +7,15 @@
     .search{
         margin: 2.375rem auto 0;
     }
+    &__light{
+        .footer{
+            color:#fff;
+            img{
+                filter: invert(0);
+              }
+              .footer-item:hover{
+                border-color: #fff;
+              }
+        }
+    }
 }

@@ -49,14 +49,40 @@
         background-color: #fa541c;
         box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
       }
-      .filter-check{
-        &__label{
-        color:#fff;
-        display:flex;
-        gap:0.5rem;
+      .filter-check {
+        &__label {
+          color: #fff;
+          display: flex;
+          gap: 0.5rem;
+        }
+      }
+      input[type='radio']:after {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 0.125rem;
+        top: 2px;
+        left: -1px;
+        position: relative;
+        background-color: #f6f7f5;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+      }
+
+      input[type='radio']:checked:after {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 0.125rem;
+        top: 2px;
+        left: -1px;
+        position: relative;
+        background-image: url('../../../assets/checkbox-input.png');
+        background-size: contain;
+        content: '';
+        display: inline-block;
+        visibility: visible;
       }
     }
-  }
   }
   &-filter {
     padding-left: 3.3vw;

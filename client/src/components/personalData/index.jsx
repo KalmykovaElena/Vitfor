@@ -72,8 +72,6 @@ const PersonalData = () => {
       formData = { ...formData, photo: avatar };
     } else if (profileColor) {
       formData = { ...formData, photo: profileColor };
-    } else {
-      formData = { ...formData, photo: '#ffffff' };
     }
     dispatch(setProfileData(formData));
     updateUserData(formData, dispatch, navigate, setIsSend);
@@ -137,9 +135,9 @@ const PersonalData = () => {
             >
               <Tooltip title="сменить цвет" color="orange" overlayInnerStyle={{ color: 'black' }}>
                 <div className={`personalData-image__src personalData-image__src_${theme} personal-logo`}>
-                  <span style={{ color: profileColor || user.photo }}>
-                    {user.userName ? user.userName.slice(0, 1).toUpperCase() : 'V'}
-                  </span>
+                  <div style={{ color: profileColor || user.photo }}>
+                    {user.userName ? user.nickName.slice(0, 1).toUpperCase() : 'V'}
+                  </div>
                 </div>
               </Tooltip>
             </ColorPicker>

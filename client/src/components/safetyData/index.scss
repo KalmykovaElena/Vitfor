@@ -1,4 +1,7 @@
 .safety {
+  display: flex;
+  flex-direction: column;
+  gap:3.125vh;
     &-item {
         display: flex;
         width: 35rem;
@@ -9,12 +12,18 @@
         font-size: 1.5rem;
         font-weight: 600;
         &-content {
+          color:  #8B8B8B;
+          padding: 0.5rem 0rem;
           font-size: 0.75rem;
           font-weight: 500;
           display: flex;
           justify-content: space-between;
           align-items: flex-end;
           width: 100%;
+          a{
+            color:  #8B8B8B;
+            padding: 0.5rem 0rem;
+          }
           img {
             transform: rotate(-90deg);
           }

@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import exitPng from 'assets/exit.png';
-import profilePng from 'assets/profile.png';
 import settingsPng from 'assets/settings.png';
 import { Menu, Switch } from 'antd';
 import './index.scss';
@@ -13,7 +12,6 @@ import switch1 from 'assets/swtch1.png';
 import switch2 from 'assets/switch2.png';
 
 const exit = () => <img src={exitPng} alt="exit" />;
-const profile = () => <img src={profilePng} alt="profile" />;
 const settings = () => <img src={settingsPng} alt="profile" />;
 function getItem(label, key, onClick, icon, children, type) {
   return {
@@ -49,7 +47,6 @@ const ModalMenu = ({ setIsMenuOpen }) => {
     setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
   };
   const items = [
-    getItem('Мой профиль', 'profile', null, <Icon component={profile} />),
     getItem('Настройки профиля', 'settings', () => navigate('/personal_info/data'), <Icon component={settings} />),
     getItem('Выход', 'sub1', null, <Icon component={exit} />, [
       getItem(

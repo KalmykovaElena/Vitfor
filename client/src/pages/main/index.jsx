@@ -12,7 +12,7 @@ const Main = () => {
   const theme = useSelector((state) => state.auth.theme);
   const bg = theme === 'dark' ? background : light;
   return (
-    <div className="main" style={{ backgroundImage: `url(${bg})` }}>
+    <div className={`main main__${theme}`} style={{ backgroundImage: `url(${bg})` }}>
       <Header />
       <SearchPannel />
       <CurrentInfo />

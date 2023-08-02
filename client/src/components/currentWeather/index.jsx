@@ -13,7 +13,7 @@ const CurrentWeather = () => {
         return res.json();
       })
       .then((data) => {
-        setTemp(Math.floor(Number(data.list[0].main.temp)));
+        setTemp(Math.round(Number(data.list[0].main.temp)));
       })
       .catch((e) => {
         console.log(e);

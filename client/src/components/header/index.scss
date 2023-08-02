@@ -1,10 +1,9 @@
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 2rem 3rem;
-  margin-top: 0.5625rem;
+  padding: 1rem 3rem;
   position: relative;
-  
+
   &-nav {
     padding: 0.625rem 0;
     a {
@@ -20,41 +19,45 @@
     display: flex;
     gap: 1.5rem;
     align-items: center;
-    .submenu{
+    .submenu {
       position: relative;
       background-color: transparent;
-      &-menu{
+      &-menu {
         line-height: normal;
         background-color: transparent;
         color: transparent;
         position: absolute;
-        top:0;
+        top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        .ant-menu-overflow-item, .ant-menu-submenu-title{
+        .ant-menu-overflow-item,
+        .ant-menu-submenu-title {
           position: absolute;
-          top:0;
+          top: 0;
           left: 0;
           right: 0;
           bottom: 0;
           width: 100%;
           opacity: 0 !important;
         }
-        .ant-menu-submenu-title:hover{
+        .ant-menu-submenu-title:hover {
           color: transparent !important;
         }
-        .ant-menu-horizontal, .ant-menu-item::after, .ant-menu-submenu::after {
+        .ant-menu-horizontal,
+        .ant-menu-item::after,
+        .ant-menu-submenu::after {
           border: none !important;
-      }
-      
+        }
       }
     }
   }
   .logo {
     &-app {
       .logo-img {
-        max-width: 2.5rem;
+        width: 3.5rem;
+        position: relative;
+        bottom: 0.5rem;
       }
     }
     &-userlogo {
@@ -71,7 +74,6 @@
           line-height: 135%;
         }
         &__subname {
-          
           font-size: 0.75rem;
           line-height: 135%;
         }
@@ -85,47 +87,51 @@
           background-color: #67676777;
         }
       }
-      &-text__subname{
-        color: #2b2b2b
+      &-text__subname {
+        color: #2b2b2b;
       }
     }
   }
-  &_dark{
-    .logo-text__subname{
+  &_dark {
+    .logo-text__subname {
       color: #cccccc;
     }
-   
+    .logo-userlogo {
+      .logo-text__name {
+        color: #ffffff;
+      }
+    }
   }
-  .select{
+  .select {
     width: 5rem;
     align-self: self-end;
     height: 2.625rem;
-    .select__drop-down{
+    .select__drop-down {
       z-index: 2;
-    
-    &::-webkit-scrollbar {
-      width: 0.5rem; 
-    }
-    &::-webkit-scrollbar-track {
-      background: transparent; 
-    }
-    &::-webkit-scrollbar-thumb {
-      background-color: transparent; 
-      border: 3px solid transparent; 
+
+      &::-webkit-scrollbar {
+        width: 0.5rem;
+      }
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+        border: 3px solid transparent;
+      }
     }
   }
-   }
-   .button-enter{
+  .button-enter {
     padding: 0.75rem 1.5rem;
   }
-  .hidden{
+  .hidden {
     visibility: hidden;
     cursor: default;
   }
-   &-controls{
+  &-controls {
     display: flex;
-    gap:1.5rem;
-   }
+    gap: 1.5rem;
+  }
 }
 .ant-menu-dark {
   background-color: #272727;
@@ -133,7 +139,8 @@
     background-color: #272727 !important;
   }
 }
-.ant-menu-item-selected, .ant-menu-item-active{
+.ant-menu-item-selected,
+.ant-menu-item-active {
   background-color: transparent !important;
   text-decoration: underline;
   text-decoration-thickness: 2px;
