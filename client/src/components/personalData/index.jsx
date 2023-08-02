@@ -19,7 +19,7 @@ const PersonalData = () => {
   const [initialImage, setInitialImage] = useState();
   const [savedlImage, setSavedImage] = useState();
   const [profileColor, setProfileColor] = useState();
-  const [error, setError] = useState('');
+  const [fileError, setFileError] = useState('');
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const avatar = user.photo?.includes('data:image') ? user.photo : null;
@@ -29,6 +29,7 @@ const PersonalData = () => {
     register,
     setValue,
     handleSubmit,
+    setError,
     clearErrors,
     formState: { errors, isValid, isDirty },
     watch,
@@ -43,9 +44,9 @@ const PersonalData = () => {
       const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/heic';
       const isLt10M = file.size / 1024 / 1024 < 10;
       if (!isJpgOrPng) {
-        setError('Ошибка загрузки файла. Допустимые форматы загружаемого фото: JPEG, PNG, HEIC');
+        setFileError('Ошибка загрузки файла. Допустимые форматы загружаемого фото: JPEG, PNG, HEIC');
       } else if (!isLt10M) {
-        setError('Большой размер фотографии. Максимальный размер – 10 МБ');
+        setFileError('Большой размер фотографии. Максимальный размер – 10 МБ');
       } else {
         setInitialImage(URL.createObjectURL(file));
         setIsCropeOpen(true);
@@ -74,7 +75,7 @@ const PersonalData = () => {
       formData = { ...formData, photo: profileColor };
     }
     dispatch(setProfileData(formData));
-    updateUserData(formData, dispatch, navigate, setIsSend);
+    updateUserData(formData, dispatch, navigate, setIsSend, setError);
   };
 
   useEffect(() => {
@@ -135,8 +136,8 @@ const PersonalData = () => {
             >
               <Tooltip title="сменить цвет" color="orange" overlayInnerStyle={{ color: 'black' }}>
                 <div className={`personalData-image__src personalData-image__src_${theme} personal-logo`}>
-                  <div style={{ color: profileColor || user.photo }}>
-                    {user.userName ? user.nickName.slice(0, 1).toUpperCase() : 'V'}
+                  <div style={{ color: profileColor || user.photo || '' }}>
+                    {user.nickName ? user.nickName.slice(0, 1).toUpperCase() : 'V'}
                   </div>
                 </div>
               </Tooltip>
@@ -153,7 +154,7 @@ const PersonalData = () => {
             accept="image/*"
             onChange={handleFileChange}
           />
-          {error && <div className="file-upload__error">{error}</div>}
+          {fileError && <div className="file-upload__error">{fileError}</div>}
         </div>
       </form>
 

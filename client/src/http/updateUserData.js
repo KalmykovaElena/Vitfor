@@ -4,7 +4,7 @@ import { url } from 'constants/url';
 import jwt_decode from 'jwt-decode';
 import { refreshToken } from './refreshToken';
 
-export const updateUserData = (formData, dispatch, navigate, setIsSend) => {
+export const updateUserData = (formData, dispatch, navigate, setIsSend, setError) => {
   const token = localStorage.getItem('token');
   fetch(`${url}/Account/FillingAccountInfo`, {
     method: 'POST',
@@ -22,6 +22,9 @@ export const updateUserData = (formData, dispatch, navigate, setIsSend) => {
           refreshToken(token, navigate, updateUserData, dispatch, formData);
         }
         const res = await response.json();
+        if (res.message.includes('already exists')) {
+          setError('userName', { type: '400', message: 'Такое имя уже зарегистрировано в системе!' });
+        }
         throw new Error(res.message);
       }
       return response.json();
