@@ -10,6 +10,7 @@
     font-weight: 600;
     line-height: 1.25rem;
     display: flex;
+    justify-content: space-between;
     gap: 0.5rem;
     &-date {
       color: #777;
@@ -45,6 +46,19 @@
       align-items: center;
       width: 70%;
       gap: 2.5rem;
+      .logo-text{
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap:0.5rem;
+        &__name{
+          font-size: 1rem;
+        }
+        &__subname{
+          font-size: 0.75rem;
+          color:  #cccccc;
+        }
+      }
     }
 
     &__buttons {

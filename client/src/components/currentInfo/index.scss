@@ -26,7 +26,7 @@
   }
   &-name {
     font-size: 2.5rem;
-    line-height: 3.75rem;
+    line-height: 5.85vh;
     @media screen and (max-width: 1368px) {
       font-size: 1.25rem;
     }
@@ -34,23 +34,23 @@
   &-description {
     color: #fff;
     font-family: Roboto;
-    font-size: 1.375rem;
+    font-size: calc(10px + 8*(100vh/1024));
     font-style: normal;
     line-height: 1.25rem;
   }
   &-date {
-    width: 74%;
     max-height: 4.25rem;
     border-radius: 20px;
     margin-top: 0.5rem;
     padding: 1rem;
     transition: opacity 0.7s 0.2s;
-    font-size: 1.375rem;
+    font-size: calc(12px + 8*(100vh/1024));
     &__details {
       display: flex;
       justify-content: space-around;
       transition: opacity 0.9s 0.4s;
       font-weight: 600;
+      gap: 2.5rem;
     }
     &_dark {
       background-color: #3f3c30cc;
@@ -62,36 +62,42 @@
   }
   &-photos {
     position: relative;
-    width: 11.9rem;
     height: 51px;
     font-size: 0.75rem;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    &__wrapper {
+      display: flex;
+      width: 9.653vw;
+    
     .img {
       &__offset {
-        position: absolute;
+        width: 30.93%;
+        position: relative;
         top: 0;
       }
     }
+
     .item {
       &-1 {
         left: 0px;
         z-index: 4;
       }
       &-2 {
-        left: 32px;
+        left: -7.9%;
         z-index: 3;
       }
       &-3 {
-        left: 64px;
+        left: -15.8%;
         z-index: 2;
       }
       &-4 {
-        left: 96px;
+        left: -23.7%;
         z-index: 1;
       }
     }
+  }
   }
   @media screen and (max-width: 1368px) {
     font-size: 0.9rem;

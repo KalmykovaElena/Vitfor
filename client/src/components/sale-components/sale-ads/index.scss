@@ -6,13 +6,19 @@
   margin-top: 1rem;
   &-wrapper {
     margin-top: 5.8vh;
-    .ant-dropdown {
+     
+    .navigation-dropdown {
+      max-height: 57vh;
+      overflow-y: auto;
+      scrollbar-color: #d4aa70 #e4e4e4;
+      scrollbar-width: thin;
       background-color: #110808;
       border-radius: 0rem 1.25rem 1.25rem 1.25rem;
       padding: 1rem;
       &-menu {
         gap: 0.5rem;
       }
+      
       .ant-btn-primary {
         background-color: #fa541c !important;
         border-radius: 1.25rem !important;
@@ -24,24 +30,14 @@
         gap: 0.625rem;
         margin: 1rem auto 0;
       }
-    }
-    .ant-dropdown-menu-item-selected {
-      background-color: #110808 !important;
-      border-radius: 1.25rem !important;
-      border: 1px solid #fff;
-    }
-    .navigation-dropdown {
-      max-height: 57vh;
-      overflow-y: auto;
-      scrollbar-color: #d4aa70 #e4e4e4;
-      scrollbar-width: thin;
       &::-webkit-scrollbar {
-        width: 10px;
+        width: 8px;
       }
 
       &::-webkit-scrollbar-track {
-        background-color: #555555;
+        background-color: #bebbbbaf;
         border-radius: 100px;
+        margin: 1.25rem;
       }
 
       &::-webkit-scrollbar-thumb {
@@ -63,7 +59,7 @@
         top: 2px;
         left: -1px;
         position: relative;
-        background-color: #f6f7f5;
+        background-color: #c5cbbd;
         content: '';
         display: inline-block;
         visibility: visible;
@@ -81,6 +77,40 @@
         content: '';
         display: inline-block;
         visibility: visible;
+      }
+      .ant-dropdown-menu-item{
+        border: 1px solid transparent;
+        &:hover {
+          border-radius: 1.25rem !important;
+          background-color: #4848454d;
+        }
+      }
+      .ant-dropdown-menu-item-selected {
+        background-color: #110808 !important;
+        border-radius: 1.25rem !important;
+        border: 1px solid #fff;
+      }
+      &__light {
+        background-color:#ffffff ;
+        color:#000000;
+        .filter-check__label{
+          color: #110808;
+        }
+        .ant-dropdown-menu {
+          background-color:#ffffff ;
+          .ant-dropdown-menu-title-content {
+            color: #110808;
+          }
+          // .ant-dropdown-menu-item:hover {
+          //   border-radius: 1.25rem !important;
+          //   background-color: #4848454d;
+          // }
+        }
+        .ant-dropdown-menu-item-selected {
+          background-color: #ffffff !important;
+          border-radius: 1.25rem !important;
+          border: 1px solid #110808;
+        }
       }
     }
   }
@@ -126,6 +156,15 @@
       &_active {
         background-color: #fff;
         color: #110808;
+        .caret * {
+          fill: #000000;
+        }
+        .caret-down * {
+          fill: #000000;
+        }
+      }
+      &_light{
+        border-color: #000000;
         .caret * {
           fill: #000000;
         }

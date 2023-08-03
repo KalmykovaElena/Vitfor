@@ -108,7 +108,7 @@
     height: 2.625rem;
     .select__drop-down {
       z-index: 2;
-
+      overflow-y: initial;
       &::-webkit-scrollbar {
         width: 0.5rem;
       }

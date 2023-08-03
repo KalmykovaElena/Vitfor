@@ -55,8 +55,8 @@ const AdCard = () => {
                   <Logo
                     name="userlogo"
                     img={advert.userPhoto}
-                    text={advert.userName}
-                    subtext={advert.nickName}
+                    text={advert.nickName}
+                    subtext={advert.userName}
                     textLocation="bottom"
                   />
                   <div className="add-controls__buttons">

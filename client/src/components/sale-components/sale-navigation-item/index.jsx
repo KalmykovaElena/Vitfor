@@ -26,7 +26,7 @@ const SaleNavigationItem = ({ item }) => {
         items,
         onClick,
       }}
-      overlayClassName="navigation-dropdown"
+      overlayClassName={`navigation-dropdown navigation-dropdown__${theme}`}
     >
       <Space>
         <div className="navigation-item" style={{ backgroundColor: color[theme] }} onClick={handleClick}>

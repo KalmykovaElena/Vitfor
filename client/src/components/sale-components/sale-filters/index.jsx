@@ -18,6 +18,7 @@ const SaleFilters = ({ data }) => {
   const params = useParams();
   const dispatch = useDispatch();
   const selectedSortCategory = useSelector((state) => state.advert.sort);
+  const theme = useSelector((state) => state.auth.theme);
   const items = data?.items
     ? [
         {
@@ -95,11 +96,15 @@ const SaleFilters = ({ data }) => {
         )}
         trigger="click"
         open={openedSort}
-        overlayClassName="navigation-dropdown"
+        overlayClassName={`navigation-dropdown navigation-dropdown__${theme}`}
         getPopupContainer={() => document.getElementById('sale')}
       >
         <div
-          className={openedFilter ? 'sale-ads-filter__item sale-ads-filter__item_active' : 'sale-ads-filter__item'}
+          className={
+            openedFilter
+              ? `sale-ads-filter__item sale-ads-filter__item_${theme} sale-ads-filter__item_active`
+              : `sale-ads-filter__item sale-ads-filter__item_${theme}`
+          }
           onClick={() => setOpenedSort(!openedSort)}
         >
           {selectedSortCategory}
@@ -128,11 +133,15 @@ const SaleFilters = ({ data }) => {
           )}
           trigger="click"
           open={openedFilter}
-          overlayClassName="navigation-dropdown"
+          overlayClassName={`navigation-dropdown navigation-dropdown__${theme}`}
           getPopupContainer={() => document.getElementById('sale')}
         >
           <div
-            className={openedFilter ? 'sale-ads-filter__item sale-ads-filter__item_active' : 'sale-ads-filter__item'}
+            className={
+              openedFilter
+                ? `sale-ads-filter__item sale-ads-filter__item_${theme} sale-ads-filter__item_active`
+                : `sale-ads-filter__item sale-ads-filter__item_${theme}`
+            }
             onClick={() => setOpenedFilter(!openedFilter)}
           >
             {filterCategory}

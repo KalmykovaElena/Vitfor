@@ -19,7 +19,15 @@ const Logo = ({ name, img, color, text, subtext, textLocation, handler, isTextAc
       {subtext && <div className="logo-text__subname">{subtext}</div>}
     </div>
     <div className="logo-img" onClick={handler}>
-      {!color ? img ? <img src={img} alt="logo" /> : null : <span style={{ color }}>{text?.slice(0, 1) || null}</span>}
+      {!color ? (
+        img ? (
+          <img src={img} alt="logo" />
+        ) : (
+          <span style={{ color: 'white' }}>{text?.slice(0, 1) || null}</span>
+        )
+      ) : (
+        <span style={{ color }}>{text?.slice(0, 1) || null}</span>
+      )}
     </div>
   </div>
 );

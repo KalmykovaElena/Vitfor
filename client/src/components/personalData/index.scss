@@ -29,6 +29,10 @@
   }
   &-image {
     width: 27%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
   }
   &-success {
     display: flex;

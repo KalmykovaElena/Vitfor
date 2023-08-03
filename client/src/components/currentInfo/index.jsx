@@ -29,11 +29,13 @@ const CurrentInfo = () => {
           </div>
         </div>
         <div className="currentInfo-photos">
-          <img src={photo1} className="img__offset item-1" alt="avatar" />
-          <img src={photo2} className="img__offset item-2" alt="avatar" />
-          <img src={photo3} className="img__offset item-3" alt="avatar" />
-          <img src={photo4} className="img__offset item-4" alt="avatar" />
-          +2 тыс
+          <div className="currentInfo-photos__wrapper">
+            <img src={photo1} className="img__offset item-1" alt="avatar" />
+            <img src={photo2} className="img__offset item-2" alt="avatar" />
+            <img src={photo3} className="img__offset item-3" alt="avatar" />
+            <img src={photo4} className="img__offset item-4" alt="avatar" />
+          </div>
+          <div className="currentInfo-photos__text">+2 тыс</div>
         </div>
       </div>
     </div>

@@ -82,12 +82,12 @@ export default function AuthPanel() {
         </form>
       )}
       {currentPage === 'authorization' && (
-        <NavLink className="authPannel__redirect" to="/recovery">
+        <NavLink className="authPannel__redirect redirect" to="/recovery">
           Забыли пароль?
         </NavLink>
       )}
       {currentPage === 'recovery' && (
-        <NavLink className="authPannel__redirect" to="/authorization">
+        <NavLink className="authPannel__redirect redirect" to="/authorization">
           Назад
         </NavLink>
       )}

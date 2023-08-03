@@ -7,6 +7,16 @@
   &_light{
     color: #000000;
   }
-
+.redirect{
+  transition: all .5s;
+  border: 1px solid transparent;
+    border-radius: 10px;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  &:hover{
+    color:#ffffff;
+    border-color: #FA541C;
+  }
+}
 }
 

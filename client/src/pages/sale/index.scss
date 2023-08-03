@@ -32,6 +32,9 @@
   &-breadCrumb {
     a {
       color: #777777;
+      &:hover{
+        color: #777777;
+      }
     }
     font-size: 1rem;
     font-weight: 500;
@@ -78,7 +81,8 @@
 }
   }
   .breadcrumb{
-    padding-left: 14.25%;
+    width: 77.5%;
+    margin: 0 auto;
   }
   
 }
