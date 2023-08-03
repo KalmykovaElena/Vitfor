@@ -21,7 +21,9 @@ const Sale = () => {
   const productsQuery = searchParams.get('products');
   const isSearchRender = productsQuery || (path !== 'ad' && Number.isNaN(Number(path)));
   const onSearch = (value) => {
-    navigate({ pathname: '/sale/search/', search: `?products=${value.toLowerCase()}` });
+    if (value) {
+      navigate({ pathname: '/sale/search/', search: `?products=${value.toLowerCase()}` });
+    }
   };
 
   return (
