@@ -22,6 +22,7 @@ import SaleHomePage from 'components/sale-components/sale-home-page';
 import SaleAds from 'components/sale-components/sale-ads';
 import AdCard from 'components/sale-components/ad-card';
 import Forum from 'pages/forum';
+import AdPlacing from 'components/sale-components/ad-placing';
 
 const App = () => {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ const App = () => {
           <Route path=":category" element={<SaleAds />} />
           <Route path=":category/:type/ad/:id" element={<AdCard />} />
           <Route path=":category/ad/:id" element={<AdCard />} />
+          <Route path="adplacing" element={<AdPlacing />} />
         </Route>
         <Route path="/services" element={<Services />} />
         <Route path="/forum" element={<Forum />} />

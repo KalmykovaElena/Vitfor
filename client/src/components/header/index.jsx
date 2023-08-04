@@ -9,7 +9,7 @@ import ModalMenu from 'components/modal-menu';
 import { news } from 'constants/url';
 import { Menu } from 'antd';
 import { categories } from 'constants/categories';
-import Select from 'components/common/select';
+// import Select from 'components/common/select';
 
 const Header = () => {
   const isAuth = useSelector((state) => state.auth.isAuth);
@@ -64,7 +64,7 @@ const Header = () => {
         </nav>
       )}
       <div className="header-controls">
-        <Select data={['РУС', 'EN', 'BY']} onchangeSelect={(e) => console.log(e)} />
+        {/* <Select data={['РУС', 'EN', 'BY']} onchangeSelect={(e) => console.log(e)} /> */}
         {isAuth ? (
           <>
             <Logo

@@ -32,12 +32,13 @@ const HelpSection = () => {
     newFileList = newFileList.map((file, i) => {
       encodeImageFileAsURL(file.originFileObj)
         // eslint-disable-next-line no-return-assign
-        .then((res) => (file.data = res.replace('data:image/jpeg;base64,', '')));
+        .then((res) => (file.data = res.split(',').splice(1).join('')));
       file.name = `Photo ${i + 1}`;
       return file;
     });
     setFileList(newFileList);
   };
+
   const beforeUpload = (file) => {
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/heic';
     if (!isJpgOrPng) {

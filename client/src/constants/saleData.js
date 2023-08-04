@@ -32,6 +32,12 @@ export const saleData = [
     img: vector1,
     link: '/sale',
   },
+  {
+    id: '10',
+    name: 'Подать объявление',
+    img: vector1,
+    link: '/adplacing',
+  },
 
   {
     id: '2',
@@ -54,7 +60,7 @@ export const saleData = [
         label: 'Мотоциклы, мопеды и скутеры ',
         key: '2',
         search: 'motorcycles',
-        subsection: 'MotorBikes',
+        subsection: 'Motorbikes',
       },
       {
         label: 'Квадроциклы, снегоходы, водный транспорт',

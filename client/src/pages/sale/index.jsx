@@ -19,7 +19,7 @@ const Sale = () => {
   const path = location.pathname.split('/').slice(-1)[0];
   const [searchParams] = useSearchParams();
   const productsQuery = searchParams.get('products');
-  const isSearchRender = productsQuery || (path !== 'ad' && Number.isNaN(Number(path)));
+  const isSearchRender = productsQuery || (path !== 'ad' && Number.isNaN(Number(path)) && path !== 'adplacing');
   const onSearch = (value) => {
     if (value) {
       navigate({ pathname: '/sale/search/', search: `?products=${value.toLowerCase()}` });
@@ -42,7 +42,7 @@ const Sale = () => {
             </div>
           )}
           <SearchPannel onSearch={onSearch} />
-          <Button name="Подать объявление" type="primary" />
+          <Button name="Подать объявление" type="primary" handleClick={() => navigate('/sale/adplacing')} />
         </div>
       )}
       <Outlet />

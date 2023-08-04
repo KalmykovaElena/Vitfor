@@ -143,3 +143,76 @@ export const commentInput = {
     },
   },
 };
+export const advertInputs = [
+  {
+    inputLabel: 'Название',
+    id: 'input-advertName',
+    inputType: 'text',
+    inputName: 'title',
+    placeholder: 'Название',
+    validateInput: {
+      maxLength: {
+        value: 30,
+        message: 'Не более 30 символов',
+      },
+      required: 'Обязательное поле',
+      pattern: {
+        value: /^[a-zA-ZА-Яа-я0-9_!\s@#$%^&*()_+"-={}|>?[\]]*$/,
+        message: 'Неверное имя',
+      },
+    },
+  },
+  {
+    inputLabel: 'Цена',
+    id: 'input-advertPrice',
+    inputType: 'number',
+    inputName: 'price',
+    placeholder: 'Цена',
+    validateInput: {
+      maxLength: {
+        value: 10,
+        message: 'Не более 10 символов',
+      },
+      required: 'Обязательное поле',
+      pattern: {
+        value: /^[0-9]*$/,
+        message: 'Неверная цена',
+      },
+    },
+  },
+  // {
+  //   renderType: 'advert-type',
+  //   label: 'Выберите тип',
+  // },
+  {
+    renderType: 'advert-description',
+    label: 'Описание',
+  },
+  // {
+  //   renderType: 'advert-upload',
+  // },
+  {
+    inputLabel: 'Телефон',
+    id: 'input-advertPhone',
+    inputType: 'tel',
+    inputName: 'phone',
+    placeholder: 'Телефон',
+    validateInput: {
+      maxLength: {
+        value: 13,
+        message: 'Не более 13 символов',
+      },
+      pattern: {
+        value: /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/,
+        message: 'Неверная цена',
+      },
+    },
+  },
+  {
+    inputType: 'submit',
+    id: 'input-submit',
+    inputValue: {
+      'sale/adplacing': 'Сохранить',
+    },
+  },
+];

@@ -1,0 +1,39 @@
+.adplacing{
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &-wrapper{
+        width:70%;
+        margin: 0 auto;
+        display:flex;
+        flex-direction: column;
+        gap:2rem;
+        justify-content: center;
+    }
+    &-content{
+        display: flex;
+        flex-wrap: wrap;
+        gap:1rem;
+        justify-content: center;
+        &__item{
+            padding: 1.5rem;
+            background-color: rgba(0, 0, 0, 0.192);
+            border: 1px solid #fff;
+            border-radius: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap:0.5rem;
+            transition: all .5s;
+            img{
+                width:30%;
+            }
+            &:hover{
+                cursor: pointer;
+                transform: scale(1.1);
+                background-color: rgba(109, 98, 98, 0.192);
+            }
+        }
+    }
+}
