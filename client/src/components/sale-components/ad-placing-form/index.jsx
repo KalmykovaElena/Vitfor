@@ -20,7 +20,7 @@ const AdPlacingForm = () => {
     register,
     handleSubmit,
     formState: { errors, isValid, isDirty },
-    // reset,
+    reset,
     setError,
     setValue,
     watch,
@@ -83,6 +83,8 @@ const AdPlacingForm = () => {
       })
       .then((result) => {
         // setSuccess(true);
+        alert('объявление сохранено');
+        reset();
         console.log(result);
       })
       .catch((err) => {
@@ -157,7 +159,7 @@ const AdPlacingForm = () => {
             onChange={onChange}
             onRemove={onRemove}
             beforeUpload={beforeUpload}
-            maxCount="2"
+            maxCount="10"
             customRequest={({ onSuccess }) => onSuccess('ok')}
           >
             <img className="upload-item__btn" src={icon} alt="upload" />
