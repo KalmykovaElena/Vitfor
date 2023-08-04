@@ -62,7 +62,6 @@ const AdCard = () => {
                   <div className="add-controls__buttons">
                     <Button type="primary" name="Показать телефон" icon={phoneIcon} />
                     <Button type="primary" name="Написать сообщение" icon={messageIcon} />
-                    <div className="subscription">Подписаться на продавца</div>
                   </div>
                 </div>
               </div>
