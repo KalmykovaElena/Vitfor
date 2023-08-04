@@ -18,7 +18,9 @@
       &-menu {
         gap: 0.5rem;
       }
-      
+      .ant-btn{
+        width:100%;
+      }
       .ant-btn-primary {
         background-color: #fa541c !important;
         border-radius: 1.25rem !important;
@@ -80,6 +82,7 @@
       }
       .ant-dropdown-menu-item{
         border: 1px solid transparent;
+        text-align: start;
         &:hover {
           border-radius: 1.25rem !important;
           background-color: #4848454d;
@@ -101,11 +104,8 @@
           .ant-dropdown-menu-title-content {
             color: #110808;
           }
-          // .ant-dropdown-menu-item:hover {
-          //   border-radius: 1.25rem !important;
-          //   background-color: #4848454d;
-          // }
-        }
+          
+                }
         .ant-dropdown-menu-item-selected {
           background-color: #ffffff !important;
           border-radius: 1.25rem !important;
