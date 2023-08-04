@@ -574,7 +574,7 @@ export const serverResponses = [
     userName: 'Andrushasmely',
     userPhoto: photo,
     section: 'Transport',
-    subsection: 'MotorBikes',
+    subsection: 'Motorbikes',
     price: '8 095,29 BYN',
     dateOfCreation: '2023-07-21T15:00:57.599',
     comments: [
@@ -645,7 +645,7 @@ export const serverResponses = [
     userName: 'Andrushasmely',
     userPhoto: photo,
     section: 'Transport',
-    subsection: 'MotorBikes',
+    subsection: 'Motorbikes',
     price: '8 095,29 BYN',
     dateOfCreation: '2023-07-21T15:00:57.599',
     comments: [

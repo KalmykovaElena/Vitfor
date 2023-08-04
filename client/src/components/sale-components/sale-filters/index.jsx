@@ -10,14 +10,13 @@ import { setSortParametr } from 'redux/reducers/advertReducer';
 const SaleFilters = ({ data }) => {
   const [openedFilter, setOpenedFilter] = useState(false);
   const [openedSort, setOpenedSort] = useState(false);
-  const [filterCategory, setFilterCategory] = useState('По умолчанию');
+  // const [filterCategory, setFilterCategory] = useState('По умолчанию');
   const [sortCategory, setSortCategory] = useState('По умолчанию');
   const [current, setCurrent] = useState('0');
   const [filterItem, setFilterItem] = useState();
   const navigate = useNavigate();
   const params = useParams();
   const dispatch = useDispatch();
-  const selectedSortCategory = useSelector((state) => state.advert.sort);
   const theme = useSelector((state) => state.auth.theme);
   const items = data?.items
     ? [
@@ -45,7 +44,6 @@ const SaleFilters = ({ data }) => {
 
   const handleClick = () => {
     filterItems();
-    setFilterCategory(filterItem.label);
     setOpenedFilter(false);
   };
   const setSort = (e) => {
@@ -101,13 +99,13 @@ const SaleFilters = ({ data }) => {
       >
         <div
           className={
-            openedFilter
+            openedSort
               ? `sale-ads-filter__item sale-ads-filter__item_${theme} sale-ads-filter__item_active`
               : `sale-ads-filter__item sale-ads-filter__item_${theme}`
           }
           onClick={() => setOpenedSort(!openedSort)}
         >
-          {selectedSortCategory}
+          фильтр
           <Caret className={openedSort ? 'caret-down' : 'caret'} />
         </div>
       </Dropdown>
@@ -144,7 +142,7 @@ const SaleFilters = ({ data }) => {
             }
             onClick={() => setOpenedFilter(!openedFilter)}
           >
-            {filterCategory}
+            категория
             <Caret className={openedFilter ? 'caret-down' : 'caret'} />
           </div>
         </Dropdown>
