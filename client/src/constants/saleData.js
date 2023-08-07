@@ -6,6 +6,13 @@ import vector5 from '../assets/paw.png';
 import vector6 from '../assets/business.png';
 import vector7 from '../assets/shirt.png';
 import vector8 from '../assets/Home.png';
+import icon from '../assets/icon.png';
+import icon2 from '../assets/icon2.png';
+import icon3 from '../assets/icon3.png';
+import icon4 from '../assets/icon4.png';
+import icon5 from '../assets/icon5.png';
+import icon6 from '../assets/icon6.png';
+import icon7 from '../assets/icon7.png';
 
 export const saleData = [
   {
@@ -43,6 +50,8 @@ export const saleData = [
     id: '2',
     name: 'Транспорт',
     img: vector2,
+    icon: icon6,
+    order: '6',
     link: '/transport',
     section: 'Transport',
     color: {
@@ -92,6 +101,8 @@ export const saleData = [
     id: '3',
     name: 'Электроника',
     img: vector3,
+    icon: icon7,
+    order: '7',
     link: '/electronics',
     section: 'Electronics',
     color: {
@@ -147,6 +158,8 @@ export const saleData = [
     id: '4',
     name: 'Спорт и отдых',
     img: vector4,
+    icon: icon5,
+    order: '5',
     link: '/relaxsport',
     section: 'Sports and relax',
     color: {
@@ -184,6 +197,8 @@ export const saleData = [
     id: '5',
     name: 'Животные',
     img: vector5,
+    icon: icon2,
+    order: '2',
     link: '/animals',
     section: 'Animals',
     color: {
@@ -227,6 +242,8 @@ export const saleData = [
     id: '6',
     name: 'Недвижимость',
     img: vector6,
+    icon: icon4,
+    order: '4',
     link: '/realty',
     section: 'Real estate',
     color: {
@@ -264,6 +281,8 @@ export const saleData = [
     id: '7',
     name: 'Личные вещи',
     img: vector7,
+    icon: icon3,
+    order: '3',
     link: '/personalItems',
     section: 'Clothes and personal things',
     color: {
@@ -295,6 +314,8 @@ export const saleData = [
     id: '8',
     name: 'Для дома и дачи',
     img: vector8,
+    icon,
+    order: '1',
     link: '/homeItems',
     section: 'House and garden',
     color: {

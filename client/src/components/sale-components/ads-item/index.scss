@@ -15,11 +15,17 @@
       overflow: hidden;
       border-radius: 1.25rem;
       width: 100%;
-
-      img {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      &__photo {
         width: 100%;
         height: 100%;
         object-fit: cover;
+      }
+      &__nophoto{
+        width: 40%;
       }
     }
     &-title {

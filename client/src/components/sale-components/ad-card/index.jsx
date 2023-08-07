@@ -25,10 +25,10 @@ const AdCard = () => {
         year: 'numeric',
       })
     : '';
+  console.log(params);
   useEffect(() => {
     getAdvert(params.id, dispatch);
   }, []);
-  console.log(params);
   return (
     <>
       {advert.advertId && (
@@ -44,11 +44,11 @@ const AdCard = () => {
                   <PhotoBlock files={advert.files} onMainClick={() => setIsModalOpen(true)} />
                 ) : (
                   <div className="add-photo">
-                    <img src={advert.files[0]} alt="advert" />
+                    <img src={`data:image/png;base64,${advert.files[0].fileString}`} alt="advert" />
                   </div>
                 )}
 
-                <div className="add-price">{advert.price}</div>
+                <div className="add-price">{advert.price} BYN</div>
               </div>
               <div className="add-controls">
                 <div className="add-controls__wrapper">

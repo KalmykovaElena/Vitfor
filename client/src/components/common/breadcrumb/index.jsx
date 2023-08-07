@@ -6,8 +6,8 @@ const BreadCrumb = ({ data, className }) => {
   const location = useLocation();
   const breadCrumbView = () => {
     const { pathname } = location;
-    const pathnames = pathname.split('/').filter((item) => Number.isNaN(Number(item)));
-    // if (pathnames.includes('search')) pathnames.splice(-1);
+    const pathnames = pathname.split('/').filter((item) => item);
+    if (pathnames.find((e) => e === 'ad')) pathnames.splice(-1);
     const capatilize = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : null);
     const items = [
       pathnames.length > 0

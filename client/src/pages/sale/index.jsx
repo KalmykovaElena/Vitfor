@@ -20,12 +20,19 @@ const Sale = () => {
   const [searchParams] = useSearchParams();
   const productsQuery = searchParams.get('products');
   const isSearchRender = productsQuery || (path !== 'ad' && Number.isNaN(Number(path)) && path !== 'adplacing');
+  const isAuth = useSelector((state) => state.auth.isAuth);
   const onSearch = (value) => {
     if (value) {
       navigate({ pathname: '/sale/search/', search: `?products=${value.toLowerCase()}` });
     }
   };
-
+  const handleClick = () => {
+    if (isAuth) {
+      navigate('/sale/adplacing');
+    } else {
+      navigate('/registration');
+    }
+  };
   return (
     <section className={`sale sale_${theme}`}>
       <Header />
@@ -42,7 +49,7 @@ const Sale = () => {
             </div>
           )}
           <SearchPannel onSearch={onSearch} />
-          <Button name="Подать объявление" type="primary" handleClick={() => navigate('/sale/adplacing')} />
+          <Button name="Подать объявление" type="primary" handleClick={handleClick} />
         </div>
       )}
       <Outlet />

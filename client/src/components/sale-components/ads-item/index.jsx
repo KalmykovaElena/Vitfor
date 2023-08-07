@@ -5,13 +5,16 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getAdvert } from 'http/getAdvert';
 import { transformDate } from 'utils/transformDate';
+import icon from 'assets/camera.svg';
 
 const AdsItem = ({ item, type }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { title, dateOfCreation, price, description } = item;
   const handleClick = () => {
-    const response = getAdvert(item.advertId, dispatch);
+    console.log(item);
+    const response = getAdvert(item.advertId, dispatch, navigate);
+
     if (response) {
       const pathData = saleData.find((e) => e.section === response.section);
       const category = pathData.link;
@@ -23,10 +26,21 @@ const AdsItem = ({ item, type }) => {
       }
     }
   };
+  console.log(item);
   return (
     <div className="sale-ads__item" onClick={handleClick}>
       <div className="item-image">
-        <img src={item.files[0]} alt="advertisement" />
+        {item.file ? (
+          <img
+            src={`data:image/png;base64,${item.file.fileString}`}
+            alt="advertisement"
+            className="item-image__photo"
+          />
+        ) : (
+          <>
+            <img src={icon} alt="advertisement" className="item-image__nophoto" />
+          </>
+        )}
       </div>
       <div className="item-title">{title}</div>
       {type === 'long' && (

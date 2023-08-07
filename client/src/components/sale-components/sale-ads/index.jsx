@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from 'react';
 import { saleData } from 'constants/saleData';
-import { serverResponses } from 'constants/test';
+// import { serverResponses } from 'constants/test';
 import { useParams, useSearchParams } from 'react-router-dom';
 import logo from 'assets/sad.png';
 import './index.scss';
 
 import { useSelector } from 'react-redux';
+import { getAllAdverts } from 'http/getAllAdverts';
 import AdsItem from '../ads-item';
 import SaleFilters from '../sale-filters';
 
@@ -39,25 +40,34 @@ const SaleAds = () => {
     return items;
   };
   useEffect(() => {
-    setRenderData(
-      params.category !== 'search'
-        ? sortItems(
-            serverResponses.filter((item) => {
-              if (subsection) {
-                return item.section === section && item.subsection === subsection;
-              }
-              return item.section === section;
-            })
-          )
-        : sortItems(
-            serverResponses.filter(
-              (item) =>
-                item.title.toLowerCase().includes(productsQuery) ||
-                item.description.toLowerCase().includes(productsQuery) ||
-                item.price.toLowerCase().includes(productsQuery)
-            )
-          )
-    );
+    if (subsection) {
+      getAllAdverts('FindBySubsectionName', 'subsectionName', subsection, setRenderData, sortItems);
+    } else {
+      getAllAdverts('FindBySectionName', 'sectionName', section, setRenderData, sortItems);
+    }
+    //  setRenderData(
+    //     params.category !== 'search'
+    //       ? sortItems(
+    //           subsection
+    //             ? getAllAdverts('FindBySubsectionName', 'subsectionName', subsection, setRenderData, sortItems)
+    //             : getAllAdverts('FindBySectionName', 'sectionName', section, setRenderData, sortItems)
+    // serverResponses.filter((item) => {
+    // if (subsection) {
+
+    // return item.section === section && item.subsection === subsection;
+    // }
+    // return item.section === section;
+    // })
+    // )
+    // : sortItems(
+    //     serverResponses.filter(
+    //       (item) =>
+    //         item.title.toLowerCase().includes(productsQuery) ||
+    //         item.description.toLowerCase().includes(productsQuery) ||
+    //         item.price.toLowerCase().includes(productsQuery)
+    //     )
+    //   )
+    // );
   }, [params.category, productsQuery, section, sortCategory, subsection]);
   return (
     <section className="sale-ads-wrapper" id="sale">

@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/no-unstable-nested-components */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Dropdown } from 'antd';
 import { ReactComponent as Caret } from 'assets/CaretDown.svg';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -54,6 +55,10 @@ const SaleFilters = ({ data }) => {
     dispatch(setSortParametr(sortCategory));
   };
 
+  useEffect(() => {
+    const currentSubcategory = items.find((item) => item.search === params.type);
+    setCurrent(currentSubcategory.key);
+  }, []);
   return (
     <div className="sale-ads-filter">
       <div className="sale-ads-filter__title">Объявления</div>

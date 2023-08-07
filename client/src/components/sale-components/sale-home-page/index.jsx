@@ -1,11 +1,17 @@
 import React from 'react';
+// import React, { useEffect, useState } from 'react';
 import './index.scss';
 import { saleData } from 'constants/saleData';
 import { testMain } from 'constants/test';
+// import { getRandomAdvert } from 'http/getRandomAdvert';
 import SaleNavigationItem from '../sale-navigation-item';
 import AdsItem from '../ads-item';
 
 const SaleHomePage = () => (
+  // const [renderData, setRenderData] = useState('');
+  // useEffect(() => {
+  //   getRandomAdvert(setRenderData);
+  // }, []);
   <main className="sale-main-page">
     <div className="sale-navigation">
       {saleData.slice(4).map((e) => (
@@ -22,5 +28,4 @@ const SaleHomePage = () => (
     </div>
   </main>
 );
-
 export default SaleHomePage;

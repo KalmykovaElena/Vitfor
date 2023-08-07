@@ -84,12 +84,18 @@
   font-weight: 500;
   cursor: pointer;
   transition: all .5s;
-  &:disabled {
-    background: #cccccc;
-  }
   &:hover{
     background: #ffffff;
     color:#FA541C;
     border:1px solid #FA541C;
   }
+  &:disabled {
+    background: #cccccc;
+    &:hover{
+      background: #cccccc;
+      color:#ffffff;
+      border: none;
+    }
+  }
+  
 }
