@@ -11,7 +11,6 @@ import { setSortParametr } from 'redux/reducers/advertReducer';
 const SaleFilters = ({ data }) => {
   const [openedFilter, setOpenedFilter] = useState(false);
   const [openedSort, setOpenedSort] = useState(false);
-  // const [filterCategory, setFilterCategory] = useState('По умолчанию');
   const [sortCategory, setSortCategory] = useState('По умолчанию');
   const [current, setCurrent] = useState('0');
   const [filterItem, setFilterItem] = useState();

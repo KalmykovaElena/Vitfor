@@ -3,7 +3,7 @@ import { url } from 'constants/url';
 import jwt_decode from 'jwt-decode';
 import { setIsAuth } from 'redux/reducers/authReducer';
 
-export const refreshToken = (token, navigate, funk, dispatch, data) => {
+export const refreshToken = (token, navigate, funk, dispatch, data, ...rest) => {
   const refToken = localStorage.getItem('refreshToken');
   const decoded = jwt_decode(token);
   fetch(`${url}/Auth/RefreshToken`, {
@@ -36,7 +36,7 @@ export const refreshToken = (token, navigate, funk, dispatch, data) => {
       console.log('new token get');
       dispatch(setIsAuth(true));
       if (funk) {
-        funk(data, dispatch, navigate);
+        funk(data, dispatch, navigate, ...rest);
       }
     })
     .catch((err) => {

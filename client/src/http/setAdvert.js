@@ -1,7 +1,7 @@
 import { url } from 'constants/url';
 import { refreshToken } from './refreshToken';
 
-export const setAdver = (data, reset, fileList, setSuccess) => {
+export const setAdver = (data, dispatch, navigate, reset, fileList, setSuccess) => {
   const token = localStorage.getItem('token');
   const currentData = { ...data, fileStrings: fileList.map((e) => e.data) };
 
@@ -17,7 +17,7 @@ export const setAdver = (data, reset, fileList, setSuccess) => {
     .then(async (response) => {
       if (!response.ok) {
         if (response.status === 401) {
-          refreshToken(token);
+          refreshToken(token, navigate, setAdver, dispatch, reset, fileList, setSuccess);
         }
         const res = await response.json();
         console.log(res);

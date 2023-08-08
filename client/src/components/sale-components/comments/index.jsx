@@ -3,16 +3,18 @@ import Form from 'components/common/form';
 import { commentInput } from 'constants/inputs';
 import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import CommentsItem from '../comments-item';
 import './index.scss';
 import { setComment } from '../../../http/setComment';
 
 const Comments = ({ advert }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { advertId, comments } = advert;
 
   const onCommentSubmit = (data) => {
-    setComment(advertId, data.comment, dispatch);
+    setComment(advertId, dispatch, navigate, data.comment);
   };
   return (
     <div className="comments">

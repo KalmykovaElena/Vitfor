@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from 'assets/logo.png';
+import logo from 'assets/logo.svg';
 import photo1 from 'assets/photo-1.png';
 import photo2 from 'assets/photo-2.png';
 import photo3 from 'assets/photo-3.png';

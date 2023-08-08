@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './index.scss';
 import { Dropdown, Space, Upload } from 'antd';
 import { encodeImageFileAsURL } from 'utils/encodeImageFileAsURL';
@@ -17,6 +17,7 @@ const AdPlacing = () => {
   const [fileList, setFileList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [success, setSuccess] = useState(false);
   const [checkedPrice, setCheckedPrice] = useState(false);
   const {
@@ -67,7 +68,7 @@ const AdPlacing = () => {
   const onSubmit = (data) => {
     const currentData = { ...data, fileStrings: fileList.map((e) => e.data) };
     console.log(currentData);
-    setAdver(currentData, reset, fileList, setSuccess);
+    setAdver(currentData, dispatch, navigate, reset, fileList, setSuccess);
   };
   const handleCategoryClick = ({ domEvent }) => {
     setSelectedCategory(domEvent.target.textContent);
@@ -128,8 +129,8 @@ const AdPlacing = () => {
                   placeholder: 'Например, телевизор',
                   validateInput: {
                     maxLength: {
-                      value: 30,
-                      message: 'Не более 30 символов',
+                      value: 100,
+                      message: 'Не более 100 символов',
                     },
                     required: 'Обязательное поле',
                     pattern: {
@@ -195,7 +196,7 @@ const AdPlacing = () => {
                       },
                       required: 'Обязательное поле',
                       pattern: {
-                        value: /^[a-zA-ZА-Яа-я0-9_!\s@#$%^&*()_+"-={}|>?[\]]*$/,
+                        value: /^[a-zA-ZА-Яа-яёЁ0-9_!\s@#$%^&*()_+"-={}|>?[\]]*$/,
                         message: 'Неверное имя',
                       },
                     },

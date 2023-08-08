@@ -2,7 +2,7 @@ import { url } from 'constants/url';
 import { refreshToken } from './refreshToken';
 import { getAdvert } from './getAdvert';
 
-export const setComment = (advertId, text, dispatch) => {
+export const setComment = (advertId, dispatch, navigate, text) => {
   const token = localStorage.getItem('token');
   fetch(`${url}/Comments/CreateComment`, {
     method: 'POST',
@@ -19,7 +19,7 @@ export const setComment = (advertId, text, dispatch) => {
     .then(async (response) => {
       if (!response.ok) {
         if (response.status === 401) {
-          refreshToken(token);
+          refreshToken(token, navigate, setComment, dispatch, text);
         }
         const res = await response.json();
         console.log(res);

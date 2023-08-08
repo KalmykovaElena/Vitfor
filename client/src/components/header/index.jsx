@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import './index.scss';
-import logo from 'assets/logo.png';
+import logo from 'assets/logo.svg';
 import Button from 'components/common/button';
 import Logo from 'components/logo';
 import { useSelector } from 'react-redux';

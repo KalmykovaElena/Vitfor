@@ -45,6 +45,7 @@ const SaleAds = () => {
     } else {
       getAllAdverts('FindBySectionName', 'sectionName', section, setRenderData, sortItems);
     }
+    if (renderData) setRenderData(sortItems(renderData));
     //  setRenderData(
     //     params.category !== 'search'
     //       ? sortItems(

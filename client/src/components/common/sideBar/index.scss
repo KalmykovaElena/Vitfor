@@ -30,6 +30,7 @@
     padding: 0.5rem;
     background-repeat: no-repeat;
     background-position: center center;
+    flex-shrink: 0;
   }
   &_dark {
     background-color: #ffffff33;
