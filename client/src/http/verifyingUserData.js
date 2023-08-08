@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 import { url } from 'constants/url';
 import { parseSearch } from 'utils/parseSearch';
-import { setIsAuth, setUser } from '../redux/reducers/authReducer';
+import { setIsAuth, setTheme, setUser } from '../redux/reducers/authReducer';
 import { getUserProfile } from './getUserProfile';
 
 export const verifyingUserData = (data, location, dispatch, reset, setError, navigate, setMessage) => {
@@ -65,10 +65,12 @@ export const verifyingUserData = (data, location, dispatch, reset, setError, nav
         return response.json();
       })
       .then((result) => {
+        console.log(result);
         localStorage.setItem('token', result.token);
         localStorage.setItem('refreshToken', result.refreshToken);
         getUserProfile(navigate, dispatch);
         dispatch(setUser(result));
+        dispatch(setTheme(result.theme));
         if (currentPage === 'confirm') {
           setMessage('Доступ успешно восстановлен');
         } else {

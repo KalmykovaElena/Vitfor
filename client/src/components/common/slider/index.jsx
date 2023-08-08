@@ -26,8 +26,8 @@ const Slider = ({ files }) => (
   <div style={{ padding: '50px' }}>
     <Carousel arrows {...settings} dots={false}>
       {files.map((e) => (
-        <div className="slider-item" key={e}>
-          <img src={e} alt="advert" />
+        <div className="slider-item" key={e.fileString}>
+          <img src={`data:image/png;base64,${e.fileString}`} alt="advert" />
         </div>
       ))}
     </Carousel>

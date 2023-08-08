@@ -23,6 +23,7 @@ import SaleAds from 'components/sale-components/sale-ads';
 import AdCard from 'components/sale-components/ad-card';
 import Forum from 'pages/forum';
 import AdPlacing from 'components/sale-components/ad-placing';
+import { setUserTheme } from 'http/setUserTheme';
 
 const App = () => {
   const navigate = useNavigate();
@@ -35,6 +36,19 @@ const App = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {
+    // window.onbeforeunload = setUserTheme(theme, dispatch, navigate);
+    window.onbeforeunload = (e) => {
+      e.preventDefault();
+      console.log(theme);
+      console.log('Stop this');
+      setUserTheme(theme, dispatch, navigate);
+    };
+    return () => {
+      window.onbeforeunload = null;
+    };
+  }, [dispatch, navigate, theme]);
+
   return (
     <div className={`App App_${theme}`}>
       <Routes>

@@ -10,6 +10,7 @@ import { setIsAuth, setTheme } from 'redux/reducers/authReducer';
 import { useLocation, useNavigate } from 'react-router-dom';
 import switch1 from 'assets/swtch1.png';
 import switch2 from 'assets/switch2.png';
+import { setUserTheme } from 'http/setUserTheme';
 
 const exit = () => <img src={exitPng} alt="exit" />;
 const settings = () => <img src={settingsPng} alt="profile" />;
@@ -37,6 +38,7 @@ const ModalMenu = ({ setIsMenuOpen }) => {
     dispatch(setIsAuth(false));
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
+    setUserTheme(theme, dispatch, navigate);
     if (location.pathname.includes('personal_info')) {
       navigate('/');
     }
@@ -61,6 +63,7 @@ const ModalMenu = ({ setIsMenuOpen }) => {
   ];
   const changeTheme = (value) => {
     dispatch(setTheme(value ? 'light' : 'dark'));
+    setUserTheme(theme, dispatch, navigate);
   };
 
   return (
