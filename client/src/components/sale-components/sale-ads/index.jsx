@@ -46,29 +46,6 @@ const SaleAds = () => {
       getAllAdverts('FindBySectionName', 'sectionName', section, setRenderData, sortItems);
     }
     if (renderData) setRenderData(sortItems(renderData));
-    //  setRenderData(
-    //     params.category !== 'search'
-    //       ? sortItems(
-    //           subsection
-    //             ? getAllAdverts('FindBySubsectionName', 'subsectionName', subsection, setRenderData, sortItems)
-    //             : getAllAdverts('FindBySectionName', 'sectionName', section, setRenderData, sortItems)
-    // serverResponses.filter((item) => {
-    // if (subsection) {
-
-    // return item.section === section && item.subsection === subsection;
-    // }
-    // return item.section === section;
-    // })
-    // )
-    // : sortItems(
-    //     serverResponses.filter(
-    //       (item) =>
-    //         item.title.toLowerCase().includes(productsQuery) ||
-    //         item.description.toLowerCase().includes(productsQuery) ||
-    //         item.price.toLowerCase().includes(productsQuery)
-    //     )
-    //   )
-    // );
   }, [params.category, productsQuery, section, sortCategory, subsection]);
   return (
     <section className="sale-ads-wrapper" id="sale">
