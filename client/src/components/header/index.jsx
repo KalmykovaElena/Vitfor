@@ -20,6 +20,7 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [current, setCurrent] = useState(location.pathname);
+  console.log(current);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const renderNavigate = current !== '/authorization' && current !== '/registration';
   const onClick = (e) => {
