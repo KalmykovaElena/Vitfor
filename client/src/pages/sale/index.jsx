@@ -19,7 +19,7 @@ const Sale = () => {
   const path = location.pathname.split('/').slice(-1)[0];
   const [searchParams] = useSearchParams();
   const productsQuery = searchParams.get('products');
-  const isSearchRender = productsQuery || (path !== 'ad' && Number.isNaN(Number(path)) && path !== 'adplacing');
+  const isSearchRender = productsQuery || (path !== 'ad' && !params.id && path !== 'adplacing');
   const isAuth = useSelector((state) => state.auth.isAuth);
   const onSearch = (value) => {
     if (value) {
