@@ -16,43 +16,53 @@ const PhotoBlock = ({ files, onMainClick }) => {
       <div className="photo-block__main">
         <img src={`data:image/png;base64,${main}`} alt="main" onClick={onMainClick} />
       </div>
-      <div className="photo-block__additional">
-        <Carousel
-          cols={3}
-          rows={1}
-          gap={10}
-          loop
-          arrowRight={
-            <img
-              src={arr}
-              alt="arrow"
-              style={{ width: '26px', height: '26px', position: 'absolute', top: '40%', right: '2%', zIndex: '2' }}
-            />
-          }
-          arrowLeft={
-            <img
-              src={arrLeft}
-              alt="arrow"
-              style={{ width: '26px', height: '26px', position: 'absolute', top: '40%', left: '2%', zIndex: '2' }}
-            />
-          }
-        >
-          {files.map(
-            (e) =>
-              e.fileString !== main && (
-                <Carousel.Item>
-                  <img
-                    width="100%"
-                    src={`data:image/png;base64,${e.fileString}`}
-                    alt="additional"
-                    onClick={() => handleClick(e.fileString)}
-                    role="presentation"
-                  />
-                </Carousel.Item>
+      {files.length > 1 && (
+        <div className="photo-block__additional">
+          <Carousel
+            cols={files.length > 3 ? 3 : files.length > 1 ? 2 : 1}
+            rows={1}
+            gap={10}
+            loop
+            arrowRight={
+              files.length > 4 ? (
+                <img
+                  src={arr}
+                  alt="arrow"
+                  style={{ width: '26px', height: '26px', position: 'absolute', top: '40%', right: '2%', zIndex: '2' }}
+                />
+              ) : (
+                <img src={arr} alt="arrow" style={{ display: 'none' }} />
               )
-          )}
-        </Carousel>
-      </div>
+            }
+            arrowLeft={
+              files.length > 4 ? (
+                <img
+                  src={arrLeft}
+                  alt="arrow"
+                  style={{ width: '26px', height: '26px', position: 'absolute', top: '40%', left: '2%', zIndex: '2' }}
+                />
+              ) : (
+                <img src={arrLeft} alt="arrow" style={{ display: 'none' }} />
+              )
+            }
+          >
+            {files.map(
+              (e) =>
+                e.fileString !== main && (
+                  <Carousel.Item key={e.fileString}>
+                    <img
+                      width="100%"
+                      src={`data:image/png;base64,${e.fileString}`}
+                      alt="additional"
+                      onClick={() => handleClick(e.fileString)}
+                      role="presentation"
+                    />
+                  </Carousel.Item>
+                )
+            )}
+          </Carousel>
+        </div>
+      )}
     </div>
   );
 };
