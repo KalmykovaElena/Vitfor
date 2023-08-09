@@ -11,6 +11,7 @@ import { Modal } from 'antd';
 import Button from 'components/common/button';
 import phoneIcon from 'assets/Phone2.png';
 import messageIcon from 'assets/Message.png';
+import camera from 'assets/camera.svg';
 import Comments from '../comments';
 
 const AdCard = () => {
@@ -44,7 +45,14 @@ const AdCard = () => {
                   <PhotoBlock files={advert.files} onMainClick={() => setIsModalOpen(true)} />
                 ) : (
                   <div className="add-photo">
-                    <img src={`data:image/png;base64,${advert.files[0].fileString}`} alt="advert" />
+                    {advert.files[0] ? (
+                      <img src={`data:image/png;base64,${advert.files[0].fileString}`} alt="advert" className="img" />
+                    ) : (
+                      <>
+                        <img src={camera} alt="advert" className="noimg" />
+                        <span>Нет фото</span>
+                      </>
+                    )}
                   </div>
                 )}
 

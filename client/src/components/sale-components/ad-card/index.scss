@@ -26,7 +26,7 @@
     gap: calc(100vh / 42);
     width: 59%;
     margin-bottom: 2rem;
-    &__slider{
+    &__slider {
       height: 76vh;
       margin-bottom: 0;
     }
@@ -47,17 +47,17 @@
       align-items: center;
       width: 70%;
       gap: 2.5rem;
-      .logo-text{
+      .logo-text {
         text-align: center;
         display: flex;
         flex-direction: column;
-        gap:0.5rem;
-        &__name{
+        gap: 0.5rem;
+        &__name {
           font-size: 1rem;
         }
-        &__subname{
+        &__subname {
           font-size: 0.75rem;
-          color:  #cccccc;
+          color: #cccccc;
         }
       }
     }
@@ -111,14 +111,21 @@
       text-align: start;
     }
   }
-  &-photo{
+  &-photo {
     border-radius: 1.25rem;
     overflow: hidden;
     max-height: 50vh;
-    img{
+    background-color: #525252;
+    width: 74.54%;
+    min-height: 46vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    .img {
       width: 100%;
-        height: 100%;
-        object-fit: cover;
+      height: 100%;
+      object-fit: contain;
     }
   }
 }

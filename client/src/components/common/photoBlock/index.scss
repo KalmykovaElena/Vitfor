@@ -22,9 +22,8 @@
     display: flex;
     gap: 1.5rem;
     position: relative;
-    height: 7.5rem;
-    .item{
-      width: 30.9%;
+       .item{
+      max-width: 10.4vw;
       border-radius: 1.25rem;
       opacity: 1;
       transition: all 2s;
@@ -34,6 +33,7 @@
         width: 100%;
         min-height: 90%;
         border-radius: 1.25rem;
+        object-fit:cover;
       }
       &-active { 
         opacity: 1; 
@@ -46,4 +46,12 @@
       }
     }
   }
+  .bghjHX {
+    margin:0;
+    img{
+      height: 14.64vh;
+      object-fit: cover;
+      border-radius: 1.25rem;
+    }
+}
 }
