@@ -1,19 +1,20 @@
 .formInput {
   width: 100%;
-  height: 40px;
+  height: 2.5rem;
   border: 1px solid #ffffff;
   border-radius: 20px;
-  padding: 8px;
+  padding: 0.5rem;
   color: #000000;
   outline: none;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
-  line-height: 18px;
+  line-height: 1.125rem;
+  
   &:placeholder-shown {
     background-color: transparent;
     &:hover {
       color: #ffffff;
-      background: rgba(255, 255, 255, 0.2);
+      background: #ffffff33;
       &::placeholder {
         color: #ffffff;
       }
@@ -41,39 +42,60 @@
     .error-checkbox {
       bottom: -1rem;
     }
-    .tooltip-container {
-      cursor: pointer;
-      position: absolute;
-      top: 2rem;
-      right: 1rem;
-
-      .tooltip {
-        position: absolute;
-        top: -2rem;
-        right: 0;
-        white-space: nowrap;
-      }
-    }
   }
   &_inputError {
     border: 1px solid #f5222d;
   }
-
   &-checkbox {
     width: 1rem;
     height: 1rem;
     position: relative;
-  
     &_error:before {
       content: ' ';
       display: block;
-      box-sizing:border-box;
+      box-sizing: border-box;
       width: 1rem;
       height: 1rem;
       background: #fc9292;
-      color: rgba(255, 255, 255, 0.85) !important;
+      color: #ffffffd9 !important;
       border: 1px solid #d9d9d9;
       border-radius: 2px;
     }
   }
+  &-icon {
+    position: absolute;
+    right: 1rem;
+    top: 45%;
+    cursor: pointer;
+  }
+  &_light{
+    border-color: #000000;
+  }
+}
+.form-button {
+  border:none;
+  background: #FA541C;
+  color:#ffffff;
+  width: 100%;
+  height: 3.5rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .5s;
+  &:hover{
+    background: #ffffff;
+    color:#FA541C;
+    border:1px solid #FA541C;
+  }
+  &:disabled {
+    background: #cccccc;
+    &:hover{
+      background: #cccccc;
+      color:#ffffff;
+      border: none;
+    }
+  }
+  
 }

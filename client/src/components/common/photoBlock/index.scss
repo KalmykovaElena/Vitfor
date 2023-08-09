@@ -1,0 +1,49 @@
+.photo-block {
+  width:74.54%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: flex-end;
+  align-items: center;
+  &__main {
+    height: 63%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    border-radius: 1.25rem;
+    cursor: pointer;
+    img {
+      width: 100%;
+      border-radius: 1.25rem;
+    }
+  }
+  &__additional {
+    display: flex;
+    gap: 1.5rem;
+    position: relative;
+    height: 7.5rem;
+    .item{
+      width: 30.9%;
+      border-radius: 1.25rem;
+      opacity: 1;
+      transition: all 2s;
+      overflow: hidden;
+      cursor: pointer;
+      img{
+        width: 100%;
+        min-height: 90%;
+        border-radius: 1.25rem;
+      }
+      &-active { 
+        opacity: 1; 
+      }
+      &-hidden {
+        opacity: 0;  
+        position: absolute;
+        z-index: -1;
+        
+      }
+    }
+  }
+}

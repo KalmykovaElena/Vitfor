@@ -3,94 +3,110 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #ffffff;
-  font-size: 1.5rem;
+  color: #fff;
   margin-top: 2.5rem;
-  cursor:default;
+  cursor: default;
   &-wrapper {
-    width: 21.1rem;
+    width: 27rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
     position: relative;
-    bottom: 30px;
+    bottom: 1.875rem;
     transition: opacity 0.7s 1s;
   }
-  &-logo{
-    img{
+  &-logo {
+    img {
       max-width: 5rem;
-      @media screen and (max-width: 1368px){
+      @media screen and (max-width: 1368px) {
         width: 3.75rem;
       }
     }
   }
   &-name {
     font-size: 2.5rem;
-    font-weight: 800;
-    @media screen and (max-width: 1368px){
+    line-height: 5.85vh;
+    @media screen and (max-width: 1368px) {
       font-size: 1.25rem;
     }
   }
   &-description {
-    color: #cccccc;
+    color: #fff;
+    font-family: Roboto;
+    font-size: calc(10px + 8*(100vh/1024));
+    font-style: normal;
+    line-height: 1.25rem;
   }
   &-date {
-    width: 74%;
-    background-color: #3f3c30cc;
-    max-height: 68px;
+    max-height: 4.25rem;
     border-radius: 20px;
-    margin-top: 8px;
-    padding: 16px;
-    transition: opacity .7s .2s;
+    margin-top: 0.5rem;
+    padding: 1rem;
+    transition: opacity 0.7s 0.2s;
+    font-size: calc(12px + 8*(100vh/1024));
     &__details {
       display: flex;
       justify-content: space-around;
-      transition: opacity 0.9s .4s;
+      transition: opacity 0.9s 0.4s;
       font-weight: 600;
+      gap: 2.5rem;
+    }
+    &_dark {
+      background-color: #3f3c30cc;
+    }
+    &_light {
+      background-color: #c1c1c180;
+      color: #000000;
     }
   }
   &-photos {
     position: relative;
-    width: 11.9rem;
     height: 51px;
-    font-size: 12px;
+    font-size: 0.75rem;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    &__wrapper {
+      display: flex;
+      width: 9.653vw;
+    
     .img {
       &__offset {
-        position: absolute;
+        width: 30.93%;
+        position: relative;
         top: 0;
       }
     }
+
     .item {
       &-1 {
         left: 0px;
         z-index: 4;
       }
       &-2 {
-        left: 32px;
+        left: -7.9%;
         z-index: 3;
       }
       &-3 {
-        left: 64px;
+        left: -15.8%;
         z-index: 2;
       }
       &-4 {
-        left: 96px;
+        left: -23.7%;
         z-index: 1;
       }
     }
   }
-  @media screen and (max-width: 1368px){
+  }
+  @media screen and (max-width: 1368px) {
     font-size: 0.9rem;
   }
 }
 .hidden {
   opacity: 0;
 }
-.partially-hidden{
+.partially-hidden {
   opacity: 0.7;
 }
 .show {

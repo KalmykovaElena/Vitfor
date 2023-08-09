@@ -1,0 +1,20 @@
+.personal-info{
+    position: relative;
+    .main-info{
+        display: flex;
+        min-height: 100vh;
+        .sideBar{
+            width: 25.5vw;
+          flex-shrink: 0;
+        }
+        .settingsPannel{
+            flex-grow: 1;
+        }
+    }
+    &_dark{
+        background-color: #2f3530;
+    }
+    &_light{
+        background-color: #c9c9c9;
+    }
+}

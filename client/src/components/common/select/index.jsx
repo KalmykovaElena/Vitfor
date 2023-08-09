@@ -1,19 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { ReactComponent as Caret } from 'assets/CaretDown.svg';
 import './index.scss';
-import CaretDown from 'assets/CaretDown.png';
-import CaretUp from 'assets/CaretUp.png';
+import { useOnClickOutside } from 'hooks/useOnClickOutside';
+import { useSelector } from 'react-redux';
 
-const Select = ({ data }) => {
+const Select = ({ data, placeholder, onchangeSelect, error, defaultValue }) => {
   const [selectActive, setSelectActive] = useState('');
-  const [selectedValue, setSelectedValue] = useState(data[0]);
+  const [selected, setSelected] = useState(false);
+  const [selectedValue, setSelectedValue] = useState(placeholder || data[0]);
+  const theme = useSelector((state) => state.auth.theme);
+  const ref = useRef();
+  useOnClickOutside(ref, () => setSelectActive(''));
+
+  useEffect(() => {
+    if (!data.includes(selectedValue)) {
+      setSelectedValue(defaultValue || placeholder || data[0]);
+    }
+    if (defaultValue) {
+      setSelected(true);
+    }
+  }, [data, placeholder, selectedValue, defaultValue]);
+
   return (
-    <div className="select">
+    <div
+      className={
+        error && selectedValue === placeholder
+          ? 'select select__error'
+          : selected
+          ? `select select_${theme} select__filled`
+          : `select select_${theme}`
+      }
+      ref={ref}
+    >
       <div className="select__label">
         {selectedValue}
-        <img
-          role="presentation"
-          src={selectActive ? CaretUp : CaretDown}
-          alt="arrow down"
+        <Caret
+          className={selectActive ? `caret-down` : `caret`}
           onClick={() => setSelectActive(selectActive ? '' : 'active')}
         />
       </div>
@@ -26,6 +48,8 @@ const Select = ({ data }) => {
             onClick={() => {
               setSelectActive('');
               setSelectedValue(e);
+              onchangeSelect(e);
+              setSelected(true);
             }}
           >
             {e}{' '}

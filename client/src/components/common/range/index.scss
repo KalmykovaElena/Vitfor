@@ -1,0 +1,15 @@
+.range{
+display: flex;
+gap: 1rem;
+img{
+    align-self: center;
+}
+    input[type="range"] {
+        accent-color: #9FA19F;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+           cursor: pointer;
+        -webkit-appearance: none;
+       
+     }
+}

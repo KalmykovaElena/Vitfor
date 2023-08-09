@@ -3,16 +3,15 @@
   width: 97%;
   padding: 0 6.8rem 1.1rem 7.3rem;
   justify-content: space-between;
-  margin: 0 auto 2.6rem;
+  margin: 0 auto ;
   &-item {
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 1.25rem;
     border: 1px solid transparent;
-    a {
-      color: #ffffff;
+     span{
+      color: inherit;
       font-size: 1.5rem;
-      text-decoration: none;
       margin-left: 1rem;
       @media screen and (max-width: 1368px){
         font-size: 0.9rem;
@@ -21,6 +20,16 @@
     &:hover {
       border: 1px solid #ffffff;
       border-radius: 20px;
+      cursor: pointer;
+    }
+  }
+  &_light{
+    img{
+      filter: invert(1);
+    }
+    .footer-item:hover{
+      border-color: #000000;
+      cursor: pointer;
     }
   }
 }

@@ -8,8 +8,8 @@ export const authInputs = [
     required: 'Электронная почта обязательна',
     validateInput: {
       maxLength: {
-        value: 50,
-        message: 'Не более 50 символов',
+        value: 30,
+        message: 'Не более 30 символов',
       },
       required: 'Электронная почта обязательна',
       pattern: {
@@ -17,7 +17,7 @@ export const authInputs = [
         message: 'Неверный адрес электронной почты',
       },
     },
-    pages: 'authorization,registration,recovery',
+    pages: 'authorization,registration,recovery,confirm',
   },
   {
     inputLabel: 'Пароль',
@@ -35,9 +35,20 @@ export const authInputs = [
         message: 'Введите не менее 8 символов',
       },
       required: 'Пароль обязателен',
+      pattern: {
+        value: /^[a-zA-ZА-Я0-9_!@#$%^&*()_+"-={}|>?[\]]*$/,
+        message:
+          'Пароль может содержать следующие символы: ! @ # $ % ^ & * ( ) _ + - = { } [ ]  | : ; " \' < > , . ? /, A-Z, 0-9',
+      },
+      validate: {
+        characters: (value) =>
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/.test(value) ||
+          'Пароль должен содержать минимум одну цифру, одну заглавную и одну строчную буквы',
+      },
     },
-    pages: 'authorization,registration,confirm',
+    pages: 'authorization,registration,Auth/ResetPassword.confirm',
   },
+
   {
     inputLabel: 'Я соглашаюсь с политикой конфиденциальности',
     id: 'input-checkbox',
@@ -55,8 +66,80 @@ export const authInputs = [
       authorization: 'Войти',
       registration: 'Зарегистрироваться',
       recovery: 'Запросить',
-      confirm: 'Подтвердить',
+      'Auth/ResetPassword': 'Подтвердить',
     },
-    pages: 'authorization,registration,recovery,confirm',
+    pages: 'authorization,registration,recovery,confirm,Auth/ResetPassword',
   },
 ];
+
+export const personalDataInputs = [
+  {
+    inputLabel: 'Отображаемое имя',
+    id: 'input-nickName',
+    inputType: 'text',
+    inputName: 'nickName',
+    placeholder: 'Отображаемое имя',
+    validateInput: {
+      maxLength: {
+        value: 30,
+        message: 'Не более 30 символов',
+      },
+      required: 'Обязательное поле',
+      pattern: {
+        value: /^[a-zA-ZА-Яа-я0-9_!@#$%^&*()_+"-={}|>?[\]]*$/,
+        message: 'Неверное имя',
+      },
+    },
+  },
+  {
+    inputLabel: 'Имя пользователя',
+    id: 'input-name',
+    inputType: 'text',
+    inputName: 'userName',
+    placeholder: 'Имя',
+    validateInput: {
+      maxLength: {
+        value: 30,
+        message: 'Не более 30 символов',
+      },
+      required: 'Обязательное поле',
+      pattern: {
+        value: /^[a-zA-ZА-Яа-я0-9_!@#$%^&*()_+"-={}|>?[\]]*$/,
+        message: 'Неверное имя',
+      },
+    },
+  },
+  {
+    renderType: 'select-block',
+    label: 'Дата рождения',
+  },
+  {
+    renderType: 'safety-data',
+  },
+  {
+    inputType: 'submit',
+    id: 'input-submit',
+    inputValue: {
+      'personal_info/data': 'Сохранить',
+    },
+  },
+];
+export const commentInput = {
+  inputLabel: 'Комментарий',
+  id: 'input-comment',
+  inputType: 'text',
+  inputName: 'comment',
+  placeholder: 'Поле для ввода',
+
+  validateInput: {
+    maxLength: {
+      value: 3000,
+      message: 'Не более 3000 символов',
+    },
+    required: 'Обязательное поле',
+    pattern: {
+      value: /^[a-zA-ZА-Яа-я0-9_!\s@#$%^&*()_+"-={}|>?[\]]*$/,
+      message: 'Допустимые символы: ! @ # $ % ^ & * ( ) _ + - = { } [ ] \\ | : ; " \' < > , . ? /, A-Z, А-Я, 0-9',
+    },
+  },
+};
