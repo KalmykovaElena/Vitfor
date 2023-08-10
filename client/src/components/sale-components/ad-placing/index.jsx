@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './index.scss';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'react-multi-carousel/lib/styles.css';
 import { Dropdown, Space, Upload } from 'antd';
 import { encodeImageFileAsURL } from 'utils/encodeImageFileAsURL';
 import { useForm } from 'react-hook-form';

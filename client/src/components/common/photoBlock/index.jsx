@@ -10,6 +10,7 @@ const PhotoBlock = ({ files, onMainClick }) => {
   const handleClick = (el) => {
     setMain(el);
   };
+
   return (
     <div className="photo-block">
       <div className="photo-block__main">
