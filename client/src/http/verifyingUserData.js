@@ -68,7 +68,7 @@ export const verifyingUserData = (data, location, dispatch, reset, setError, nav
         console.log(result);
         localStorage.setItem('token', result.token);
         localStorage.setItem('refreshToken', result.refreshToken);
-        getUserProfile(navigate, dispatch);
+        getUserProfile();
         dispatch(setUser(result));
         dispatch(setTheme(result.theme));
         if (currentPage === 'confirm') {

@@ -2,18 +2,16 @@ import React from 'react';
 import './index.scss';
 import { saleData } from 'constants/saleData';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { getAdvert } from 'http/getAdvert';
 import { transformDate } from 'utils/transformDate';
 import icon from 'assets/camera.svg';
 
 const AdsItem = ({ item, type }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { title, dateOfCreation, price, description } = item;
   const handleClick = () => {
     console.log(item);
-    const response = getAdvert(item.advertId, dispatch, navigate);
+    const response = getAdvert(item.advertId);
 
     if (response) {
       const pathData = saleData.find((e) => e.section === response.section);
@@ -26,7 +24,6 @@ const AdsItem = ({ item, type }) => {
       }
     }
   };
-  console.log(item);
   return (
     <div className="sale-ads__item" onClick={handleClick}>
       <div className="item-image">

@@ -1,11 +1,16 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { url } from 'constants/url';
 // eslint-disable-next-line camelcase
 import jwt_decode from 'jwt-decode';
 import { setIsAuth } from 'redux/reducers/authReducer';
+import store from 'redux/store';
+import { history } from 'utils/history';
 
-export const refreshToken = (token, navigate, funk, dispatch, data, ...rest) => {
+export const refreshToken = (funk, ...rest) => {
+  const token = localStorage.getItem('token');
   const refToken = localStorage.getItem('refreshToken');
   const decoded = jwt_decode(token);
+
   fetch(`${url}/Auth/RefreshToken`, {
     method: 'POST',
     headers: {
@@ -24,8 +29,8 @@ export const refreshToken = (token, navigate, funk, dispatch, data, ...rest) => 
         localStorage.removeItem('token');
         localStorage.removeItem('refreshToken');
         const res = await response.json();
-        dispatch(setIsAuth(false));
-        navigate(`/`);
+        store.dispatch(setIsAuth(false));
+        history.navigate(`/`);
         throw new Error(res.message);
       }
       return response.json();
@@ -34,9 +39,9 @@ export const refreshToken = (token, navigate, funk, dispatch, data, ...rest) => 
       localStorage.setItem('token', result.token);
       localStorage.setItem('refreshToken', result.refreshToken);
       console.log('new token get');
-      dispatch(setIsAuth(true));
+      store.dispatch(setIsAuth(true));
       if (funk) {
-        funk(data, dispatch, navigate, ...rest);
+        funk(...rest);
       }
     })
     .catch((err) => {

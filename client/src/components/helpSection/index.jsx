@@ -8,8 +8,7 @@ import './index.scss';
 import FormInput from 'components/common/formInput';
 import { useForm } from 'react-hook-form';
 import { setHelpMessage } from 'http/setHelpMessage';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { encodeImageFileAsURL } from 'utils/encodeImageFileAsURL';
 
 const HelpSection = () => {
@@ -17,8 +16,6 @@ const HelpSection = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
   const { TextArea } = Input;
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const theme = useSelector((state) => state.auth.theme);
   const {
     setValue,
@@ -55,7 +52,7 @@ const HelpSection = () => {
       text: data.message,
       files: fileList.map((e) => e.data),
     };
-    setHelpMessage(formData, dispatch, navigate, setSuccess);
+    setHelpMessage(formData, setSuccess);
   };
   return (
     <section className={`help-wrapper help_${theme}`}>

@@ -54,10 +54,15 @@
   }
   .logo {
     &-app {
-      .logo-img {
-        width: 2.3125rem;
-        height: 2.6875rem;
+      overflow: visible;
+      position: relative;
+      .logo-img{
+      width: 2.56vw;
+      img{
+        position: absolute;
+        width: 2.56vw;
       }
+    }
     }
     &-userlogo {
       .logo-img {

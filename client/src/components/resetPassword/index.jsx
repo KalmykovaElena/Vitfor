@@ -5,19 +5,17 @@ import Form from 'components/common/form';
 import img from 'assets/CheckCircle.png';
 import { resetPasswordData } from 'constants/resetPasswordData';
 import { resetPassword } from 'http/resetPassword';
-import { useDispatch } from 'react-redux';
 
 const ResetPassword = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const dispatch = useDispatch();
   const [passwordError, setPasswordError] = useState('');
   const [success, setSuccess] = useState(false);
   const currentPage = location.pathname.split('/').slice(-1)[0];
   const renderData = resetPasswordData[currentPage];
 
   const onSubmit = (data, setError, reset) => {
-    resetPassword(currentPage, data, navigate, dispatch, setSuccess, setError, reset);
+    resetPassword(currentPage, data, setSuccess, setError, reset);
   };
   return (
     <section className="password">

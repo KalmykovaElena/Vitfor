@@ -1,7 +1,7 @@
 import { url } from 'constants/url';
 import { refreshToken } from './refreshToken';
 
-export const setHelpMessage = (formData, dispatch, navigate, setSuccess) => {
+export const setHelpMessage = (formData, setSuccess) => {
   const token = localStorage.getItem('token');
   fetch(`${url}/Account/Support`, {
     method: 'POST',
@@ -15,7 +15,7 @@ export const setHelpMessage = (formData, dispatch, navigate, setSuccess) => {
     .then(async (response) => {
       if (!response.ok) {
         if (response.status === 401) {
-          refreshToken(token, navigate, setHelpMessage, dispatch, formData);
+          refreshToken(setHelpMessage, formData, setSuccess);
         }
         const res = await response.json();
         throw new Error(res.message);

@@ -2,9 +2,10 @@ import { setUser } from 'redux/reducers/authReducer';
 import { url } from 'constants/url';
 // eslint-disable-next-line camelcase
 import jwt_decode from 'jwt-decode';
+import store from 'redux/store';
 import { refreshToken } from './refreshToken';
 
-export const updateUserData = (formData, dispatch, navigate, setIsSend, setError) => {
+export const updateUserData = (formData, setIsSend, setError) => {
   const token = localStorage.getItem('token');
   fetch(`${url}/Account/FillingAccountInfo`, {
     method: 'POST',
@@ -19,7 +20,7 @@ export const updateUserData = (formData, dispatch, navigate, setIsSend, setError
     .then(async (response) => {
       if (!response.ok) {
         if (response.status === 401) {
-          refreshToken(token, navigate, updateUserData, dispatch, formData);
+          refreshToken(updateUserData, formData, setIsSend, setError);
         }
         const res = await response.json();
         if (res.message.includes('already exists')) {
@@ -32,7 +33,7 @@ export const updateUserData = (formData, dispatch, navigate, setIsSend, setError
     .then((result) => {
       const decoded = jwt_decode(token);
       setIsSend(true);
-      dispatch(setUser({ ...result, userEmail: decoded.email }));
+      store.dispatch(setUser({ ...result, userEmail: decoded.email }));
     })
     .catch((err) => {
       console.log(err);

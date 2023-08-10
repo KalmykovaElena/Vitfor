@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.scss';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import AboutUs from 'pages/about-us';
 import Events from 'pages/events';
 import Finds from 'pages/finds';
@@ -14,7 +14,7 @@ import Authorization from 'pages/authorization';
 import PersonalInfo from 'pages/personal-info';
 import PersonalData from 'components/personalData';
 import Privacy from 'pages/privacy';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getUserProfile } from 'http/getUserProfile';
 import HelpSection from 'components/helpSection';
 import ResetPassword from 'components/resetPassword';
@@ -23,32 +23,19 @@ import SaleAds from 'components/sale-components/sale-ads';
 import AdCard from 'components/sale-components/ad-card';
 import Forum from 'pages/forum';
 import AdPlacing from 'components/sale-components/ad-placing';
-import { setUserTheme } from 'http/setUserTheme';
+import { history } from 'utils/history';
 
 const App = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  history.navigate = useNavigate();
+  history.location = useLocation();
   const theme = useSelector((state) => state.auth.theme);
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      getUserProfile(navigate, dispatch);
+      getUserProfile();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  useEffect(() => {
-    // window.onbeforeunload = setUserTheme(theme, dispatch, navigate);
-    window.onbeforeunload = (e) => {
-      e.preventDefault();
-      console.log(theme);
-      console.log('Stop this');
-      setUserTheme(theme, dispatch, navigate);
-    };
-    return () => {
-      window.onbeforeunload = null;
-    };
-  }, [dispatch, navigate, theme]);
-
   return (
     <div className={`App App_${theme}`}>
       <Routes>

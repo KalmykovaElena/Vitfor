@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './index.scss';
 import { Dropdown, Space, Upload } from 'antd';
 import { encodeImageFileAsURL } from 'utils/encodeImageFileAsURL';
@@ -18,7 +18,6 @@ const AdPlacing = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [success, setSuccess] = useState(false);
   const [checkedPrice, setCheckedPrice] = useState(false);
   const {
@@ -70,7 +69,7 @@ const AdPlacing = () => {
   const onSubmit = (data) => {
     const currentData = { ...data, fileStrings: fileList.map((e) => e.data) };
     console.log(currentData);
-    setAdver(currentData, dispatch, navigate, reset, fileList, setSuccess);
+    setAdver(currentData, reset, fileList, setSuccess);
   };
   const handleCategoryClick = ({ domEvent }) => {
     setSelectedCategory(domEvent.target.textContent);

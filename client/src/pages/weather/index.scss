@@ -6,6 +6,99 @@
   flex-direction: column;
   padding-bottom: 4rem;
   transition: 1s;
+  font-weight: 500;
+
+  .header {
+    color: #ffffff;
+  }
+  &-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    .current-block {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      .weather {
+        &-img {
+          width: 7rem;
+          img {
+            width: 100%;
+          }
+        }
+        &-title {
+          font-size: 1.25rem;
+        }
+        &-value {
+          font-size: 4.5rem;
+          margin-top: 2rem;
+        }
+        &-description {
+          display: flex;
+          width: 14rem;
+          height: 17rem;
+          padding: 1rem;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+          border-radius: 1.25rem;
+          &__value {
+            font-size: 2rem;
+            span {
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+      .weather-time {
+        display: flex;
+        gap: 2.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 27rem;
+        height: 17rem;
+        border-radius: 1.25rem;
+        padding: 1rem;
+
+        &-item {
+          &__icon {
+            img {
+              width: 3.5rem;
+            }
+          }
+          &__time {
+            color: #7eb9ff;
+          }
+        }
+      }
+    }
+  }
+  .feature-block {
+    display: flex;
+    justify-content: space-around;
+    &__item {
+      display: flex;
+      width: 11rem;
+      padding: 1rem;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      align-self: stretch;
+      font-size: 1.25rem;
+      line-height: 1rem;
+      border-radius: 1.25rem;
+      transition: 0.5s;
+      &:hover {
+        cursor: pointer;
+      }
+      .weather-value {
+        font-size: 2.5rem;
+        font-weight: 500;
+      }
+    }
+  }
   &-dark {
     .weather-description,
     .weather-time,
@@ -69,94 +162,9 @@
     &__rain {
       background-image: url('../../assets/weatherBg/rain-light.png');
     }
-  }
-  .header {
-    color: #ffffff;
-  }
-  &-wrapper {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
     .current-block {
-      flex-grow: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1.5rem;
-      .weather {
-        &-img {
-          width: 7rem;
-          img {
-            width: 100%;
-          }
-        }
-        &-title{
-          font-size: 1.25rem;
-        }
-        &-value {
-          font-size: 4.5rem;
-          margin-top: 2rem;
-        }
-        &-description {
-          display: flex;
-          width: 14rem;
-          padding: 1rem;
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 1rem;
-          border-radius: 1.25rem;
-          &__value {
-            font-size: 2rem;
-            span {
-              font-size: 1rem;
-            }
-          }
-        }
-      }
-      .weather-time {
-        display: flex;
-        gap: 2.5rem;
-        justify-content: center;
-        flex-wrap: wrap;
-        width: 27rem;
-        height: 17rem;
-        border-radius: 1.25rem;
-        padding: 1rem;
-       
-        &-item {
-          &__icon {
-            img {
-              width: 3.5rem;
-            }
-          }
-          &__time{
-            color: #7eb9ff
-          }
-        }
-      }
-    }
-  }
-  .feature-block {
-    display: flex;
-    justify-content: space-around;
-    &__item {
-      display: flex;
-      width: 11rem;
-      padding: 1rem;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      align-self: stretch;
-      font-size: 1.25rem;
-      line-height: 1rem;
-      border-radius: 1.25rem;
-      transition: .5s;
-      &:hover {
-        cursor: pointer;
-      }
-      .weather-value {
-        font-size: 2.5rem;
-        font-weight: 500;
+      .weather-time-item__time {
+        color: #1b4953;
       }
     }
   }

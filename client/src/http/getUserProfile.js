@@ -1,15 +1,16 @@
 import { url } from 'constants/url';
-import { setIsAuth, setUser } from 'redux/reducers/authReducer';
+import { setIsAuth, setTheme, setUser } from 'redux/reducers/authReducer';
 import { refreshToken } from 'http/refreshToken';
 // eslint-disable-next-line camelcase
 import jwt_decode from 'jwt-decode';
+import store from 'redux/store';
 
-export const getUserProfile = (navigate, dispatch) => {
+export const getUserProfile = () => {
   const token = localStorage.getItem('token');
   fetch(`${url}/Account/GetUserProfile`, {
     headers: {
       'Content-Type': 'application/json;charset=UTF-8',
-      // 'ngrok-skip-browser-warning': '1',
+      'ngrok-skip-browser-warning': '1',
       Authorization: `Bearer ${token}`,
     },
   })
@@ -17,7 +18,7 @@ export const getUserProfile = (navigate, dispatch) => {
       if (!response.ok) {
         if (response.status === 401) {
           console.log(response);
-          refreshToken(token, navigate, getUserProfile, dispatch);
+          refreshToken(getUserProfile);
         }
         const res = await response.text();
         throw new Error(res);
@@ -27,8 +28,9 @@ export const getUserProfile = (navigate, dispatch) => {
     .then((result) => {
       console.log(result);
       const decoded = jwt_decode(token);
-      dispatch(setIsAuth(true));
-      dispatch(setUser({ ...result, userEmail: decoded.email }));
+      store.dispatch(setIsAuth(true));
+      store.dispatch(setUser({ ...result, userEmail: decoded.email }));
+      if (result.themeName) store.dispatch(setTheme(result.themeName));
     })
     .catch((err) => {
       console.log(err);

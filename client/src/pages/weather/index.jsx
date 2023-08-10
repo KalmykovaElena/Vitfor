@@ -40,7 +40,6 @@ const Weather = () => {
           <div className="current-block">
             <div className="weather-img">
               <img src={`http://openweathermap.org/img/wn/${renderData.icon}@2x.png`} alt="" />
-              {/* <img src={weatherIcon['01d']} alt="" /> */}
             </div>
             <div>
               <div className="weather-title">{getCurrentDate(renderData.dt_txt, 'short', 'ru', 'numeric')}</div>

@@ -5,6 +5,7 @@ export const getRandomAdvert = (setRenderData) => {
     headers: {
       Accept: 'application/json, text/plain',
       'Content-Type': 'application/json;charset=UTF-8',
+      'ngrok-skip-browser-warning': '1',
     },
   })
     .then(async (response) => {
@@ -15,7 +16,6 @@ export const getRandomAdvert = (setRenderData) => {
       return response.json();
     })
     .then((result) => {
-      console.log(result);
       setRenderData(result);
     })
     .catch((err) => {

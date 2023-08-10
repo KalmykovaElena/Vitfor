@@ -26,7 +26,7 @@ export const verifyingGoogleResponse = (tokenResponse, dispatch, navigate, page)
       localStorage.setItem('token', result.token);
       localStorage.setItem('refreshToken', result.refreshToken);
       if (!page) {
-        getUserProfile(navigate, dispatch);
+        getUserProfile();
       }
     })
     .catch((err) => {

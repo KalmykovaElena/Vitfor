@@ -2,10 +2,10 @@ import { url } from 'constants/url';
 import { refreshToken } from './refreshToken';
 import { getAdvert } from './getAdvert';
 
-export const setComment = (advertId, text) => {
+export const replyComment = (advertId, text, parentCommentId) => {
   const token = localStorage.getItem('token');
-  fetch(`${url}/Comments/CreateComment`, {
-    method: 'POST',
+  fetch(`${url}/Comments/DeleteComment`, {
+    method: 'DELETE',
     headers: {
       Accept: 'application/json, text/plain',
       'Content-Type': 'application/json;charset=UTF-8',
@@ -14,12 +14,13 @@ export const setComment = (advertId, text) => {
     body: JSON.stringify({
       advertId,
       text,
+      parentCommentId
     }),
   })
     .then(async (response) => {
       if (!response.ok) {
         if (response.status === 401) {
-          refreshToken(setComment, advertId, text);
+          refreshToken(replyComment, advertId, text, parentCommentId);
         }
         const res = await response.json();
         console.log(res);

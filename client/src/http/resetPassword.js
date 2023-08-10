@@ -1,7 +1,8 @@
 import { url } from 'constants/url';
+import { history } from 'utils/history';
 import { refreshToken } from './refreshToken';
 
-export const resetPassword = (currentPage, data, navigate, dispatch, setSuccess, setError, reset) => {
+export const resetPassword = (currentPage, data, setSuccess, setError, reset) => {
   const token = localStorage.getItem('token');
   if (currentPage === 'password') {
     fetch(`${url}/Account/CheckPassword`, {
@@ -19,7 +20,7 @@ export const resetPassword = (currentPage, data, navigate, dispatch, setSuccess,
       .then(async (response) => {
         if (!response.ok) {
           if (response.status === 401) {
-            refreshToken(token, navigate, resetPassword, dispatch, data);
+            refreshToken(resetPassword, currentPage, data, setSuccess, setError, reset);
           }
           const res = await response.json();
           setError('password', { type: '400', message: 'Неверный пароль' });
@@ -29,7 +30,7 @@ export const resetPassword = (currentPage, data, navigate, dispatch, setSuccess,
       })
       .then((result) => {
         console.log(result);
-        navigate('/personal_info/data/resetpassword');
+        history.navigate('/personal_info/data/resetpassword');
         reset();
       })
       .catch((err) => {
@@ -53,7 +54,7 @@ export const resetPassword = (currentPage, data, navigate, dispatch, setSuccess,
       .then(async (response) => {
         if (!response.ok) {
           if (response.status === 401) {
-            refreshToken(token, navigate, resetPassword, dispatch, data);
+            refreshToken(resetPassword, currentPage, data, setSuccess, setError, reset);
           }
           const res = await response.json();
           if (res.message.includes('Passwords are identical')) {
