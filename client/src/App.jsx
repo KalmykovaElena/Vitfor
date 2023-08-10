@@ -1,3 +1,4 @@
+import { getUserProfile } from 'http/getUserProfile';
 import React, { useEffect } from 'react';
 import './App.scss';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
@@ -15,7 +16,6 @@ import PersonalInfo from 'pages/personal-info';
 import PersonalData from 'components/personalData';
 import Privacy from 'pages/privacy';
 import { useSelector } from 'react-redux';
-import { getUserProfile } from 'http/getUserProfile';
 import HelpSection from 'components/helpSection';
 import ResetPassword from 'components/resetPassword';
 import SaleHomePage from 'components/sale-components/sale-home-page';
