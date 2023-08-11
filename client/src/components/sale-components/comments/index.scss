@@ -1,28 +1,27 @@
 .comments {
   &-wrapper {
-    
     border-radius: 1.25rem;
     background: #1c1c1c;
-   
+    padding: 1.5rem;
     .controller-wrap {
       margin: -0.5rem 0 0 3.72rem;
     }
   }
-  &-content{
+  &-content {
     display: flex;
     padding: 0.5rem 1rem;
     flex-direction: column;
     align-items: flex-start;
     gap: 1.5625rem;
     align-self: stretch;
-    max-height: 40vh;
+    max-height: 50vh;
     min-height: 20vh;
     overflow-y: auto;
     scrollbar-color: #d4aa70 #e4e4e4;
     scrollbar-width: thin;
     margin-right: 1em;
     &::-webkit-scrollbar {
-      width: 20px;
+      width: 16px;
     }
 
     &::-webkit-scrollbar-track {
@@ -32,9 +31,8 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      border-radius: 100px;
+      border-radius: 6.25rem;
       background-color: #fa541c;
-      // box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
     }
   }
   .form-comment {

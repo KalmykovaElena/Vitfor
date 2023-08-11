@@ -18,23 +18,17 @@ const Comments = ({ advert }) => {
     <div className="comments">
       <div className="comments-wrapper">
         <div className="comments-content">
-          {comments.map((el) => (
+          {comments.map((comment) => (
             <React.Fragment key={nanoid()}>
-              <CommentsItem item={el} parentId={advertId} />
-              {el.comments?.map((e) => (
-                <CommentsItem key={nanoid()} item={e} className="subcomment" parentId={advertId} />
+              <CommentsItem item={comment} parentId={advertId} />
+              {comment.replies?.map((reply) => (
+                <CommentsItem key={nanoid()} item={reply} className="subcomment" parentId={advertId} />
               ))}
-              <div
-                className="comments-item__controller controller-wrap"
-                // onClick={() => deleteComment(commentId, parentId)}
-              >
-                Ответить
-              </div>
             </React.Fragment>
           ))}
+          <Form name="comment" input={commentInput} nameSubmit="Написать" handlerSubmit={onCommentSubmit} />
         </div>
       </div>
-      <Form name="comment" input={commentInput} nameSubmit="Написать" handlerSubmit={onCommentSubmit} />
     </div>
   );
 };
