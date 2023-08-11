@@ -1,8 +1,8 @@
 import React from 'react';
 import './index.scss';
 
-const Button = ({ name, type, handleClick, icon }) => (
-  <button className={type ? `button button-${type}` : 'button'} type="button" onClick={handleClick}>
+const Button = ({ name, type, handleClick, icon, className }) => (
+  <button className={`${type ? `button button-${type}` : 'button'} ${className}`} type="button" onClick={handleClick}>
     {icon && <img src={icon} alt={name} />}
     {name}
   </button>
