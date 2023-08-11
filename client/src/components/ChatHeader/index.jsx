@@ -8,7 +8,7 @@ export const ChatHeader = ({ img, userName, userNickName }) => {
   const theme = useSelector((state) => state.auth.theme);
   return (
     <div className={styles.wrapper}>
-      <UserIcon img={img} userName={userName} />
+      <UserIcon className={styles.img} img={img} userName={userName} />
       <div className={styles.names}>
         <span className={classNames(styles.userName, { [styles.lightUserNameTheme]: theme === 'light' })}>
           {userName}
