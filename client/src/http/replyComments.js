@@ -4,8 +4,8 @@ import { getAdvert } from './getAdvert';
 
 export const replyComment = (advertId, text, parentCommentId) => {
   const token = localStorage.getItem('token');
-  fetch(`${url}/Comments/DeleteComment`, {
-    method: 'DELETE',
+  fetch(`${url}/Comments/ReplyComment`, {
+    method: 'POST',
     headers: {
       Accept: 'application/json, text/plain',
       'Content-Type': 'application/json;charset=UTF-8',
@@ -14,7 +14,7 @@ export const replyComment = (advertId, text, parentCommentId) => {
     body: JSON.stringify({
       advertId,
       text,
-      parentCommentId
+      parentCommentId,
     }),
   })
     .then(async (response) => {

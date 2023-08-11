@@ -17,16 +17,18 @@ const SaleHomePage = () => {
           <SaleNavigationItem key={e.id} item={e} />
         ))}
       </div>
-      {renderData && (
-        <div className="sale-ads">
-          <div className="sale-ads__title">Объявления</div>
-          <div className="sale-ads__wrapper">
-            {renderData.map((e) => (
-              <AdsItem key={e.advertId} item={e} />
-            ))}
-          </div>
-        </div>
-      )}
+      <div className="sale-ads">
+        {renderData && (
+          <>
+            <div className="sale-ads__title">Объявления</div>
+            <div className="sale-ads__wrapper">
+              {renderData.map((e) => (
+                <AdsItem key={e.advertId} item={e} />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
     </main>
   );
 };

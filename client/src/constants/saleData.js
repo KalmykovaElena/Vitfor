@@ -23,7 +23,6 @@ export const saleData = [
   {
     id: '9',
     name: 'Товары',
-    // img: vector1,
     link: '/search',
     items: [
       {

@@ -5,7 +5,6 @@ import { nanoid } from 'nanoid';
 import CommentsItem from '../comments-item';
 import './index.scss';
 import { setComment } from '../../../http/setComment';
-import { deleteComment } from 'http/deleteComment';
 
 const Comments = ({ advert }) => {
   const { advertId, comments } = advert;
@@ -21,20 +20,14 @@ const Comments = ({ advert }) => {
           {comments.map((el) => (
             <React.Fragment key={nanoid()}>
               <CommentsItem item={el} parentId={advertId} />
-              {el.comments?.map((e) => (
+              {el.replies?.map((e) => (
                 <CommentsItem key={nanoid()} item={e} className="subcomment" parentId={advertId} />
               ))}
-              <div
-                className="comments-item__controller controller-wrap"
-                onClick={() => deleteComment(commentId, parentId)}
-              >
-                Ответить
-              </div>
             </React.Fragment>
           ))}
+          <Form name="comment" input={commentInput} nameSubmit="Написать" handlerSubmit={onCommentSubmit} />
         </div>
       </div>
-      <Form name="comment" input={commentInput} nameSubmit="Написать" handlerSubmit={onCommentSubmit} />
     </div>
   );
 };

@@ -2,10 +2,9 @@ import { setUser } from 'redux/reducers/authReducer';
 import { url } from 'constants/url';
 // eslint-disable-next-line camelcase
 import jwt_decode from 'jwt-decode';
-import store from 'redux/store';
 import { refreshToken } from './refreshToken';
 
-export const updateUserData = (formData, setIsSend, setError) => {
+export const updateUserData = (dispatch) => (formData, setIsSend, setError) => {
   const token = localStorage.getItem('token');
   fetch(`${url}/Account/FillingAccountInfo`, {
     method: 'POST',
@@ -33,7 +32,7 @@ export const updateUserData = (formData, setIsSend, setError) => {
     .then((result) => {
       const decoded = jwt_decode(token);
       setIsSend(true);
-      store.dispatch(setUser({ ...result, userEmail: decoded.email }));
+      dispatch(setUser({ ...result, userEmail: decoded.email }));
     })
     .catch((err) => {
       console.log(err);

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './index.scss';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import 'react-multi-carousel/lib/styles.css';
 import { Dropdown, Space, Upload } from 'antd';
 import { encodeImageFileAsURL } from 'utils/encodeImageFileAsURL';
 import { useForm } from 'react-hook-form';
@@ -24,7 +23,6 @@ const AdPlacing = () => {
   const [checkedPrice, setCheckedPrice] = useState(false);
   const {
     register,
-    getValues,
     handleSubmit,
     clearErrors,
     formState: { errors, isValid, isDirty },
@@ -70,7 +68,9 @@ const AdPlacing = () => {
   );
   const onSubmit = (data) => {
     const currentData = { ...data, fileStrings: fileList.map((e) => e.data) };
-    console.log(currentData);
+    if (data.price === ' ') {
+      currentData.price = '0';
+    }
     setAdver(currentData, reset, fileList, setSuccess);
   };
   const handleCategoryClick = ({ domEvent }) => {
@@ -81,17 +81,14 @@ const AdPlacing = () => {
     setValue('subSectionName', subsection);
   };
 
-  const curprice = watch('price');
   useEffect(() => {
     if (selectedCategory) {
       clearErrors('subSectionName');
     }
-    if (curprice && +curprice === 0) {
-      setCheckedPrice(true);
-    } else {
-      setCheckedPrice(false);
+    if (checkedPrice) {
+      clearErrors('price');
     }
-  }, [clearErrors, curprice, selectedCategory]);
+  }, [checkedPrice, clearErrors, selectedCategory]);
 
   return (
     <section className={`adplacing adplacing__${theme}`}>
@@ -216,30 +213,30 @@ const AdPlacing = () => {
                     <span>Цена</span>
                     <input
                       onClick={() => {
-                        const price = getValues('price');
-                        if (price === '0') {
+                        setCheckedPrice(!checkedPrice);
+                        if (checkedPrice) {
                           setValue('price', '');
                           setError('price', { message: 'Обязательное поле' });
                         }
-                        // setCheckedPrice(!checkedPrice);
                       }}
-                      onChange={(e) => {
-                        setValue('price', e.target.value);
+                      onChange={() => {
+                        setValue('price', ' ');
+
                         clearErrors('price');
                       }}
                       checked={checkedPrice}
                       className="advert-input"
                       type="radio"
-                      value="0"
+                      value="Бесплатно"
                     />
                     <span>Бесплатно</span>
                   </label>
                   <FormInput
                     data={{
                       id: 'input-advertPrice',
-                      inputType: 'number',
+                      inputType: 'text',
                       inputName: 'price',
-                      placeholder: 'Цена',
+                      placeholder: 'Цена, BYN',
                       validateInput: {
                         maxLength: {
                           value: 10,
@@ -247,7 +244,7 @@ const AdPlacing = () => {
                         },
                         required: 'Обязательное поле',
                         pattern: {
-                          value: /^[0-9]*$/,
+                          value: /^[0-9,.\s]*$/,
                           message: 'Неверная цена',
                         },
                       },
@@ -257,6 +254,7 @@ const AdPlacing = () => {
                     watch={watch}
                     isDirty={isDirty}
                     isValid={isValid}
+                    disabled={checkedPrice}
                   />
                 </div>
               </div>
@@ -265,13 +263,7 @@ const AdPlacing = () => {
                 <div>
                   <label className="advert-label__check">
                     <span>Телефон</span>
-                    <input
-                      // onChange={(e) => {
-                      // }}
-                      // checked={}
-                      className="advert-nput"
-                      type="radio"
-                    />
+                    <input className="advert-nput" type="radio" />
                     <span>Скрыть телефон</span>
                   </label>
                   <FormInput
@@ -313,26 +305,6 @@ const AdPlacing = () => {
           </div>
         </form>
       )}
-      {/* {searchParms.size > 0 ? (
-        <AdPlacingForm />
-      ) : (
-        <div className="adplacing-wrapper">
-          <div className="adplacing-title">Выберите категорию</div>
-          <div className="adplacing-content">
-            {saleData.slice(4).map((e) => (
-              <div
-                key={e.id}
-                className="adplacing-content__item"
-                style={{ borderColor: e.color.dark, color: e.color.dark }}
-                onClick={() => setSearchParams({ category: e.link.slice(1) })}
-              >
-                <img src={e.img} alt="icon" />
-                <span className="item__name">{e.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      )} */}
     </section>
   );
 };

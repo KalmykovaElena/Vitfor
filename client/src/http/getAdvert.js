@@ -5,7 +5,6 @@ import store from 'redux/store';
 import { history } from 'utils/history';
 
 export const getAdvert = (id) => {
-  console.log(id);
   fetch(`${url}/Adverts/GetAdvertCard`, {
     method: 'POST',
     headers: {
@@ -29,14 +28,11 @@ export const getAdvert = (id) => {
       const pathData = saleData.find((e) => e.items?.find((item) => item.subsection === result.subsectionName));
       const category = pathData.link;
       const subCategory = pathData.items.find((e) => e.subsection === result.subsectionName).search;
-      console.log(history.location);
-      // if (navigate) {
       if (subCategory) {
         history.navigate(`/sale/${category.slice(1)}/${subCategory}/ad/${result.advertId}`);
       } else if (category) {
         history.navigate(`/sale/${category.slice(1)}/ad/${result.advertId}`);
       }
-      // }
     })
     .catch((err) => {
       console.log(err);
