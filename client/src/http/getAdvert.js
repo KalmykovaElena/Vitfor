@@ -25,9 +25,13 @@ export const getAdvert = (id) => {
     })
     .then((result) => {
       store.dispatch(setAdvert(result));
-      const pathData = saleData.find((e) => e.items?.find((item) => item.subsection === result.subsectionName));
+      const pathData = saleData.find((saleSection) =>
+        saleSection.items?.find((saleSubSection) => saleSubSection.subsection === result.subsectionName)
+      );
       const category = pathData.link;
-      const subCategory = pathData.items.find((e) => e.subsection === result.subsectionName).search;
+      const subCategory = pathData.items.find(
+        (saleSubSection) => saleSubSection.subsection === result.subsectionName
+      ).search;
       if (subCategory) {
         history.navigate(`/sale/${category.slice(1)}/${subCategory}/ad/${result.advertId}`);
       } else if (category) {

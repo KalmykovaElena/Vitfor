@@ -22,8 +22,8 @@ const SaleHomePage = () => {
           <>
             <div className="sale-ads__title">Объявления</div>
             <div className="sale-ads__wrapper">
-              {renderData.map((e) => (
-                <AdsItem key={e.advertId} item={e} />
+              {renderData.map((advert) => (
+                <AdsItem key={advert.advertId} item={advert} />
               ))}
             </div>
           </>

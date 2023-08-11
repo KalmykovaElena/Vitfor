@@ -17,11 +17,11 @@ const Comments = ({ advert }) => {
     <div className="comments">
       <div className="comments-wrapper">
         <div className="comments-content">
-          {comments.map((el) => (
+          {comments.map((comment) => (
             <React.Fragment key={nanoid()}>
-              <CommentsItem item={el} parentId={advertId} />
-              {el.replies?.map((e) => (
-                <CommentsItem key={nanoid()} item={e} className="subcomment" parentId={advertId} />
+              <CommentsItem item={comment} parentId={advertId} />
+              {comment.replies?.map((reply) => (
+                <CommentsItem key={nanoid()} item={reply} className="subcomment" parentId={advertId} />
               ))}
             </React.Fragment>
           ))}

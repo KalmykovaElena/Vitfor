@@ -263,7 +263,7 @@ const AdPlacing = () => {
                 <div>
                   <label className="advert-label__check">
                     <span>Телефон</span>
-                    <input className="advert-nput" type="radio" />
+                    <input className="advert-input" type="radio" />
                     <span>Скрыть телефон</span>
                   </label>
                   <FormInput
