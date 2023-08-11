@@ -16,7 +16,7 @@ export const categories = [
     key: '/events',
   },
   {
-    label: 'Туризм',
-    key: '/tourism',
+    label: 'Форум',
+    key: '/forum',
   },
 ];

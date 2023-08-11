@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from 'react';
 import { saleData } from 'constants/saleData';
-// import { serverResponses } from 'constants/test';
 import { useParams, useSearchParams } from 'react-router-dom';
 import logo from 'assets/sad.png';
 import './index.scss';

@@ -4,7 +4,6 @@
   gap:3.125vh;
     &-item {
         display: flex;
-        width: 35rem;
         padding: 0.5rem 1rem;
         flex-direction: column;
         align-items: flex-start;
@@ -25,6 +24,13 @@
             padding: 0.5rem 0rem;
           }
           img {
+            transform: rotate(-90deg);
+          }
+        }
+        .link{
+          color:  #8B8B8B;
+          cursor: pointer;
+          .caret{
             transform: rotate(-90deg);
           }
         }
