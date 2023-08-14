@@ -24,6 +24,7 @@ import AdCard from 'components/sale-components/ad-card';
 import Forum from 'pages/forum';
 import AdPlacing from 'components/sale-components/ad-placing';
 import { history } from 'utils/history';
+import SearchPage from 'pages/SearchPage';
 
 const App = () => {
   history.navigate = useNavigate();
@@ -55,6 +56,7 @@ const App = () => {
         <Route path="/services" element={<Services />} />
         <Route path="/forum" element={<Forum />} />
         <Route path="/weather" element={<Weather />} />
+        <Route path="/search" element={<SearchPage />} />
         <Route path="/authorization" element={<Authorization />} />
         <Route path="/recovery" element={<Authorization />} />
         <Route path="/registration" element={<Authorization />} />

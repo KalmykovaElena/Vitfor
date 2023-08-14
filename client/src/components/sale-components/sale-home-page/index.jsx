@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './index.scss';
-import { saleData } from 'constants/saleData';
+import { saleCategories } from 'constants/saleData';
 import { getRandomAdvert } from 'http/getRandomAdvert';
 import SaleNavigationItem from '../sale-navigation-item';
 import AdsItem from '../ads-item';
@@ -13,7 +13,7 @@ const SaleHomePage = () => {
   return (
     <main className="sale-main-page">
       <div className="sale-navigation">
-        {saleData.slice(4).map((e) => (
+        {saleCategories.map((e) => (
           <SaleNavigationItem key={e.id} item={e} />
         ))}
       </div>

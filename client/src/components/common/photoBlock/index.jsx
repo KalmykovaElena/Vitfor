@@ -4,8 +4,9 @@ import Carousel from 'react-grid-carousel';
 import arr from 'assets/arrow-right.svg';
 import arrLeft from 'assets/arrow-left.svg';
 import './index.scss';
+import { Favourites } from 'components/sale-components/Favourites';
 
-const PhotoBlock = ({ files, onMainClick }) => {
+const PhotoBlock = ({ files, onMainClick, advertId }) => {
   const [main, setMain] = useState(files[0].fileString);
   const handleClick = (el) => {
     setMain(el);
@@ -15,6 +16,7 @@ const PhotoBlock = ({ files, onMainClick }) => {
     <div className="photo-block">
       <div className="photo-block__main">
         <img src={`data:image/png;base64,${main}`} alt="main" onClick={onMainClick} />
+        <Favourites size="long" id={advertId} />
       </div>
       {files.length > 1 && (
         <div className="photo-block__additional">

@@ -10,7 +10,6 @@ import { setProfileData } from 'redux/reducers/authReducer';
 import ImageCropper from 'components/ImageCropper';
 import { Tooltip, ColorPicker } from 'antd';
 import { updateUserData } from 'http/updateUserData';
-import { useNavigate } from 'react-router-dom';
 import SafetyData from 'components/safetyData';
 
 const PersonalData = () => {
@@ -23,7 +22,6 @@ const PersonalData = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const avatar = user.photo?.includes('data:image') ? user.photo : null;
-  const navigate = useNavigate();
   const theme = useSelector((state) => state.auth.theme);
   const {
     register,
@@ -75,7 +73,7 @@ const PersonalData = () => {
       formData = { ...formData, photo: profileColor };
     }
     dispatch(setProfileData(formData));
-    updateUserData(formData, dispatch, navigate, setIsSend, setError);
+    updateUserData(formData, setIsSend, setError);
   };
 
   useEffect(() => {

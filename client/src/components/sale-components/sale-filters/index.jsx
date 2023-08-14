@@ -55,7 +55,7 @@ const SaleFilters = ({ data }) => {
   };
 
   useEffect(() => {
-    const currentSubcategory = items.find((item) => item.search === params.type);
+    const currentSubcategory = items?.find((item) => item.search === params.type);
     setCurrent(currentSubcategory.key);
   }, []);
   return (
