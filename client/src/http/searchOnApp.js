@@ -19,7 +19,6 @@ export const searchOnApp = (value) => {
       return response.json();
     })
     .then((result) => {
-      console.log(result);
       store.dispatch(setSearchItems(result));
     })
     .catch((err) => {

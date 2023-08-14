@@ -17,7 +17,6 @@ export const getAllAdverts = (type, name, data, setRenderData, sortItems) => {
     .then(async (response) => {
       if (!response.ok) {
         const res = await response.json();
-        console.log(res);
         throw new Error(res.message);
       }
       return response.json();

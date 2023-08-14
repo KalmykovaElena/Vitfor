@@ -1,9 +1,7 @@
 import { url } from 'constants/url';
 import { refreshToken } from './refreshToken';
-// import { getAdvert } from './getAdvert';
 
 export const setFavourites = (advertId, method) => {
-  console.log(advertId);
   const token = localStorage.getItem('token');
   const path = method === 'POST' ? 'AddToFavourites' : 'DeleteFromFavourites';
   fetch(`${url}/Favourites/${path}`, {
@@ -30,7 +28,6 @@ export const setFavourites = (advertId, method) => {
     })
     .then((result) => {
       console.log(result);
-      //   getAdvert(advertId);
     })
     .catch((err) => {
       console.log(err);

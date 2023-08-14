@@ -20,7 +20,7 @@ const SearchPage = () => {
   const titles = {
     adverts: 'Объявления',
   };
-  console.log(searchItems);
+
   useEffect(() => {
     searchOnApp(searchQuery);
     return () => dispatch(setSearchItems({}));
