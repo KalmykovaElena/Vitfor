@@ -21,7 +21,6 @@ export const deleteComment = (id, advertId) => {
           refreshToken(deleteComment, id, advertId);
         }
         const res = await response.json();
-        console.log(res);
         throw new Error(res.message);
       }
       return response.json();

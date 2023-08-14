@@ -1,23 +1,17 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 import icon from 'assets/camera.svg';
 import styles from './index.module.scss';
 
-export const AdvertPreview = ({ advertId }) => {
-  const dispatch = useDispatch;
-  useEffect(() => {
-    // TODO reducer for chat
-    dispatch(advertId);
-  }, []);
-  const response = useSelector();
+export const AdvertPreview = ({ name, cost, img, className }) => {
   const theme = useSelector((state) => state.auth.theme);
   return (
-    <div className={classNames(styles.wrapper, { [styles.light]: theme === 'light' })}>
-      <img src={response.img ?? icon} alt="" />
+    <div className={classNames(styles.wrapper, { [styles.light]: theme === 'light' }, [className])}>
+      <img className={styles.img} src={img ?? icon} alt="" />
       <div className={styles.title}>
-        <div className={styles.name}>{response.name}</div>
-        <div className={styles.cost}>{`${response.cost} BYN`}</div>
+        <div className={styles.name}>{name}</div>
+        <div className={styles.cost}>{`${cost} BYN`}</div>
       </div>
     </div>
   );

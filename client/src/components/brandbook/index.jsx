@@ -5,8 +5,8 @@ import Logo from 'components/logo';
 import './index.scss';
 import { ReactComponent as Person } from 'assets/person.svg';
 import vector from 'assets/Vector 14.png';
-import title1 from 'assets/Vector-14.png';
-import title2 from 'assets/Vector-15.png';
+// import title1 from 'assets/Vector-14.png';
+// import title2 from 'assets/Vector-15.png';
 import map from 'assets/Linked-Path-Group.png';
 import { news } from 'constants/url';
 import { useSelector } from 'react-redux';
@@ -17,8 +17,8 @@ const BrandBook = () => {
   const theme = useSelector((state) => state.auth.theme);
   return (
     <section className={`brandbook brandbook__${theme}`}>
-      <img className="brandbook-title brandbook-title_left" src={title1} alt="title" />
-      <img className="brandbook-title brandbook-title_right" src={title2} alt="title" />
+      {/* <img className="brandbook-title brandbook-title_left" src={title1} alt="title" />
+      <img className="brandbook-title brandbook-title_right" src={title2} alt="title" /> */}
       <div className="brandbook-logo">
         <Logo name="app" img={logo} text="VitFor" textLocation="right" isTextActive="true" />
       </div>

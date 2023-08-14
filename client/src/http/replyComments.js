@@ -23,7 +23,6 @@ export const replyComment = (advertId, text, parentCommentId) => {
           refreshToken(replyComment, advertId, text, parentCommentId);
         }
         const res = await response.json();
-        console.log(res);
         throw new Error(res.message);
       }
       return response.json();

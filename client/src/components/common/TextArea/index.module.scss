@@ -1,0 +1,25 @@
+.textArea {
+  border-radius: 1.25rem;
+  border: 1px solid #FFF;
+  background: inherit;
+  width: 100%;
+}
+
+.wrapper :global textarea::placeholder{
+  margin-top: 10px;
+  color: #8B8B8B;
+  font-family: Roboto, sans-serif;
+}
+
+.light{
+  border: 1px solid #7C7C7C;
+}
+.text {
+  background: #fff;
+  color: #000;
+  font-family: Roboto, sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 300;
+  border: 1px solid #F5222D;
+}
