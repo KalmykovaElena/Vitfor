@@ -3,7 +3,7 @@ import './index.scss';
 import { useSelector } from 'react-redux';
 import Header from 'components/header';
 import BreadCrumb from 'components/common/breadcrumb';
-import { Outlet, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { saleData } from 'constants/saleData';
 import SearchPannel from 'components/searchPannel';
 import Button from 'components/common/button';
@@ -13,19 +13,13 @@ const Sale = () => {
   const params = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const renderPage =
-    saleData.find((item) => item.link === `/${params.category}`) ||
-    saleData.find((item) => item.link === location.pathname);
   const path = location.pathname.split('/').slice(-1)[0];
-  const [searchParams] = useSearchParams();
-  const productsQuery = searchParams.get('products');
-  const isSearchRender = productsQuery || (path !== 'ad' && !params.id && path !== 'adplacing');
+  const renderPage =
+    saleData.find((item) => item.link === `/${params.category}` || item.link === `/${path}`) ||
+    saleData.find((item) => item.link === location.pathname);
+  const isSearchRender = renderPage.hideSearch ? !renderPage.hideSearch : true;
   const isAuth = useSelector((state) => state.auth.isAuth);
-  const onSearch = (value) => {
-    if (value) {
-      navigate({ pathname: '/sale/search/', search: `?products=${value.toLowerCase()}` });
-    }
-  };
+
   const handleClick = () => {
     if (isAuth) {
       navigate('/sale/adplacing');
@@ -33,6 +27,7 @@ const Sale = () => {
       navigate('/registration');
     }
   };
+
   return (
     <section className={`sale sale_${theme}`}>
       <Header />
@@ -48,7 +43,7 @@ const Sale = () => {
               {renderPage.name}
             </div>
           )}
-          <SearchPannel onSearch={onSearch} />
+          <SearchPannel />
           <Button name="Подать объявление" type="primary" handleClick={handleClick} />
         </div>
       )}

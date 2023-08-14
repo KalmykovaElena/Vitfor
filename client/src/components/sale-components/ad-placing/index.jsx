@@ -7,7 +7,7 @@ import { encodeImageFileAsURL } from 'utils/encodeImageFileAsURL';
 import { useForm } from 'react-hook-form';
 import { PlusOutlined } from '@ant-design/icons';
 import FormInput from 'components/common/formInput';
-import { saleData } from 'constants/saleData';
+import { saleCategories, saleData } from 'constants/saleData';
 import img from 'assets/CheckCircle.png';
 import Button from 'components/common/button';
 import { useNavigate } from 'react-router-dom';
@@ -148,7 +148,7 @@ const AdPlacing = () => {
               <div className="category">
                 <div className="adplacing-form__title">Выбор категории</div>
                 <div className="category-items">
-                  {saleData.slice(4).map((e) => (
+                  {saleCategories.map((e) => (
                     <Dropdown
                       key={e.id}
                       menu={{
@@ -261,16 +261,11 @@ const AdPlacing = () => {
               <div className="block-info">
                 <div className="adplacing-form__title">О продавце</div>
                 <div>
-                  <label className="advert-label__check">
-                    <span>Телефон</span>
-                    <input className="advert-input" type="radio" />
-                    <span>Скрыть телефон</span>
-                  </label>
                   <FormInput
                     data={{
                       id: 'input-advertPhone',
                       inputType: 'tel',
-                      inputName: 'phone',
+                      inputName: 'phoneNumber',
                       placeholder: 'Телефон',
                       validateInput: {
                         maxLength: {

@@ -17,7 +17,6 @@ export const getUserProfile = () => {
     .then(async (response) => {
       if (!response.ok) {
         if (response.status === 401) {
-          console.log(response);
           refreshToken(getUserProfile);
         }
         const res = await response.text();
@@ -26,7 +25,6 @@ export const getUserProfile = () => {
       return response.json();
     })
     .then((result) => {
-      console.log(result);
       const decoded = jwt_decode(token);
       store.dispatch(setIsAuth(true));
       store.dispatch(setUser({ ...result, userEmail: decoded.email }));
