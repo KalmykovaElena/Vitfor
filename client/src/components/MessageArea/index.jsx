@@ -6,8 +6,8 @@ import styles from './index.module.scss';
 
 export const MessageArea = ({ messages, className }) => (
   <div className={classNames(styles.wrapper, [className])}>
-    {messages.map(({ text, messageHandler }) => (
-      <ChatMessage key={nanoid()} text={text} messageHandler={messageHandler} />
+    {messages.map(({ text, senderId }) => (
+      <ChatMessage key={nanoid()} text={text} senderId={senderId} />
     ))}
   </div>
 );
