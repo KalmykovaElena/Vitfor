@@ -57,7 +57,7 @@ const ModalMenu = ({ setIsMenuOpen }) => {
   };
   const items = [
     getItem('Мои объявления', 'userAdds', () => navigate('/sale/user_ads'), <Icon component={advertsIcon} />),
-    getItem('Сообщения', 'userMessages', null, <Icon component={messagesIcon} />), // TODO добавить навигацию
+    getItem('Сообщения', 'messages', () => navigate('/chat'), <Icon component={messagesIcon} />),
     getItem('Избранное', 'favourites', () => navigate('/search/favourites'), <Icon component={favouritesIcon} />),
     getItem('Уведомления', 'notifications', null, <Icon component={notificationsIcon} />),
     getItem('Настройки профиля', 'settings', () => navigate('/personal_info/data'), <Icon component={settings} />),
