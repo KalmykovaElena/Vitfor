@@ -1,6 +1,10 @@
 import React, { useRef, useState } from 'react';
 import exitPng from 'assets/exit.png';
 import settingsPng from 'assets/settings.png';
+import adverts from 'assets/reader.svg';
+import messages from 'assets/mail-unread.svg';
+import favourites from 'assets/fafourite.svg';
+import notifications from 'assets/notifications.svg';
 import { Menu, Switch } from 'antd';
 import './index.scss';
 import Icon from '@ant-design/icons/lib/components/Icon';
@@ -12,6 +16,10 @@ import switch1 from 'assets/swtch1.png';
 import switch2 from 'assets/switch2.png';
 import { setUserTheme } from 'http/setUserTheme';
 
+const advertsIcon = () => <img src={adverts} alt="adverts" />;
+const messagesIcon = () => <img src={messages} alt="messages" />;
+const favouritesIcon = () => <img src={favourites} alt="favourites" />;
+const notificationsIcon = () => <img src={notifications} alt="notifications" />;
 const exit = () => <img src={exitPng} alt="exit" />;
 const settings = () => <img src={settingsPng} alt="profile" />;
 function getItem(label, key, onClick, icon, children, type) {
@@ -48,6 +56,10 @@ const ModalMenu = ({ setIsMenuOpen }) => {
     setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
   };
   const items = [
+    getItem('Мои объявления', 'userAdds', () => navigate('/sale/user_ads'), <Icon component={advertsIcon} />),
+    getItem('Сообщения', 'userMessages', null, <Icon component={messagesIcon} />), // TODO добавить навигацию
+    getItem('Избранное', 'favourites', () => navigate('/search/favourites'), <Icon component={favouritesIcon} />),
+    getItem('Уведомления', 'notifications', null, <Icon component={notificationsIcon} />),
     getItem('Настройки профиля', 'settings', () => navigate('/personal_info/data'), <Icon component={settings} />),
     getItem('Выход', 'sub1', null, <Icon component={exit} />, [
       getItem(
@@ -87,6 +99,7 @@ const ModalMenu = ({ setIsMenuOpen }) => {
         mode="inline"
         items={items}
         theme={theme}
+        onSelect={() => setIsMenuOpen(false)}
       />
     </div>
   );

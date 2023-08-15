@@ -28,7 +28,7 @@ const AdCard = () => {
       })
     : '';
   useEffect(() => {
-    getAdvert(params.id);
+    getAdvert(params.id, params.category);
   }, []);
   return (
     <>

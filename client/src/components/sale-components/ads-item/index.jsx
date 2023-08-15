@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 import { saleData } from 'constants/saleData';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getAdvert } from 'http/getAdvert';
 import { transformDate } from 'utils/transformDate';
 import icon from 'assets/camera.svg';
@@ -9,9 +9,11 @@ import { Favourites } from '../Favourites';
 
 const AdsItem = ({ item, type }) => {
   const navigate = useNavigate();
+  const params = useParams();
   const { title, dateOfCreation, price, description } = item;
+  const id = item.advertId || item.id;
   const handleClick = () => {
-    const response = getAdvert(item.advertId);
+    const response = getAdvert(id, params.category);
 
     if (response) {
       const pathData = saleData.find((e) => e.section === response.section);

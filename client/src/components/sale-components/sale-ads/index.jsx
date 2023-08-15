@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { getAllAdverts } from 'http/getAllAdverts';
 import AdsItem from '../ads-item';
 import SaleFilters from '../sale-filters';
+import UserAds from '../UserAds';
 
 const SaleAds = () => {
   const params = useParams();
@@ -41,10 +42,12 @@ const SaleAds = () => {
   useEffect(() => {
     if (subsection) {
       getAllAdverts('FindBySubsectionName', 'subsectionName', subsection, setRenderData, sortItems);
-    } else {
+    } else if (section) {
       getAllAdverts('FindBySectionName', 'sectionName', section, setRenderData, sortItems);
     }
+
     if (renderData) setRenderData(sortItems(renderData));
+    if (params.category === 'user_ads') setRenderData(null);
   }, [params.category, productsQuery, section, sortCategory, subsection]);
   return (
     <section className="sale-ads-wrapper" id="sale">
@@ -62,6 +65,7 @@ const SaleAds = () => {
           </div>
         </>
       )}
+      {params.category === 'user_ads' && <UserAds />}
     </section>
   );
 };
