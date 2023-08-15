@@ -1,3 +1,4 @@
+import { setUserTheme } from 'http/setUserTheme';
 import React, { useRef, useState } from 'react';
 import exitPng from 'assets/exit.png';
 import settingsPng from 'assets/settings.png';
@@ -14,7 +15,6 @@ import { setIsAuth, setTheme } from 'redux/reducers/authReducer';
 import { useLocation, useNavigate } from 'react-router-dom';
 import switch1 from 'assets/swtch1.png';
 import switch2 from 'assets/switch2.png';
-import { setUserTheme } from 'http/setUserTheme';
 
 const advertsIcon = () => <img src={adverts} alt="adverts" />;
 const messagesIcon = () => <img src={messages} alt="messages" />;

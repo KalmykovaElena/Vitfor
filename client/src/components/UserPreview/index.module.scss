@@ -4,6 +4,8 @@
   align-items: center;
   gap: 0.5rem;
   align-self: stretch;
+  cursor: pointer;
+  transition: 0.5s;
 }
 .names{
   display: flex;
