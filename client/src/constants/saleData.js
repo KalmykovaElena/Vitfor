@@ -338,6 +338,12 @@ export const saleData = [
     hideSearch: true,
   },
   {
+    name: 'Мои объявления',
+    link: '/user_ads',
+    filters: false,
+    hideSearch: true,
+  },
+  {
     id: '9',
     name: 'Товары',
     link: '/search',
