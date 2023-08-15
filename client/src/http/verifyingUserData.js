@@ -65,7 +65,6 @@ export const verifyingUserData = (data, location, dispatch, reset, setError, nav
         return response.json();
       })
       .then((result) => {
-        console.log(result);
         localStorage.setItem('token', result.token);
         localStorage.setItem('refreshToken', result.refreshToken);
         getUserProfile();

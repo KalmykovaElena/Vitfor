@@ -5,12 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { getAdvert } from 'http/getAdvert';
 import { transformDate } from 'utils/transformDate';
 import icon from 'assets/camera.svg';
+import { Favourites } from '../Favourites';
 
 const AdsItem = ({ item, type }) => {
   const navigate = useNavigate();
   const { title, dateOfCreation, price, description } = item;
   const handleClick = () => {
-    console.log(item);
     const response = getAdvert(item.advertId);
 
     if (response) {
@@ -25,21 +25,24 @@ const AdsItem = ({ item, type }) => {
     }
   };
   return (
-    <div className="sale-ads__item" onClick={handleClick}>
-      <div className="item-image">
+    <div className="sale-ads__item">
+      <div className="item-image" onClick={handleClick}>
         {item.file ? (
           <img
             src={`data:image/png;base64,${item.file.fileString}`}
             alt="advertisement"
-            className="item-image__photo"
+            className="item-image item-image__photo"
           />
         ) : (
           <>
-            <img src={icon} alt="advertisement" className="item-image__nophoto" />
+            <img src={icon} alt="advertisement" className="item-image item-image__nophoto" />
           </>
         )}
       </div>
-      <div className="item-title">{title}</div>
+      <div className="item-title">
+        {title}
+        <Favourites size="short" id={item.advertId} checked={item.isFavourite} />
+      </div>
       {type === 'long' && (
         <>
           <div className="item-price">{price}</div>

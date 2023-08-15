@@ -50,7 +50,7 @@ const SaleAds = () => {
     <section className="sale-ads-wrapper" id="sale">
       {renderData && (
         <>
-          <SaleFilters data={data} setRenderData={setRenderData} renderData={renderData} />
+          {data.filters !== false && <SaleFilters data={data} setRenderData={setRenderData} renderData={renderData} />}
           <div className="sale-ads">
             {renderData.length === 0 ? (
               <div className="sale-ads__empty">

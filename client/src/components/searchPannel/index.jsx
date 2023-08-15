@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './index.scss';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-const SearchPannel = ({ onSearch }) => {
+const SearchPannel = () => {
   const [inputValue, setInputValue] = useState(null);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -13,7 +15,9 @@ const SearchPannel = ({ onSearch }) => {
   } = useForm();
   const theme = useSelector((state) => state.auth.theme);
   const onSubmit = (data) => {
-    onSearch(data.searchValue.toString());
+    if (data.searchValue) {
+      navigate({ pathname: '/search/', search: `?value=${data.searchValue.toLowerCase()}` });
+    }
     setInputValue(null);
     reset();
   };
@@ -40,7 +44,7 @@ const SearchPannel = ({ onSearch }) => {
               message: 'Не более 100 символов',
             },
             pattern: {
-              value: /^[a-zA-ZА-Яа-я0-9_!@#$%^&*()_+"-={}|>?[\]]*$/,
+              value: /^[a-zA-ZА-Яа-я0-9_!\s@#$%^&*()_+"-={}|>?[\]]*$/,
               message: 'Допустимые символы: ! @ # $ % ^ & * ( ) _ + - = { } [ ]  | : ; " \' < > , . ? /, A-Z, 0-9',
             },
           })}

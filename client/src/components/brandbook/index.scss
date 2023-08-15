@@ -3,6 +3,9 @@
   padding-top: 9rem;
   padding-bottom: 5.6rem;
   position: relative;
+  background-image: url('../../assets/branbook-bg.png');
+  background-repeat: no-repeat;
+  background-size: contain;
   @media screen and (max-width: 1420px) {
     font-size: 1rem;
   }
@@ -28,6 +31,8 @@
         img {
           width: 7.1875rem;
           height: 5.25rem;
+          position: absolute;
+          cursor: default;
         }
       }
       &-text {

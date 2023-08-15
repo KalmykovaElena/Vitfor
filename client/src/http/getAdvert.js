@@ -5,12 +5,14 @@ import store from 'redux/store';
 import { history } from 'utils/history';
 
 export const getAdvert = (id) => {
+  const token = localStorage.getItem('token') || '';
   fetch(`${url}/Adverts/GetAdvertCard`, {
     method: 'POST',
     headers: {
       Accept: 'application/json, text/plain',
       'Content-Type': 'application/json;charset=UTF-8',
       'ngrok-skip-browser-warning': '1',
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       advertId: id,

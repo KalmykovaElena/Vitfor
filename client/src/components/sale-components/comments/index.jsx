@@ -13,7 +13,7 @@ const Comments = ({ advert }) => {
   const onCommentSubmit = (data) => {
     setComment(advertId, data.comment);
   };
-  console.log(advert);
+
   return (
     <div className="comments">
       <div className="comments-wrapper">

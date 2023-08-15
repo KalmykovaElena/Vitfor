@@ -14,12 +14,14 @@ import messageIcon from 'assets/Message.png';
 import camera from 'assets/camera.svg';
 import Comments from '../comments';
 import { createChat } from '../../../http/Chat/createChat';
+import { Favourites } from '../Favourites';
 
 const AdCard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const advert = useSelector((state) => state.advert.advert);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPhoneShown, setIsPhoneShown] = useState(false);
   const params = useParams();
   const date = advert
     ? new Date(advert.dateOfCreation).toLocaleDateString('ru-Ru', {
@@ -42,8 +44,13 @@ const AdCard = () => {
                   <span>{advert.title}</span>
                   <div className="add-title-date">{date}</div>
                 </div>
+
                 {advert.files.length > 1 ? (
-                  <PhotoBlock files={advert.files} onMainClick={() => setIsModalOpen(true)} />
+                  <PhotoBlock
+                    files={advert.files}
+                    advertId={advert.advertId}
+                    onMainClick={() => setIsModalOpen(true)}
+                  />
                 ) : (
                   <div className="add-photo">
                     {advert.files[0] ? (
@@ -54,9 +61,9 @@ const AdCard = () => {
                         <span>Нет фото</span>
                       </>
                     )}
+                    <Favourites size="long" id={advert.advertId} checked={advert.isFavourite} />
                   </div>
                 )}
-
                 <div className="add-price">{advert.price} BYN</div>
               </div>
               <div className="add-controls">
@@ -69,7 +76,18 @@ const AdCard = () => {
                     textLocation="bottom"
                   />
                   <div className="add-controls__buttons">
-                    <Button type="primary" name="Показать телефон" icon={phoneIcon} />
+                    {advert.phoneNumber && (
+                      <div className="phone-info">
+                        <Button
+                          type="primary"
+                          name="Показать телефон"
+                          icon={phoneIcon}
+                          handleClick={() => setIsPhoneShown(!isPhoneShown)}
+                        />
+                        {isPhoneShown && <div className="phone-info">{advert.phoneNumber}</div>}
+                      </div>
+                    )}
+
                     <Button
                       type="primary"
                       name="Написать сообщение"
