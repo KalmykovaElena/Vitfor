@@ -1,11 +1,10 @@
 .wrapper {
   display: flex;
-  width: 100%;
-}
-.myMessage{
-  justify-content: end;
+  min-height: 2.75rem;
+  max-width: 52rem;
 }
 .message {
+  white-space: pre-wrap;
   display: flex;
   padding: 1rem;
   align-items: center;
@@ -17,7 +16,8 @@
   font-style: normal;
   font-weight: 300;
   line-height: 1.375rem;
-  width: max-content;
+  max-width: 52rem;
+  text-align: left;
 }
 .companion{
   display: flex;
@@ -27,4 +27,18 @@
   gap: 1rem;
   border-radius: 0.625rem 0.625rem 0.625rem 0rem;
   background: #181818;
+  max-width: 52rem;
+}
+  .lightCompanion{
+    background: #BCBCBC;
+  }
+  .light{
+    background: #fff;
+  }
+
+
+.myMessage{
+  margin-left: auto;
+  margin-right: 3rem;
+
 }

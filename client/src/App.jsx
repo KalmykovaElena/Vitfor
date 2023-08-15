@@ -25,11 +25,13 @@ import Forum from 'pages/forum';
 import AdPlacing from 'components/sale-components/ad-placing';
 import { history } from 'utils/history';
 import SearchPage from 'pages/SearchPage';
+import { ChatPage } from './pages/ChatPage';
 
 const App = () => {
   history.navigate = useNavigate();
   history.location = useLocation();
   const theme = useSelector((state) => state.auth.theme);
+  const profileData = useSelector((state) => state.auth.profileData);
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -37,6 +39,7 @@ const App = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  console.log(profileData);
   return (
     <div className={`App App_${theme}`}>
       <Routes>
@@ -45,6 +48,7 @@ const App = () => {
         <Route path="/events" element={<Events />} />
         <Route path="/finds" element={<Finds />} />
         <Route path="/questions" element={<Questions />} />
+        <Route path="/chat" element={<ChatPage />} />
         <Route path="/sale/*" element={<Sale />}>
           <Route path="" element={<SaleHomePage />} />
           <Route path=":category/:type" element={<SaleAds />} />
