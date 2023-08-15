@@ -18,8 +18,8 @@ const UserAds = () => {
       ) : (
         <div className={styles.ads}>
           <div className={styles.wrapper}>
-            {renderData.map((e) => (
-              <AdsItem key={e.advertId} item={e} type="long" />
+            {renderData.map((advert) => (
+              <AdsItem key={advert.advertId} item={advert} type="long" />
             ))}
           </div>
         </div>

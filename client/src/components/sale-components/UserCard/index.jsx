@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import './index.scss';
 import { useParams } from 'react-router-dom';
 import { getAdvert } from 'http/getAdvert';
-import camera from 'assets/camera.svg';
+import { ReactComponent as Camera } from 'assets/camera.svg';
 import { saleData } from 'constants/saleData';
 
 const UserCard = () => {
@@ -45,7 +45,7 @@ const UserCard = () => {
                     <img src={`data:image/png;base64,${advert.files[0].fileString}`} alt="advert" className="img" />
                   ) : (
                     <>
-                      <img src={camera} alt="advert" className="noimg" />
+                      <Camera className="noimg" />
                       <span>Нет фото</span>
                     </>
                   )}
