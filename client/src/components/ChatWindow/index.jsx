@@ -9,9 +9,10 @@ import { sendMessage } from '../../http/Chat/sendMessage';
 import { EmptyMessage } from '../EmptyMessage';
 
 export const ChatWindow = () => {
-  const { messages, user, advertId } = useSelector((state) => ({
+  const { messages, user, advertId, username } = useSelector((state) => ({
     messages: state.chat.messages,
     user: state.auth.user,
+    username: state.chat.selectedUser.username,
     advertId: state.chat.advert.advertId,
   }));
   const [chatMessages, setChatMessages] = useState([]);
@@ -26,7 +27,7 @@ export const ChatWindow = () => {
         },
       ]);
       sendMessage({
-        receiverUserName: user.userName,
+        receiverUserName: username,
         text: message,
         advertId,
       });
