@@ -1,4 +1,5 @@
 import { url } from 'constants/url';
+import { refreshToken } from './refreshToken';
 
 export const getRandomAdvert = (setRenderData) => {
   const token = localStorage.getItem('token') || '';
@@ -12,6 +13,9 @@ export const getRandomAdvert = (setRenderData) => {
   })
     .then(async (response) => {
       if (!response.ok) {
+        if (response.status === 401) {
+          refreshToken(getRandomAdvert, setRenderData);
+        }
         const res = await response.json();
         throw new Error(res.message);
       }

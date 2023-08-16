@@ -1,4 +1,5 @@
 import { url } from 'constants/url';
+import { refreshToken } from './refreshToken';
 
 export const getAllAdverts = (type, name, data, setRenderData, sortItems) => {
   const token = localStorage.getItem('token') || '';
@@ -16,6 +17,9 @@ export const getAllAdverts = (type, name, data, setRenderData, sortItems) => {
   })
     .then(async (response) => {
       if (!response.ok) {
+        if (response.status === 401) {
+          refreshToken(getAllAdverts, type, name, data, setRenderData, sortItems);
+        }
         const res = await response.json();
         throw new Error(res.message);
       }

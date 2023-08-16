@@ -67,7 +67,7 @@ const AdPlacing = () => {
     </div>
   );
   const onSubmit = (data) => {
-    const currentData = { ...data, fileStrings: fileList.map((e) => e.data) };
+    const currentData = { ...data, fileStrings: fileList.map((e) => e.data), mainPhoto: fileList[0]?.data || null };
     if (data.price === ' ') {
       currentData.price = '0';
     }
@@ -274,7 +274,7 @@ const AdPlacing = () => {
                         },
                         pattern: {
                           value: /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/,
-                          message: 'Неверная цена',
+                          message: 'Допустимые символы + - 0-9',
                         },
                       },
                     }}

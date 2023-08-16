@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import PhotoBlock from 'components/common/photoBlock';
 import { getAdvert } from 'http/getAdvert';
+import PhotoBlock from 'components/common/photoBlock';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 import './index.scss';
 import Logo from 'components/logo';
 import Slider from 'components/common/slider';
@@ -13,9 +13,12 @@ import phoneIcon from 'assets/Phone2.png';
 import messageIcon from 'assets/Message.png';
 import camera from 'assets/camera.svg';
 import Comments from '../comments';
+import { createChat } from '../../../http/Chat/createChat';
 import { Favourites } from '../Favourites';
 
 const AdCard = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const advert = useSelector((state) => state.advert.advert);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPhoneShown, setIsPhoneShown] = useState(false);
@@ -28,7 +31,7 @@ const AdCard = () => {
       })
     : '';
   useEffect(() => {
-    getAdvert(params.id);
+    getAdvert(params.id, params.category);
   }, []);
   return (
     <>
@@ -47,6 +50,7 @@ const AdCard = () => {
                     files={advert.files}
                     advertId={advert.advertId}
                     onMainClick={() => setIsModalOpen(true)}
+                    isFavourite={advert.isFavourite}
                   />
                 ) : (
                   <div className="add-photo">
@@ -85,7 +89,15 @@ const AdCard = () => {
                       </div>
                     )}
 
-                    <Button type="primary" name="Написать сообщение" icon={messageIcon} />
+                    <Button
+                      type="primary"
+                      name="Написать сообщение"
+                      icon={messageIcon}
+                      handleClick={() => {
+                        dispatch(createChat(advert.advertId));
+                        navigate('/chat');
+                      }}
+                    />
                   </div>
                 </div>
               </div>
