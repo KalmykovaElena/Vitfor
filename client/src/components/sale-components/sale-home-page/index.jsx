@@ -1,7 +1,9 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
 import './index.scss';
 import { saleCategories } from 'constants/saleData';
 import { getRandomAdvert } from 'http/getRandomAdvert';
+import CardSceleton from 'components/common/CardSceleton';
 import SaleNavigationItem from '../sale-navigation-item';
 import AdsItem from '../ads-item';
 
@@ -18,16 +20,24 @@ const SaleHomePage = () => {
         ))}
       </div>
       <div className="sale-ads">
-        {renderData && (
-          <>
-            <div className="sale-ads__title">Объявления</div>
-            <div className="sale-ads__wrapper">
+        <div className="sale-ads__title">Объявления</div>
+        <div className="sale-ads__wrapper">
+          {renderData ? (
+            <>
               {renderData.map((advert) => (
                 <AdsItem key={advert.advertId} item={advert} />
               ))}
-            </div>
-          </>
-        )}
+            </>
+          ) : (
+            <>
+              {Array(4)
+                .fill()
+                .map((item, i) => (
+                  <CardSceleton key={i} />
+                ))}
+            </>
+          )}
+        </div>
       </div>
     </main>
   );
