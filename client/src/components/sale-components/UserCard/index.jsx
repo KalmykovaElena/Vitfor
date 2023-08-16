@@ -1,17 +1,16 @@
 /* eslint-disable import/no-extraneous-dependencies */
+import { getAdvert } from 'http/getAdvert';
+import { saleData } from 'constants/saleData';
 import React, { useEffect } from 'react';
-import { Carousel } from '3d-react-carousal';
 import { useSelector } from 'react-redux';
 import './index.scss';
 import { useParams } from 'react-router-dom';
-import { getAdvert } from 'http/getAdvert';
 import { ReactComponent as Camera } from 'assets/camera.svg';
-import { saleData } from 'constants/saleData';
+import PhotoBlock from '../../common/photoBlock';
 
 const UserCard = () => {
   const advert = useSelector((state) => state.advert.advert);
   const params = useParams();
-  const slides = advert.files?.map((file) => <img src={`data:image/png;base64,${file.fileString}`} alt="advert" />);
   const pathData = saleData.find((saleSection) =>
     saleSection.items?.find((saleSubSection) => saleSubSection.subsection === advert.subsectionName)
   );
@@ -38,7 +37,7 @@ const UserCard = () => {
           <div className="userAdd-content">
             <div className="slider">
               {advert.files?.length > 1 ? (
-                <Carousel slides={slides} />
+                <PhotoBlock isUserData={false} files={advert.files} advertId={advert.advertId} />
               ) : (
                 <div className="userAdd-photo">
                   {advert.files[0] ? (
