@@ -50,6 +50,7 @@ const AdCard = () => {
                     files={advert.files}
                     advertId={advert.advertId}
                     onMainClick={() => setIsModalOpen(true)}
+                    isFavourite={advert.isFavourite}
                   />
                 ) : (
                   <div className="add-photo">
