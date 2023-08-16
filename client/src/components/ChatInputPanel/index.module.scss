@@ -9,12 +9,13 @@
 }
 .inputPanel{
   display: flex;
-  align-items: center;
+  align-items: end;
   width: 100%;
   gap: 1rem;
 }
 .icon{
   justify-content: flex-start;
+  margin-bottom: 10px;
 }
 .textarea{
   display: block;

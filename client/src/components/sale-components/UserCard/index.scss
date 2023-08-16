@@ -89,7 +89,6 @@
 }
 .slider {
   width: 50vw;
-
   img {
     height: 22vw;
     object-fit: cover;
@@ -99,6 +98,9 @@
     width: auto;
     height: auto;
   }
+  //.react-3d-carousel .slider-container .slider-content .slider-single .proactivede{
+  //  z-index: 1;
+  //}
   .react-3d-carousel .slider-container .slider-right div {
     border: none;
     &:before {

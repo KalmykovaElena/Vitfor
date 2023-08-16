@@ -9,7 +9,7 @@ export const sendMessage = async (data) => {
       'Content-Type': 'application/json;charset=UTF-8',
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ receiverUserName: data.receiverUserName, text: data.text }),
+    body: JSON.stringify({ receiverUserName: data.receiverUserName, text: data.text, advertId: data.advertId }),
   }).catch((response) => {
     if (response.status === 401) {
       refreshToken(sendMessage, data);

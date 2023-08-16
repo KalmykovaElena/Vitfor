@@ -30,24 +30,27 @@ export const ChatsList = ({ isSelect, selectedUser, handleSelect }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>Сообщения</div>
-      {chatList.length && (
+      {!!chatList.length && (
         <div className={styles.chats}>
-          {chatList.map(({ photo, username, nickName, chatId }) => (
-            <UserPreview
-              img={photo}
-              userName={username}
-              nickname={nickName}
-              isChoosing={isSelect && selectedUser === username}
-              handleClick={() => {
-                handleSelect(username);
-                dispatch(chatAction.getMessages([]));
-                if (chatId) {
-                  dispatch(getChatMessages(chatId));
-                }
-                dispatch(chatAction.getSelectedUser({ username, nickName, img: photo }));
-              }}
-            />
-          ))}
+          {chatList.map(
+            ({ userPhoto, username, nickName, chatId, advertId, advertTitle, advertPrice, advertPhoto }) => (
+              <UserPreview
+                img={userPhoto}
+                userName={username}
+                nickname={nickName}
+                isChoosing={isSelect && selectedUser === username}
+                handleClick={() => {
+                  handleSelect(username);
+                  dispatch(chatAction.getMessages([]));
+                  if (chatId) {
+                    dispatch(getChatMessages(chatId));
+                  }
+                  dispatch(chatAction.getSelectedUser({ username, nickName, img: userPhoto }));
+                  dispatch(chatAction.getAdvert({ advertId, advertTitle, advertPrice, advertPhoto }));
+                }}
+              />
+            )
+          )}
         </div>
       )}
     </div>

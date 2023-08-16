@@ -22,7 +22,7 @@ export const TextAreaComponent = ({ value, onChange, placeholder, onPressEnter, 
           }
         }}
         onFocus={() => setIsFocused(true)}
-        autoSize
+        autoSize={{ minRows: 1, maxRows: 11 }}
         className={classNames(styles.textArea, { [styles.light]: theme === 'light', [styles.text]: isFocused }, [
           className,
         ])}

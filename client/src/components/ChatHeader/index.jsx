@@ -9,7 +9,6 @@ export const ChatHeader = () => {
     theme: state.auth.theme,
     selectedUser: state.chat.selectedUser,
   }));
-
   return (
     <div className={styles.wrapper}>
       <UserIcon className={styles.img} img={selectedUser.img} userName={selectedUser.userName} />
