@@ -9,9 +9,10 @@ import { sendMessage } from '../../http/Chat/sendMessage';
 import { EmptyMessage } from '../EmptyMessage';
 
 export const ChatWindow = () => {
-  const { messages, user } = useSelector((state) => ({
+  const { messages, user, advertId } = useSelector((state) => ({
     messages: state.chat.messages,
     user: state.auth.user,
+    advertId: state.chat.advert.advertId,
   }));
   const [chatMessages, setChatMessages] = useState([]);
   const handleSendMessage = (message) => {
@@ -27,6 +28,7 @@ export const ChatWindow = () => {
       sendMessage({
         receiverUserName: user.userName,
         text: message,
+        advertId,
       });
     }
   };
@@ -40,12 +42,7 @@ export const ChatWindow = () => {
   return (
     <div className={styles.wrapper}>
       <ChatHeader />
-      <AdvertPreview
-        name="Котята"
-        cost={10}
-        img="https://happypik.ru/wp-content/uploads/2019/09/top1-2.jpg"
-        className={styles.advert}
-      />
+      <AdvertPreview className={styles.advert} />
       {chatMessages.length ? (
         <MessageArea class messages={chatMessages} className={styles.messages} />
       ) : (

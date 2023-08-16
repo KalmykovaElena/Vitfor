@@ -8,6 +8,7 @@ const initialState = {
   messages: [],
   actualChat: {},
   selectedUser: {},
+  advert: {},
 };
 
 const chatSlice = createSlice({
@@ -22,6 +23,9 @@ const chatSlice = createSlice({
     },
     getSelectedUser: (state, action) => {
       state.selectedUser = action.payload;
+    },
+    getAdvert: (state, action) => {
+      state.advert = action.payload;
     },
   },
   extraReducers(builder) {

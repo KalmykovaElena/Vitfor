@@ -6,7 +6,7 @@ import { refreshToken } from './refreshToken';
 
 export const getFavouritesAdverts = () => {
   const token = localStorage.getItem('token') || '';
-  fetch(`${url}/BuySell/GetUserFavourites`, {
+  fetch(`${url}/Favourites/GetUserFavourites`, {
     headers: {
       Accept: 'application/json, text/plain',
       'Content-Type': 'application/json;charset=UTF-8',
@@ -25,13 +25,14 @@ export const getFavouritesAdverts = () => {
       return response.json();
     })
     .then((result) => {
-      console.log(result); // TODO удалить
-      const adverts = result.map((advert) => {
-        // TODO изменить когда ответ будет разделен по разделам
-        advert.isFavourite = true;
-        return advert;
-      });
-      store.dispatch(setSearchItems({ favourites: adverts }));
+      const fafourites = Object.keys(result).reduce((acc, category) => {
+        acc[category] = result[category].map((advert) => {
+          advert.isFavourite = true;
+          return advert;
+        });
+        return acc;
+      }, {});
+      store.dispatch(setSearchItems(fafourites));
     })
     .catch((err) => {
       console.log(err);

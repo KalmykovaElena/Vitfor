@@ -29,9 +29,9 @@ const AdsItem = ({ item, type }) => {
   return (
     <div className="sale-ads__item">
       <div className="item-image" onClick={handleClick}>
-        {item.file ? (
+        {item.mainPhoto ? (
           <img
-            src={`data:image/png;base64,${item.file.fileString}`}
+            src={`data:image/png;base64,${item.mainPhoto}`}
             alt="advertisement"
             className="item-image item-image__photo"
           />
