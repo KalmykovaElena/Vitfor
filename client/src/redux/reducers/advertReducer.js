@@ -1,13 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchLatestAdverts } from 'http/fetchLatestAdverts';
 
 const initialState = {
   advert: {},
   editAdvert: {},
+  adverts: [],
   sort: 'По умолчанию',
+  status: null,
+  error: null,
 };
 
-const advertPageSlice = createSlice({
-  name: 'advertPage',
+const advertsSlice = createSlice({
+  name: 'adverts',
   initialState,
   reducers: {
     setAdvert: (state, action) => {
@@ -20,8 +24,23 @@ const advertPageSlice = createSlice({
       state.editAdvert = action.payload;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchLatestAdverts.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(fetchLatestAdverts.fulfilled, (state, action) => {
+        state.status = 'resolved';
+        state.adverts = action.payload;
+      })
+      .addCase(fetchLatestAdverts.rejected, (state, action) => {
+        state.status = 'rejected';
+        state.error = action.payload;
+      });
+  },
 });
 
-export const { setAdvert, setSortParametr, setEditAdvert } = advertPageSlice.actions;
+export const { setAdvert, setSortParametr, setEditAdvert } = advertsSlice.actions;
 
-export default advertPageSlice.reducer;
+export default advertsSlice.reducer;

@@ -1,16 +1,21 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/no-array-index-key */
+import React, { useEffect } from 'react';
 import './index.scss';
 import { saleCategories, saleData } from 'constants/saleData';
-import { getRandomAdvert } from 'http/getRandomAdvert';
+import CardSceleton from 'components/common/CardSceleton';
+import { fetchLatestAdverts } from 'http/fetchLatestAdverts';
+import { useDispatch, useSelector } from 'react-redux';
 import SaleNavigationItem from '../sale-navigation-item';
 import AdsItem from '../ads-item';
 import { useNavigate } from 'react-router-dom';
 
 const SaleHomePage = () => {
-  const [renderData, setRenderData] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { status, adverts } = useSelector((state) => state.advert);
   useEffect(() => {
-    getRandomAdvert(setRenderData);
+    dispatch(fetchLatestAdverts());
   }, []);
 
   return (
@@ -21,11 +26,11 @@ const SaleHomePage = () => {
         ))}
       </div>
       <div className="sale-ads">
-        {renderData && (
-          <>
-            <div className="sale-ads__title">Объявления</div>
-            <div className="sale-ads__wrapper">
-              {renderData.map((advert) => (
+        <div className="sale-ads__title">Объявления</div>
+        <div className="sale-ads__wrapper">
+          {status === 'resolved' && (
+            <>
+              {adverts.map((advert) => (
                 <AdsItem
                   key={advert.advertId}
                   item={advert}
@@ -45,9 +50,18 @@ const SaleHomePage = () => {
                   }}
                 />
               ))}
-            </div>
-          </>
-        )}
+            </>
+          )}
+          {status === 'loading' && (
+            <>
+              {Array(4)
+                .fill()
+                .map((item, i) => (
+                  <CardSceleton key={i} />
+                ))}
+            </>
+          )}
+        </div>
       </div>
     </main>
   );
