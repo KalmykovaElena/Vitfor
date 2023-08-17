@@ -18,6 +18,7 @@
     "no-nested-ternary": "off",
     "react/function-component-definition":"off" ,
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "import/order": "off"
   }
 }

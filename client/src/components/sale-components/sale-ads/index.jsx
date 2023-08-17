@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from 'react';
 import { saleData } from 'constants/saleData';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import logo from 'assets/sad.png';
 import './index.scss';
 
@@ -13,6 +13,7 @@ import UserAds from '../UserAds';
 
 const SaleAds = () => {
   const params = useParams();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [renderData, setRenderData] = useState();
   const productsQuery = searchParams.get('products');
@@ -60,7 +61,27 @@ const SaleAds = () => {
                 <img src={logo} alt="empty" /> <span>Ничего не найдено</span>
               </div>
             ) : (
-              renderData.map((e) => <AdsItem key={e.advertId} item={e} type="long" />)
+              renderData.map((advert) => (
+                <AdsItem
+                  key={advert.advertId}
+                  item={advert}
+                  type="long"
+                  handleClick={() => {
+                    const pathData = saleData.find((saleSection) =>
+                      saleSection.items?.find((saleSubSection) => saleSubSection.subsection === advert.subsectionName)
+                    );
+                    const category = pathData.link;
+                    const subCategory = pathData.items.find(
+                      (saleSubSection) => saleSubSection.subsection === advert.subsectionName
+                    ).search;
+                    if (subCategory) {
+                      navigate(`/sale/${category.slice(1)}/${subCategory}/ad/${advert.advertId}`);
+                    } else if (category) {
+                      navigate(`/sale/${category.slice(1)}/ad/${advert.advertId}`);
+                    }
+                  }}
+                />
+              ))
             )}
           </div>
         </>

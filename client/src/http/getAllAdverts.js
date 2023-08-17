@@ -3,7 +3,7 @@ import { refreshToken } from './refreshToken';
 
 export const getAllAdverts = (type, name, data, setRenderData, sortItems) => {
   const token = localStorage.getItem('token') || '';
-  fetch(`${url}/Advert/${type}`, {
+  fetch(`${url}/Adverts/${type}`, {
     method: 'POST',
     headers: {
       Accept: 'application/json, text/plain',

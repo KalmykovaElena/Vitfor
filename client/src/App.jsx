@@ -57,6 +57,7 @@ const App = () => {
           <Route path=":category/:type/ad/:id" element={<AdCard />} />
           <Route path=":category/ad/:id" element={<AdCard />} />
           <Route path="user_ads/ad/:id" element={<UserCard />} />
+          <Route path=":category/edit/ad/:advertId" element={<AdPlacing />} />
           <Route path="adplacing" element={<AdPlacing />} />
         </Route>
         <Route path="/services" element={<Services />} />

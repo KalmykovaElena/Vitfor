@@ -3,9 +3,8 @@ import { useLocation, Link } from 'react-router-dom';
 import { Breadcrumb } from 'antd';
 
 const BreadCrumb = ({ data, className }) => {
-  const location = useLocation();
+  const { pathname } = useLocation();
   const breadCrumbView = () => {
-    const { pathname } = location;
     const pathnames = pathname.split('/').filter((item) => item);
     if (pathnames.find((e) => e === 'ad')) pathnames.splice(-1);
     const capatilize = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : null);

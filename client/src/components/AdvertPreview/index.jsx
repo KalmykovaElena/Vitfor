@@ -11,7 +11,7 @@ export const AdvertPreview = ({ className }) => {
   }));
   return (
     <div className={classNames(styles.wrapper, { [styles.light]: theme === 'light' }, [className])}>
-      <img className={styles.img} src={advert.advertPhoto ?? icon} alt="" />
+      <img className={styles.img} src={`data:image/png;base64,${advert.advertPhoto}` ?? icon} alt="" />
       <div className={styles.title}>
         <div className={styles.name}>{advert.advertTitle}</div>
         <div className={styles.cost}>{`${advert.advertPrice} BYN`}</div>

@@ -2,6 +2,33 @@
     width: 77.5%;
     margin: 0 auto;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+}
+.wrapper div[class*='ant-tabs-tab-btn']{
+    color: #fff;
+}
+.wrapper :global .ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+    color: #fff
+}
+.wrapper div[class*='ant-tabs-ink-bar']{
+    background: #fff;
+}
+.wrapper :global .ant-tabs-top >.ant-tabs-nav::before{
+    border-bottom:none ;
+}
+
+.light div[class*='ant-tabs-tab-btn']{
+    color: #000;
+}
+.light :global .ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+    color: #000
+}
+.light div[class*='ant-tabs-ink-bar']{
+    background: #000;
+}
+
+
+.adverts{
+    display: flex;
     gap:1.5rem;
 }
