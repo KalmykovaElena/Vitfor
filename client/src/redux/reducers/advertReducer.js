@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   advert: {},
+  editAdvert: {},
   sort: 'По умолчанию',
 };
 
@@ -15,9 +16,12 @@ const advertPageSlice = createSlice({
     setSortParametr: (state, action) => {
       state.sort = action.payload;
     },
+    setEditAdvert: (state, action) => {
+      state.editAdvert = action.payload;
+    },
   },
 });
 
-export const { setAdvert, setSortParametr } = advertPageSlice.actions;
+export const { setAdvert, setSortParametr, setEditAdvert } = advertPageSlice.actions;
 
 export default advertPageSlice.reducer;

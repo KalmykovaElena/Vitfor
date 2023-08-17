@@ -10,7 +10,7 @@ import PhotoBlock from '../../common/photoBlock';
 
 const UserCard = () => {
   const advert = useSelector((state) => state.advert.advert);
-  const params = useParams();
+  const { id } = useParams();
   const pathData = saleData.find((saleSection) =>
     saleSection.items?.find((saleSubSection) => saleSubSection.subsection === advert.subsectionName)
   );
@@ -26,8 +26,8 @@ const UserCard = () => {
       })
     : '';
   useEffect(() => {
-    if (!advert.advertId) {
-      getAdvert(params.id, 'user_ads');
+    if (id) {
+      getAdvert(id);
     }
   }, []);
   return (

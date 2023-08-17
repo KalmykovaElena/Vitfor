@@ -1,11 +1,12 @@
 import React from 'react';
 import Form from 'components/common/form';
-import { commentInput } from 'constants/inputs';
+
 import { nanoid } from 'nanoid';
 // import { deleteComment } from 'http/deleteComment';
 import CommentsItem from '../comments-item';
 import './index.scss';
 import { setComment } from '../../../http/setComment';
+import { commentInput } from '../../../constants/inputs';
 
 const Comments = ({ advert }) => {
   const { advertId, comments } = advert;
