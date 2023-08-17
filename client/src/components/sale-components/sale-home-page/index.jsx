@@ -2,19 +2,22 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect } from 'react';
 import './index.scss';
-import { saleCategories } from 'constants/saleData';
+import { saleCategories, saleData } from 'constants/saleData';
 import CardSceleton from 'components/common/CardSceleton';
 import { fetchLatestAdverts } from 'http/fetchLatestAdverts';
 import { useDispatch, useSelector } from 'react-redux';
 import SaleNavigationItem from '../sale-navigation-item';
 import AdsItem from '../ads-item';
+import { useNavigate } from 'react-router-dom';
 
 const SaleHomePage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { status, adverts } = useSelector((state) => state.advert);
   useEffect(() => {
     dispatch(fetchLatestAdverts());
   }, []);
+
   return (
     <main className="sale-main-page">
       <div className="sale-navigation">
@@ -28,7 +31,24 @@ const SaleHomePage = () => {
           {status === 'resolved' && (
             <>
               {adverts.map((advert) => (
-                <AdsItem key={advert.advertId} item={advert} />
+                <AdsItem
+                  key={advert.advertId}
+                  item={advert}
+                  handleClick={() => {
+                    const pathData = saleData.find((saleSection) =>
+                      saleSection.items?.find((saleSubSection) => saleSubSection.subsection === advert.subsectionName)
+                    );
+                    const category = pathData.link;
+                    const subCategory = pathData.items.find(
+                      (saleSubSection) => saleSubSection.subsection === advert.subsectionName
+                    ).search;
+                    if (subCategory) {
+                      navigate(`/sale/${category.slice(1)}/${subCategory}/ad/${advert.advertId}`);
+                    } else if (category) {
+                      navigate(`/sale/${category.slice(1)}/ad/${advert.advertId}`);
+                    }
+                  }}
+                />
               ))}
             </>
           )}

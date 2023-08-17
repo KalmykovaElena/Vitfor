@@ -3,6 +3,7 @@ import { fetchLatestAdverts } from 'http/fetchLatestAdverts';
 
 const initialState = {
   advert: {},
+  editAdvert: {},
   adverts: [],
   sort: 'По умолчанию',
   status: null,
@@ -18,6 +19,9 @@ const advertsSlice = createSlice({
     },
     setSortParametr: (state, action) => {
       state.sort = action.payload;
+    },
+    setEditAdvert: (state, action) => {
+      state.editAdvert = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -37,6 +41,6 @@ const advertsSlice = createSlice({
   },
 });
 
-export const { setAdvert, setSortParametr } = advertsSlice.actions;
+export const { setAdvert, setSortParametr, setEditAdvert } = advertsSlice.actions;
 
 export default advertsSlice.reducer;

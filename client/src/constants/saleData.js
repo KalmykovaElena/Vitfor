@@ -344,6 +344,12 @@ export const saleData = [
     hideSearch: true,
   },
   {
+    name: 'Редактировать объявление',
+    link: '/edit',
+    filters: false,
+    hideSearch: true,
+  },
+  {
     id: '9',
     name: 'Товары',
     link: '/search',
@@ -368,7 +374,6 @@ export const saleData = [
     link: '/adplacing',
     hideSearch: true,
   },
-
   {
     id: '2',
     name: 'Транспорт',

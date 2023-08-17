@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './index.scss';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Dropdown, Space, Upload } from 'antd';
@@ -10,10 +10,18 @@ import FormInput from 'components/common/formInput';
 import { saleCategories, saleData } from 'constants/saleData';
 import img from 'assets/CheckCircle.png';
 import Button from 'components/common/button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { setAdver } from 'http/setAdvert';
+import { setAdvert, setEditAdvert } from '../../../redux/reducers/advertReducer';
+import { updateAdvert } from '../../../http/Advert/editAdvert';
 
 const AdPlacing = () => {
+  const { advert, editAdvert } = useSelector((state) => ({
+    editAdvert: state.advert.editAdvert,
+    advert: state.advert.advert,
+  }));
+  const { advertId } = useParams();
+  const dispatch = useDispatch();
   const theme = useSelector((state) => state.auth.theme);
   const [fileList, setFileList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -33,8 +41,39 @@ const AdPlacing = () => {
   } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
+    defaultValues: {
+      title: editAdvert.title,
+      description: editAdvert.description,
+      price: editAdvert.price,
+      subSectionName: editAdvert.subsectionName,
+    },
   });
+  useEffect(
+    () => () => {
+      dispatch(setEditAdvert({}));
+      dispatch(setAdvert({}));
+    },
+    []
+  );
 
+  useEffect(() => {
+    if (editAdvert.advertId && advert.advertId) {
+      setFileList(
+        advert.files.map((item, index) => ({
+          data: item.fileString,
+          uid: `-${index}`,
+          name: `image`,
+          thumbUrl: `data:image/png;base64,${item.fileString}`,
+        }))
+      );
+      setSelectedCategory(
+        saleCategories
+          .find((item) => item.items.find((subsection) => subsection.subsection === editAdvert.subsectionName))
+          .items.find((sub) => sub.subsection === editAdvert.subsectionName).label
+      );
+      setValue('phoneNumber', advert.phoneNumber);
+    }
+  }, [advert]);
   const beforeUpload = (file) => {
     setErrorMessage('');
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/heic';
@@ -49,10 +88,12 @@ const AdPlacing = () => {
   };
   const onChange = ({ fileList: newFileList }) => {
     newFileList = newFileList.map((file, i) => {
-      encodeImageFileAsURL(file.originFileObj)
-        // eslint-disable-next-line no-return-assign
-        .then((res) => (file.data = res.split(',').splice(1).join('')));
-      file.name = `Photo ${i + 1}`;
+      if (file.status) {
+        encodeImageFileAsURL(file.originFileObj)
+          // eslint-disable-next-line no-return-assign
+          .then((res) => (file.data = res.split(',').splice(1).join('')));
+        file.name = `Photo ${i + 1}`;
+      }
       return file;
     });
     setFileList(newFileList);
@@ -71,7 +112,12 @@ const AdPlacing = () => {
     if (data.price === ' ') {
       currentData.price = '0';
     }
-    setAdver(currentData, reset, fileList, setSuccess);
+    if (advertId) {
+      updateAdvert({ ...currentData, advertId });
+      navigate('/sale/user_ads');
+    } else {
+      setAdver(currentData, reset, fileList, setSuccess);
+    }
   };
   const handleCategoryClick = ({ domEvent }) => {
     setSelectedCategory(domEvent.target.textContent);
@@ -154,9 +200,8 @@ const AdPlacing = () => {
                       menu={{
                         items: e.items,
                         onClick: handleCategoryClick,
-
                         ...register('subSectionName', {
-                          required: 'Обязательное поле',
+                          required: 'Обязательно поле',
                         }),
                       }}
                       overlayClassName={`navigation-dropdown navigation-dropdown__${theme}`}
@@ -252,6 +297,7 @@ const AdPlacing = () => {
                     register={register}
                     error={errors}
                     watch={watch}
+                    defaultValue={advert.price}
                     isDirty={isDirty}
                     isValid={isValid}
                     disabled={checkedPrice}

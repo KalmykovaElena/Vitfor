@@ -129,6 +129,7 @@ export const commentInput = {
   id: 'input-comment',
   inputType: 'text',
   inputName: 'comment',
+  defaultValue: ' ',
   placeholder: 'Поле для ввода',
 
   validateInput: {
