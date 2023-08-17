@@ -26,6 +26,7 @@ const AdsItem = ({ item, type }) => {
       }
     }
   };
+
   return (
     <div className="sale-ads__item">
       <div className="item-image" onClick={handleClick}>
