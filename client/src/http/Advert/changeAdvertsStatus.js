@@ -3,7 +3,7 @@ import { refreshToken } from '../refreshToken';
 
 export const changeAdvertsStatus = async (advertId) => {
   const token = localStorage.getItem('token');
-  await fetch(`${url}/Adverts/ChangeAdvertStatus`, {
+  return fetch(`${url}/Adverts/ChangeAdvertStatus`, {
     method: 'POST',
     headers: {
       Accept: 'application/json, text/plain',
@@ -11,9 +11,9 @@ export const changeAdvertsStatus = async (advertId) => {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ advertId }),
-  }).catch((response) => {
-    if (response.status === 401) {
+  }).catch((error) => {
+    if (error.status === 401) {
       refreshToken(changeAdvertsStatus, advertId);
-    } else console.log(response.statusText);
+    } else console.log(error.statusText);
   });
 };
