@@ -1,13 +1,14 @@
 .userAdd {
+  padding-left: 11.24vw;
+ 
   &-wrapper {
     display: flex;
     flex-direction: column;
     gap: 4.6vh;
-    margin-top: 5.4vh;
+    margin: 5.4vh 0;
   }
   &-content {
     display: flex;
-    justify-content: space-around;
   }
   &-info {
     display: flex;
@@ -38,7 +39,7 @@
         border-radius: 0.625rem;
         border: 1px solid #fa541c;
         display: flex;
-        width: 12.75rem;
+        min-width: 12.75rem;
         padding: 1rem;
         justify-content: center;
         align-items: center;
@@ -79,12 +80,23 @@
     line-height: 3.75rem;
     text-align: center;
   }
-  &-description{
+  &-description {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     text-align: start;
-    padding-left: 11.24vw;
+  }
+  &__light{
+    .slider{
+      .userAdd-photo__noimg{
+        background-color: #B8B8B8;
+      }
+    }
+    .userAdd-phone{
+      .userAdd-content{
+        color:#2B2B2B;
+      }
+    }
   }
 }
 .slider {
@@ -98,9 +110,19 @@
     width: auto;
     height: auto;
   }
-  //.react-3d-carousel .slider-container .slider-content .slider-single .proactivede{
-  //  z-index: 1;
-  //}
+  .userAdd-photo {
+    &__noimg{
+      width: 45vw;
+      height: 47.5vh;
+      border-radius: 1.25rem;
+      background: #525252;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap:1rem;
+    }
+    
+  }
   .react-3d-carousel .slider-container .slider-right div {
     border: none;
     &:before {
@@ -116,3 +138,4 @@
     }
   }
 }
+

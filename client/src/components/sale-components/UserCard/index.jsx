@@ -9,7 +9,10 @@ import { ReactComponent as Camera } from 'assets/camera.svg';
 import PhotoBlock from '../../common/photoBlock';
 
 const UserCard = () => {
-  const advert = useSelector((state) => state.advert.advert);
+  const { advert, theme } = useSelector((state) => ({
+    advert: state.advert.advert,
+    theme: state.auth.theme,
+  }));
   const { id } = useParams();
   const pathData = saleData.find((saleSection) =>
     saleSection.items?.find((saleSubSection) => saleSubSection.subsection === advert.subsectionName)
@@ -31,7 +34,7 @@ const UserCard = () => {
     }
   }, []);
   return (
-    <div className="userAdd">
+    <div className={`userAdd userAdd${theme}`}>
       {advert.advertId && (
         <div className="userAdd-wrapper">
           <div className="userAdd-content">
@@ -43,10 +46,10 @@ const UserCard = () => {
                   {advert.files[0] ? (
                     <img src={`data:image/png;base64,${advert.files[0].fileString}`} alt="advert" className="img" />
                   ) : (
-                    <>
+                    <div className="userAdd-photo__noimg">
                       <Camera className="noimg" />
                       <span>Нет фото</span>
-                    </>
+                    </div>
                   )}
                 </div>
               )}

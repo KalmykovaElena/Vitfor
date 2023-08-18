@@ -43,7 +43,9 @@ const App = () => {
   }, []);
   return (
     <div className={`App App_${theme}`}>
-      {pathname !== '/' && pathname !== '/weather' && pathname !== '/authorization' && <Header className={theme} />}
+      {pathname !== '/' && pathname !== '/registration' && pathname !== '/weather' && pathname !== '/authorization' && (
+        <Header className={theme} />
+      )}
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/aboutus" element={<AboutUs />} />

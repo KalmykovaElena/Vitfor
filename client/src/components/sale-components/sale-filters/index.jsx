@@ -11,22 +11,14 @@ import { setSortParametr } from 'redux/reducers/advertReducer';
 const SaleFilters = ({ data }) => {
   const [openedFilter, setOpenedFilter] = useState(false);
   const [openedSort, setOpenedSort] = useState(false);
-  const [sortCategory, setSortCategory] = useState('По умолчанию');
+  const [sortCategory, setSortCategory] = useState('');
   const [current, setCurrent] = useState('0');
   const [filterItem, setFilterItem] = useState();
   const navigate = useNavigate();
   const params = useParams();
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.auth.theme);
-  const items = data?.items
-    ? [
-        {
-          label: 'По умолчанию',
-          key: '0',
-        },
-        ...data.items,
-      ]
-    : null;
+  const { items } = data;
 
   const onClick = ({ key }) => {
     setCurrent(key);
@@ -56,7 +48,7 @@ const SaleFilters = ({ data }) => {
 
   useEffect(() => {
     const currentSubcategory = items?.find((item) => item.search === params.type);
-    setCurrent(currentSubcategory.key);
+    if (currentSubcategory) setCurrent(currentSubcategory.key);
   }, []);
   return (
     <div className="sale-ads-filter">
@@ -66,15 +58,12 @@ const SaleFilters = ({ data }) => {
           <>
             <form>
               <label className="filter-check__label">
-                <input
-                  onChange={setSort}
-                  className="filter-check__input"
-                  checked={sortCategory === 'По умолчанию'}
-                  type="radio"
-                  value="По умолчанию"
-                  name="sort"
-                />
-                <span>По умолчанию</span>
+                <input onChange={setSort} className="filter-check__input" type="radio" value="Новые" name="sort" />
+                <span>Новые</span>
+              </label>
+              <label className="filter-check__label">
+                <input onChange={setSort} className="filter-check__input" type="radio" value="Старые" name="sort" />
+                <span>Старые</span>
               </label>
               <label className="filter-check__label">
                 <input onChange={setSort} className="filter-check__input" type="radio" value="Дешевле" name="sort" />
@@ -83,10 +72,6 @@ const SaleFilters = ({ data }) => {
               <label className="filter-check__label">
                 <input onChange={setSort} className="filter-check__input" type="radio" value="Дороже" name="sort" />
                 <span>Дороже</span>
-              </label>
-              <label className="filter-check__label">
-                <input onChange={setSort} className="filter-check__input" type="radio" value="По дате" name="sort" />
-                <span>По дате</span>
               </label>
               <div>
                 <Button type="primary" onClick={() => handleSort(sortCategory)}>
