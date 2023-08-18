@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
-import Header from 'components/header';
 import Footer from 'components/footer';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
@@ -39,7 +38,6 @@ const SearchPage = () => {
   }, [searchQuery, path]);
   return (
     <section className={classNames(styles.wrapper, { [styles.light]: theme === 'light' })}>
-      <Header />
       <main className={styles.main}>
         {searchItems && (
           <div>

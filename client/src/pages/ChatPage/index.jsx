@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import styles from './index.module.scss';
 import { ChatWindow } from '../../components/ChatWindow';
 import { ChatsList } from '../../components/ChatsList';
-import Header from '../../components/header';
+
 import { EmptyChat } from '../../components/EmptyChat';
 
 export const ChatPage = () => {
@@ -13,7 +13,6 @@ export const ChatPage = () => {
   const theme = useSelector((state) => state.auth.theme);
   return (
     <div className={classNames(styles.wrapper, { [styles.light]: theme === 'light' })}>
-      <Header />
       <div className={styles.content}>
         <ChatsList
           isSelect={isSelect}

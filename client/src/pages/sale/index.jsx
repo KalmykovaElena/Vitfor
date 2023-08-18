@@ -1,7 +1,6 @@
 import React from 'react';
 import './index.scss';
 import { useSelector } from 'react-redux';
-import Header from 'components/header';
 import BreadCrumb from 'components/common/breadcrumb';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { saleData } from 'constants/saleData';
@@ -30,7 +29,6 @@ const Sale = () => {
 
   return (
     <section className={`sale sale_${theme}`}>
-      <Header />
       <BreadCrumb data={saleData} className="sale-breadCrumb" />
       {isSearchRender && (
         <div className="sale-search">
