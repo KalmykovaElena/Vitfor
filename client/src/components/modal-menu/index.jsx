@@ -40,6 +40,7 @@ const ModalMenu = ({ setIsMenuOpen }) => {
 
   const onExit = () => {
     dispatch(setIsAuth(false));
+    dispatch(setTheme('dark'));
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
     if (location.pathname.includes('personal_info')) {
