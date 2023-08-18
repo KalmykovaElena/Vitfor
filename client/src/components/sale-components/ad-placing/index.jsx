@@ -35,7 +35,6 @@ const AdPlacing = () => {
     clearErrors,
     formState: { errors, isValid, isDirty },
     reset,
-    setError,
     setValue,
     watch,
   } = useForm({
@@ -254,28 +253,27 @@ const AdPlacing = () => {
                   isValid={isValid}
                 />
                 <div>
-                  <label className="advert-label__check">
+                  <p className="block-info__price">
                     <span>Цена</span>
-                    <input
-                      onClick={() => {
-                        setCheckedPrice(!checkedPrice);
-                        if (checkedPrice) {
-                          setValue('price', '');
-                          setError('price', { message: 'Обязательное поле' });
-                        }
-                      }}
-                      onChange={() => {
-                        setValue('price', ' ');
-
-                        clearErrors('price');
-                      }}
-                      checked={checkedPrice}
-                      className="advert-input"
-                      type="radio"
-                      value="Бесплатно"
-                    />
-                    <span>Бесплатно</span>
-                  </label>
+                    <label className="advert-label__check">
+                      <input
+                        onClick={() => {
+                          setCheckedPrice(!checkedPrice);
+                          if (checkedPrice) {
+                            setValue('price', '');
+                          }
+                        }}
+                        onChange={() => {
+                          setValue('price', ' ');
+                        }}
+                        checked={checkedPrice}
+                        className="advert-input"
+                        type="radio"
+                        value="Бесплатно"
+                      />
+                      <span>Бесплатно</span>
+                    </label>
+                  </p>
                   <FormInput
                     data={{
                       id: 'input-advertPrice',

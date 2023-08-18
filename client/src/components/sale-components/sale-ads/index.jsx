@@ -27,8 +27,11 @@ const SaleAds = () => {
       ? data.items.find((item) => item.search === params.type).subsection
       : '';
   const sortItems = (items) => {
-    if (sortCategory === 'По дате') {
+    if (sortCategory === 'Новые') {
       return [...items.sort((a, b) => new Date(b.dateOfCreation) - new Date(a.dateOfCreation))];
+    }
+    if (sortCategory === 'Старые') {
+      return [...items.sort((a, b) => new Date(a.dateOfCreation) - new Date(b.dateOfCreation))];
     }
     if (sortCategory === 'Дороже') {
       const getPrice = (price) => parseFloat(price.replace(/\s/g, '').replace(',', '.'), 10);

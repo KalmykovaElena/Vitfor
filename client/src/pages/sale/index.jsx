@@ -19,7 +19,6 @@ const Sale = () => {
     saleData.find((item) => item.link === location.pathname);
   const isSearchRender = renderPage ? (renderPage.hideSearch ? !renderPage.hideSearch : true) : false;
   const isAuth = useSelector((state) => state.auth.isAuth);
-  console.log(location.pathname);
   const handleClick = () => {
     if (isAuth) {
       navigate('/sale/adplacing');

@@ -22,22 +22,24 @@ const items = [
 const UserAds = () => {
   const theme = useSelector((state) => state.auth.theme);
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [renderData, setRenderData] = useState([]);
   useEffect(() => {
     getUserAdverts(setData);
   }, []);
   useEffect(() => {
-    setRenderData(data.filter((ads) => ads.status === 'Active'));
+    if (data) setRenderData(data.filter((ads) => ads.status === 'Active'));
   }, [data]);
   const handleTabClick = (activeKey) => {
-    if (activeKey === 'active') {
-      setRenderData(data.filter((ads) => ads.status === 'Active'));
-    } else setRenderData(data.filter((ads) => ads.status !== 'Active'));
+    if (data) {
+      if (activeKey === 'active') {
+        setRenderData(data.filter((ads) => ads.status === 'Active'));
+      } else setRenderData(data.filter((ads) => ads.status !== 'Active'));
+    }
   };
   return (
     <div>
-      {data.length === 0 ? (
+      {data && data.length === 0 ? (
         <div className="sale-ads__empty">
           <img src={logo} alt="empty" /> <span>Ничего не найдено</span>
         </div>

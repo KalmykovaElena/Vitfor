@@ -54,32 +54,10 @@
           gap: 0.5rem;
         }
       }
-      input[type='radio']:after {
-        width: 1rem;
-        height: 1rem;
-        border-radius: 0.125rem;
-        top: 2px;
-        left: -1px;
-        position: relative;
-        background-color: #c5cbbd;
-        content: '';
-        display: inline-block;
-        visibility: visible;
-      }
-
-      input[type='radio']:checked:after {
-        width: 1rem;
-        height: 1rem;
-        border-radius: 0.125rem;
-        top: 2px;
-        left: -1px;
-        position: relative;
-        background-image: url('../../../assets/checkbox-input.png');
-        background-size: contain;
-        content: '';
-        display: inline-block;
-        visibility: visible;
-      }
+      input[type='radio'] {
+        accent-color: #FA541C;
+    }
+            
       .ant-dropdown-menu-item{
         border: 1px solid transparent;
         text-align: start;
