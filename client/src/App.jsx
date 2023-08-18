@@ -27,12 +27,13 @@ import { history } from 'utils/history';
 import SearchPage from 'pages/SearchPage';
 import UserCard from 'components/sale-components/UserCard';
 import { ChatPage } from './pages/ChatPage';
+import Header from './components/header';
 
 const App = () => {
   history.navigate = useNavigate();
   history.location = useLocation();
+  const { pathname } = useLocation();
   const theme = useSelector((state) => state.auth.theme);
-  const profileData = useSelector((state) => state.auth.profileData);
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -40,9 +41,9 @@ const App = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(profileData);
   return (
     <div className={`App App_${theme}`}>
+      {pathname !== '/' && pathname !== '/weather' && pathname !== '/authorization' && <Header className={theme} />}
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/aboutus" element={<AboutUs />} />
