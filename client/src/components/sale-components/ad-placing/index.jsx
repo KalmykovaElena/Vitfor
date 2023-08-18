@@ -297,7 +297,6 @@ const AdPlacing = () => {
                     register={register}
                     error={errors}
                     watch={watch}
-                    defaultValue={advert.price}
                     isDirty={isDirty}
                     isValid={isValid}
                     disabled={checkedPrice}
