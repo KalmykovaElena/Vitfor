@@ -1,4 +1,28 @@
 .App {
   text-align: center;
+  transition: all 1s;
+  &_dark{
+    color: #ffffff;
+  }
+  &_light{
+    color: #000000;
+  }
+.redirect{
+  transition: all .5s;
+  border: 1px solid transparent;
+    border-radius: 10px;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  &:hover{
+    color:#ffffff;
+    border-color: #FA541C;
+  }
+}
+}
+.dark {
+  background: #2D2D2D;
+}
+.light {
+  background: #E1E1E1;
 }
 

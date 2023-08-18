@@ -1,0 +1,14 @@
+.finds{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    &_dark{
+    background-color: #2f3530;
+    }
+    &_light{
+        background-color:#E1E1E1;
+    }
+    main{
+        flex-grow: 1;
+    }
+}

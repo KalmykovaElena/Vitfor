@@ -1,15 +1,19 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import logo from 'assets/Vector-7.png';
-import './index.scss';
 
-const AuthPannelHeader = () => {
+import './index.scss';
+import GoogleAuth from 'components/googleAuth';
+
+const AuthPannelHeader = ({ errors }) => {
   const location = useLocation();
   const currentPage = location.pathname.slice(1);
   return (
     <div className="authPannel-header">
-      {currentPage === 'recovery' || currentPage === 'confirm' ? (
-        <div>Восстановление пароля</div>
+      {currentPage === 'recovery' || currentPage === 'Auth/ResetPassword' ? (
+        <>
+          <div>Восстановление пароля</div>
+          {errors.length > 50 && <div className="authPannel-header__error">{errors}</div>}
+        </>
       ) : (
         <>
           <div className="authPannel-header__controls">
@@ -20,10 +24,11 @@ const AuthPannelHeader = () => {
               Регистрация
             </NavLink>
           </div>
-          <div>
-            <img src={logo} alt="google-logo" />{' '}
-            {currentPage === 'authorization' ? 'Вход через аккаунт Google' : 'Регистрация с помощью аккаунта Google'}
-          </div>
+          {errors.length > 50 ? (
+            <div className="authPannel-header__error">{errors}</div>
+          ) : (
+            <GoogleAuth currentPage={currentPage} />
+          )}
         </>
       )}
     </div>

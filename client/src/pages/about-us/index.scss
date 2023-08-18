@@ -1,15 +1,26 @@
 .aboutUs {
-    height: 100vh;
-  .header {
-    &-nav {
-      a {
-        color: #080808;
-      }
-    }
+  height: 100vh;
+  overflow-y: scroll;
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+
+  &::-webkit-scrollbar {
+    display: none; 
   }
-  .footer-item{
-    a {
-      color: #080808;
+  .footer {
+    margin: auto;
+  }
+  &_dark {
+    background-color: #2f3530;
+  }
+  &_light {
+    background-color: #c9c9c9;
+  }
+  &-content {
+    .confidentiality {
+      height: auto;
+      background-color: inherit;
+      overflow: auto;
     }
   }
 }

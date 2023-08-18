@@ -1,0 +1,87 @@
+.sale {
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-size: contain;
+
+  &_dark {
+    background-color: #2D2D2D;;
+    .sale-breadCrumb__end {
+      color: #ffffff;
+    }
+  }
+  &_light {
+    background-color: #e1e1e1;
+    .sale-breadCrumb__end {
+      color: inherit;
+    }
+    .comments-wrapper {
+      background: #ffffff;
+    }
+    .sale-ads__item{
+      background: rgba(255, 255, 255, 0.60);
+    }
+  }
+  main {
+    flex-grow: 1;
+  }
+  .footer {
+    padding: 0;
+  }
+  &-breadCrumb {
+    a {
+      color: #777777;
+      &:hover {
+        color: #777777;
+      }
+    }
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1rem;
+  }
+  .ant-breadcrumb-separator {
+    color: #777777;
+  }
+  &-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 3vh;
+    .search-form {
+      margin: 0;
+    }
+    &-name {
+      width: 13%;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    &-icon {
+      border-radius: 6.25rem;
+      border: 1px solid #fff;
+      padding: 0.5rem;
+      img {
+        filter: contrast(6) invert(1);
+        max-width: 1.5rem;
+      }
+    }
+  }
+  &_light {
+    .sale-search-icon {
+      border-color: #000000;
+      img {
+        filter: grayscale(100%) contrast(2);
+      }
+    }
+    .search-form .search-input {
+      border-left: 1px solid #000000;
+      background: url('../../assets/IconSearchLight.png');
+    }
+  }
+  .breadcrumb {
+    width: 77.5%;
+    margin: 0 auto;
+  }
+}

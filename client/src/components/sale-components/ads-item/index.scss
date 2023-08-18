@@ -1,0 +1,62 @@
+.sale-ads__item {
+  padding: 1rem;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.96rem;
+  cursor: pointer;
+  width: 22%;
+  .item {
+    &-image {
+      height: 12rem;
+      overflow: hidden;
+      border-radius: 1.25rem;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+
+      &__photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      &__nophoto{
+        width: 40%;
+      }
+    }
+    &-title {
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 137.5%;
+      text-align: start;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+    &-date {
+      color: #9e9e9e;
+      font-size: 0.75rem;
+      font-weight: 500;
+      line-height: 150%;
+    }
+    &-description {
+      line-height: 1em;
+      max-height: 2.75rem;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      text-align: start;
+    }
+    &-price {
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 1.25rem;
+    }
+  }
+}

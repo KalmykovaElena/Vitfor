@@ -1,0 +1,109 @@
+.modal-menu {
+  position: absolute;
+  top: 90%;
+  right: 5%;
+  z-index: 1100;
+  padding: 1rem;
+  width: 19.875rem;
+  border-radius: 1.25rem 0rem 1.25rem 1.25rem;
+  &_dark {
+    background-color: #000;
+  }
+  &_light {
+    background-color: #fff;
+    .ant-menu-item, .ant-menu-title-content {
+     font-weight: 600 !important;
+    }
+    .ant-menu-item-group-title{
+      color:#000;
+    }
+    .ant-menu-item-selected{
+      color:#fff;
+    }
+  }
+  .ant-menu {
+    width: auto !important;
+    text-align: start;
+  }
+  .ant-menu-item-group-list {
+    display: flex;
+
+    .ant-menu-item {
+      color: #f67f17;
+      text-align: center;
+      &:hover {
+        background-color: transparent !important;
+        color: #f67f17 !important;
+      }
+      &-selected {
+        background-color: transparent !important;
+      }
+      .ant-menu-title-content {
+        position: relative;
+        &:hover:before {
+          content: ' ';
+          display: inline-block;
+          width: 100%;
+          border: 1px solid #f67f17;
+          position: absolute;
+          bottom: 10%;
+          left: 0;
+        }
+      }
+    }
+  }
+  .ant-menu-item {
+    padding: 0 !important;
+    font-family: Roboto;
+    font-size: 1rem;
+    font-weight: 500;
+    &:hover {
+      background-color: #8b8b8b80 !important;
+      text-decoration: none !important;
+    }
+    &-selected {
+      background-color: #f67f17 !important;
+      text-decoration: none !important;
+    }
+  }
+  .ant-menu-submenu {
+    &-title {
+      padding: 0 !important;
+      font-family: Roboto, sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      &:hover {
+        background-color: #8b8b8b80 !important;
+      }
+      &:active {
+        background-color: transparent !important;
+      }
+    }
+  }
+  .ant-menu-dark {
+    background-color: #000;
+    color:#fff;
+    .ant-menu-sub {
+      background-color: #000 !important;
+    }
+  }
+  .ant-menu-light {
+    
+    img {
+      filter: invert(100%);
+    }
+  }
+  .ant-switch {
+    margin-bottom: 0.5rem;
+  }
+  &-switch {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    padding-left: 0.5rem;
+    img {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+}

@@ -31,8 +31,8 @@ export const footerData = [
   },
   {
     id: 5,
-    name: 'Туризм',
+    name: 'Форум',
     img: vector5,
-    link: '/tourism',
+    link: '/forum',
   },
 ];

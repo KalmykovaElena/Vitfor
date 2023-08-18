@@ -1,0 +1,54 @@
+.comments {
+  &-wrapper {
+    border-radius: 1.25rem;
+    background: #1c1c1c;
+    padding: 1.5rem;
+    .controller-wrap {
+      margin: -0.5rem 0 0 3.72rem;
+    }
+  }
+  &-content {
+    display: flex;
+    padding: 0.5rem 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5625rem;
+    align-self: stretch;
+    max-height: 50vh;
+    min-height: 20vh;
+    overflow-y: auto;
+    scrollbar-color: #d4aa70 #e4e4e4;
+    scrollbar-width: thin;
+    margin-right: 1em;
+    &::-webkit-scrollbar {
+      width: 16px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #555555;
+      border-radius: 100px;
+      margin: 2rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 6.25rem;
+      background-color: #fa541c;
+    }
+  }
+  .form-comment {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+    .form-button {
+      width: 10.75rem;
+      height: 3rem;
+      padding: 0.25rem 0.9375rem;
+      border-radius: 1.25rem;
+    }
+    .formInput {
+      width: 33vw;
+    }
+  }
+}

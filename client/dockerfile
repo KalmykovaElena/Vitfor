@@ -1,0 +1,10 @@
+FROM       node:18.10-alpine3.15
+LABEL      maintainer="Forum-VTB"
+
+WORKDIR    /app
+RUN apk update && apk add bash
+RUN apk add --no-cache tzdata
+COPY       . .
+EXPOSE     3000
+RUN        npm install --legacy-peer-deps
+CMD        npm run start

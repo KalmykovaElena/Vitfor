@@ -1,0 +1,59 @@
+.crop-container {
+  border: 1px solid #ffffff;
+  border-radius: 20px;
+  margin: auto;
+  margin-left: 3rem;
+  padding: 5.56rem 11.38rem 6.22rem 9.5rem;
+  .crop-main-block {
+    position: relative;
+    width: 100%;
+    &-bg {
+      background-color: red;
+    }
+    .advanced-cropper-boundary__stretcher {
+      width: 378px !important;
+    }
+    &__rotate {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 10%;
+      background-color: rgb(0 0 0 / 53%);
+      border-radius: 1rem;
+      cursor: pointer;
+      img {
+        filter: invert(1);
+        width: 2rem;
+      }
+      .rotate-left {
+        transform: scale(-1, 1);
+      }
+    }
+    .userCropper {
+      width: 100%;
+      background: #5c695c;
+      .advanced-cropper__background-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+  .controls-btn {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    padding: 0.5rem;
+    &__button {
+      padding: 0.5rem;
+      border-radius: 1.25rem;
+      color: #ffffff;
+      font-size: 1rem;
+      background-color: #fa541c;
+      border: 1px solid transparent;
+      cursor: pointer;
+      &-cancel {
+        background-color: transparent;
+      }
+    }
+  }
+}
