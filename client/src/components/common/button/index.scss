@@ -18,4 +18,18 @@
     align-items: center;
     align-self: stretch;
   }
+  &-secondary {
+    padding: 0.25rem 0.9375rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    flex-shrink: 0;
+    border: none;
+    color: #F67F17;
+    text-align: center;
+  }
+  &-secondary:hover {
+    border-radius: 1.25rem;
+    border: 1px solid #F67F17;
+  }
 }
