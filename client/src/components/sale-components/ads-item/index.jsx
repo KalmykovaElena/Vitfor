@@ -10,9 +10,7 @@ const AdsItem = ({ item, type }) => {
   const navigate = useNavigate();
   const { title, dateOfCreation, price, description } = item;
   const handleClick = () => {
-    console.log(item);
     const response = getAdvert(item.advertId);
-
     if (response) {
       const pathData = saleData.find((e) => e.section === response.section);
       const category = pathData.link;

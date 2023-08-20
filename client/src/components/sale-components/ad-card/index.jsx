@@ -25,7 +25,6 @@ const AdCard = () => {
         year: 'numeric',
       })
     : '';
-  console.log(params);
   useEffect(() => {
     getAdvert(params.id);
   }, []);

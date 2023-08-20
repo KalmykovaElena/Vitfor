@@ -26,7 +26,6 @@ const FormInput = ({ data, ...inputProps }) => {
       setValue(`${inputName}`, defaultValue);
     }
   }, [defaultValue, inputName, setValue]);
-
   return (
     <>
       {inputType === 'submit' ? (
@@ -34,7 +33,9 @@ const FormInput = ({ data, ...inputProps }) => {
           type="submit"
           value={defaultValue || inputValue[currentPage]}
           className="form-button"
-          disabled={error ? (Object.keys(error).length === 0 ? false : !(isDirty && isValid)) : false}
+          disabled={
+            restProps.disabled || (error ? (Object.keys(error).length === 0 ? false : !(isDirty && isValid)) : false)
+          }
         />
       ) : (
         <label className={`formInput-label formInput-label__${inputType} ${inputType}-${inputName}`} htmlFor={id}>
