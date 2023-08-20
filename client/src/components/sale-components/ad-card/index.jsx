@@ -15,6 +15,7 @@ import camera from 'assets/camera.svg';
 import Comments from '../comments';
 import { createChat } from '../../../http/Chat/createChat';
 import { Favourites } from '../Favourites';
+import { setAdvert } from 'redux/reducers/advertReducer';
 
 const AdCard = () => {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ const AdCard = () => {
     if (params.id) {
       getAdvert(params.id);
     }
+    return () => dispatch(setAdvert({}));
   }, []);
   return (
     <>

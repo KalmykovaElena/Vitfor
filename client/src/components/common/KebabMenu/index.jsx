@@ -30,6 +30,7 @@ export const KebabMenu = ({ advert }) => {
   const [alertText, setAlertText] = useState('');
   const onModalShow = () => setIsModalShow(true);
   const onModalClose = () => setIsModalShow(false);
+  console.log(advert);
   const items = [
     {
       label: 'Редактировать',
