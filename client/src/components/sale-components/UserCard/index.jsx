@@ -80,7 +80,10 @@ const UserCard = () => {
               )}
               <div className="userAdd-control">
                 Управлять объявлением
-                <KebabMenu advert={advert} />
+                <KebabMenu
+                  advert={advert}
+                  style={{ top: '0', left: '0', width: '100%', height: ' 100%', position: 'absolute', opacity: '0' }}
+                />
               </div>
             </div>
           </div>

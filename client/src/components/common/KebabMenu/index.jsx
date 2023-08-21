@@ -19,7 +19,7 @@ import Button from '../button';
 import { Alert } from '../Alert';
 import { getUserAdverts } from 'http/getUserAdverts';
 
-export const KebabMenu = ({ advert }) => {
+export const KebabMenu = ({ advert, style }) => {
   const { category } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -102,7 +102,7 @@ export const KebabMenu = ({ advert }) => {
   return (
     <>
       <Dropdown className={styles.wrapper} menu={{ items }} trigger={['click']}>
-        <Kebab className={classNames(styles.kebab, { [styles.light]: theme === 'light' })} />
+        <Kebab className={classNames(styles.kebab, { [styles.light]: theme === 'light' })} style={{ ...style }} />
       </Dropdown>
       <Modal isOpen={isModalShow} onClose={onModalClose}>
         <div className={classNames(styles.modalWrapper)}>
