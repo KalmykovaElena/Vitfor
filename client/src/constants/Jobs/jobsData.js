@@ -1,7 +1,7 @@
 import search from '../../assets/search.svg';
 import leftHand from '../../assets/hand-left.svg';
 
-const jobsItems = [
+export const jobsItems = [
   {
     label: 'Работа',
     key: '1',
