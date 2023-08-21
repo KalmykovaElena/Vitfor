@@ -2,11 +2,13 @@
 import { getAdvert } from 'http/getAdvert';
 import { saleData } from 'constants/saleData';
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './index.scss';
 import { useParams } from 'react-router-dom';
 import { ReactComponent as Camera } from 'assets/camera.svg';
 import PhotoBlock from '../../common/photoBlock';
+import { KebabMenu } from 'components/common/KebabMenu';
+import { setAdvert } from 'redux/reducers/advertReducer';
 
 const UserCard = () => {
   const { advert, theme } = useSelector((state) => ({
@@ -14,6 +16,7 @@ const UserCard = () => {
     theme: state.auth.theme,
   }));
   const { id } = useParams();
+  const dispatch = useDispatch();
   const pathData = saleData.find((saleSection) =>
     saleSection.items?.find((saleSubSection) => saleSubSection.subsection === advert.subsectionName)
   );
@@ -32,9 +35,10 @@ const UserCard = () => {
     if (id) {
       getAdvert(id);
     }
+    return () => dispatch(setAdvert({}));
   }, []);
   return (
-    <div className={`userAdd userAdd${theme}`}>
+    <div className={`userAdd userAdd__${theme}`}>
       {advert.advertId && (
         <div className="userAdd-wrapper">
           <div className="userAdd-content">
@@ -74,7 +78,10 @@ const UserCard = () => {
                   <div className="userAdd-content">{advert.phoneNumber}</div>
                 </div>
               )}
-              <div className="userAdd-control">Управлять объявлением</div>
+              <div className="userAdd-control">
+                Управлять объявлением
+                <KebabMenu advert={advert} className="cardKebab" />
+              </div>
             </div>
           </div>
           <div className="userAdd-description">
