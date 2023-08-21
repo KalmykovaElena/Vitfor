@@ -37,7 +37,7 @@ const BreadCrumb = ({ data, className }) => {
       }),
     ];
     return (
-      <div className="breadcrumb">
+      <div className={`breadcrumb ${className}`}>
         <Breadcrumb separator=">" items={items} />
       </div>
     );

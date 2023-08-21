@@ -4,10 +4,11 @@ import { Dropdown, Space } from 'antd';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-const SaleNavigationItem = ({ item }) => {
+const SaleNavigationItem = ({ item, withDropDown }) => {
   const navigate = useNavigate();
   const theme = useSelector((state) => state.auth.theme);
-  const { name, img, link, color, items } = item;
+  const { name, img, link, color, items, search, label } = item;
+  const renderColor = typeof color === 'object' ? color[theme] : color;
   const onClick = ({ key }) => {
     const path = items.find((el) => el.key === key).search;
     if (path) {
@@ -17,26 +18,39 @@ const SaleNavigationItem = ({ item }) => {
     }
   };
   const handleClick = () => {
-    navigate(link.slice(1));
+    navigate(link?.slice(1) || search);
   };
 
   return (
-    <Dropdown
-      menu={{
-        items,
-        onClick,
-      }}
-      overlayClassName={`navigation-dropdown navigation-dropdown__${theme}`}
-    >
-      <Space>
-        <div className="navigation-item" style={{ backgroundColor: color[theme] }} onClick={handleClick}>
-          <div className="navigation-item__name">{name}</div>
-          <div className="navigation-item__icon">
-            <img src={img} alt="icon" />{' '}
-          </div>
+    <>
+      {withDropDown ? (
+        <Dropdown
+          menu={{
+            items,
+            onClick,
+          }}
+          overlayClassName={`navigation-dropdown navigation-dropdown__${theme}`}
+        >
+          <Space>
+            <div className="navigation-item" style={{ backgroundColor: renderColor }} onClick={handleClick}>
+              <div className="navigation-item__name">{name}</div>
+              <div className="navigation-item__icon">
+                <img src={img} alt="icon" />{' '}
+              </div>
+            </div>
+          </Space>
+        </Dropdown>
+      ) : (
+        <div className="navigation-item" style={{ backgroundColor: renderColor }} onClick={handleClick}>
+          <div className="navigation-item__name">{name || label}</div>
+          {img && (
+            <div className="navigation-item__icon">
+              <img src={img} alt="icon" />{' '}
+            </div>
+          )}
         </div>
-      </Space>
-    </Dropdown>
+      )}
+    </>
   );
 };
 

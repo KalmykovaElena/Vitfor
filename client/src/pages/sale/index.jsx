@@ -30,13 +30,12 @@ const Sale = () => {
     <section className={`sale sale_${theme}`}>
       <BreadCrumb data={saleData} className="sale-breadCrumb" />
       {isSearchRender && (
-        <div className="sale-search">
+        <div className="category-search">
           {renderPage && renderPage.img && (
-            <div className="sale-search-name">
-              <div className="sale-search-icon">
-                <img src={renderPage.img} alt="sale" />
+            <div className="category-search-name">
+              <div className="category-search-icon">
+                <img src={renderPage.img} alt="category" />
               </div>
-
               {renderPage.name}
             </div>
           )}

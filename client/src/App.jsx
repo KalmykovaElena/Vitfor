@@ -28,6 +28,7 @@ import SearchPage from 'pages/SearchPage';
 import UserCard from 'components/sale-components/UserCard';
 import { ChatPage } from './pages/ChatPage';
 import Header from './components/header';
+import ServicesHomePage from 'components/Services/ServicesHomePage';
 
 const App = () => {
   history.navigate = useNavigate();
@@ -63,7 +64,10 @@ const App = () => {
           <Route path=":category/edit/ad/:advertId" element={<AdPlacing />} />
           <Route path="adplacing" element={<AdPlacing />} />
         </Route>
-        <Route path="/services" element={<Services />} />
+        <Route path="/services/*" element={<Services />}>
+          <Route path="" element={<ServicesHomePage />} />
+          <Route path=":category" element={<ServicesHomePage />} />
+        </Route>
         <Route path="/forum" element={<Forum />} />
         <Route path="/weather" element={<Weather />} />
         <Route path="/search" element={<SearchPage />} />

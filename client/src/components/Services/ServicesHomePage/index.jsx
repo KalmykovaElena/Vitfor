@@ -1,28 +1,30 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect } from 'react';
-import './index.scss';
-import { saleCategories, saleData } from 'constants/saleData';
+// import './index.scss';
 import CardSceleton from 'components/common/CardSceleton';
 import { fetchLatestAdverts } from 'http/fetchLatestAdverts';
 import { useDispatch, useSelector } from 'react-redux';
-import SaleNavigationItem from '../sale-navigation-item';
-import AdsItem from '../ads-item';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { jobsCategories, jobsItems } from 'constants/Jobs/jobsData';
+import AdsItem from 'components/sale-components/ads-item';
+import SaleNavigationItem from 'components/sale-components/sale-navigation-item';
 
-const SaleHomePage = () => {
+const ServicesHomePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const params = useParams();
   const { status, adverts } = useSelector((state) => state.advert);
+  const renderData = params.category ? jobsItems : jobsCategories.slice(0, 2);
   useEffect(() => {
-    dispatch(fetchLatestAdverts('sale'));
+    dispatch(fetchLatestAdverts('services'));
   }, []);
 
   return (
-    <main className="sale-main-page">
+    <main className="services-main-page">
       <div className="category-navigation">
-        {saleCategories.map((e) => (
-          <SaleNavigationItem key={e.id} item={e} withDropDown />
+        {renderData.map((e) => (
+          <SaleNavigationItem key={e.id} item={e} />
         ))}
       </div>
       <div className="category-ads">
@@ -35,18 +37,11 @@ const SaleHomePage = () => {
                   key={advert.advertId}
                   item={advert}
                   handleClick={() => {
-                    const pathData = saleData.find((saleSection) =>
-                      saleSection.items?.find((saleSubSection) => saleSubSection.subsection === advert.subsectionName)
-                    );
-                    const category = pathData.link;
-                    const subCategory = pathData.items.find(
+                    const category = jobsCategories.find((saleSection) => saleSection.section === advert.section).link;
+                    const subCategory = jobsItems.find(
                       (saleSubSection) => saleSubSection.subsection === advert.subsectionName
                     ).search;
-                    if (subCategory) {
-                      navigate(`/sale/${category.slice(1)}/${subCategory}/ad/${advert.advertId}`);
-                    } else if (category) {
-                      navigate(`/sale/${category.slice(1)}/ad/${advert.advertId}`);
-                    }
+                    navigate(`/sale/${category.slice(1)}/${subCategory}/ad/${advert.advertId}`);
                   }}
                 />
               ))}
@@ -66,4 +61,4 @@ const SaleHomePage = () => {
     </main>
   );
 };
-export default SaleHomePage;
+export default ServicesHomePage;
