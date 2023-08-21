@@ -4,7 +4,7 @@ import { fetchLatestAdverts } from 'http/fetchLatestAdverts';
 const initialState = {
   advert: {},
   editAdvert: {},
-  adverts: [],
+  adverts: null,
   sort: 'По умолчанию',
   status: null,
   error: null,
@@ -16,6 +16,9 @@ const advertsSlice = createSlice({
   reducers: {
     setAdvert: (state, action) => {
       state.advert = action.payload;
+    },
+    setAdverts: (state, action) => {
+      state.adverts = action.payload;
     },
     setSortParametr: (state, action) => {
       state.sort = action.payload;
@@ -41,6 +44,6 @@ const advertsSlice = createSlice({
   },
 });
 
-export const { setAdvert, setSortParametr, setEditAdvert } = advertsSlice.actions;
+export const { setAdvert, setAdverts, setSortParametr, setEditAdvert } = advertsSlice.actions;
 
 export default advertsSlice.reducer;

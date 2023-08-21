@@ -10,19 +10,21 @@ import styles from './index.module.scss';
 import { Dropdown } from 'antd';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
-import { setEditAdvert } from '../../../redux/reducers/advertReducer';
+import { setAdverts, setEditAdvert } from '../../../redux/reducers/advertReducer';
 import { getAdvert } from '../../../http/getAdvert';
 import { changeAdvertsStatus } from '../../../http/Advert/changeAdvertsStatus';
 import { deleteAdvert } from '../../../http/Advert/deleteAdvert';
 import { Modal } from '../Modal';
 import Button from '../button';
 import { Alert } from '../Alert';
+import { getUserAdverts } from 'http/getUserAdverts';
 
 export const KebabMenu = ({ advert }) => {
   const { category } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const theme = useSelector((state) => state.auth.theme);
+  const adverts = useSelector((state) => state.advert.adverts);
   const [isModalShow, setIsModalShow] = useState(false);
   const [warningText, setWarningText] = useState('');
   const [isDeleteAdvert, setIsDeleteAdvert] = useState(false);
@@ -30,7 +32,18 @@ export const KebabMenu = ({ advert }) => {
   const [alertText, setAlertText] = useState('');
   const onModalShow = () => setIsModalShow(true);
   const onModalClose = () => setIsModalShow(false);
-  console.log(advert);
+  const changeAdvertList = (status) => {
+    const changedAdvertList =
+      status === 'Deleted'
+        ? adverts.filter((ad) => ad.advertId !== advert.advertId)
+        : adverts.map((ad) => {
+            if (ad.advertId === advert.advertId) {
+              return { ...advert, status };
+            }
+            return ad;
+          });
+    dispatch(setAdverts(changedAdvertList));
+  };
   const items = [
     {
       label: 'Редактировать',
@@ -67,7 +80,10 @@ export const KebabMenu = ({ advert }) => {
       : {
           label: 'Восстановить',
           key: 'reuse',
-          onClick: () => changeAdvertsStatus(advert.advertId),
+          onClick: () => {
+            changeAdvertsStatus(advert.advertId);
+            changeAdvertList('Active');
+          },
           icon: <Reload />,
         },
     {
@@ -77,6 +93,7 @@ export const KebabMenu = ({ advert }) => {
         setWarningText('Вы уверены, что хотите удалить объявление?');
         setIsDeleteAdvert(true);
         onModalShow();
+        getUserAdverts();
       },
       icon: <Ban />,
       danger: true,
@@ -107,6 +124,9 @@ export const KebabMenu = ({ advert }) => {
                     if (response.status === 200) {
                       setIsAlertShow(true);
                       setAlertText('Объявление успешно удалено');
+                      setTimeout(() => {
+                        changeAdvertList('Deleted');
+                      }, 4002);
                     }
                   });
                 } else {
@@ -114,6 +134,9 @@ export const KebabMenu = ({ advert }) => {
                     if (response.status === 200) {
                       setIsAlertShow(true);
                       setAlertText('Объявление успешно снято с публикации');
+                      setTimeout(() => {
+                        changeAdvertList('Disabled');
+                      }, 4002);
                     }
                   });
                 }
