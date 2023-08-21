@@ -27,7 +27,6 @@ const Form = ({ name, inputList, input, nameSubmit, handlerSubmit, setPasswordEr
       setPasswordError(passwordError);
     }
   }, [passwordError, setPasswordError]);
-
   return (
     <form className={name ? `form form-${name}` : 'form'} onSubmit={handleSubmit(onSubmit)}>
       {inputList &&
@@ -60,6 +59,7 @@ const Form = ({ name, inputList, input, nameSubmit, handlerSubmit, setPasswordEr
         isValid={isValid}
         isDirty={isDirty}
         error={errors}
+        {...props}
       />
     </form>
   );
