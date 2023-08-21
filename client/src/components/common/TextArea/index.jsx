@@ -6,7 +6,7 @@ import styles from './index.module.scss';
 
 const { TextArea } = Input;
 
-export const TextAreaComponent = ({ value, onChange, placeholder, onPressEnter, className }) => {
+export const TextAreaComponent = ({ value, onChange, placeholder, maxLength, onPressEnter, className }) => {
   const theme = useSelector((state) => state.auth.theme);
   const [isFocused, setIsFocused] = useState(false);
   return (
@@ -26,6 +26,7 @@ export const TextAreaComponent = ({ value, onChange, placeholder, onPressEnter, 
         className={classNames(styles.textArea, { [styles.light]: theme === 'light', [styles.text]: isFocused }, [
           className,
         ])}
+        maxLength={maxLength}
         style={{ resize: 'none' }}
       />
     </div>
