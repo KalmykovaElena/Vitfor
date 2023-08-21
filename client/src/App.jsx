@@ -28,6 +28,7 @@ import SearchPage from 'pages/SearchPage';
 import UserCard from 'components/sale-components/UserCard';
 import { ChatPage } from './pages/ChatPage';
 import Header from './components/header';
+import { CreateService } from './components/Services/CreateService';
 
 const App = () => {
   history.navigate = useNavigate();
@@ -63,6 +64,7 @@ const App = () => {
           <Route path=":category/edit/ad/:advertId" element={<AdPlacing />} />
           <Route path="adplacing" element={<AdPlacing />} />
         </Route>
+        <Route path="/createService" element={<CreateService />} />
         <Route path="/services" element={<Services />} />
         <Route path="/forum" element={<Forum />} />
         <Route path="/weather" element={<Weather />} />

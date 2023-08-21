@@ -6,7 +6,7 @@ import icon2 from 'assets/eye2.png';
 import './index.scss';
 import { setApproval } from 'redux/reducers/authReducer';
 
-const FormInput = ({ data, ...inputProps }) => {
+const FormInput = ({ data, className, ...inputProps }) => {
   const [passwordShown, setPasswordShown] = useState(false);
   const [currentValue, setCurrentValue] = useState('');
   const dispatch = useDispatch();
@@ -32,13 +32,16 @@ const FormInput = ({ data, ...inputProps }) => {
         <input
           type="submit"
           value={defaultValue || inputValue[currentPage]}
-          className="form-button"
+          className={`form-button ${className}`}
           disabled={
             restProps.disabled || (error ? (Object.keys(error).length === 0 ? false : !(isDirty && isValid)) : false)
           }
         />
       ) : (
-        <label className={`formInput-label formInput-label__${inputType} ${inputType}-${inputName}`} htmlFor={id}>
+        <label
+          className={`formInput-label formInput-label__${inputType} ${inputType}-${inputName} ${className}`}
+          htmlFor={id}
+        >
           {inputName === 'confidentiality' ? (
             <Link className="safety-item-link" to="privacy">
               {inputLabel}
@@ -49,7 +52,7 @@ const FormInput = ({ data, ...inputProps }) => {
           <input
             className={`${
               error[inputName] ? `formInput_inputError formInput-${inputType}_error ` : ''
-            }formInput formInput-${inputType} formInput_${theme}`}
+            }formInput formInput-${inputType} formInput_${theme} ${className}`}
             type={inputType === 'password' ? currentType : inputType}
             placeholder={placeholder}
             defaultValue={defaultValue}

@@ -14,6 +14,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { setAdver } from 'http/setAdvert';
 import { setAdvert, setEditAdvert } from '../../../redux/reducers/advertReducer';
 import { updateAdvert } from '../../../http/Advert/editAdvert';
+import { beforeUploadFile } from '../../../helpers/beforeUploadFile';
 
 const AdPlacing = () => {
   const { advert, editAdvert } = useSelector((state) => ({
@@ -73,18 +74,6 @@ const AdPlacing = () => {
       setValue('phoneNumber', advert.phoneNumber);
     }
   }, [advert]);
-  const beforeUpload = (file) => {
-    setErrorMessage('');
-    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/heic';
-    if (!isJpgOrPng) {
-      setErrorMessage('Ошибка загрузки файла. Допустимые форматы загружаемого фото: JPEG, PNG, HEIC');
-    }
-    const isLt10M = file.size / 1024 / 1024 < 10;
-    if (!isLt10M) {
-      setErrorMessage('Большой размер фотографии. Максимальный размер – 10 МБ');
-    }
-    return (isJpgOrPng && isLt10M) || Upload.LIST_IGNORE;
-  };
   const onChange = ({ fileList: newFileList }) => {
     newFileList = newFileList.map((file, i) => {
       if (file.status) {
@@ -154,7 +143,7 @@ const AdPlacing = () => {
               fileList={fileList}
               onChange={onChange}
               onRemove={onRemove}
-              beforeUpload={beforeUpload}
+              beforeUpload={(file) => beforeUploadFile(file, setErrorMessage)}
               maxCount="10"
               customRequest={({ onSuccess }) => onSuccess('ok')}
               showUploadList={{ showPreviewIcon: false }}
