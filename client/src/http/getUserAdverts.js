@@ -1,7 +1,9 @@
 import { url } from 'constants/url';
 import { refreshToken } from './refreshToken';
+import store from 'redux/store';
+import { setAdverts } from 'redux/reducers/advertReducer';
 
-export const getUserAdverts = (setRenderData) => {
+export const getUserAdverts = () => {
   const token = localStorage.getItem('token') || '';
   fetch(`${url}/Adverts/GetUserAdverts`, {
     headers: {
@@ -14,7 +16,7 @@ export const getUserAdverts = (setRenderData) => {
     .then(async (response) => {
       if (!response.ok) {
         if (response.status === 401) {
-          refreshToken(getUserAdverts, setRenderData);
+          refreshToken(getUserAdverts);
         }
         const res = await response.json();
         throw new Error(res.message);
@@ -22,7 +24,8 @@ export const getUserAdverts = (setRenderData) => {
       return response.json();
     })
     .then((result) => {
-      setRenderData(result);
+      store.dispatch(setAdverts(result));
+      // setRenderData(result);
     })
     .catch((err) => {
       console.log(err);

@@ -20,22 +20,25 @@ const items = [
 ];
 
 const UserAds = () => {
-  const theme = useSelector((state) => state.auth.theme);
+  const { theme, data } = useSelector((state) => ({
+    theme: state.auth.theme,
+    data: state.advert.adverts,
+  }));
   const navigate = useNavigate();
-  const [data, setData] = useState(null);
+  const [status, setStatus] = useState('Active');
   const [renderData, setRenderData] = useState([]);
   useEffect(() => {
-    getUserAdverts(setData);
+    getUserAdverts();
   }, []);
   useEffect(() => {
-    if (data) setRenderData(data.filter((ads) => ads.status === 'Active'));
-  }, [data]);
-  const handleTabClick = (activeKey) => {
     if (data) {
-      if (activeKey === 'active') {
-        setRenderData(data.filter((ads) => ads.status === 'Active'));
-      } else setRenderData(data.filter((ads) => ads.status !== 'Active'));
+      setRenderData(data.filter((ads) => ads.status === status));
     }
+  }, [data, status]);
+  const handleTabClick = (activeKey) => {
+    if (activeKey === 'active') {
+      setStatus('Active');
+    } else setStatus('Disabled');
   };
   return (
     <div>
