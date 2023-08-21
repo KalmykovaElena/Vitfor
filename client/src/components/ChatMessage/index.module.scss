@@ -1,0 +1,45 @@
+.wrapper {
+  display: flex;
+  min-height: 2.75rem;
+  max-width: 52rem;
+  word-break:  break-all;
+}
+.message {
+  white-space: pre-wrap;
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 0.625rem 0.625rem 0rem 0.625rem;
+  background: #444;
+  font-family: Roboto, sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 1.375rem;
+  max-width: 52rem;
+  text-align: left;
+}
+.companion{
+  display: flex;
+  padding: 1rem;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 0.625rem 0.625rem 0.625rem 0rem;
+  background: #181818;
+  max-width: 52rem;
+}
+  .lightCompanion{
+    background: #BCBCBC;
+  }
+  .light{
+    background: #fff;
+  }
+
+
+.myMessage{
+  margin-left: auto;
+  margin-right: 3rem;
+
+}

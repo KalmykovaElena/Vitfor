@@ -9,9 +9,8 @@ import ModalMenu from 'components/modal-menu';
 import { news } from 'constants/url';
 import { Menu } from 'antd';
 import { categories } from 'constants/categories';
-// import Select from 'components/common/select';
 
-const Header = () => {
+const Header = ({ className }) => {
   const isAuth = useSelector((state) => state.auth.isAuth);
   const userImg = useSelector((state) => state.auth.user.photo);
   const userName = useSelector((state) => state.auth.user.userName);
@@ -28,12 +27,12 @@ const Header = () => {
   };
   const color = userImg?.includes('data:image') ? '' : userImg;
 
-  const togleOpenMenu = () => {
+  const toggleOpenMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <header className={`header header_${theme}`}>
+    <header className={`header header_${theme} ${className}`}>
       <Logo
         name="app"
         img={logo}
@@ -73,7 +72,7 @@ const Header = () => {
               color={color}
               text={nickName}
               subtext={userName}
-              handler={togleOpenMenu}
+              handler={toggleOpenMenu}
             />
             {isMenuOpen && <ModalMenu setIsMenuOpen={setIsMenuOpen} />}
           </>

@@ -6,6 +6,12 @@
   background-repeat: no-repeat;
   background-position: top center;
   background-size: contain;
+  overflow-y: scroll;
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+  &::-webkit-scrollbar {
+    display: none;
+}
   .sale {
     
     &-navigation {
@@ -21,6 +27,7 @@
     }
     &-ads {
       width: 93.3vw;
+      min-height: 42vh;
       margin: 0 auto;
       &__title {
         margin-left: 3.35vw;

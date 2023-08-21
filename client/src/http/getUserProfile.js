@@ -1,6 +1,6 @@
 import { url } from 'constants/url';
-import { setIsAuth, setTheme, setUser } from 'redux/reducers/authReducer';
 import { refreshToken } from 'http/refreshToken';
+import { setIsAuth, setTheme, setUser } from 'redux/reducers/authReducer';
 // eslint-disable-next-line camelcase
 import jwt_decode from 'jwt-decode';
 import store from 'redux/store';
@@ -17,7 +17,6 @@ export const getUserProfile = () => {
     .then(async (response) => {
       if (!response.ok) {
         if (response.status === 401) {
-          console.log(response);
           refreshToken(getUserProfile);
         }
         const res = await response.text();

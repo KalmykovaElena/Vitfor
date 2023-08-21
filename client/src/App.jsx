@@ -1,3 +1,4 @@
+import { getUserProfile } from 'http/getUserProfile';
 import React, { useEffect } from 'react';
 import './App.scss';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
@@ -15,7 +16,6 @@ import PersonalInfo from 'pages/personal-info';
 import PersonalData from 'components/personalData';
 import Privacy from 'pages/privacy';
 import { useSelector } from 'react-redux';
-import { getUserProfile } from 'http/getUserProfile';
 import HelpSection from 'components/helpSection';
 import ResetPassword from 'components/resetPassword';
 import SaleHomePage from 'components/sale-components/sale-home-page';
@@ -24,10 +24,15 @@ import AdCard from 'components/sale-components/ad-card';
 import Forum from 'pages/forum';
 import AdPlacing from 'components/sale-components/ad-placing';
 import { history } from 'utils/history';
+import SearchPage from 'pages/SearchPage';
+import UserCard from 'components/sale-components/UserCard';
+import { ChatPage } from './pages/ChatPage';
+import Header from './components/header';
 
 const App = () => {
   history.navigate = useNavigate();
   history.location = useLocation();
+  const { pathname } = useLocation();
   const theme = useSelector((state) => state.auth.theme);
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -38,23 +43,31 @@ const App = () => {
   }, []);
   return (
     <div className={`App App_${theme}`}>
+      {pathname !== '/' && pathname !== '/registration' && pathname !== '/weather' && pathname !== '/authorization' && (
+        <Header className={theme} />
+      )}
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
         <Route path="/finds" element={<Finds />} />
         <Route path="/questions" element={<Questions />} />
+        <Route path="/chat" element={<ChatPage />} />
         <Route path="/sale/*" element={<Sale />}>
           <Route path="" element={<SaleHomePage />} />
           <Route path=":category/:type" element={<SaleAds />} />
           <Route path=":category" element={<SaleAds />} />
           <Route path=":category/:type/ad/:id" element={<AdCard />} />
           <Route path=":category/ad/:id" element={<AdCard />} />
+          <Route path="user_ads/ad/:id" element={<UserCard />} />
+          <Route path=":category/edit/ad/:advertId" element={<AdPlacing />} />
           <Route path="adplacing" element={<AdPlacing />} />
         </Route>
         <Route path="/services" element={<Services />} />
         <Route path="/forum" element={<Forum />} />
         <Route path="/weather" element={<Weather />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/search/favourites" element={<SearchPage />} />
         <Route path="/authorization" element={<Authorization />} />
         <Route path="/recovery" element={<Authorization />} />
         <Route path="/registration" element={<Authorization />} />

@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from 'react';
 import { saleData } from 'constants/saleData';
-// import { serverResponses } from 'constants/test';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import logo from 'assets/sad.png';
 import './index.scss';
 
@@ -10,9 +9,11 @@ import { useSelector } from 'react-redux';
 import { getAllAdverts } from 'http/getAllAdverts';
 import AdsItem from '../ads-item';
 import SaleFilters from '../sale-filters';
+import UserAds from '../UserAds';
 
 const SaleAds = () => {
   const params = useParams();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [renderData, setRenderData] = useState();
   const productsQuery = searchParams.get('products');
@@ -26,8 +27,11 @@ const SaleAds = () => {
       ? data.items.find((item) => item.search === params.type).subsection
       : '';
   const sortItems = (items) => {
-    if (sortCategory === 'По дате') {
+    if (sortCategory === 'Новые') {
       return [...items.sort((a, b) => new Date(b.dateOfCreation) - new Date(a.dateOfCreation))];
+    }
+    if (sortCategory === 'Старые') {
+      return [...items.sort((a, b) => new Date(a.dateOfCreation) - new Date(b.dateOfCreation))];
     }
     if (sortCategory === 'Дороже') {
       const getPrice = (price) => parseFloat(price.replace(/\s/g, '').replace(',', '.'), 10);
@@ -42,27 +46,50 @@ const SaleAds = () => {
   useEffect(() => {
     if (subsection) {
       getAllAdverts('FindBySubsectionName', 'subsectionName', subsection, setRenderData, sortItems);
-    } else {
+    } else if (section) {
       getAllAdverts('FindBySectionName', 'sectionName', section, setRenderData, sortItems);
     }
+
     if (renderData) setRenderData(sortItems(renderData));
+    if (params.category === 'user_ads') setRenderData(null);
   }, [params.category, productsQuery, section, sortCategory, subsection]);
   return (
     <section className="sale-ads-wrapper" id="sale">
       {renderData && (
         <>
-          <SaleFilters data={data} setRenderData={setRenderData} renderData={renderData} />
+          {data.filters !== false && <SaleFilters data={data} setRenderData={setRenderData} renderData={renderData} />}
           <div className="sale-ads">
             {renderData.length === 0 ? (
               <div className="sale-ads__empty">
                 <img src={logo} alt="empty" /> <span>Ничего не найдено</span>
               </div>
             ) : (
-              renderData.map((e) => <AdsItem key={e.advertId} item={e} type="long" />)
+              renderData.map((advert) => (
+                <AdsItem
+                  key={advert.advertId}
+                  item={advert}
+                  type="long"
+                  handleClick={() => {
+                    const pathData = saleData.find((saleSection) =>
+                      saleSection.items?.find((saleSubSection) => saleSubSection.subsection === advert.subsectionName)
+                    );
+                    const category = pathData.link;
+                    const subCategory = pathData.items.find(
+                      (saleSubSection) => saleSubSection.subsection === advert.subsectionName
+                    ).search;
+                    if (subCategory) {
+                      navigate(`/sale/${category.slice(1)}/${subCategory}/ad/${advert.advertId}`);
+                    } else if (category) {
+                      navigate(`/sale/${category.slice(1)}/ad/${advert.advertId}`);
+                    }
+                  }}
+                />
+              ))
             )}
           </div>
         </>
       )}
+      {params.category === 'user_ads' && <UserAds />}
     </section>
   );
 };

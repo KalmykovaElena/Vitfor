@@ -129,7 +129,26 @@ export const commentInput = {
   id: 'input-comment',
   inputType: 'text',
   inputName: 'comment',
+  defaultValue: ' ',
   placeholder: 'Поле для ввода',
+
+  validateInput: {
+    maxLength: {
+      value: 3000,
+      message: 'Не более 3000 символов',
+    },
+    required: 'Обязательное поле',
+    pattern: {
+      value: /^[a-zA-ZА-Яа-я0-9_!\s@#$%^&*()_+"-={}|>?[\]]*$/,
+      message: 'Допустимые символы: ! @ # $ % ^ & * ( ) _ + - = { } [ ] \\ | : ; " \' < > , . ? /, A-Z, А-Я, 0-9',
+    },
+  },
+};
+export const replyCommentInput = {
+  id: 'input-comment',
+  inputType: 'text',
+  inputName: 'comment',
+  placeholder: 'Text',
 
   validateInput: {
     maxLength: {

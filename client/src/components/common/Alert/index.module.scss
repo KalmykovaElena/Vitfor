@@ -1,0 +1,47 @@
+.wrapper{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  //padding: 1.5rem;
+  //background: #000;
+  //border-radius: 1rem;
+}
+.overlay{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0 0 0 / 60%);
+}
+.content{
+  padding: 1.5rem;
+  background: #000;
+  border-radius: 1rem;
+  transition: 0.3s transform;
+  transform: scale(0.5);
+  max-width: 60%;
+}
+.light{
+  background: #fff;
+}
+
+.opened {
+  pointer-events: auto;
+  opacity: 1;
+  z-index: 10;
+  .content {
+    transform: scale(1);
+  }
+}
+
+.isClosing {
+  .content {
+    transform: scale(0);
+  }
+}

@@ -52,6 +52,7 @@ const FormInput = ({ data, ...inputProps }) => {
             }formInput formInput-${inputType} formInput_${theme}`}
             type={inputType === 'password' ? currentType : inputType}
             placeholder={placeholder}
+            defaultValue={defaultValue}
             id={id}
             checked={inputType === 'checkbox' && approval}
             onClick={() => inputName === 'confidentiality' && dispatch(setApproval(!approval))}

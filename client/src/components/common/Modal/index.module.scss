@@ -19,11 +19,13 @@
 .content {
   padding: 20px;
   border-radius: 12px;
-  background-color: #fff;
+  background-color: #000;
   transition: 0.3s transform;
   transform: scale(0.5);
   max-width: 60%;
-  color: #000;
+}
+.light {
+  background: #fff;
 }
 
 .opened {

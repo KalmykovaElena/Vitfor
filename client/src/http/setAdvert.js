@@ -20,15 +20,13 @@ export const setAdver = (data, reset, fileList, setSuccess) => {
           refreshToken(setAdver, data, reset, fileList, setSuccess);
         }
         const res = await response.json();
-        console.log(res);
         throw new Error(res.message);
       }
       return response.json();
     })
-    .then((result) => {
+    .then(() => {
       reset();
       setSuccess(true);
-      console.log(result);
     })
     .catch((err) => {
       console.log(err);

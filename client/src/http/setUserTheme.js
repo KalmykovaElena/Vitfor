@@ -2,7 +2,6 @@ import { url } from 'constants/url';
 import { refreshToken } from './refreshToken';
 
 export const setUserTheme = (theme) => {
-  console.log(theme);
   const token = localStorage.getItem('token');
   fetch(`${url}/Theme/ChangeTheme`, {
     method: 'PATCH',

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './index.scss';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Dropdown, Space, Upload } from 'antd';
@@ -7,13 +7,21 @@ import { encodeImageFileAsURL } from 'utils/encodeImageFileAsURL';
 import { useForm } from 'react-hook-form';
 import { PlusOutlined } from '@ant-design/icons';
 import FormInput from 'components/common/formInput';
-import { saleData } from 'constants/saleData';
+import { saleCategories, saleData } from 'constants/saleData';
 import img from 'assets/CheckCircle.png';
 import Button from 'components/common/button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { setAdver } from 'http/setAdvert';
+import { setAdvert, setEditAdvert } from '../../../redux/reducers/advertReducer';
+import { updateAdvert } from '../../../http/Advert/editAdvert';
 
 const AdPlacing = () => {
+  const { advert, editAdvert } = useSelector((state) => ({
+    editAdvert: state.advert.editAdvert,
+    advert: state.advert.advert,
+  }));
+  const { advertId } = useParams();
+  const dispatch = useDispatch();
   const theme = useSelector((state) => state.auth.theme);
   const [fileList, setFileList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -23,19 +31,48 @@ const AdPlacing = () => {
   const [checkedPrice, setCheckedPrice] = useState(false);
   const {
     register,
-    getValues,
     handleSubmit,
     clearErrors,
     formState: { errors, isValid, isDirty },
     reset,
-    setError,
     setValue,
     watch,
   } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
+    defaultValues: {
+      title: editAdvert.title,
+      description: editAdvert.description,
+      price: editAdvert.price,
+      subSectionName: editAdvert.subsectionName,
+    },
   });
+  useEffect(
+    () => () => {
+      dispatch(setEditAdvert({}));
+      dispatch(setAdvert({}));
+    },
+    []
+  );
 
+  useEffect(() => {
+    if (editAdvert.advertId && advert.advertId) {
+      setFileList(
+        advert.files.map((item, index) => ({
+          data: item.fileString,
+          uid: `-${index}`,
+          name: `image`,
+          thumbUrl: `data:image/png;base64,${item.fileString}`,
+        }))
+      );
+      setSelectedCategory(
+        saleCategories
+          .find((item) => item.items.find((subsection) => subsection.subsection === editAdvert.subsectionName))
+          .items.find((sub) => sub.subsection === editAdvert.subsectionName).label
+      );
+      setValue('phoneNumber', advert.phoneNumber);
+    }
+  }, [advert]);
   const beforeUpload = (file) => {
     setErrorMessage('');
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/heic';
@@ -50,10 +87,12 @@ const AdPlacing = () => {
   };
   const onChange = ({ fileList: newFileList }) => {
     newFileList = newFileList.map((file, i) => {
-      encodeImageFileAsURL(file.originFileObj)
-        // eslint-disable-next-line no-return-assign
-        .then((res) => (file.data = res.split(',').splice(1).join('')));
-      file.name = `Photo ${i + 1}`;
+      if (file.status) {
+        encodeImageFileAsURL(file.originFileObj)
+          // eslint-disable-next-line no-return-assign
+          .then((res) => (file.data = res.split(',').splice(1).join('')));
+        file.name = `Photo ${i + 1}`;
+      }
       return file;
     });
     setFileList(newFileList);
@@ -68,9 +107,16 @@ const AdPlacing = () => {
     </div>
   );
   const onSubmit = (data) => {
-    const currentData = { ...data, fileStrings: fileList.map((e) => e.data) };
-    console.log(currentData);
-    setAdver(currentData, reset, fileList, setSuccess);
+    const currentData = { ...data, fileStrings: fileList.map((e) => e.data), mainPhoto: fileList[0]?.data || null };
+    if (data.price === ' ') {
+      currentData.price = '0';
+    }
+    if (advertId) {
+      updateAdvert({ ...currentData, advertId });
+      navigate('/sale/user_ads');
+    } else {
+      setAdver(currentData, reset, fileList, setSuccess);
+    }
   };
   const handleCategoryClick = ({ domEvent }) => {
     setSelectedCategory(domEvent.target.textContent);
@@ -80,17 +126,14 @@ const AdPlacing = () => {
     setValue('subSectionName', subsection);
   };
 
-  const curprice = watch('price');
   useEffect(() => {
     if (selectedCategory) {
       clearErrors('subSectionName');
     }
-    if (curprice && +curprice === 0) {
-      setCheckedPrice(true);
-    } else {
-      setCheckedPrice(false);
+    if (checkedPrice) {
+      clearErrors('price');
     }
-  }, [clearErrors, curprice, selectedCategory]);
+  }, [checkedPrice, clearErrors, selectedCategory]);
 
   return (
     <section className={`adplacing adplacing__${theme}`}>
@@ -150,15 +193,14 @@ const AdPlacing = () => {
               <div className="category">
                 <div className="adplacing-form__title">Выбор категории</div>
                 <div className="category-items">
-                  {saleData.slice(4).map((e) => (
+                  {saleCategories.map((e) => (
                     <Dropdown
                       key={e.id}
                       menu={{
                         items: e.items,
                         onClick: handleCategoryClick,
-
                         ...register('subSectionName', {
-                          required: 'Обязательное поле',
+                          required: 'Обязательно поле',
                         }),
                       }}
                       overlayClassName={`navigation-dropdown navigation-dropdown__${theme}`}
@@ -211,34 +253,33 @@ const AdPlacing = () => {
                   isValid={isValid}
                 />
                 <div>
-                  <label className="advert-label__check">
+                  <p className="block-info__price">
                     <span>Цена</span>
-                    <input
-                      onClick={() => {
-                        const price = getValues('price');
-                        if (price === '0') {
-                          setValue('price', '');
-                          setError('price', { message: 'Обязательное поле' });
-                        }
-                        // setCheckedPrice(!checkedPrice);
-                      }}
-                      onChange={(e) => {
-                        setValue('price', e.target.value);
-                        clearErrors('price');
-                      }}
-                      checked={checkedPrice}
-                      className="advert-input"
-                      type="radio"
-                      value="0"
-                    />
-                    <span>Бесплатно</span>
-                  </label>
+                    <label className="advert-label__check">
+                      <input
+                        onClick={() => {
+                          setCheckedPrice(!checkedPrice);
+                          if (checkedPrice) {
+                            setValue('price', '');
+                          }
+                        }}
+                        onChange={() => {
+                          setValue('price', ' ');
+                        }}
+                        checked={checkedPrice}
+                        className="advert-input"
+                        type="radio"
+                        value="Бесплатно"
+                      />
+                      <span>Бесплатно</span>
+                    </label>
+                  </p>
                   <FormInput
                     data={{
                       id: 'input-advertPrice',
-                      inputType: 'number',
+                      inputType: 'text',
                       inputName: 'price',
-                      placeholder: 'Цена',
+                      placeholder: 'Цена, BYN',
                       validateInput: {
                         maxLength: {
                           value: 10,
@@ -246,7 +287,7 @@ const AdPlacing = () => {
                         },
                         required: 'Обязательное поле',
                         pattern: {
-                          value: /^[0-9]*$/,
+                          value: /^[0-9,.\s]*$/,
                           message: 'Неверная цена',
                         },
                       },
@@ -256,28 +297,18 @@ const AdPlacing = () => {
                     watch={watch}
                     isDirty={isDirty}
                     isValid={isValid}
+                    disabled={checkedPrice}
                   />
                 </div>
               </div>
               <div className="block-info">
                 <div className="adplacing-form__title">О продавце</div>
                 <div>
-                  <label className="advert-label__check">
-                    <span>Телефон</span>
-                    <input
-                      // onChange={(e) => {
-                      // }}
-                      // checked={}
-                      className="advert-nput"
-                      type="radio"
-                    />
-                    <span>Скрыть телефон</span>
-                  </label>
                   <FormInput
                     data={{
                       id: 'input-advertPhone',
                       inputType: 'tel',
-                      inputName: 'phone',
+                      inputName: 'phoneNumber',
                       placeholder: 'Телефон',
                       validateInput: {
                         maxLength: {
@@ -286,7 +317,7 @@ const AdPlacing = () => {
                         },
                         pattern: {
                           value: /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/,
-                          message: 'Неверная цена',
+                          message: 'Допустимые символы + - 0-9',
                         },
                       },
                     }}
@@ -312,26 +343,6 @@ const AdPlacing = () => {
           </div>
         </form>
       )}
-      {/* {searchParms.size > 0 ? (
-        <AdPlacingForm />
-      ) : (
-        <div className="adplacing-wrapper">
-          <div className="adplacing-title">Выберите категорию</div>
-          <div className="adplacing-content">
-            {saleData.slice(4).map((e) => (
-              <div
-                key={e.id}
-                className="adplacing-content__item"
-                style={{ borderColor: e.color.dark, color: e.color.dark }}
-                onClick={() => setSearchParams({ category: e.link.slice(1) })}
-              >
-                <img src={e.img} alt="icon" />
-                <span className="item__name">{e.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      )} */}
     </section>
   );
 };
