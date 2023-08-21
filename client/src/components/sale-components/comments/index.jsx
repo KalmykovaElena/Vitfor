@@ -27,16 +27,15 @@ const Comments = ({ advert }) => {
               ))}
             </React.Fragment>
           ))}
-          <Form name="comment" input={commentInput} nameSubmit="Написать" handlerSubmit={onCommentSubmit} />
+          <Form
+            name="comment"
+            input={commentInput}
+            nameSubmit="Написать"
+            handlerSubmit={onCommentSubmit}
+            disabled={!isAuth}
+          />
         </div>
       </div>
-      <Form
-        name="comment"
-        input={commentInput}
-        nameSubmit="Написать"
-        handlerSubmit={onCommentSubmit}
-        disabled={!isAuth}
-      />
     </div>
   );
 };

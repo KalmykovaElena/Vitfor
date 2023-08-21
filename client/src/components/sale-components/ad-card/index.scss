@@ -108,6 +108,13 @@
         &:hover{
           background-color: #FA541C;
         }
+        &:disabled{
+          background: #cccccc;
+          &:hover{
+            background: #cccccc;
+            cursor: default;
+          }
+        }
       }
     }
     .subscription {

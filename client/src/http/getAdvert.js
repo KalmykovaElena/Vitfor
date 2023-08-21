@@ -30,6 +30,7 @@ export const getAdvert = (advertId) => {
       return response.json();
     })
     .then((result) => {
+      console.log(result);
       store.dispatch(setAdvert(result));
       // if (advertCategory === 'user_ads') {
       //   history.navigate(`/sale/user_ads/ad/${result.advertId}`);

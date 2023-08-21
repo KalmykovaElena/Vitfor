@@ -20,7 +20,10 @@ import { setAdvert } from 'redux/reducers/advertReducer';
 const AdCard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const advert = useSelector((state) => state.advert.advert);
+  const { advert, isAuth } = useSelector((state) => ({
+    advert: state.advert.advert,
+    isAuth: state.auth.isAuth,
+  }));
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPhoneShown, setIsPhoneShown] = useState(false);
   const params = useParams();
@@ -101,6 +104,7 @@ const AdCard = () => {
                         dispatch(createChat(advert.advertId));
                         navigate('/chat');
                       }}
+                      disabled={!isAuth}
                     />
                   </div>
                 </div>
