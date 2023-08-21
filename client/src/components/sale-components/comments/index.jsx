@@ -2,15 +2,15 @@ import React from 'react';
 import Form from 'components/common/form';
 
 import { nanoid } from 'nanoid';
-// import { deleteComment } from 'http/deleteComment';
+import { useSelector } from 'react-redux';
 import CommentsItem from '../comments-item';
 import './index.scss';
 import { setComment } from '../../../http/setComment';
 import { commentInput } from '../../../constants/inputs';
 
 const Comments = ({ advert }) => {
+  const { isAuth } = useSelector((state) => state.auth);
   const { advertId, comments } = advert;
-
   const onCommentSubmit = (data) => {
     setComment(advertId, data.comment);
   };
@@ -30,6 +30,13 @@ const Comments = ({ advert }) => {
           <Form name="comment" input={commentInput} nameSubmit="Написать" handlerSubmit={onCommentSubmit} />
         </div>
       </div>
+      <Form
+        name="comment"
+        input={commentInput}
+        nameSubmit="Написать"
+        handlerSubmit={onCommentSubmit}
+        disabled={!isAuth}
+      />
     </div>
   );
 };
