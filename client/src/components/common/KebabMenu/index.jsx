@@ -102,7 +102,7 @@ export const KebabMenu = ({ advert, className }) => {
   return (
     <>
       <Dropdown className={styles.wrapper} menu={{ items }} trigger={['click']}>
-        <Kebab className={classNames(styles.kebab, { [styles.light]: theme === 'light' }, className)} />
+        <Kebab className={classNames(styles.kebab, { [styles.light]: theme === 'light' }, [className])} />
       </Dropdown>
       <Modal isOpen={isModalShow} onClose={onModalClose}>
         <div className={classNames(styles.modalWrapper)}>
