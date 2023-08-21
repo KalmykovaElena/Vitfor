@@ -19,6 +19,7 @@ export const ChatInputPanel = ({ handleMessage, clasName }) => {
         <div className={styles.textarea}>
           <TextArea
             value={textAreaValue}
+            maxLength={3000}
             onChange={(event) => setTextAreaValue(event.target.value)}
             placeholder="Введите сообщение"
             onPressEnter={(event) => {
