@@ -1,7 +1,6 @@
 .add {
   width: 77.5%;
   margin: 2vh auto;
-  margin: 2vh auto;
   &-wrapper {
     display: flex;
   }
@@ -96,14 +95,12 @@
         font-size: calc(12px + 4 * (100vh / 1024));
         font-weight: 600;
         line-height: 1rem;
-        line-height: 1rem;
         display: flex;
         padding: 1.5rem 1rem;
         justify-content: center;
         align-items: center;
         gap: 0.5rem;
         align-self: stretch;
-        height: 3rem;
         height: 3rem;
         &:hover{
           background-color: #FA541C;
