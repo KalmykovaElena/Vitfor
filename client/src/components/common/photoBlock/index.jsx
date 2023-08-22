@@ -22,7 +22,7 @@ const PhotoBlock = ({ files, onMainClick, advertId, isFavourite, isUserData = tr
       {files.length > 1 && (
         <div className="photo-block__additional">
           <Carousel
-            cols={files.length > 3 ? 3 : files.length > 1 ? 2 : 1}
+            cols={files.length > 3 ? 3 : files.length > 2 ? 2 : 1}
             rows={1}
             gap={10}
             loop

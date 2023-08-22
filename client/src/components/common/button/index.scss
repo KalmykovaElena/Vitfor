@@ -9,6 +9,13 @@
   &:hover {
     background-color: #ffffff2d;
   }
+  &:disabled{
+    background: #cccccc;
+    &:hover{
+      background: #cccccc;
+      cursor: default;
+    }
+  }
   &-primary {
     border-radius: 1.25rem;
     background: #fa541c;
