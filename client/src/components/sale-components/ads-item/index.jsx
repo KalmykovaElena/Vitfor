@@ -5,7 +5,7 @@ import icon from 'assets/camera.svg';
 import { Favourites } from '../Favourites';
 import { KebabMenu } from '../../common/KebabMenu';
 
-const AdsItem = ({ item, type, handleClick, isUserAds = false }) => (
+const AdsItem = ({ item, type, handleClick, isUserAds = false, adCategory }) => (
   <div className="sale-ads__item">
     <div className="item-image" onClick={handleClick}>
       {item.mainPhoto ? (
@@ -25,7 +25,7 @@ const AdsItem = ({ item, type, handleClick, isUserAds = false }) => (
       {isUserAds ? (
         <KebabMenu advert={item} />
       ) : (
-        <Favourites size="short" id={item.advertId} checked={item.isFavourite} />
+        <Favourites size="short" id={item.advertId} checked={item.isFavourite} adCategory={adCategory} item={item} />
       )}
     </div>
     {type === 'long' && (

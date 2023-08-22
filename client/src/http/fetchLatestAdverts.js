@@ -1,11 +1,13 @@
+/* eslint-disable default-case */
 import { url } from 'constants/url';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { refreshToken } from './refreshToken';
 
 const token = localStorage.getItem('token') || '';
-export const fetchLatestAdverts = createAsyncThunk('adverts/fetchAdverts', async (_, { rejectWithValue }) => {
+export const fetchLatestAdverts = createAsyncThunk('adverts/fetchAdverts', async (category, { rejectWithValue }) => {
+  const path = category === 'sale' ? 'Adverts/GetFourNewestAdverts' : 'Jobs/GetFourNewestJobs';
   try {
-    const response = await fetch(`${url}/Adverts/GetFourNewestAdverts`, {
+    const response = await fetch(`${url}/${path}`, {
       headers: {
         Accept: 'application/json, text/plain',
         'Content-Type': 'application/json;charset=UTF-8',
@@ -20,7 +22,6 @@ export const fetchLatestAdverts = createAsyncThunk('adverts/fetchAdverts', async
       }
       throw new Error('Server Error!');
     }
-
     const data = await response.json();
     return data;
   } catch (error) {

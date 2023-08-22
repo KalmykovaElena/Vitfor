@@ -1,0 +1,31 @@
+.ads{
+    display: flex;
+    flex-direction: column;
+    width: 91.3vw;
+}
+.wrapper{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.empty{
+    display: flex;
+    align-items: center;
+    gap:1rem;
+}
+.navigation{
+ width:100%;
+}
+.navigation_item{
+    width: 20rem;
+    color: inherit;
+    flex-direction: row-reverse;
+}
+.navigation_category{
+    width: 14.16vw;
+    max-height: 6.5rem;
+    padding: 1.5rem 0.5rem;
+    color: inherit;
+    flex-direction: row-reverse;
+}

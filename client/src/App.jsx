@@ -28,6 +28,7 @@ import SearchPage from 'pages/SearchPage';
 import UserCard from 'components/sale-components/UserCard';
 import { ChatPage } from './pages/ChatPage';
 import Header from './components/header';
+import ServicesHomePage from 'components/Services/ServicesHomePage';
 import { CreateService } from './components/Services/CreateService';
 
 const App = () => {
@@ -64,8 +65,13 @@ const App = () => {
           <Route path=":category/edit/ad/:advertId" element={<AdPlacing />} />
           <Route path="adplacing" element={<AdPlacing />} />
         </Route>
-        <Route path="/createService" element={<CreateService />} />
-        <Route path="/services" element={<Services />} />
+
+        <Route path="/services/*" element={<Services />}>
+          <Route path="" element={<ServicesHomePage />} />
+          <Route path=":category" element={<ServicesHomePage />} />
+          <Route path="createService" element={<CreateService />} />
+        </Route>
+
         <Route path="/forum" element={<Forum />} />
         <Route path="/weather" element={<Weather />} />
         <Route path="/search" element={<SearchPage />} />

@@ -12,14 +12,21 @@ export const createServices = (data, reset, setSuccess) => {
     },
     body: JSON.stringify(data),
   })
-    .then((response) => {
+    .then(async (response) => {
+      if (!response.ok) {
+        if (response.status === 401) {
+          refreshToken(createServices, reset, setSuccess);
+        }
+        const res = await response.json();
+        throw new Error(res.message);
+      }
+      return response.json();
+    })
+    .then(() => {
       reset();
       setSuccess(true);
-      response.json();
     })
     .catch((error) => {
-      if (error.status === 401) {
-        refreshToken(createServices, reset, setSuccess);
-      } else console.log(error.statusText);
+      console.log(error);
     });
 };

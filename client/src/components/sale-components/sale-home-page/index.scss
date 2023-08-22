@@ -12,36 +12,36 @@
   &::-webkit-scrollbar {
     display: none;
 }
-  .sale {
-    
-    &-navigation {
-      margin: 5.5vh auto ;
-      width:67vw;
+}
+.category {
+  
+  &-navigation {
+    margin: 5.5vh auto ;
+    width:67vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    @media screen and (max-width: 1400px) {
+      margin: 4vh auto ;
+    }
+  }
+  &-ads {
+    width: 93.3vw;
+    min-height: 42vh;
+    margin: 0 auto;
+    &__title {
+      margin-left: 3.35vw;
+      text-align: start;
+      font-size: 1.5rem;
+      font-weight: 600;
+      width: 100%;
+    }
+    &__wrapper {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
       gap: 1.5rem;
-      @media screen and (max-width: 1400px) {
-        margin: 4vh auto ;
-      }
-    }
-    &-ads {
-      width: 93.3vw;
-      min-height: 42vh;
-      margin: 0 auto;
-      &__title {
-        margin-left: 3.35vw;
-        text-align: start;
-        font-size: 1.5rem;
-        font-weight: 600;
-        width: 100%;
-      }
-      &__wrapper {
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-        width: 100%;
-      }
+      width: 100%;
     }
   }
 }

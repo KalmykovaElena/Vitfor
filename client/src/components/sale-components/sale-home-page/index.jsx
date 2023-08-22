@@ -15,19 +15,19 @@ const SaleHomePage = () => {
   const dispatch = useDispatch();
   const { status, adverts } = useSelector((state) => state.advert);
   useEffect(() => {
-    dispatch(fetchLatestAdverts());
+    dispatch(fetchLatestAdverts('sale'));
   }, []);
 
   return (
     <main className="sale-main-page">
-      <div className="sale-navigation">
+      <div className="category-navigation">
         {saleCategories.map((e) => (
-          <SaleNavigationItem key={e.id} item={e} />
+          <SaleNavigationItem key={e.id} item={e} withDropDown />
         ))}
       </div>
-      <div className="sale-ads">
-        <div className="sale-ads__title">Объявления</div>
-        <div className="sale-ads__wrapper">
+      <div className="category-ads">
+        <div className="category-ads__title">Объявления</div>
+        <div className="category-ads__wrapper">
           {status === 'resolved' && (
             <>
               {adverts.map((advert) => (
