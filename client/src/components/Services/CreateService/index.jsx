@@ -40,10 +40,11 @@ export const CreateService = () => {
     </div>
   );
   const onSubmit = (data) => {
-    const currentData = { ...data, fileList: fileList.map((e) => e.data), mainPhoto: fileList[0]?.data || null };
+    const currentData = { ...data, fileStrings: fileList.map((e) => e.data), mainPhoto: fileList[0]?.data || null };
     if (data.price === ' ') {
       currentData.price = '0';
     }
+    console.log(currentData);
     createServices(currentData, reset, setSuccess);
   };
 
@@ -76,7 +77,7 @@ export const CreateService = () => {
     setSelectedCategory(category);
     const subsection = jobsItems.find((item) => item.label === domEvent.target.textContent);
     setValue('subsectionName', subsection.subsection);
-    setValue('category', category === '1' ? 'I search' : 'I suggest');
+    setValue('sectionName', category === '1' ? 'I search' : 'I suggest');
   };
   return (
     <section className={classNames(styles.wrapper)}>
@@ -145,7 +146,7 @@ export const CreateService = () => {
               </div>
               <div className={styles.category}>
                 <div className={styles.title}>Выбор категории</div>
-                {jobsCategories.map((category) => (
+                {jobsCategories.slice(0, 2).map((category) => (
                   <Dropdown
                     key={category.id}
                     menu={{

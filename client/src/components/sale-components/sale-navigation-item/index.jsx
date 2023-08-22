@@ -4,7 +4,7 @@ import { Dropdown, Space } from 'antd';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-const SaleNavigationItem = ({ item, withDropDown }) => {
+const SaleNavigationItem = ({ item, withDropDown, className }) => {
   const navigate = useNavigate();
   const theme = useSelector((state) => state.auth.theme);
   const { name, img, link, color, items, search, label } = item;
@@ -41,7 +41,7 @@ const SaleNavigationItem = ({ item, withDropDown }) => {
           </Space>
         </Dropdown>
       ) : (
-        <div className="navigation-item" style={{ backgroundColor: renderColor }} onClick={handleClick}>
+        <div className={`navigation-item ${className}`} style={{ backgroundColor: renderColor }} onClick={handleClick}>
           <div className="navigation-item__name">{name || label}</div>
           {img && (
             <div className="navigation-item__icon">

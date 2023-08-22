@@ -122,4 +122,11 @@ export const jobsCategories = [
     img: servises,
     link: '/services',
   },
+  {
+    id: '4',
+    name: 'Разместить услугу',
+    // img: vector1,
+    link: '/createService',
+    hideSearch: true,
+  },
 ];

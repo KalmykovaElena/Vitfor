@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import { url } from 'constants/url';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { refreshToken } from './refreshToken';
@@ -21,7 +22,6 @@ export const fetchLatestAdverts = createAsyncThunk('adverts/fetchAdverts', async
       }
       throw new Error('Server Error!');
     }
-
     const data = await response.json();
     return data;
   } catch (error) {
