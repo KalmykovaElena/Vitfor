@@ -22,7 +22,6 @@ const SaleHomePage = () => {
       dispatch(setAdverts(null));
     };
   }, []);
-
   return (
     <main className="sale-main-page">
       <div className="category-navigation">
