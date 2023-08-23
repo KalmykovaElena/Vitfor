@@ -17,7 +17,13 @@ const Services = () => {
   const renderPage = jobsCategories.find(
     (category) => category.link === `/${params.category}` || category.link === location.pathname
   );
-  const isSearchRender = renderPage ? (renderPage.hideSearch ? !renderPage.hideSearch : true) : false;
+  const isSearchRender = params.jobId
+    ? false
+    : renderPage
+    ? renderPage.hideSearch
+      ? !renderPage.hideSearch
+      : true
+    : false;
   const handleClick = () => {
     if (isAuth) {
       navigate('/services/createService');

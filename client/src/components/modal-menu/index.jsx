@@ -5,7 +5,7 @@ import settingsPng from 'assets/settings.png';
 import { ReactComponent as Reader } from 'assets/reader.svg';
 import { ReactComponent as Messages } from 'assets/mail-unread.svg';
 import { ReactComponent as Favourite } from 'assets/fafourite.svg';
-import { ReactComponent as Notification } from 'assets/notifications.svg';
+// import { ReactComponent as Notification } from 'assets/notifications.svg';
 import { Menu, Switch } from 'antd';
 import './index.scss';
 import Icon from '@ant-design/icons/lib/components/Icon';
@@ -53,10 +53,10 @@ const ModalMenu = ({ setIsMenuOpen }) => {
     setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
   };
   const items = [
-    getItem('Мои объявления', 'userAdds', () => navigate('/sale/user_ads'), <Reader />),
+    getItem('Мои объявления', 'userAdds', () => navigate('/search/user_ads'), <Reader />),
     getItem('Сообщения', 'messages', () => navigate('/chat'), <Messages />),
     getItem('Избранное', 'favourites', () => navigate('/search/favourites'), <Favourite />),
-    getItem('Уведомления', 'notifications', null, <Notification />),
+    // getItem('Уведомления', 'notifications', null, <Notification />),
     getItem('Настройки профиля', 'settings', () => navigate('/personal_info/data'), <Icon component={settings} />),
     getItem('Выход', 'sub1', null, <Icon component={exit} />, [
       getItem(

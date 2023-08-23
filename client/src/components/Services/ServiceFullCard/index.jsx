@@ -1,21 +1,27 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import PhotoBlock from '../../common/photoBlock';
 import { ReactComponent as Camera } from 'assets/camera.svg';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Logo from '../../logo';
 import Button from '../../common/button';
 import phoneIcon from '../../../assets/Phone2.png';
 import messageIcon from '../../../assets/Message.png';
 import { useParams } from 'react-router-dom';
 import { getService } from '../../../http/Services/getService';
+import { Favourites } from 'components/sale-components/Favourites';
 
 export const ServiceFullCard = () => {
   const { jobId } = useParams();
-  const service = useSelector((state) => state.service.service);
+  const dispatch = useDispatch();
+  const { service, isAuth } = useSelector((state) => ({
+    service: state.service.service,
+    isAuth: state.auth.isAuth,
+  }));
   useEffect(() => {
     if (jobId) {
-      getService(jobId);
+      dispatch(getService(jobId));
     }
   }, []);
   const [isPhoneShown, setIsPhoneShown] = useState(false);
@@ -39,15 +45,20 @@ export const ServiceFullCard = () => {
               {service.files?.length > 1 ? (
                 <PhotoBlock isUserData={false} files={service.files} advertId={service.advertId} />
               ) : (
-                <div className="userAdd-photo">
+                <div className={styles.photo}>
                   {service.files[0] ? (
-                    <img src={`data:image/png;base64,${service.files[0].fileString}`} alt="advert" className="img" />
+                    <img
+                      src={`data:image/png;base64,${service.files[0].fileString}`}
+                      alt="advert"
+                      className={styles.img}
+                    />
                   ) : (
                     <div className="userAdd-photo__noimg">
                       <Camera className="noimg" />
                       <span>Нет фото</span>
                     </div>
                   )}
+                  <Favourites size="long" id={service.jobId} checked={service.isFavourite} adCategory="services" />
                 </div>
               )}
             </div>
@@ -74,7 +85,7 @@ export const ServiceFullCard = () => {
                     type="primary"
                     name="Показать телефон"
                     icon={phoneIcon}
-                    className={styles.button}
+                    className={styles.phone_button}
                     handleClick={() => setIsPhoneShown(!isPhoneShown)}
                   />
                   {isPhoneShown && <div className="phone-info">{service.phoneNumber}</div>}
@@ -89,6 +100,7 @@ export const ServiceFullCard = () => {
                 handleClick={() => {
                   console.log('click');
                 }}
+                disabled={!isAuth}
               />
             </div>
           </div>

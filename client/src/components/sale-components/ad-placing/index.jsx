@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './index.scss';
@@ -109,9 +110,11 @@ const AdPlacing = () => {
   };
   const handleCategoryClick = ({ domEvent }) => {
     setSelectedCategory(domEvent.target.textContent);
+    const { section } = saleData.find((item) => item.items?.find((e) => e.label === domEvent.target.textContent));
     const { subsection } = saleData
       .find((item) => item.items?.find((e) => e.label === domEvent.target.textContent))
       .items.find((e) => e.label === domEvent.target.textContent);
+    setValue('SectionName', section);
     setValue('subSectionName', subsection);
   };
 

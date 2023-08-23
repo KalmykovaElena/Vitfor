@@ -7,6 +7,7 @@ import { Tabs } from 'antd';
 import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { useNavigate } from 'react-router-dom';
+import { advertTitles } from 'constants/advertTitles';
 
 const items = [
   {
@@ -22,7 +23,7 @@ const items = [
 const UserAds = () => {
   const { theme, data } = useSelector((state) => ({
     theme: state.auth.theme,
-    data: state.advert.adverts,
+    data: state.search.searchItems,
   }));
   const navigate = useNavigate();
   const [status, setStatus] = useState('Active');
@@ -32,7 +33,12 @@ const UserAds = () => {
   }, []);
   useEffect(() => {
     if (data) {
-      setRenderData(data.filter((ads) => ads.status === status));
+      setRenderData(
+        Object.keys(data).reduce((acc, category) => {
+          acc[category] = data[category].filter((advert) => advert.status === status);
+          return acc;
+        }, {})
+      );
     }
   }, [data, status]);
   const handleTabClick = (activeKey) => {
@@ -51,17 +57,29 @@ const UserAds = () => {
           <>
             <Tabs defaultActiveKey="active" items={items} onChange={handleTabClick} />
             <div className={styles.adverts}>
-              {renderData.map((advert) => (
-                <AdsItem
-                  key={advert.advertId}
-                  item={advert}
-                  isUserAds
-                  type="long"
-                  handleClick={() => {
-                    navigate(`/sale/user_ads/ad/${advert.advertId}`);
-                  }}
-                />
-              ))}
+              {Object.keys(renderData).map((AdvertCategory) => {
+                if (renderData[AdvertCategory].length > 0) {
+                  return (
+                    <div className={styles.category} key={AdvertCategory}>
+                      <div className={styles.title}>{advertTitles[AdvertCategory]}</div>
+                      <div className={styles.content}>
+                        {renderData[AdvertCategory].map((advert) => (
+                          <AdsItem
+                            key={advert.advertId || advert.jobId}
+                            item={advert}
+                            isUserAds
+                            type="long"
+                            handleClick={() => {
+                              navigate(`/sale/user_ads/ad/${advert.advertId}`);
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+                return null;
+              })}
             </div>
           </>
         </div>

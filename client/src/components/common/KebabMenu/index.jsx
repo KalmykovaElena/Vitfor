@@ -10,7 +10,7 @@ import styles from './index.module.scss';
 import { Dropdown } from 'antd';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAdverts, setEditAdvert } from '../../../redux/reducers/advertReducer';
+import { setEditAdvert } from '../../../redux/reducers/advertReducer';
 import { getAdvert } from '../../../http/getAdvert';
 import { changeAdvertsStatus } from '../../../http/Advert/changeAdvertsStatus';
 import { deleteAdvert } from '../../../http/Advert/deleteAdvert';
@@ -18,13 +18,16 @@ import { Modal } from '../Modal';
 import Button from '../button';
 import { Alert } from '../Alert';
 import { getUserAdverts } from 'http/getUserAdverts';
+import { setSearchItems } from 'redux/reducers/searchReducer';
+import { changeServiceStatus } from 'http/Services/ChangeServiceStatus';
+import { deleteService } from 'http/Services/deleteService';
 
 export const KebabMenu = ({ advert, className }) => {
   const { category } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const theme = useSelector((state) => state.auth.theme);
-  const adverts = useSelector((state) => state.advert.adverts);
+  const searchItems = useSelector((state) => state.search.searchItems);
   const [isModalShow, setIsModalShow] = useState(false);
   const [warningText, setWarningText] = useState('');
   const [isDeleteAdvert, setIsDeleteAdvert] = useState(false);
@@ -32,17 +35,24 @@ export const KebabMenu = ({ advert, className }) => {
   const [alertText, setAlertText] = useState('');
   const onModalShow = () => setIsModalShow(true);
   const onModalClose = () => setIsModalShow(false);
+  const idName = advert.advertId ? 'advertId' : 'jobId';
+  const changeStatus = advert.advertId ? changeAdvertsStatus : changeServiceStatus;
+  const deleteAd = advert.advertId ? deleteAdvert : deleteService;
   const changeAdvertList = (status) => {
-    const changedAdvertList =
-      status === 'Deleted'
-        ? adverts.filter((ad) => ad.advertId !== advert.advertId)
-        : adverts.map((ad) => {
-            if (ad.advertId === advert.advertId) {
-              return { ...advert, status };
-            }
-            return ad;
-          });
-    dispatch(setAdverts(changedAdvertList));
+    const changedAdvertList = Object.keys(searchItems).reduce((acc, advertCategory) => {
+      if (status === 'Deleted') {
+        acc[advertCategory] = searchItems[advertCategory].filter((ad) => ad[idName] !== advert[idName]);
+      } else {
+        acc[advertCategory] = searchItems[advertCategory].map((ad) => {
+          if (ad[idName] === advert[idName]) {
+            return { ...advert, status };
+          }
+          return ad;
+        });
+      }
+      return acc;
+    }, {});
+    dispatch(setSearchItems(changedAdvertList));
   };
   const items = [
     {
@@ -81,7 +91,7 @@ export const KebabMenu = ({ advert, className }) => {
           label: 'Восстановить',
           key: 'reuse',
           onClick: () => {
-            changeAdvertsStatus(advert.advertId);
+            changeStatus(advert[idName]);
             changeAdvertList('Active');
           },
           icon: <Reload />,
@@ -120,7 +130,7 @@ export const KebabMenu = ({ advert, className }) => {
               name="Да"
               handleClick={() => {
                 if (isDeleteAdvert) {
-                  deleteAdvert(advert.advertId).then((response) => {
+                  deleteAd(advert[idName]).then((response) => {
                     if (response.status === 200) {
                       setIsAlertShow(true);
                       setAlertText('Объявление успешно удалено');
@@ -130,7 +140,7 @@ export const KebabMenu = ({ advert, className }) => {
                     }
                   });
                 } else {
-                  changeAdvertsStatus(advert.advertId).then((response) => {
+                  changeStatus(advert[idName]).then((response) => {
                     if (response.status === 200) {
                       setIsAlertShow(true);
                       setAlertText('Объявление успешно снято с публикации');
