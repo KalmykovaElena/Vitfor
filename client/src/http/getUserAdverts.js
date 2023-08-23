@@ -1,11 +1,11 @@
 import { url } from 'constants/url';
 import { refreshToken } from './refreshToken';
 import store from 'redux/store';
-import { setAdverts } from 'redux/reducers/advertReducer';
+import { setSearchItems } from 'redux/reducers/searchReducer';
 
 export const getUserAdverts = () => {
   const token = localStorage.getItem('token') || '';
-  fetch(`${url}/Adverts/GetUserAdverts`, {
+  fetch(`${url}/GetUserAdverts`, {
     headers: {
       Accept: 'application/json, text/plain',
       'Content-Type': 'application/json;charset=UTF-8',
@@ -24,8 +24,7 @@ export const getUserAdverts = () => {
       return response.json();
     })
     .then((result) => {
-      store.dispatch(setAdverts(result));
-      // setRenderData(result);
+      store.dispatch(setSearchItems(result));
     })
     .catch((err) => {
       console.log(err);

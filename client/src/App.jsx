@@ -30,6 +30,7 @@ import { ChatPage } from './pages/ChatPage';
 import Header from './components/header';
 import ServicesHomePage from 'components/Services/ServicesHomePage';
 import { CreateService } from './components/Services/CreateService';
+import { ServiceFullCard } from 'components/Services/ServiceFullCard';
 
 const App = () => {
   history.navigate = useNavigate();
@@ -61,7 +62,7 @@ const App = () => {
           <Route path=":category" element={<SaleAds />} />
           <Route path=":category/:type/ad/:id" element={<AdCard />} />
           <Route path=":category/ad/:id" element={<AdCard />} />
-          <Route path="user_ads/ad/:id" element={<UserCard />} />
+          {/* <Route path="user_ads/ad/:id" element={<UserCard />} /> */}
           <Route path=":category/edit/ad/:advertId" element={<AdPlacing />} />
           <Route path="adplacing" element={<AdPlacing />} />
         </Route>
@@ -69,13 +70,17 @@ const App = () => {
         <Route path="/services/*" element={<Services />}>
           <Route path="" element={<ServicesHomePage />} />
           <Route path=":category" element={<ServicesHomePage />} />
+          <Route path=":category/:type/ad/:jobId" element={<ServiceFullCard />} />
           <Route path="createService" element={<CreateService />} />
         </Route>
 
         <Route path="/forum" element={<Forum />} />
         <Route path="/weather" element={<Weather />} />
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="/search/favourites" element={<SearchPage />} />
+        <Route path="/search/*" element={<SearchPage />}>
+          <Route path="favourites" element={<SearchPage />} />
+          <Route path="user_ads" element={<SearchPage />} />
+          <Route path="user_ads/ad/:id" element={<UserCard />} />
+        </Route>
         <Route path="/authorization" element={<Authorization />} />
         <Route path="/recovery" element={<Authorization />} />
         <Route path="/registration" element={<Authorization />} />

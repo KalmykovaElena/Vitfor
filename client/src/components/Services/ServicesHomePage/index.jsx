@@ -17,7 +17,6 @@ const ServicesHomePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const params = useParams();
-
   const { status, adverts } = useSelector((state) => state.advert);
   const renderData = params.category ? jobsItems : jobsCategories.slice(0, 2);
   useEffect(() => {
@@ -28,7 +27,6 @@ const ServicesHomePage = () => {
       dispatch(fetchLatestAdverts('services'));
     }
   }, [params.category]);
-  console.log(params.category);
   return (
     <main>
       <div className={classNames(styles.navigation, ['category-navigation'])}>
@@ -53,12 +51,12 @@ const ServicesHomePage = () => {
                     adCategory="services"
                     handleClick={() => {
                       const category = jobsCategories.find(
-                        (saleSection) => saleSection.section === advert.section
+                        (saleSection) => saleSection.section === advert.sectionName
                       ).link;
                       const subCategory = jobsItems.find(
                         (saleSubSection) => saleSubSection.subsection === advert.subsectionName
                       ).search;
-                      navigate(`/sale/${category.slice(1)}/${subCategory}/ad/${advert.advertId}`);
+                      navigate(`/services${category}/${subCategory}/ad/${advert.jobId}`);
                     }}
                   />
                 ))
