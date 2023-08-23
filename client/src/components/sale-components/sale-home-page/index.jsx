@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import SaleNavigationItem from '../sale-navigation-item';
 import AdsItem from '../ads-item';
 import { useNavigate } from 'react-router-dom';
+import { setAdverts, setStatus } from 'redux/reducers/advertReducer';
 
 const SaleHomePage = () => {
   const navigate = useNavigate();
@@ -16,6 +17,10 @@ const SaleHomePage = () => {
   const { status, adverts } = useSelector((state) => state.advert);
   useEffect(() => {
     dispatch(fetchLatestAdverts('sale'));
+    return () => {
+      dispatch(setStatus(null));
+      dispatch(setAdverts(null));
+    };
   }, []);
 
   return (
@@ -28,7 +33,7 @@ const SaleHomePage = () => {
       <div className="category-ads">
         <div className="category-ads__title">Объявления</div>
         <div className="category-ads__wrapper">
-          {status === 'resolved' && (
+          {status === 'resolved' && adverts && (
             <>
               {adverts.map((advert) => (
                 <AdsItem

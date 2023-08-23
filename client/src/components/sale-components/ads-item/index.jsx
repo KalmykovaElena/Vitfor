@@ -30,7 +30,7 @@ const AdsItem = ({ item, type, handleClick, isUserAds = false, adCategory }) => 
     </div>
     {type === 'long' && (
       <>
-        <div className="item-price">{item.price}</div>
+        <div className="item-price">{item.price} BYN</div>
         <div className="item-description">{item.description}</div>
       </>
     )}

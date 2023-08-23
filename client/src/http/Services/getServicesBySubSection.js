@@ -1,11 +1,9 @@
 import { url } from 'constants/url';
 import { refreshToken } from 'http/refreshToken';
-import { setAdverts } from 'redux/reducers/advertReducer';
-import store from 'redux/store';
 
-export const getServices = (category) => {
+export const getServicesBySubSection = (category, type, setRenderData) => {
   const token = localStorage.getItem('token') || '';
-  fetch(`${url}/Jobs/FindBySectionName`, {
+  fetch(`${url}/Jobs/FindBySubsectionName`, {
     method: 'POST',
     headers: {
       Accept: 'application/json, text/plain',
@@ -14,13 +12,14 @@ export const getServices = (category) => {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
+      subsectionName: type,
       sectionName: category,
     }),
   })
     .then(async (response) => {
       if (!response.ok) {
         if (response.status === 401) {
-          refreshToken(getServices, category);
+          refreshToken(getServicesBySubSection, category, type, setRenderData);
         }
         const res = await response.json();
         throw new Error(res.message);
@@ -28,8 +27,7 @@ export const getServices = (category) => {
       return response.json();
     })
     .then((result) => {
-      console.log(result);
-      store.dispatch(setAdverts(result));
+      setRenderData(result);
     })
     .catch((err) => {
       console.log(err);

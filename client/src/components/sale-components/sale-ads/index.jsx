@@ -4,12 +4,11 @@ import { saleData } from 'constants/saleData';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import logo from 'assets/sad.png';
 import './index.scss';
-
 import { useSelector } from 'react-redux';
 import { getAllAdverts } from 'http/getAllAdverts';
 import AdsItem from '../ads-item';
 import SaleFilters from '../sale-filters';
-import UserAds from '../UserAds';
+import { sortItems } from 'utils/sortItems';
 
 const SaleAds = () => {
   const params = useParams();
@@ -26,23 +25,7 @@ const SaleAds = () => {
     params.type && params.category !== 'search'
       ? data.items.find((item) => item.search === params.type).subsection
       : '';
-  const sortItems = (items) => {
-    if (sortCategory === 'Новые') {
-      return [...items.sort((a, b) => new Date(b.dateOfCreation) - new Date(a.dateOfCreation))];
-    }
-    if (sortCategory === 'Старые') {
-      return [...items.sort((a, b) => new Date(a.dateOfCreation) - new Date(b.dateOfCreation))];
-    }
-    if (sortCategory === 'Дороже') {
-      const getPrice = (price) => parseFloat(price.replace(/\s/g, '').replace(',', '.'), 10);
-      return [...items.sort((a, b) => getPrice(b.price) - getPrice(a.price))];
-    }
-    if (sortCategory === 'Дешевле') {
-      const getPrice = (price) => parseFloat(price.replace(/\s/g, '').replace(',', '.'), 10);
-      return [...items.sort((a, b) => getPrice(a.price) - getPrice(b.price))];
-    }
-    return items;
-  };
+
   useEffect(() => {
     if (subsection) {
       getAllAdverts('FindBySubsectionName', 'subsectionName', subsection, setRenderData, sortItems);
@@ -50,7 +33,7 @@ const SaleAds = () => {
       getAllAdverts('FindBySectionName', 'sectionName', section, setRenderData, sortItems);
     }
 
-    if (renderData) setRenderData(sortItems(renderData));
+    if (renderData) setRenderData(sortItems(sortCategory, renderData));
     if (params.category === 'user_ads') setRenderData(null);
   }, [params.category, productsQuery, section, sortCategory, subsection]);
   return (
@@ -89,7 +72,6 @@ const SaleAds = () => {
           </div>
         </>
       )}
-      {params.category === 'user_ads' && <UserAds />}
     </section>
   );
 };

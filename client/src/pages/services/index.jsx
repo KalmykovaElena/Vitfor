@@ -32,7 +32,7 @@ const Services = () => {
     }
   };
   return (
-    <section className={classNames(styles.services, { [styles.light]: theme === 'light' })}>
+    <section id="services" className={classNames(styles.services, { [styles.light]: theme === 'light' })}>
       <div className={styles.services_header}>
         <BreadCrumb data={jobsCategories} className={styles.breadCrumb} />
         {isSearchRender && (
