@@ -31,6 +31,7 @@ import Header from './components/header';
 import ServicesHomePage from 'components/Services/ServicesHomePage';
 import { CreateService } from './components/Services/CreateService';
 import { ServiceFullCard } from 'components/Services/ServiceFullCard';
+import ServicesAds from 'components/Services/ServicesAds';
 
 const App = () => {
   history.navigate = useNavigate();
@@ -71,6 +72,7 @@ const App = () => {
           <Route path="" element={<ServicesHomePage />} />
           <Route path=":category" element={<ServicesHomePage />} />
           <Route path=":category/:type/ad/:jobId" element={<ServiceFullCard />} />
+          <Route path=":category/:type" element={<ServicesAds />} />
           <Route path="createService" element={<CreateService />} />
         </Route>
 

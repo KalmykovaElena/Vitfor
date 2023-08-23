@@ -11,7 +11,8 @@ import SaleNavigationItem from 'components/sale-components/sale-navigation-item'
 import logo from 'assets/sad.png';
 import styles from './index.module.scss';
 import classNames from 'classnames';
-import { getServices } from 'http/Services/getServices';
+import { getServicesBySection } from 'http/Services/getServicesBySection';
+import { setAdverts, setStatus } from 'redux/reducers/advertReducer';
 
 const ServicesHomePage = () => {
   const navigate = useNavigate();
@@ -22,10 +23,14 @@ const ServicesHomePage = () => {
   useEffect(() => {
     if (params.category) {
       const { section } = jobsCategories.find((category) => category.link === `/${params.category}`);
-      getServices(section);
+      getServicesBySection(section);
     } else {
       dispatch(fetchLatestAdverts('services'));
     }
+    return () => {
+      dispatch(setAdverts(null));
+      dispatch(setStatus(null));
+    };
   }, [params.category]);
   return (
     <main>
@@ -43,7 +48,7 @@ const ServicesHomePage = () => {
         <div className={classNames(styles.wrapper)}>
           {status === 'resolved' && (
             <>
-              {adverts.length > 0 ? (
+              {adverts && adverts.length > 0 ? (
                 adverts.map((advert) => (
                   <AdsItem
                     key={advert.jobId}

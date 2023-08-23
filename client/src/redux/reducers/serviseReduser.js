@@ -8,7 +8,11 @@ const initialState = {
 const serviceSlice = createSlice({
   name: 'service',
   initialState,
-  reducers: {},
+  reducers: {
+    setService: (state, action) => {
+      state.service = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder.addCase(getService.fulfilled, (state, action) => {
       state.service = action.payload;
@@ -16,5 +20,5 @@ const serviceSlice = createSlice({
   },
 });
 
-export const serviceAction = serviceSlice.actions;
+export const { setService } = serviceSlice.actions;
 export const serviceReducer = serviceSlice.reducer;

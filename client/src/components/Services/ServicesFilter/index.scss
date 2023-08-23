@@ -1,0 +1,93 @@
+.ads-filter{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 3.3vw;
+    &__title{
+        font-size: 1.5rem;
+    }
+.navigation-dropdown {
+    max-height: 57vh;
+    overflow-y: auto;
+    scrollbar-color: #d4aa70 #e4e4e4;
+    scrollbar-width: thin;
+    background-color: #110808;
+    border-radius: 0rem 1.25rem 1.25rem 1.25rem;
+    padding: 1rem;
+    &-menu {
+      gap: 0.5rem;
+    }
+    .ant-btn{
+      width:100%;
+    }
+    .ant-btn-primary {
+      background-color: #fa541c !important;
+      border-radius: 1.25rem !important;
+      display: flex;
+      height: 2.5rem;
+      padding: 0.25rem 0.9375rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.625rem;
+      margin: 1rem auto 0;
+    }
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #bebbbbaf;
+      border-radius: 100px;
+      margin: 1.25rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 100px;
+      background-color: #fa541c;
+      box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
+    }
+    .filter-check {
+      &__label {
+        color: #fff;
+        display: flex;
+        gap: 0.5rem;
+      }
+    }
+    input[type='radio'] {
+      accent-color: #FA541C;
+  }
+          
+    .ant-dropdown-menu-item{
+      border: 1px solid transparent;
+      text-align: start;
+      &:hover {
+        border-radius: 1.25rem !important;
+        background-color: #4848454d;
+      }
+    }
+    .ant-dropdown-menu-item-selected {
+      background-color: #110808 !important;
+      border-radius: 1.25rem !important;
+      border: 1px solid #fff;
+    }
+    &__light {
+      background-color:#ffffff ;
+      color:#000000;
+      .filter-check__label{
+        color: #110808;
+      }
+      .ant-dropdown-menu {
+        background-color:#ffffff ;
+        .ant-dropdown-menu-title-content {
+          color: #110808;
+        }
+        
+              }
+      .ant-dropdown-menu-item-selected {
+        background-color: #ffffff !important;
+        border-radius: 1.25rem !important;
+        border: 1px solid #110808;
+      }
+    }
+  }
+}

@@ -11,6 +11,7 @@ import messageIcon from '../../../assets/Message.png';
 import { useParams } from 'react-router-dom';
 import { getService } from '../../../http/Services/getService';
 import { Favourites } from 'components/sale-components/Favourites';
+import { setService } from 'redux/reducers/serviseReduser';
 
 export const ServiceFullCard = () => {
   const { jobId } = useParams();
@@ -23,6 +24,7 @@ export const ServiceFullCard = () => {
     if (jobId) {
       dispatch(getService(jobId));
     }
+    return () => dispatch(setService({}));
   }, []);
   const [isPhoneShown, setIsPhoneShown] = useState(false);
   const date = service
