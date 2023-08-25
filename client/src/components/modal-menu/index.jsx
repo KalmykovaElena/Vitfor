@@ -53,7 +53,7 @@ const ModalMenu = ({ setIsMenuOpen }) => {
     setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
   };
   const items = [
-    getItem('Мои объявления', 'userAdds', () => navigate('/search/user_ads'), <Reader />),
+    getItem('Мои объявления', 'userAdds', () => navigate('/search/userads'), <Reader />),
     getItem('Сообщения', 'messages', () => navigate('/chat'), <Messages />),
     getItem('Избранное', 'favourites', () => navigate('/search/favourites'), <Favourite />),
     // getItem('Уведомления', 'notifications', null, <Notification />),

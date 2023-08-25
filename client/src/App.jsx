@@ -32,6 +32,8 @@ import ServicesHomePage from 'components/Services/ServicesHomePage';
 import { CreateService } from './components/Services/CreateService';
 import { ServiceFullCard } from 'components/Services/ServiceFullCard';
 import ServicesAds from 'components/Services/ServicesAds';
+import UserAds from 'components/sale-components/UserAds';
+import UserSearch from 'components/UserSearch';
 
 const App = () => {
   history.navigate = useNavigate();
@@ -63,7 +65,7 @@ const App = () => {
           <Route path=":category" element={<SaleAds />} />
           <Route path=":category/:type/ad/:id" element={<AdCard />} />
           <Route path=":category/ad/:id" element={<AdCard />} />
-          {/* <Route path="user_ads/ad/:id" element={<UserCard />} /> */}
+
           <Route path=":category/edit/ad/:advertId" element={<AdPlacing />} />
           <Route path="adplacing" element={<AdPlacing />} />
         </Route>
@@ -79,9 +81,12 @@ const App = () => {
         <Route path="/forum" element={<Forum />} />
         <Route path="/weather" element={<Weather />} />
         <Route path="/search/*" element={<SearchPage />}>
-          <Route path="favourites" element={<SearchPage />} />
-          <Route path="user_ads" element={<SearchPage />} />
-          <Route path="user_ads/ad/:id" element={<UserCard />} />
+          <Route path="" element={<UserSearch />} />
+          <Route path=":category" element={<UserSearch />} />
+          <Route path="userads/sale/edit/ad/:advertId" element={<AdPlacing />} />
+          <Route path="userads/services/edit/ad/:advertId" element={<CreateService />} />
+          <Route path="userads" element={<UserAds />} />
+          <Route path="userads/:type/ad/:id" element={<UserCard />} />
         </Route>
         <Route path="/authorization" element={<Authorization />} />
         <Route path="/recovery" element={<Authorization />} />
