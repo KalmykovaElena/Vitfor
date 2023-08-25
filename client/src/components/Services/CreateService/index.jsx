@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import classNames from 'classnames';
 import styles from './styles.module.scss';
 import img from '../../../assets/CheckCircle.png';
@@ -12,9 +12,21 @@ import { beforeUploadFile } from '../../../helpers/beforeUploadFile';
 import FormInput from '../../common/formInput';
 import { jobsCategories, jobsItems } from '../../../constants/Jobs/jobsData';
 import { createServices } from '../../../http/Services/createServices';
+import { useDispatch, useSelector } from 'react-redux';
+import { setEditAdvert } from 'redux/reducers/advertReducer';
+import { saleCategories } from 'constants/saleData';
+import { updateService } from 'http/Services/updateService';
+import { setService } from 'redux/reducers/serviseReduser';
 
 export const CreateService = () => {
+  const { advert, editAdvert, service } = useSelector((state) => ({
+    editAdvert: state.advert.editAdvert,
+    advert: state.advert.advert,
+    service: state.service.service,
+  }));
   const [fileList, setFileList] = useState([]);
+  const dispatch = useDispatch();
+  const { advertId } = useParams();
   const [selectedSubCategory, setSelectedSubCategory] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -32,6 +44,12 @@ export const CreateService = () => {
   } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
+    defaultValues: {
+      title: editAdvert.title,
+      description: editAdvert.description,
+      price: editAdvert.price,
+      subSectionName: editAdvert.subsectionName,
+    },
   });
   const uploadButton = (
     <div>
@@ -44,8 +62,13 @@ export const CreateService = () => {
     if (data.price === ' ') {
       currentData.price = '0';
     }
-    console.log(currentData);
-    createServices(currentData, reset, setSuccess);
+
+    if (advertId) {
+      updateService({ ...currentData, jobId: advertId });
+      navigate('/search/userads');
+    } else {
+      createServices(currentData, reset, setSuccess);
+    }
   };
 
   useEffect(() => {
@@ -79,6 +102,32 @@ export const CreateService = () => {
     setValue('subsectionName', subsection.subsection);
     setValue('sectionName', category === '1' ? 'I search' : 'I suggest');
   };
+  useEffect(
+    () => () => {
+      dispatch(setEditAdvert({}));
+      dispatch(setService({}));
+    },
+    []
+  );
+  useEffect(() => {
+    if (editAdvert.advertId && service.jobId) {
+      setFileList(
+        service.files.map((item, index) => ({
+          data: item.fileString,
+          uid: `-${index}`,
+          name: `image`,
+          thumbUrl: `data:image/png;base64,${item.fileString}`,
+        }))
+      );
+      const category = jobsCategories.find((item) => item.section === service.sectionName).id;
+      setSelectedCategory(category);
+      setSelectedSubCategory(jobsItems.find((item) => item.subsection === service.subsectionName).label);
+      setValue('subsectionName', service.subsectionName);
+      setValue('sectionName', category === '1' ? 'I search' : 'I suggest');
+      setValue('phoneNumber', service.phoneNumber);
+    }
+  }, [advert, service]);
+
   return (
     <section className={classNames(styles.wrapper)}>
       {success ? (

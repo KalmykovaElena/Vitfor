@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ReactComponent as Pencil } from 'assets/pencil.svg';
 import { ReactComponent as Power } from 'assets/power.svg';
 import { ReactComponent as Reload } from 'assets/reload.svg';
@@ -21,9 +21,10 @@ import { getUserAdverts } from 'http/getUserAdverts';
 import { setSearchItems } from 'redux/reducers/searchReducer';
 import { changeServiceStatus } from 'http/Services/ChangeServiceStatus';
 import { deleteService } from 'http/Services/deleteService';
+import { getService } from 'http/Services/getService';
 
-export const KebabMenu = ({ advert, className }) => {
-  const { category } = useParams();
+export const KebabMenu = ({ advert, className, adCategory }) => {
+  // const { category } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const theme = useSelector((state) => state.auth.theme);
@@ -59,10 +60,16 @@ export const KebabMenu = ({ advert, className }) => {
       label: 'Редактировать',
       key: 'userAdds',
       onClick: () => {
-        getAdvert(advert.advertId);
+        if (advert.advertId) {
+          getAdvert(advert.advertId);
+        }
+        if (advert.jobId) {
+          dispatch(getService(advert.jobId));
+        }
+
         dispatch(
           setEditAdvert({
-            advertId: advert.advertId,
+            advertId: advert.advertId || advert.jobId,
             title: advert.title,
             description: advert.description,
             price: advert.price,
@@ -70,7 +77,7 @@ export const KebabMenu = ({ advert, className }) => {
             subsectionName: advert.subsectionName,
           })
         );
-        navigate(`/sale/${category}/edit/ad/${advert.advertId}`);
+        navigate(`/search/userads/${adCategory}/edit/ad/${advert.advertId || advert.jobId}`);
       },
       icon: <Pencil />,
     },

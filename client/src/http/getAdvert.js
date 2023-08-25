@@ -1,8 +1,6 @@
-// import { saleData } from 'constants/saleData';
 import { url } from 'constants/url';
 import { setAdvert } from 'redux/reducers/advertReducer';
 import store from 'redux/store';
-// import { history } from 'utils/history';
 import { refreshToken } from './refreshToken';
 
 export const getAdvert = (advertId) => {
@@ -31,22 +29,6 @@ export const getAdvert = (advertId) => {
     })
     .then((result) => {
       store.dispatch(setAdvert(result));
-      // if (advertCategory === 'user_ads') {
-      //   history.navigate(`/sale/user_ads/ad/${result.advertId}`);
-      // } else {
-      //   const pathData = saleData.find((saleSection) =>
-      //     saleSection.items?.find((saleSubSection) => saleSubSection.subsection === result.subsectionName)
-      //   );
-      //   const category = pathData.link;
-      //   const subCategory = pathData.items.find(
-      //     (saleSubSection) => saleSubSection.subsection === result.subsectionName
-      //   ).search;
-      //   if (subCategory) {
-      //     history.navigate(`/sale/${category.slice(1)}/${subCategory}/ad/${result.advertId}`);
-      //   } else if (category) {
-      //     history.navigate(`/sale/${category.slice(1)}/ad/${result.advertId}`);
-      //   }
-      // }
     })
     .catch((err) => {
       console.log(err);

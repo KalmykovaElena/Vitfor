@@ -103,7 +103,7 @@ const AdPlacing = () => {
     }
     if (advertId) {
       updateAdvert({ ...currentData, advertId });
-      navigate('/sale/user_ads');
+      navigate('/search/userads');
     } else {
       setAdver(currentData, reset, fileList, setSuccess);
     }

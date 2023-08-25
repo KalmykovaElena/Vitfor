@@ -1,0 +1,18 @@
+.contentWrapper{
+    display:flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.content{
+    display: flex;
+    gap:1rem;
+    flex-wrap: wrap;
+}
+.title{
+    text-align: start;
+}
+.category{
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}
