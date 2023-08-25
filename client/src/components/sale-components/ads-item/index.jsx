@@ -23,7 +23,7 @@ const AdsItem = ({ item, type, handleClick, isUserAds = false, adCategory }) => 
     <div className="item-title">
       {item.title}
       {isUserAds ? (
-        <KebabMenu advert={item} />
+        <KebabMenu advert={item} adCategory={adCategory} />
       ) : (
         <Favourites size="short" id={item.advertId} checked={item.isFavourite} adCategory={adCategory} item={item} />
       )}

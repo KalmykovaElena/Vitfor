@@ -63,17 +63,26 @@ const UserAds = () => {
                     <div className={styles.category} key={AdvertCategory}>
                       <div className={styles.title}>{advertTitles[AdvertCategory]}</div>
                       <div className={styles.content}>
-                        {renderData[AdvertCategory].map((advert) => (
-                          <AdsItem
-                            key={advert.advertId || advert.jobId}
-                            item={advert}
-                            isUserAds
-                            type="long"
-                            handleClick={() => {
-                              navigate(`/sale/user_ads/ad/${advert.advertId}`);
-                            }}
-                          />
-                        ))}
+                        {renderData[AdvertCategory].map((advert) => {
+                          let category;
+                          if (AdvertCategory === 'adverts') {
+                            category = 'sale';
+                          } else if (AdvertCategory === 'jobs') {
+                            category = 'services';
+                           }
+                          return (
+                            <AdsItem
+                              key={advert.advertId || advert.jobId}
+                              item={advert}
+                              isUserAds
+                              type="long"
+                              adCategory={category}
+                              handleClick={() => {
+                                navigate(`${category}/ad/${advert.advertId || advert.jobId}`);
+                              }}
+                            />
+                          );
+                        })}
                       </div>
                     </div>
                   );
