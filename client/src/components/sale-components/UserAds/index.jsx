@@ -69,7 +69,7 @@ const UserAds = () => {
                             category = 'sale';
                           } else if (AdvertCategory === 'jobs') {
                             category = 'services';
-                           }
+                          }
                           return (
                             <AdsItem
                               key={advert.advertId || advert.jobId}

@@ -2,7 +2,7 @@ import { getUserAdverts } from 'http/getUserAdverts';
 import { url } from '../../constants/url';
 import { refreshToken } from '../refreshToken';
 
-export const updateAdvert = async (advert) => {
+export const updateAdvert = async (advert, setSuccess) => {
   const token = localStorage.getItem('token');
   await fetch(`${url}/Adverts/UpdateAdvert`, {
     method: 'PUT',
@@ -15,6 +15,7 @@ export const updateAdvert = async (advert) => {
     .then(async (response) => {
       if (response.ok) {
         getUserAdverts();
+        setSuccess('Объявление успешно обновлено');
       }
     })
     .catch((response) => {

@@ -31,6 +31,7 @@ const AdPlacing = () => {
   const navigate = useNavigate();
   const [success, setSuccess] = useState(false);
   const [checkedPrice, setCheckedPrice] = useState(false);
+  const [disabledSubmit, setDisabledSubmit] = useState(false);
   const {
     register,
     handleSubmit,
@@ -102,11 +103,11 @@ const AdPlacing = () => {
       currentData.price = '0';
     }
     if (advertId) {
-      updateAdvert({ ...currentData, advertId });
-      navigate('/search/userads');
+      updateAdvert({ ...currentData, advertId }, setSuccess);
     } else {
       setAdver(currentData, reset, fileList, setSuccess);
     }
+    setDisabledSubmit(true);
   };
   const handleCategoryClick = ({ domEvent }) => {
     setSelectedCategory(domEvent.target.textContent);
@@ -133,8 +134,12 @@ const AdPlacing = () => {
         <div className="adplacing-success">
           <img className="adplacing-success-img" src={img} alt="success" />
           <h2>Успех</h2>
-          <div>Объявление успешно опубликовано</div>
-          <Button name="В начало" type="primary" handleClick={() => navigate('/sale')} />
+          <div>{success}</div>
+          <Button
+            name="В начало"
+            type="primary"
+            handleClick={() => navigate(success === 'Объявление успешно опубликовано' ? '/sale' : '/search/userads')}
+          />
         </div>
       ) : (
         <form className="adplacing-form" onSubmit={handleSubmit(onSubmit)}>
@@ -329,6 +334,7 @@ const AdPlacing = () => {
                     'sale/adplacing': 'Подать объявление',
                   },
                 }}
+                disabled={disabledSubmit}
                 error={errors}
               />
             </div>

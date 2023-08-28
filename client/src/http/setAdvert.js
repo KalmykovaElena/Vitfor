@@ -26,7 +26,7 @@ export const setAdver = (data, reset, fileList, setSuccess) => {
     })
     .then(() => {
       reset();
-      setSuccess(true);
+      setSuccess('Объявление успешно опубликовано');
     })
     .catch((err) => {
       console.log(err);

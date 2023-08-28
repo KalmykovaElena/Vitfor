@@ -34,13 +34,20 @@ const Services = () => {
   return (
     <section id="services" className={classNames(styles.services, { [styles.light]: theme === 'light' })}>
       <div className={styles.services_header}>
-        <BreadCrumb data={jobsCategories} className={styles.breadCrumb} />
+        <BreadCrumb
+          data={jobsCategories}
+          className={classNames(styles.breadCrumb, { [styles.breadCrumb_light]: theme === 'light' })}
+        />
         {isSearchRender && (
           <div className="category-search">
             {renderPage && (
               <div className="category-search-name">
-                <div className="category-search-icon">
-                  <img src={renderPage.img} alt="category" />
+                <div className={classNames(styles.iconWrapper, { [styles.iconWrapperLight]: theme === 'light' })}>
+                  <img
+                    className={classNames({ [styles.iconLight]: theme === 'light' })}
+                    src={renderPage.img}
+                    alt="category"
+                  />
                 </div>
                 {renderPage.name}
               </div>

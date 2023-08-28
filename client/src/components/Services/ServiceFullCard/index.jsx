@@ -8,14 +8,19 @@ import Logo from '../../logo';
 import Button from '../../common/button';
 import phoneIcon from '../../../assets/Phone2.png';
 import messageIcon from '../../../assets/Message.png';
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getService } from '../../../http/Services/getService';
 import { Favourites } from 'components/sale-components/Favourites';
 import { setService } from 'redux/reducers/serviseReduser';
+import { createChat } from 'http/Chat/createChat';
+import { chapterNames } from 'constants/chapterNames';
 
 export const ServiceFullCard = () => {
   const { jobId } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const chapter = location.pathname.split('/')[1];
   const { service, isAuth } = useSelector((state) => ({
     service: state.service.service,
     isAuth: state.auth.isAuth,
@@ -100,7 +105,14 @@ export const ServiceFullCard = () => {
                 icon={messageIcon}
                 className={styles.button}
                 handleClick={() => {
-                  console.log('click');
+                  dispatch(
+                    createChat({
+                      advertId: service.jobId,
+                      receiverUsername: service.userName,
+                      chapterName: chapterNames[chapter],
+                    })
+                  );
+                  navigate('/chat');
                 }}
                 disabled={!isAuth}
               />
