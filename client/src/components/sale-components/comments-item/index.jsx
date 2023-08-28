@@ -9,21 +9,29 @@ import { replyComment } from 'http/replyComments';
 
 const CommentsItem = ({ item, className, parentId }) => {
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const { nickName, userPhoto, userName, text, commentId } = item;
+  const { nickName, userPhoto, userName, text, commentId, dateOfCreation } = item;
   const user = useSelector((state) => state.auth.user);
+  const date = new Date(dateOfCreation).toLocaleDateString('ru-Ru', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
   const onReplySubmit = (data) => {
     replyComment(parentId, data.comment, commentId);
   };
   return (
     <div className={className ? `comments-item ${className}` : 'comments-item'}>
-      <div className="comments-item__wrapper">
-        <Logo img={userPhoto} text={nickName} subtext={userName} textLocation="right" />
-        <div className="comments-item__content">{text}</div>
-        {user.userName === userName && (
-          <div className="comments-item__controller" onClick={() => deleteComment(commentId, parentId)}>
-            Удалить
-          </div>
-        )}
+      <div>
+        <div className="comments-item__wrapper">
+          <Logo img={userPhoto} text={nickName} subtext={userName} textLocation="right" />
+          <div className="comments-item__content">{text}</div>
+          {user.userName === userName && (
+            <div className="comments-item__controller" onClick={() => deleteComment(commentId, parentId)}>
+              Удалить
+            </div>
+          )}
+        </div>
+        <div className="comments-date">{date}</div>
       </div>
       {className !== 'subcomment' && (
         <>

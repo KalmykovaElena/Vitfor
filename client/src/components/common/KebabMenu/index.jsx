@@ -60,11 +60,10 @@ export const KebabMenu = ({ advert, className, adCategory }) => {
       label: 'Редактировать',
       key: 'userAdds',
       onClick: () => {
-        if (advert.advertId) {
-          getAdvert(advert.advertId);
-        }
         if (advert.jobId) {
           dispatch(getService(advert.jobId));
+        } else if (advert.advertId) {
+          getAdvert(advert.advertId);
         }
 
         dispatch(
