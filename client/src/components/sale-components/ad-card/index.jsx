@@ -3,7 +3,7 @@ import { getAdvert } from 'http/getAdvert';
 import PhotoBlock from 'components/common/photoBlock';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import './index.scss';
 import Logo from 'components/logo';
 import Slider from 'components/common/slider';
@@ -16,13 +16,17 @@ import Comments from '../comments';
 import { createChat } from '../../../http/Chat/createChat';
 import { Favourites } from '../Favourites';
 import { setAdvert } from 'redux/reducers/advertReducer';
+import { chapterNames } from 'constants/chapterNames';
 
 const AdCard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { advert, isAuth } = useSelector((state) => ({
+  const location = useLocation();
+  const chapter = location.pathname.split('/')[1];
+  const { advert, isAuth, user } = useSelector((state) => ({
     advert: state.advert.advert,
     isAuth: state.auth.isAuth,
+    user: state.auth.user,
   }));
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPhoneShown, setIsPhoneShown] = useState(false);
@@ -101,10 +105,16 @@ const AdCard = () => {
                       name="Написать сообщение"
                       icon={messageIcon}
                       handleClick={() => {
-                        dispatch(createChat(advert.advertId));
+                        dispatch(
+                          createChat({
+                            advertId: advert.advertId,
+                            receiverUsername: advert.userName,
+                            chapterName: chapterNames[chapter],
+                          })
+                        );
                         navigate('/chat');
                       }}
-                      disabled={!isAuth}
+                      disabled={!isAuth || advert.userName === user.userName}
                     />
                   </div>
                 </div>

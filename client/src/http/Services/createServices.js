@@ -24,7 +24,7 @@ export const createServices = (data, reset, setSuccess) => {
     })
     .then(() => {
       reset();
-      setSuccess(true);
+      setSuccess('Услуга успешно опубликована');
     })
     .catch((error) => {
       console.log(error);

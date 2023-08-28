@@ -2,11 +2,19 @@
   display: flex;
   flex-direction: column;
   gap: 1.06rem;
+  .comments-date{
+    text-align: start;
+    font-size: 0.75rem;
+    color:#ccc;
+  }
   &__wrapper {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
+    .logo-text{
+      text-align: start;
+    }
   }
   .form-replyComment {
     display: flex;

@@ -16,7 +16,7 @@ const Sale = () => {
   const renderPage =
     saleData.find((item) => item.link === `/${params.category}` || item.link === `/${path}`) ||
     saleData.find((item) => item.link === location.pathname);
-  const isSearchRender = renderPage ? (renderPage.hideSearch ? !renderPage.hideSearch : true) : false;
+  const isSearchRender = renderPage && !params.id ? (renderPage.hideSearch ? !renderPage.hideSearch : true) : false;
   const isAuth = useSelector((state) => state.auth.isAuth);
   const handleClick = () => {
     if (isAuth) {

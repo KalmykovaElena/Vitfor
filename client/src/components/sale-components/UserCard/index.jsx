@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable import/no-extraneous-dependencies */
 import { getAdvert } from 'http/getAdvert';
 import { saleData } from 'constants/saleData';
@@ -107,7 +108,7 @@ const UserCard = () => {
               )}
               <div className="userAdd-control">
                 Управлять объявлением
-                <KebabMenu advert={renderAdvert} className="cardKebab" />
+                <KebabMenu advert={renderAdvert} className="cardKebab" adCategory={type} />
               </div>
             </div>
           </div>

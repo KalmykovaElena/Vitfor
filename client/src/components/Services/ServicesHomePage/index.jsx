@@ -19,6 +19,7 @@ const ServicesHomePage = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const { status, adverts } = useSelector((state) => state.advert);
+  const theme = useSelector((state) => state.auth.theme);
   const renderData = params.category ? jobsItems : jobsCategories.slice(0, 2);
   useEffect(() => {
     if (params.category) {
@@ -33,7 +34,7 @@ const ServicesHomePage = () => {
     };
   }, [params.category]);
   return (
-    <main>
+    <main className={classNames(styles.main, { [styles.light]: theme === 'light' })}>
       <div className={classNames(styles.navigation, ['category-navigation'])}>
         {renderData.map((e) => (
           <SaleNavigationItem

@@ -2,7 +2,7 @@ import { getUserAdverts } from 'http/getUserAdverts';
 import { url } from '../../constants/url';
 import { refreshToken } from '../refreshToken';
 
-export const updateService = async (service) => {
+export const updateService = async (service, setSuccess) => {
   const token = localStorage.getItem('token');
   await fetch(`${url}/Jobs/UpdateJob`, {
     method: 'PUT',
@@ -15,6 +15,7 @@ export const updateService = async (service) => {
     .then(async (response) => {
       if (response.ok) {
         getUserAdverts();
+        setSuccess('Услуга успешно обновлена');
       }
     })
     .catch((response) => {

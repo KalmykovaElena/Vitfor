@@ -14,7 +14,7 @@ import { jobsCategories, jobsItems } from '../../../constants/Jobs/jobsData';
 import { createServices } from '../../../http/Services/createServices';
 import { useDispatch, useSelector } from 'react-redux';
 import { setEditAdvert } from 'redux/reducers/advertReducer';
-import { saleCategories } from 'constants/saleData';
+
 import { updateService } from 'http/Services/updateService';
 import { setService } from 'redux/reducers/serviseReduser';
 
@@ -33,6 +33,7 @@ export const CreateService = () => {
   const navigate = useNavigate();
   const [success, setSuccess] = useState(false);
   const [checkedPrice, setCheckedPrice] = useState(false);
+  const [disabledSubmit, setDisabledSubmit] = useState(false);
   const {
     register,
     handleSubmit,
@@ -64,11 +65,11 @@ export const CreateService = () => {
     }
 
     if (advertId) {
-      updateService({ ...currentData, jobId: advertId });
-      navigate('/search/userads');
+      updateService({ ...currentData, jobId: advertId }, setSuccess);
     } else {
       createServices(currentData, reset, setSuccess);
     }
+    setDisabledSubmit(true);
   };
 
   useEffect(() => {
@@ -134,13 +135,13 @@ export const CreateService = () => {
         <div className={styles.success}>
           <img className={styles.successImg} src={img} alt="success" />
           <h2>Успех</h2>
-          <div>Услуга успешно опубликована</div>
+          <div>{success}</div>
           <Button
             className={styles.button}
             name="В начало"
             type="primary"
             handleClick={() => {
-              navigate('/services');
+              navigate(success === 'Услуга успешно создана' ? '/services' : '/search/userads');
             }}
           />
         </div>
@@ -335,6 +336,7 @@ export const CreateService = () => {
                 </div>
                 <FormInput
                   className={styles.formButton}
+                  disabled={disabledSubmit}
                   data={{
                     inputType: 'submit',
                     id: 'input-submit',
