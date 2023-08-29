@@ -17,6 +17,7 @@ import { createChat } from '../../../http/Chat/createChat';
 import { Favourites } from '../Favourites';
 import { setAdvert } from 'redux/reducers/advertReducer';
 import { chapterNames } from 'constants/chapterNames';
+// import { chatAction } from 'redux/reducers/chatReducer';
 
 const AdCard = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ const AdCard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPhoneShown, setIsPhoneShown] = useState(false);
   const params = useParams();
+  // const { username, nickName, userPhoto, advertId, advertTitle, advertPrice, advertPhoto } = advert;
   const date = advert
     ? new Date(advert.dateOfCreation).toLocaleDateString('ru-Ru', {
         month: 'long',
@@ -112,6 +114,8 @@ const AdCard = () => {
                             chapterName: chapterNames[chapter],
                           })
                         );
+                        // dispatch(chatAction.getSelectedUser({ username, nickName, img: userPhoto }));
+                        // dispatch(chatAction.getAdvert({ advertId, advertTitle, advertPrice, advertPhoto }));
                         navigate('/chat');
                       }}
                       disabled={!isAuth || advert.userName === user.userName}
