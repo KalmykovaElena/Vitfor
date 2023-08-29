@@ -14,6 +14,8 @@ import { Favourites } from 'components/sale-components/Favourites';
 import { setService } from 'redux/reducers/serviseReduser';
 import { createChat } from 'http/Chat/createChat';
 import { chapterNames } from 'constants/chapterNames';
+import classNames from 'classnames';
+// import { chatAction } from 'redux/reducers/chatReducer';
 
 export const ServiceFullCard = () => {
   const { jobId } = useParams();
@@ -21,9 +23,10 @@ export const ServiceFullCard = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const chapter = location.pathname.split('/')[1];
-  const { service, isAuth } = useSelector((state) => ({
+  const { service, isAuth, theme } = useSelector((state) => ({
     service: state.service.service,
     isAuth: state.auth.isAuth,
+    theme: state.auth.theme,
   }));
   useEffect(() => {
     if (jobId) {
@@ -40,7 +43,7 @@ export const ServiceFullCard = () => {
       })
     : '';
   return (
-    <div className={styles.wrapper}>
+    <div className={classNames(styles.wrapper, { [styles.wrapper_light]: theme === 'light' })}>
       {service.jobId && (
         <>
           <div className={styles.serviceInfo}>
@@ -65,7 +68,13 @@ export const ServiceFullCard = () => {
                       <span>Нет фото</span>
                     </div>
                   )}
-                  <Favourites size="long" id={service.jobId} checked={service.isFavourite} adCategory="services" />
+                  <Favourites
+                    size="long"
+                    id={service.jobId}
+                    checked={service.isFavourite}
+                    adCategory="services"
+                    item={service}
+                  />
                 </div>
               )}
             </div>
@@ -92,7 +101,7 @@ export const ServiceFullCard = () => {
                     type="primary"
                     name="Показать телефон"
                     icon={phoneIcon}
-                    className={styles.phone_button}
+                    className={theme === 'light' ? styles.phoneButton_light : styles.phoneButton}
                     handleClick={() => setIsPhoneShown(!isPhoneShown)}
                   />
                   {isPhoneShown && <div className="phone-info">{service.phoneNumber}</div>}

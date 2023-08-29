@@ -16,21 +16,27 @@ export const ChatsList = ({ isSelect, selectedUser, handleSelect }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (actualChat) {
-      if (actualChat.chatId === null) {
+      const { username, nickName, userPhoto, advertId, advertTitle, advertPrice, advertPhoto } = actualChat;
+      if (!chatList.find((item) => item.chatId === actualChat.chatId) && actualChat.chatId) {
         setChatList([...chatList, actualChat]);
+        handleSelect(actualChat.username);
       }
+      dispatch(chatAction.getMessages([]));
+      dispatch(getChatMessages(actualChat.chatId));
+      dispatch(chatAction.getSelectedUser({ username, nickName, img: userPhoto }));
+      dispatch(chatAction.getAdvert({ advertId, advertTitle, advertPrice, advertPhoto }));
     }
     dispatch(getChats());
   }, [actualChat]);
   useEffect(() => {
-    if (!chatList.length) {
-      setChatList(chats);
-    }
+    // if (!chatList.length) {
+    setChatList(chats);
+    // }
   }, [chats]);
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>Сообщения</div>
-      {!!chatList.length && (
+      {!!chatList?.length && (
         <div className={styles.chats}>
           {chatList.map(
             ({ userPhoto, username, nickName, chatId, advertId, advertTitle, advertPrice, advertPhoto }) => (
@@ -38,10 +44,22 @@ export const ChatsList = ({ isSelect, selectedUser, handleSelect }) => {
                 img={userPhoto}
                 userName={username}
                 nickname={nickName}
-                isChoosing={isSelect && selectedUser === username}
+                isChoosing={isSelect && selectedUser === username && advertId === actualChat.advertId}
                 handleClick={() => {
                   handleSelect(username);
                   dispatch(chatAction.getMessages([]));
+                  dispatch(
+                    chatAction.getActualChat({
+                      userPhoto,
+                      username,
+                      nickName,
+                      chatId,
+                      advertId,
+                      advertTitle,
+                      advertPrice,
+                      advertPhoto,
+                    })
+                  );
                   if (chatId) {
                     dispatch(getChatMessages(chatId));
                   }

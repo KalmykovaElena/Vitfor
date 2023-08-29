@@ -22,6 +22,7 @@
     .sale-ads__item{
       background: rgba(255, 255, 255, 0.60);
     }
+   
   }
   main {
     flex-grow: 1;
@@ -55,6 +56,16 @@
     }
   }
   &_light {
+    .phone-info{
+      button{
+        color:#fa541c;
+        img{
+          filter: hue-rotate(90deg);
+        }
+        
+      }
+      
+    }
     .sale-search-icon {
       border-color: #000000;
       img {

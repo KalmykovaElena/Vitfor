@@ -14,7 +14,6 @@ import { jobsCategories, jobsItems } from '../../../constants/Jobs/jobsData';
 import { createServices } from '../../../http/Services/createServices';
 import { useDispatch, useSelector } from 'react-redux';
 import { setEditAdvert } from 'redux/reducers/advertReducer';
-
 import { updateService } from 'http/Services/updateService';
 import { setService } from 'redux/reducers/serviseReduser';
 
@@ -34,6 +33,7 @@ export const CreateService = () => {
   const [success, setSuccess] = useState(false);
   const [checkedPrice, setCheckedPrice] = useState(false);
   const [disabledSubmit, setDisabledSubmit] = useState(false);
+  const theme = useSelector((state) => state.auth.theme);
   const {
     register,
     handleSubmit,
@@ -49,7 +49,7 @@ export const CreateService = () => {
       title: editAdvert.title,
       description: editAdvert.description,
       price: editAdvert.price,
-      subSectionName: editAdvert.subsectionName,
+      subsectionName: editAdvert.subsectionName,
     },
   });
   const uploadButton = (
@@ -74,7 +74,7 @@ export const CreateService = () => {
 
   useEffect(() => {
     if (selectedSubCategory) {
-      clearErrors('subSectionName');
+      clearErrors('subsectionName');
     }
     if (checkedPrice) {
       clearErrors('price');
@@ -130,7 +130,7 @@ export const CreateService = () => {
   }, [advert, service]);
 
   return (
-    <section className={classNames(styles.wrapper)}>
+    <section className={classNames(styles.wrapper, { [styles.wrapper_light]: theme === 'light' })}>
       {success ? (
         <div className={styles.success}>
           <img className={styles.successImg} src={img} alt="success" />
@@ -212,11 +212,15 @@ export const CreateService = () => {
                   >
                     <Space>
                       <div
-                        className={classNames(styles.categoryItem, {
-                          [styles.categoryActive]:
-                            category.items.find((item) => item.label === selectedSubCategory) &&
-                            selectedCategory === category.id,
-                        })}
+                        className={classNames(
+                          styles.categoryItem,
+                          { [styles.categoryItem_light]: theme === 'light' },
+                          {
+                            [styles.categoryActive]:
+                              category.items.find((item) => item.label === selectedSubCategory) &&
+                              selectedCategory === category.id,
+                          }
+                        )}
                         style={{ order: category.order }}
                       >
                         <img src={category.img} alt="icon" className={styles.dropdownImg} />

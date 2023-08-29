@@ -11,7 +11,7 @@ export const getChatMessages = createAsyncThunk('getChatMessages', async (chatId
         Authorization: `Bearer ${token}`,
       },
     });
-
+    console.log(response);
     return response.json();
   } catch (error) {
     if (error.status === 401) {
