@@ -12,6 +12,7 @@ import { KebabMenu } from 'components/common/KebabMenu';
 import { setAdvert } from 'redux/reducers/advertReducer';
 import { getService } from 'http/Services/getService';
 import { setService } from 'redux/reducers/serviseReduser';
+import { jobsCategories } from 'constants/Jobs/jobsData';
 
 const UserCard = () => {
   const [renderAdvert, setRenderAdvert] = useState(null);
@@ -22,15 +23,22 @@ const UserCard = () => {
   }));
   const { id, type } = useParams();
   const dispatch = useDispatch();
-  const pathData = saleData.find((saleSection) =>
-    saleSection.items?.find((saleSubSection) => saleSubSection.subsection === advert.subsectionName)
-  );
-  const section = pathData.name;
+  const data = type === 'sale' ? saleData : jobsCategories;
+  const pathData = renderAdvert
+    ? data.find((saleSection) =>
+        saleSection.items?.find((saleSubSection) => saleSubSection.subsection === renderAdvert.subsectionName)
+      )
+    : '';
+  const section = renderAdvert
+    ? type === 'sale'
+      ? pathData.name
+      : jobsCategories.find((jobsection) => jobsection.section === renderAdvert?.sectionName).name
+    : '';
   const subSection = pathData.items?.find(
-    (saleSubSection) => saleSubSection.subsection === advert.subsectionName
+    (saleSubSection) => saleSubSection.subsection === renderAdvert.subsectionName
   ).label;
-  const date = advert
-    ? new Date(advert.dateOfCreation).toLocaleDateString('ru-Ru', {
+  const date = renderAdvert
+    ? new Date(renderAdvert.dateOfCreation).toLocaleDateString('ru-Ru', {
         month: 'long',
         day: 'numeric',
         year: 'numeric',

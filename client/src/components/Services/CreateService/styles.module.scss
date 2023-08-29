@@ -5,6 +5,9 @@
   padding-top: 1.5rem;
   padding-bottom: 12.5vh;
   background: #2D2D2D;
+  &_light{
+    background:#E1E1E1;
+  }
 }
 
 .form{
@@ -91,12 +94,18 @@
 .category{
   display: flex;
   flex-direction: column;
-  gap: 1rem
+  gap: 1rem;
+  
 }
 .categoryItem{
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  &_light{
+  img{
+    filter:invert(1)
+      }
+    }
 }
 .dropdownImg{
   border-radius: 6.25rem;
