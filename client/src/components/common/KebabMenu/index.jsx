@@ -22,6 +22,7 @@ import { setSearchItems } from 'redux/reducers/searchReducer';
 import { changeServiceStatus } from 'http/Services/ChangeServiceStatus';
 import { deleteService } from 'http/Services/deleteService';
 import { getService } from 'http/Services/getService';
+import { getFind } from 'http/Finds/getFind';
 
 export const KebabMenu = ({ advert, className, adCategory }) => {
   // const { category } = useParams();
@@ -36,7 +37,7 @@ export const KebabMenu = ({ advert, className, adCategory }) => {
   const [alertText, setAlertText] = useState('');
   const onModalShow = () => setIsModalShow(true);
   const onModalClose = () => setIsModalShow(false);
-  const idName = advert.advertId ? 'advertId' : 'jobId';
+  const idName = advert.advertId ? 'advertId' : advert.findId ? 'findId' : 'jobId';
   const changeStatus = advert.advertId ? changeAdvertsStatus : changeServiceStatus;
   const deleteAd = advert.advertId ? deleteAdvert : deleteService;
   const changeAdvertList = (status) => {
@@ -64,11 +65,13 @@ export const KebabMenu = ({ advert, className, adCategory }) => {
           dispatch(getService(advert.jobId));
         } else if (advert.advertId) {
           getAdvert(advert.advertId);
+        } else if (advert.findtId) {
+          dispatch(getFind(advert.findtId));
         }
 
         dispatch(
           setEditAdvert({
-            advertId: advert.advertId || advert.jobId,
+            advertId: advert.advertId || advert.jobId || advert.findtId,
             title: advert.title,
             description: advert.description,
             price: advert.price,

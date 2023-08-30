@@ -69,6 +69,8 @@ const UserAds = () => {
                             category = 'sale';
                           } else if (AdvertCategory === 'jobs') {
                             category = 'services';
+                          } else if (AdvertCategory === 'finds') {
+                            category = 'finds';
                           }
                           return (
                             <AdsItem

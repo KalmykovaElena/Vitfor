@@ -4,6 +4,7 @@ import advertReducer from './reducers/advertReducer';
 import { chatReducer } from './reducers/chatReducer';
 import searchReducer from './reducers/searchReducer';
 import { serviceReducer } from './reducers/serviseReduser';
+import { findsReducer } from './reducers/findsReducer';
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     chat: chatReducer,
     search: searchReducer,
     service: serviceReducer,
+    find: findsReducer,
   },
 });
 export default store;
