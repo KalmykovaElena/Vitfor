@@ -6,7 +6,7 @@ import { refreshToken } from './refreshToken';
 
 export const getFavouritesAdverts = () => {
   const token = localStorage.getItem('token') || '';
-  fetch(`${url}/Favourites/GetUserFavourites`, {
+  fetch(`${url}/GetUserFavourites`, {
     headers: {
       Accept: 'application/json, text/plain',
       'Content-Type': 'application/json;charset=UTF-8',
