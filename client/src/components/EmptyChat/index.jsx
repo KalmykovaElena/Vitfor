@@ -4,9 +4,11 @@ import { ReactComponent as MailIcon } from '../../assets/mail-icon.svg';
 
 export const EmptyChat = () => (
   <div className={styles.wrapper}>
-    <div className={styles.title}>
-      <MailIcon /> Выберете чат для общения
+    <div className={styles.content}>
+      <div className={styles.title}>
+        <MailIcon /> Выберете чат для общения
+      </div>
+      <div className={styles.text}>В списке слева все Ваши активные чаты</div>
     </div>
-    <div className={styles.text}>В списке слева все Ваши активные чаты</div>
   </div>
 );

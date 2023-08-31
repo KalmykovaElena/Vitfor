@@ -14,7 +14,14 @@ export const ChatPage = () => {
   const [selectedUser, setSelectedUser] = useState();
   const theme = useSelector((state) => state.auth.theme);
   const dispatch = useDispatch();
-  useEffect(() => () => dispatch(chatAction.getActualChat({})), []);
+  useEffect(
+    () => () => {
+      dispatch(chatAction.getActualChat({}));
+      dispatch(chatAction.getSelectedUser({}));
+      dispatch(chatAction.getAdvert({}));
+    },
+    []
+  );
   return (
     <div className={classNames(styles.wrapper, { [styles.light]: theme === 'light' })}>
       <div className={styles.content}>

@@ -14,7 +14,7 @@ export const AdvertPreview = ({ className }) => {
       <img className={styles.img} src={`data:image/png;base64,${advert.advertPhoto}` ?? icon} alt="" />
       <div className={styles.title}>
         <div className={styles.name}>{advert.advertTitle}</div>
-        <div className={styles.cost}>{`${advert.advertPrice} BYN`}</div>
+        {advert.advertPrice && <div className={styles.cost}>{`${advert.advertPrice} BYN`}</div>}
       </div>
     </div>
   );
