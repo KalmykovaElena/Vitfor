@@ -7,12 +7,17 @@ import CommentsItem from '../comments-item';
 import './index.scss';
 import { setComment } from '../../../http/setComment';
 import { commentInput } from '../../../constants/inputs';
+import { setFindComment } from 'http/Finds/setFindComment';
 
 const Comments = ({ advert }) => {
   const { isAuth } = useSelector((state) => state.auth);
-  const { advertId, comments } = advert;
+  const { advertId, comments, findId } = advert;
   const onCommentSubmit = (data) => {
-    setComment(advertId, data.comment);
+    if (findId) {
+      setFindComment(findId, data.comment);
+    } else {
+      setComment(advertId, data.comment);
+    }
   };
 
   return (
@@ -21,9 +26,9 @@ const Comments = ({ advert }) => {
         <div className="comments-content">
           {comments.map((comment) => (
             <React.Fragment key={nanoid()}>
-              <CommentsItem item={comment} parentId={advertId} />
+              <CommentsItem item={comment} parentId={advertId || findId} />
               {comment.replies?.map((reply) => (
-                <CommentsItem key={nanoid()} item={reply} className="subcomment" parentId={advertId} />
+                <CommentsItem key={nanoid()} item={reply} className="subcomment" parentId={advertId || findId} />
               ))}
             </React.Fragment>
           ))}
