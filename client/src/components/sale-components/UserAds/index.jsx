@@ -74,13 +74,13 @@ const UserAds = () => {
                           }
                           return (
                             <AdsItem
-                              key={advert.advertId || advert.jobId}
+                              key={advert.advertId || advert.jobId || advert.findId}
                               item={advert}
                               isUserAds
                               type="long"
                               adCategory={category}
                               handleClick={() => {
-                                navigate(`${category}/ad/${advert.advertId || advert.jobId}`);
+                                navigate(`${category}/ad/${advert.advertId || advert.jobId || advert.findId}`);
                               }}
                             />
                           );

@@ -36,6 +36,8 @@ import UserAds from 'components/sale-components/UserAds';
 import UserSearch from 'components/UserSearch';
 import FindsHomePage from 'components/Finds/FindsHomePage';
 import { CreateFind } from 'components/Finds/CreateFind';
+import FindsFullCard from 'components/Finds/FindsFullCard';
+import FindsAds from 'components/Finds/FindsAds';
 
 const App = () => {
   history.navigate = useNavigate();
@@ -74,8 +76,8 @@ const App = () => {
         <Route path="/finds/*" element={<Finds />}>
           <Route path="" element={<FindsHomePage />} />
           {/* <Route path=":category" element={<ServicesHomePage />} /> */}
-          {/* <Route path=":category/:type/ad/:jobId" element={<ServiceFullCard />} /> */}
-          {/* <Route path=":category/:type" element={<ServicesAds />} /> */}
+          <Route path=":category/ad/:findId" element={<FindsFullCard />} />
+          <Route path=":category" element={<FindsAds />} />
           <Route path="createFind" element={<CreateFind />} />
         </Route>
 
@@ -94,6 +96,7 @@ const App = () => {
           <Route path=":category" element={<UserSearch />} />
           <Route path="userads/sale/edit/ad/:advertId" element={<AdPlacing />} />
           <Route path="userads/services/edit/ad/:advertId" element={<CreateService />} />
+          <Route path="userads/finds/edit/ad/:advertId" element={<CreateFind />} />
           <Route path="userads" element={<UserAds />} />
           <Route path="userads/:type/ad/:id" element={<UserCard />} />
         </Route>

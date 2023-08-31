@@ -48,5 +48,6 @@ export const findsCategories = [
   {
     name: 'Объявление',
     link: '/ad',
+    hideSearch: true,
   },
 ];

@@ -23,9 +23,10 @@ import { changeServiceStatus } from 'http/Services/ChangeServiceStatus';
 import { deleteService } from 'http/Services/deleteService';
 import { getService } from 'http/Services/getService';
 import { getFind } from 'http/Finds/getFind';
+import { changeFindStatus } from 'http/Finds/changeFindStatus';
+import { deleteFind } from 'http/Finds/deleteFind';
 
 export const KebabMenu = ({ advert, className, adCategory }) => {
-  // const { category } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const theme = useSelector((state) => state.auth.theme);
@@ -37,24 +38,26 @@ export const KebabMenu = ({ advert, className, adCategory }) => {
   const [alertText, setAlertText] = useState('');
   const onModalShow = () => setIsModalShow(true);
   const onModalClose = () => setIsModalShow(false);
-  const idName = advert.advertId ? 'advertId' : advert.findId ? 'findId' : 'jobId';
-  const changeStatus = advert.advertId ? changeAdvertsStatus : changeServiceStatus;
-  const deleteAd = advert.advertId ? deleteAdvert : deleteService;
+  const idName = advert.findId ? 'findId' : advert.jobId ? 'jobId' : 'advertId';
+  const changeStatus = advert.findId ? changeFindStatus : advert.jobId ? changeServiceStatus : changeAdvertsStatus;
+  const deleteAd = advert.findId ? deleteFind : advert.jobId ? deleteService : deleteAdvert;
   const changeAdvertList = (status) => {
-    const changedAdvertList = Object.keys(searchItems).reduce((acc, advertCategory) => {
-      if (status === 'Deleted') {
-        acc[advertCategory] = searchItems[advertCategory].filter((ad) => ad[idName] !== advert[idName]);
-      } else {
-        acc[advertCategory] = searchItems[advertCategory].map((ad) => {
-          if (ad[idName] === advert[idName]) {
-            return { ...advert, status };
-          }
-          return ad;
-        });
-      }
-      return acc;
-    }, {});
-    dispatch(setSearchItems(changedAdvertList));
+    if (searchItems) {
+      const changedAdvertList = Object.keys(searchItems).reduce((acc, advertCategory) => {
+        if (status === 'Deleted') {
+          acc[advertCategory] = searchItems[advertCategory].filter((ad) => ad[idName] !== advert[idName]);
+        } else {
+          acc[advertCategory] = searchItems[advertCategory].map((ad) => {
+            if (ad[idName] === advert[idName]) {
+              return { ...advert, status };
+            }
+            return ad;
+          });
+        }
+        return acc;
+      }, {});
+      dispatch(setSearchItems(changedAdvertList));
+    }
   };
   const items = [
     {
@@ -65,13 +68,13 @@ export const KebabMenu = ({ advert, className, adCategory }) => {
           dispatch(getService(advert.jobId));
         } else if (advert.advertId) {
           getAdvert(advert.advertId);
-        } else if (advert.findtId) {
-          dispatch(getFind(advert.findtId));
+        } else if (advert.findId) {
+          dispatch(getFind(advert.findId));
         }
 
         dispatch(
           setEditAdvert({
-            advertId: advert.advertId || advert.jobId || advert.findtId,
+            advertId: advert.advertId || advert.jobId || advert.findId,
             title: advert.title,
             description: advert.description,
             price: advert.price,
@@ -79,7 +82,7 @@ export const KebabMenu = ({ advert, className, adCategory }) => {
             subsectionName: advert.subsectionName,
           })
         );
-        navigate(`/search/userads/${adCategory}/edit/ad/${advert.advertId || advert.jobId}`);
+        navigate(`/search/userads/${adCategory}/edit/ad/${advert.advertId || advert.jobId || advert.findId}`);
       },
       icon: <Pencil />,
     },
