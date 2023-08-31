@@ -44,14 +44,16 @@ export const ChatWindow = () => {
   }, [messages]);
   return (
     <div className={styles.wrapper}>
-      <ChatHeader />
-      <AdvertPreview className={styles.advert} />
-      {chatMessages.length ? (
-        <MessageArea class messages={chatMessages} className={styles.messages} />
-      ) : (
-        <EmptyMessage />
-      )}
-      <ChatInputPanel handleMessage={handleSendMessage} clasName={styles.footer} />
+      <div className={styles.content}>
+        <ChatHeader />
+        <AdvertPreview className={styles.advert} />
+        {chatMessages.length ? (
+          <MessageArea class messages={chatMessages} className={styles.messages} />
+        ) : (
+          <EmptyMessage />
+        )}
+        <ChatInputPanel handleMessage={handleSendMessage} clasName={styles.footer} />
+      </div>
     </div>
   );
 };

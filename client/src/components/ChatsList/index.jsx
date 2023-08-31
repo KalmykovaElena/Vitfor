@@ -22,8 +22,6 @@ export const ChatsList = ({ isSelect, selectedUser, handleSelect }) => {
         setChatList([...chatList, actualChat]);
         handleSelect(actualChat.username);
       }
-      dispatch(chatAction.getMessages([]));
-      dispatch(getChatMessages(actualChat.chatId));
       dispatch(chatAction.getSelectedUser({ username, nickName, img: userPhoto }));
       dispatch(chatAction.getAdvert({ advertId, advertTitle, advertPrice, advertPhoto }));
     }

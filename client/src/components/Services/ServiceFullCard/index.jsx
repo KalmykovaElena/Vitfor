@@ -23,10 +23,11 @@ export const ServiceFullCard = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const chapter = location.pathname.split('/')[1];
-  const { service, isAuth, theme } = useSelector((state) => ({
+  const { service, isAuth, theme, user } = useSelector((state) => ({
     service: state.service.service,
     isAuth: state.auth.isAuth,
     theme: state.auth.theme,
+    user: state.auth.user,
   }));
   useEffect(() => {
     if (jobId) {
@@ -123,7 +124,7 @@ export const ServiceFullCard = () => {
                   );
                   navigate('/chat');
                 }}
-                disabled={!isAuth}
+                disabled={!isAuth || service.userName === user.userName}
               />
             </div>
           </div>
