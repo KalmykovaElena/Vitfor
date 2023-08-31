@@ -5,7 +5,12 @@ import { refreshToken } from './refreshToken';
 
 const token = localStorage.getItem('token') || '';
 export const fetchLatestAdverts = createAsyncThunk('adverts/fetchAdverts', async (category, { rejectWithValue }) => {
-  const path = category === 'sale' ? 'Adverts/GetFourNewestAdverts' : 'Jobs/GetFourNewestJobs';
+  const path =
+    category === 'sale'
+      ? 'Adverts/GetFourNewestAdverts'
+      : category === 'finds'
+      ? 'Finds/GetFourNewestFinds'
+      : 'Jobs/GetFourNewestJobs';
   try {
     const response = await fetch(`${url}/${path}`, {
       headers: {

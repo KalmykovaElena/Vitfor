@@ -7,16 +7,19 @@ import { ReactComponent as FillingHeart } from 'assets/heart2.svg';
 
 import styles from './index.module.scss';
 import { setServicesFavourites } from 'http/Services/setServicesFavourites';
+import { setFindFavourites } from 'http/Finds/setFindFavourites';
 
 export const Favourites = ({ size, id, checked, adCategory, item }) => {
   const [isFavourite, setIsFavourite] = useState(checked);
   const isAuth = useSelector((state) => state.auth.isAuth);
   const method = isFavourite ? 'DELETE' : 'POST';
-
   const handleClick = () => {
     if (adCategory) {
       if (adCategory === 'services') {
         setServicesFavourites(item.jobId, method);
+      }
+      if (adCategory === 'finds') {
+        setFindFavourites(item.findId, method);
       }
     } else {
       setFavourites(id, method);

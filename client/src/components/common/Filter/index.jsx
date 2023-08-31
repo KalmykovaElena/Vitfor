@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setSortParametr } from 'redux/reducers/advertReducer';
 import './index.scss';
 
-const ServicesFilter = () => {
+const Filter = ({ container }) => {
   const [openedSort, setOpenedSort] = useState(false);
   const [sortCategory, setSortCategory] = useState('');
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const ServicesFilter = () => {
         trigger="click"
         open={openedSort}
         overlayClassName={`navigation-dropdown navigation-dropdown__${theme}`}
-        getPopupContainer={() => document.getElementById('service')}
+        getPopupContainer={() => document.getElementById(container)}
       >
         <div
           className={
@@ -63,4 +63,4 @@ const ServicesFilter = () => {
   );
 };
 
-export default ServicesFilter;
+export default Filter;

@@ -34,6 +34,10 @@ import { ServiceFullCard } from 'components/Services/ServiceFullCard';
 import ServicesAds from 'components/Services/ServicesAds';
 import UserAds from 'components/sale-components/UserAds';
 import UserSearch from 'components/UserSearch';
+import FindsHomePage from 'components/Finds/FindsHomePage';
+import { CreateFind } from 'components/Finds/CreateFind';
+import FindsFullCard from 'components/Finds/FindsFullCard';
+import FindsAds from 'components/Finds/FindsAds';
 
 const App = () => {
   history.navigate = useNavigate();
@@ -56,7 +60,7 @@ const App = () => {
         <Route path="/" element={<Main />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
-        <Route path="/finds" element={<Finds />} />
+        {/* <Route path="/finds" element={<Finds />} /> */}
         <Route path="/questions" element={<Questions />} />
         <Route path="/chat" element={<ChatPage />} />
         <Route path="/sale/*" element={<Sale />}>
@@ -65,9 +69,16 @@ const App = () => {
           <Route path=":category" element={<SaleAds />} />
           <Route path=":category/:type/ad/:id" element={<AdCard />} />
           <Route path=":category/ad/:id" element={<AdCard />} />
-
           <Route path=":category/edit/ad/:advertId" element={<AdPlacing />} />
           <Route path="adplacing" element={<AdPlacing />} />
+        </Route>
+
+        <Route path="/finds/*" element={<Finds />}>
+          <Route path="" element={<FindsHomePage />} />
+          {/* <Route path=":category" element={<ServicesHomePage />} /> */}
+          <Route path=":category/ad/:findId" element={<FindsFullCard />} />
+          <Route path=":category" element={<FindsAds />} />
+          <Route path="createFind" element={<CreateFind />} />
         </Route>
 
         <Route path="/services/*" element={<Services />}>
@@ -85,6 +96,7 @@ const App = () => {
           <Route path=":category" element={<UserSearch />} />
           <Route path="userads/sale/edit/ad/:advertId" element={<AdPlacing />} />
           <Route path="userads/services/edit/ad/:advertId" element={<CreateService />} />
+          <Route path="userads/finds/edit/ad/:advertId" element={<CreateFind />} />
           <Route path="userads" element={<UserAds />} />
           <Route path="userads/:type/ad/:id" element={<UserCard />} />
         </Route>

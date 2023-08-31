@@ -13,13 +13,17 @@ import { setAdvert } from 'redux/reducers/advertReducer';
 import { getService } from 'http/Services/getService';
 import { setService } from 'redux/reducers/serviseReduser';
 import { jobsCategories } from 'constants/Jobs/jobsData';
+import { getFind } from 'http/Finds/getFind';
+import { findsCategories } from 'constants/findsData';
+import { setFind } from 'redux/reducers/findsReducer';
 
 const UserCard = () => {
   const [renderAdvert, setRenderAdvert] = useState(null);
-  const { advert, service, theme } = useSelector((state) => ({
+  const { advert, service, theme, find } = useSelector((state) => ({
     advert: state.advert.advert,
     service: state.service.service,
     theme: state.auth.theme,
+    find: state.find.find,
   }));
   const { id, type } = useParams();
   const dispatch = useDispatch();
@@ -32,11 +36,14 @@ const UserCard = () => {
   const section = renderAdvert
     ? type === 'sale'
       ? pathData.name
+      : type === 'finds'
+      ? 'Бюро находок'
       : jobsCategories.find((jobsection) => jobsection.section === renderAdvert?.sectionName).name
     : '';
-  const subSection = pathData.items?.find(
-    (saleSubSection) => saleSubSection.subsection === renderAdvert.subsectionName
-  ).label;
+  const subSection =
+    type === 'finds'
+      ? findsCategories.find((item) => item.section === find.subsectionName).label
+      : pathData.items?.find((saleSubSection) => saleSubSection.subsection === renderAdvert.subsectionName).label;
   const date = renderAdvert
     ? new Date(renderAdvert.dateOfCreation).toLocaleDateString('ru-Ru', {
         month: 'long',
@@ -54,10 +61,14 @@ const UserCard = () => {
       if (type === 'services') {
         dispatch(getService(id));
       }
+      if (type === 'finds') {
+        dispatch(getFind(id));
+      }
     }
     return () => {
       dispatch(setAdvert({}));
       dispatch(setService({}));
+      dispatch(setFind({}));
     };
   }, []);
   useEffect(() => {
@@ -68,7 +79,10 @@ const UserCard = () => {
     if (type === 'services' && service.jobId) {
       setRenderAdvert({ ...service, advertId: service.jobId });
     }
-  }, [advert, service]);
+    if (type === 'finds' && find.findId) {
+      setRenderAdvert({ ...find, advertId: find.findId });
+    }
+  }, [advert, service, find]);
   return (
     <div className={`userAdd userAdd__${theme}`}>
       {renderAdvert && (
@@ -93,7 +107,9 @@ const UserCard = () => {
                   )}
                 </div>
               )}
-              <div className="userAdd-price">{renderAdvert.price} BYN</div>
+              <div className="userAdd-price">
+                {renderAdvert.price} {type !== 'finds' && 'BYN'}
+              </div>
             </div>
             <div className="userAdd-info">
               <div className="userAdd-title userAdd-info__item">
