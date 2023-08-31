@@ -1,95 +1,91 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { getAdvert } from 'http/getAdvert';
 import PhotoBlock from 'components/common/photoBlock';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import './index.scss';
+// import './index.scss';
 import Logo from 'components/logo';
-import Slider from 'components/common/slider';
-import { Modal } from 'antd';
 import Button from 'components/common/button';
 import phoneIcon from 'assets/Phone2.png';
 import messageIcon from 'assets/Message.png';
 import camera from 'assets/camera.svg';
-import Comments from '../comments';
 import { createChat } from '../../../http/Chat/createChat';
-import { Favourites } from '../Favourites';
-import { setAdvert } from 'redux/reducers/advertReducer';
 import { chapterNames } from 'constants/chapterNames';
-// import { chatAction } from 'redux/reducers/chatReducer';
+import { Favourites } from 'components/sale-components/Favourites';
+import Comments from 'components/sale-components/comments';
+import { getFind } from 'http/Finds/getFind';
+import { setFind } from 'redux/reducers/findsReducer';
 
-const AdCard = () => {
+const FindsFullCard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const chapter = location.pathname.split('/')[1];
-  const { advert, isAuth, user } = useSelector((state) => ({
-    advert: state.advert.advert,
+  const { find, isAuth, user } = useSelector((state) => ({
+    find: state.find.find,
     isAuth: state.auth.isAuth,
     user: state.auth.user,
   }));
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPhoneShown, setIsPhoneShown] = useState(false);
   const params = useParams();
-  const date = advert
-    ? new Date(advert.dateOfCreation).toLocaleDateString('ru-Ru', {
+  const date = find
+    ? new Date(find.dateOfCreation).toLocaleDateString('ru-Ru', {
         month: 'long',
         day: 'numeric',
         year: 'numeric',
       })
     : '';
   useEffect(() => {
-    if (params.id) {
-      getAdvert(params.id);
+    if (params.findId) {
+      dispatch(getFind(params.findId));
     }
-    return () => dispatch(setAdvert({}));
+    return () => dispatch(setFind({}));
   }, []);
   return (
     <>
-      {advert.advertId && (
+      {find.findId && (
         <div className="add">
           <div className="add-wrapper">
             <>
-              <div className={advert.files.length > 1 ? 'add-info add-info__slider' : 'add-info'}>
+              <div className={find.files.length > 1 ? 'add-info add-info__slider' : 'add-info'}>
                 <div className="add-title">
-                  <span>{advert.title}</span>
+                  <span>{find.title}</span>
                   <div className="add-title-date">{date}</div>
                 </div>
 
-                {advert.files.length > 1 ? (
-                  <PhotoBlock
-                    files={advert.files}
-                    advertId={advert.advertId}
-                    onMainClick={() => setIsModalOpen(true)}
-                    isFavourite={advert.isFavourite}
-                  />
+                {find.files.length > 1 ? (
+                  <PhotoBlock files={find.files} advertId={find.advertId} isFavourite={find.isFavourite} />
                 ) : (
                   <div className="add-photo">
-                    {advert.files[0] ? (
-                      <img src={`data:image/png;base64,${advert.files[0].fileString}`} alt="advert" className="img" />
+                    {find.files[0] ? (
+                      <img src={`data:image/png;base64,${find.files[0].fileString}`} alt="advert" className="img" />
                     ) : (
                       <>
                         <img src={camera} alt="advert" className="noimg" />
                         <span>Нет фото</span>
                       </>
                     )}
-                    <Favourites size="long" id={advert.advertId} checked={advert.isFavourite} />
+                    <Favourites
+                      size="long"
+                      id={find.findId}
+                      checked={find.isFavourite}
+                      adCategory="finds"
+                      item={find}
+                    />
                   </div>
                 )}
-                <div className="add-price">{advert.price} BYN</div>
               </div>
               <div className="add-controls">
                 <div className="add-controls__wrapper">
                   <Logo
                     name="userlogo"
-                    img={advert.userPhoto}
-                    text={advert.nickName}
-                    subtext={advert.userName}
+                    img={find.userPhoto}
+                    text={find.nickName}
+                    subtext={find.userName}
                     textLocation="bottom"
                   />
                   <div className="add-controls__buttons">
-                    {advert.phoneNumber && (
+                    {find.phoneNumber && (
                       <div className="phone-info">
                         <Button
                           type="primary"
@@ -97,7 +93,7 @@ const AdCard = () => {
                           icon={phoneIcon}
                           handleClick={() => setIsPhoneShown(!isPhoneShown)}
                         />
-                        {isPhoneShown && <div className="phone-info">{advert.phoneNumber}</div>}
+                        {isPhoneShown && <div className="phone-info">{find.phoneNumber}</div>}
                       </div>
                     )}
 
@@ -108,42 +104,30 @@ const AdCard = () => {
                       handleClick={() => {
                         dispatch(
                           createChat({
-                            advertId: advert.advertId,
-                            receiverUsername: advert.userName,
+                            advertId: find.findId,
+                            receiverUsername: find.userName,
                             chapterName: chapterNames[chapter],
                           })
                         );
                         navigate('/chat');
                       }}
-                      disabled={!isAuth || advert.userName === user.userName}
+                      disabled={!isAuth || find.userName === user.userName}
                     />
                   </div>
                 </div>
               </div>
             </>
           </div>
-          <Modal
-            open={isModalOpen}
-            onCancel={() => setIsModalOpen(false)}
-            maskStyle={{ background: '#0000001a', backdropFilter: 'blur(5.5px)' }}
-            closeIcon={null}
-            footer={null}
-            wrapClassName="slider-wrapper"
-            width="50%"
-            height="50%"
-          >
-            <Slider files={advert.files} />
-          </Modal>
           <div className="add-description">
             <div className="add-content-title">Описание</div>
-            <div className="add-description-content">{advert.description}</div>
+            <div className="add-description-content">{find.description}</div>
           </div>
           <div className="add-content-title add-content-title-comments">Комментарии пользователей</div>
-          <Comments advert={advert} />
+          <Comments advert={find} />
         </div>
       )}
     </>
   );
 };
 
-export default AdCard;
+export default FindsFullCard;

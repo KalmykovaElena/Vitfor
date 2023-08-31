@@ -16,7 +16,13 @@ const Finds = () => {
   const renderPage = findsCategories.find(
     (category) => category.link === `/${params.category}` || category.link === location.pathname
   );
-  const isSearchRender = renderPage ? (renderPage.hideSearch ? !renderPage.hideSearch : true) : false;
+  const isSearchRender = params.findId
+    ? false
+    : renderPage
+    ? renderPage.hideSearch
+      ? !renderPage.hideSearch
+      : true
+    : false;
   const handleClick = () => {
     if (isAuth) {
       navigate('/finds/createFind');

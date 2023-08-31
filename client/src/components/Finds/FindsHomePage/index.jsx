@@ -37,11 +37,12 @@ const FindsHomePage = () => {
             <>
               {adverts.map((advert) => (
                 <AdsItem
-                  key={advert.advertId}
+                  key={advert.findId}
                   item={advert}
+                  adCategory="finds"
                   handleClick={() => {
-                    const { link } = findsCategories.find((item) => item.section === advert.sectionName);
-                    navigate(`/finds${link}/ad/${advert.advertId}`);
+                    const { link } = findsCategories.find((item) => item.section === advert.subsectionName);
+                    navigate(`/finds${link}/ad/${advert.findId}`);
                   }}
                 />
               ))}

@@ -1,34 +1,33 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { getServicesBySubSection } from 'http/Services/getServicesBySubSection';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import logo from 'assets/sad.png';
 import AdsItem from 'components/sale-components/ads-item';
-import { jobsCategories, jobsItems } from 'constants/Jobs/jobsData';
 import { useSelector } from 'react-redux';
 import { sortItems } from 'utils/sortItems';
+import { findsCategories } from 'constants/findsData';
+import { getFindsBySection } from 'http/Finds/getFindsBySection';
 import Filter from 'components/common/Filter';
 
-const ServicesAds = () => {
-  const { category, type } = useParams();
+const FindsAds = () => {
+  const { category } = useParams();
   const [renderData, setRenderData] = useState();
   const navigate = useNavigate();
   const sortCategory = useSelector((state) => state.advert.sort);
   useEffect(() => {
-    if (category && type) {
-      const { subsection } = jobsItems.find((subCategory) => subCategory.search === type);
-      const { section } = jobsCategories.find((advertSection) => advertSection.link === `/${category}`);
-      getServicesBySubSection(section, subsection, setRenderData);
+    if (category) {
+      const { section } = findsCategories.find((advertSection) => advertSection.link === `/${category}`);
+      getFindsBySection(section, setRenderData);
     }
-  }, [category, type]);
+  }, [category]);
   useEffect(() => {
     if (renderData) setRenderData(sortItems(sortCategory, renderData));
   }, [sortCategory]);
   return (
-    <section className="sale-ads-wrapper" id="service">
+    <section className="sale-ads-wrapper" id="finds">
       {renderData && (
         <>
-          <Filter container="service" />
+          <Filter container="finds" />
           <div className="sale-ads">
             {renderData.length === 0 ? (
               <div className="sale-ads__empty">
@@ -37,17 +36,13 @@ const ServicesAds = () => {
             ) : (
               renderData.map((advert) => (
                 <AdsItem
-                  key={advert.jobId}
+                  key={advert.findId}
                   item={advert}
                   type="long"
+                  adCategory="finds"
                   handleClick={() => {
-                    const { link } = jobsCategories.find(
-                      (advertSection) => advertSection.section === advert.sectionName
-                    );
-                    const { search } = jobsItems.find(
-                      (advertSubSection) => advertSubSection.subsection === advert.subsectionName
-                    );
-                    navigate(`/services${link}/${search}/ad/${advert.jobId}`);
+                    const { link } = findsCategories.find((item) => item.section === advert.subsectionName);
+                    navigate(`/finds${link}/ad/${advert.findId}`);
                   }}
                 />
               ))
@@ -59,4 +54,4 @@ const ServicesAds = () => {
   );
 };
 
-export default ServicesAds;
+export default FindsAds;

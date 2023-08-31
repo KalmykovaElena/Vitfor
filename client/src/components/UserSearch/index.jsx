@@ -64,11 +64,14 @@ const UserSearch = () => {
                             searchItem.sectionName,
                             searchItem.subsectionName
                           );
+                        } else if (AdvertCategory === 'finds') {
+                          category = 'finds';
                         }
                         return (
                           <AdsItem
                             item={searchItem}
                             key={nanoid()}
+                            adCategory={category}
                             handleClick={() => {
                               navigate(
                                 `/${category}/${sections.section}/${sections.subsection}/ad/${
