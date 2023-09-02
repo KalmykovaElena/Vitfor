@@ -1,0 +1,24 @@
+.wrapper {
+  border-radius: 1.25rem;
+  background: #e2e2e233;
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1fr 1.25fr;
+  padding: 1rem 0.5rem;
+  &_light {
+    background: #fff;
+  }
+}
+.wrapper :global .logo-text__name {
+  font-size: 1rem;
+  text-align: start;
+}
+.wrapper :global .logo-text__subname {
+  font-size: 0.75rem;
+  color: #ccc;
+  text-align: start;
+}
+.countMessages {
+  color: #a9a9a9;
+  font-family: Roboto;
+  font-size: 0.875rem;
+}

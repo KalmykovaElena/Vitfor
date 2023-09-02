@@ -1,15 +1,55 @@
-.forum{
-    min-height: 100vh;
+.forum {
+  min-height: 91.4vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10%;
+  &-wrapper {
+    width: 77.56%;
+    max-width: 70rem;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    &_dark{
-    background-color: #2D2D2D;
-    }
-    &_light{
-        background-color:#E1E1E1;
-    }
-    main{
-        flex-grow: 1;
-    }
-  
+    gap: 4rem;
+    .forum-breadCrumb a {
+        color: #777777;
+      }
+      .ant-breadcrumb-separator {
+        color: #777777;
+      }
+      .category-search {
+        justify-content: space-between;
+        .category-search-name{
+            width: auto;
+        }
+        .search {
+            position: relative;
+            flex-grow: 1;
+        }
+        .button{
+            width: 23%;
+            justify-content: center;
+        }
+      }
+  }
+  &_dark {
+    background-color: #2d2d2d;
+    .forum-breadCrumb__end {
+        color: #ffffff;
+      }
+  }
+  &_light {
+    background-color: #e1e1e1;
+    .forum-breadCrumb__end {
+        color: inherit;
+      }
+      .category-search-icon {
+          border-color: #000000;
+          img {
+              filter: invert(1);
+            }
+      }
+  }
+  main {
+    flex-grow: 1;
+  }
 }

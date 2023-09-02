@@ -1,0 +1,30 @@
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
+}
+.header {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1fr 1.25fr;
+  height: 3.5rem;
+  overflow: hidden;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: stretch;
+  border-radius: 1.25rem 1.25rem 0rem 0rem;
+  border-top: 2px solid #fa541c;
+  border-right: 2px #fa541c;
+  border-left: 2px #fa541c;
+  justify-content: space-between;
+}
+.header_item {
+  border-left: 2px solid #fa541c;
+  padding: 0.5rem 1rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  text-align: start;
+}
+.header_lastItem {
+  border-right: 2px solid #fa541c;
+}
