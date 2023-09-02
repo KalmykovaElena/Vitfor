@@ -326,17 +326,27 @@ const AdPlacing = () => {
                   />
                 </div>
               </div>
-              <FormInput
-                data={{
-                  inputType: 'submit',
-                  id: 'input-submit',
-                  inputValue: {
-                    'sale/adplacing': 'Подать объявление',
-                  },
-                }}
-                disabled={disabledSubmit}
-                error={errors}
-              />
+              <div className="controls">
+                <FormInput
+                  data={{
+                    inputType: 'submit',
+                    id: 'input-submit',
+                    inputValue: {
+                      'sale/adplacing': 'Подать объявление',
+                    },
+                  }}
+                  disabled={disabledSubmit}
+                  error={errors}
+                />
+                <Button
+                  name="Отмена"
+                  type="secondary"
+                  className="changeButton"
+                  handleClick={() => {
+                    navigate(-1);
+                  }}
+                />
+              </div>
             </div>
           </div>
         </form>

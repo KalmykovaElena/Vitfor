@@ -9,7 +9,28 @@
       background:#E1E1E1;
     }
   }
-  
+  .success{
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .button{
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    padding: 0.25rem 0.9375rem;
+    width: 22vw;
+    height: 5.4vh;
+    margin-top: 2.3vh;
+  }
+  .formError{
+    color: #f5222d;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
   .form{
     display: flex;
     flex-direction: column;
@@ -72,98 +93,19 @@
   .container {
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    gap: 9rem;
-  }
-  .titleAndCategory{
-    display: flex;
+    width: 50%;
+    gap: 1.5rem;
     flex-direction: column;
-    gap: 3.5rem;
-    width: 100%;
   }
-  .serviceTitle{
+  .themeTitle{
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
-  .inputTitle{
-    font-family: Roboto, sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 1.25rem
-  }
-  .category{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    
-  }
-  .categoryItem{
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    &_light{
-    img{
-      filter:invert(1)
-        }
-      }
-  }
-  .dropdownImg{
-    border-radius: 6.25rem;
-    padding: 0.5rem;
-    border: 1px solid #FFF;
-  }
-  .categoryActive{
-    border-radius: 1rem;
-    border: 1px solid #fa541c;
-    padding: 0.5rem 1.38rem 0.5rem 1.59rem;
-  }
-  .inputs{
-    display: flex;
-    flex-direction: column;
-    gap: 3.5rem;
-    width: 100%;
-  }
-  
-  .descriptionAndPrice{
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .salesman{
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
   .formButton{
     max-width: 10rem;
     border-radius: 1.25rem;
-  }
-  .success{
-    height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .button{
-    align-self: center;
-    display: flex;
-    justify-content: center;
-    padding: 0.25rem 0.9375rem;
-    width: 22vw;
-    height: 5.4vh;
-    margin-top: 2.3vh;
-  }
-  .formError{
-    color: #f5222d;
-    font-size: 0.75rem;
-    font-weight: 500;
+    margin: auto;
   }
   .controls{
     display: flex;
@@ -172,5 +114,9 @@
   }
   .changeButton{
     align-self: center;
-    margin-top: 1rem;
+  }
+  .error{
+    color: #f5222d;
+    font-size: 0.75rem;
+    font-weight: 500;
   }

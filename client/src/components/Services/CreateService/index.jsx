@@ -339,18 +339,28 @@ export const CreateService = () => {
                     isValid={isValid}
                   />
                 </div>
-                <FormInput
-                  className={styles.formButton}
-                  disabled={disabledSubmit}
-                  data={{
-                    inputType: 'submit',
-                    id: 'input-submit',
-                    inputValue: {
-                      'sale/adplacing': 'Разместить услугу',
-                    },
-                  }}
-                  error={errors}
-                />
+                <div className={styles.controls}>
+                  <FormInput
+                    className={styles.formButton}
+                    disabled={disabledSubmit}
+                    data={{
+                      inputType: 'submit',
+                      id: 'input-submit',
+                      inputValue: {
+                        'sale/adplacing': 'Разместить услугу',
+                      },
+                    }}
+                    error={errors}
+                  />
+                  <Button
+                    name="Отмена"
+                    type="secondary"
+                    className={styles.changeButton}
+                    handleClick={() => {
+                      navigate(-1);
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>
