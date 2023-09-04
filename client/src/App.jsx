@@ -41,6 +41,7 @@ import FindsAds from 'components/Finds/FindsAds';
 import ForumHomePage from 'components/Forum/ForumHomePage';
 import CreateTheme from 'components/Forum/CreateTheme';
 import ForumThemes from 'components/Forum/ForumThemes';
+import ThemeFullCard from 'components/Forum/ThemeFullCard/Index';
 
 const App = () => {
   history.navigate = useNavigate();
@@ -84,7 +85,7 @@ const App = () => {
 
         <Route path="/forum/*" element={<Forum />}>
           <Route path="" element={<ForumHomePage />} />
-          {/* <Route path=":category/ad/:findId" element={<FindsFullCard />} /> */}
+          <Route path=":category/theme/:themeId" element={<ThemeFullCard />} />
           <Route path=":category" element={<ForumThemes />} />
           <Route path=":category/createTheme" element={<CreateTheme />} />
         </Route>

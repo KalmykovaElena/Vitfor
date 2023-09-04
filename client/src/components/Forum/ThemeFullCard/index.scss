@@ -1,0 +1,37 @@
+.forum-theme {
+  display: flex;
+    flex-direction: column;
+    gap:3.69rem;
+  .theme-header {
+    width: 76.3%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap:2.5rem;
+    &__content {
+      border-radius: 1.25rem 1.25rem 0rem 0rem;
+      border: 2px solid #fa541c;
+      border-bottom: none;
+      width: 77.55%;
+      margin: 0 auto;
+      .content-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+      }
+      .content-description{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.5rem;
+        padding : 1.06rem 2.25rem;
+        border-top: 2px solid #fa541c;
+      }
+    }
+    .carousel-item{
+      object-fit: cover;
+      height: 12rem;
+      border-radius: 1.25rem;
+    }
+  }
+}

@@ -4,9 +4,13 @@
   display: grid;
   grid-template-columns: 1.25fr 1fr 1fr 1.25fr;
   padding: 1rem 0.5rem;
+  cursor: pointer;
   &_light {
     background: #fff;
   }
+}
+.wrapper :global .logo {
+  justify-content: flex-end;
 }
 .wrapper :global .logo-text__name {
   font-size: 1rem;

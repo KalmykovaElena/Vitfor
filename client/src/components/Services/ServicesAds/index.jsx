@@ -24,6 +24,7 @@ const ServicesAds = () => {
   useEffect(() => {
     if (renderData) setRenderData(sortItems(sortCategory, renderData));
   }, [sortCategory]);
+
   return (
     <section className="sale-ads-wrapper" id="service">
       {renderData && (

@@ -24,10 +24,11 @@ const AdCard = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const chapter = location.pathname.split('/')[1];
-  const { advert, isAuth, user } = useSelector((state) => ({
+  const { advert, isAuth, user, theme } = useSelector((state) => ({
     advert: state.advert.advert,
     isAuth: state.auth.isAuth,
     user: state.auth.user,
+    theme: state.auth.theme,
   }));
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPhoneShown, setIsPhoneShown] = useState(false);
@@ -39,6 +40,7 @@ const AdCard = () => {
         year: 'numeric',
       })
     : '';
+
   useEffect(() => {
     if (params.id) {
       getAdvert(params.id);
@@ -65,7 +67,7 @@ const AdCard = () => {
                     isFavourite={advert.isFavourite}
                   />
                 ) : (
-                  <div className="add-photo">
+                  <div className={`add-photo add-photo__${theme}`}>
                     {advert.files[0] ? (
                       <img src={`data:image/png;base64,${advert.files[0].fileString}`} alt="advert" className="img" />
                     ) : (

@@ -81,8 +81,10 @@
   }
 }
 .user :global .logo-img {
-  max-width: 5.75rem;
-  max-height: 5.75rem;
+  width: 5.75rem;
+  height: 5.75rem;
+  border-radius: 50%;
+  background-color: #676767;
 }
 .buttonGroup {
   display: flex;

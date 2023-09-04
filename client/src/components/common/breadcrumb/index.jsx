@@ -6,7 +6,7 @@ const BreadCrumb = ({ data, className }) => {
   const { pathname } = useLocation();
   const breadCrumbView = () => {
     const pathnames = pathname.split('/').filter((item) => item);
-    if (pathnames.find((e) => e === 'ad')) pathnames.splice(-1);
+    if (pathnames.find((e) => e === 'ad' || e === 'theme')) pathnames.splice(-1);
     const capatilize = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : null);
     const items = [
       pathnames.length > 0
