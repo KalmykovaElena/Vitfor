@@ -11,8 +11,12 @@ import { setFindFavourites } from 'http/Finds/setFindFavourites';
 
 export const Favourites = ({ size, id, checked, adCategory, item }) => {
   const [isFavourite, setIsFavourite] = useState(checked);
-  const isAuth = useSelector((state) => state.auth.isAuth);
+  const { isAuth, user } = useSelector((state) => ({
+    isAuth: state.auth.isAuth,
+    user: state.auth.user,
+  }));
   const method = isFavourite ? 'DELETE' : 'POST';
+
   const handleClick = () => {
     if (adCategory) {
       if (adCategory === 'services') {
@@ -30,7 +34,7 @@ export const Favourites = ({ size, id, checked, adCategory, item }) => {
 
   return (
     <>
-      {size === 'long' ? (
+      {item.userName !== user.userName && size === 'long' ? (
         <div className={isAuth ? styles.wrapper : styles.hidden} onClick={handleClick}>
           <span>{isFavourite ? 'Удалить из избранного' : 'Добавить в избранное'} </span>
           {isFavourite ? <Heart className="heart-icon" /> : <FillingHeart className="heart-icon" />}

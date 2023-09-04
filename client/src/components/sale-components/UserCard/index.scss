@@ -1,5 +1,4 @@
 .userAdd {
-  padding-left: 11.24vw;
  
   &-wrapper {
     display: flex;
@@ -9,6 +8,7 @@
   }
   &-content {
     display: flex;
+    justify-content: space-between;
   }
   &-info {
     display: flex;
@@ -123,7 +123,7 @@
   }
   .userAdd-photo {
     &__noimg{
-      width: 45vw;
+      width: 78%;
       height: 47.5vh;
       border-radius: 1.25rem;
       background: #525252;
