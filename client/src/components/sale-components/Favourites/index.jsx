@@ -34,7 +34,7 @@ export const Favourites = ({ size, id, checked, adCategory, item }) => {
 
   return (
     <>
-      {item.userName !== user.userName && size === 'long' ? (
+      {item?.userName !== user?.userName && size === 'long' ? (
         <div className={isAuth ? styles.wrapper : styles.hidden} onClick={handleClick}>
           <span>{isFavourite ? 'Удалить из избранного' : 'Добавить в избранное'} </span>
           {isFavourite ? <Heart className="heart-icon" /> : <FillingHeart className="heart-icon" />}
