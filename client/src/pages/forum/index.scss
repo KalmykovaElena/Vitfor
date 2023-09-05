@@ -2,11 +2,12 @@
   min-height: 91.4vh;
   display: flex;
   flex-direction: column;
-  padding-bottom: 10%;
-  &-wrapper {
+  &_header{
     width: 77.56%;
     max-width: 70rem;
     margin: 0 auto;
+  }
+  &-wrapper {
     display: flex;
     flex-direction: column;
     gap: 4rem;

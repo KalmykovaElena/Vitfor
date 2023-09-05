@@ -4,10 +4,16 @@
   display: grid;
   grid-template-columns: 1.25fr 1fr 1fr 1.25fr;
   padding: 1rem 0.5rem;
+  position: relative;
   cursor: pointer;
   &_light {
     background: #fff;
   }
+}
+.theme_favourite {
+  position: absolute;
+  top:40%;
+  right: 0.5rem;
 }
 .wrapper :global .logo {
   justify-content: flex-end;
@@ -21,6 +27,7 @@
   color: #ccc;
   text-align: start;
 }
+
 .countMessages {
   color: #a9a9a9;
   font-family: Roboto;

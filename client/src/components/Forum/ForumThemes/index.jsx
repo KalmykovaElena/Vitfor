@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { forumCategories } from 'constants/forumData';
 import { getForumThemesBySection } from 'http/Forum/getForumThemesBySection';
 import React, { useEffect, useState } from 'react';
@@ -9,10 +10,12 @@ import title from 'assets/pencil.png';
 import count from 'assets/chatbox-ellipses.png';
 import time from 'assets/time.png';
 import classNames from 'classnames';
+import { useSelector } from 'react-redux';
 
 const ForumThemes = () => {
   const [renderData, setRenderData] = useState();
   const { category } = useParams();
+  const theme = useSelector((state) => state.auth.theme);
   useEffect(() => {
     if (category) {
       const { section } = forumCategories.find((themeSection) => themeSection.link === `/${category}`);
@@ -20,27 +23,29 @@ const ForumThemes = () => {
     }
   }, []);
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.header}>
-        <div className={styles.header_item}>
-          <img src={person} alt="person" />
-          <span>Автор</span>
+    <section className={classNames(styles.main, { [styles.main_light]: theme === 'light' })}>
+      <div className={styles.wrapper}>
+        <div className={styles.header}>
+          <div className={styles.header_item}>
+            <img src={person} alt="person" />
+            <span>Автор</span>
+          </div>
+          <div className={styles.header_item}>
+            <img src={title} alt="title" />
+            <span>Название</span>
+          </div>
+          <div className={styles.header_item}>
+            <img src={count} alt="count" />
+            <span>Количество сообщений</span>
+          </div>
+          <div className={classNames(styles.header_item, styles.header_lastItem)}>
+            <img className={styles.timeIcon} src={time} alt="time" />
+            <span>Дата последнего сообщения</span>
+          </div>
         </div>
-        <div className={styles.header_item}>
-          <img src={title} alt="title" />
-          <span>Название</span>
-        </div>
-        <div className={styles.header_item}>
-          <img src={count} alt="count" />
-          <span>Количество сообщений</span>
-        </div>
-        <div className={classNames(styles.header_item, styles.header_lastItem)}>
-          <img className={styles.timeIcon} src={time} alt="time" />
-          <span>Дата последнего сообщения</span>
-        </div>
+        {renderData && renderData.map((topic) => <ForumItem key={topic.topicId} item={topic} />)}
       </div>
-      {renderData && renderData.map((topic) => <ForumItem key={topic.topicId} {...topic} />)}
-    </div>
+    </section>
   );
 };
 

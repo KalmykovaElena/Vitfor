@@ -1,11 +1,23 @@
-.forum-home{
+.forum-home {
+  background-image: url('../../../assets/bg-forum.png');
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: contain;
+  min-height: 83vh;
+  &__light{
+    background-image: url('../../../assets/bg-forum-light.png');
+  }
+  &_wrapper{
+    width: 77.56%;
+    max-width: 70rem;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr;
     grid-gap: 1.5rem;
-    .navigation-item {
-        width: 100%;
-        height: 4.5rem;
-        color: #fff;
-    }
-    
+  }
+  .navigation-item {
+    width: 100%;
+    height: 4.5rem;
+    color: #fff;
+  }
 }
