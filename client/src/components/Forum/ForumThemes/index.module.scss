@@ -1,7 +1,20 @@
+.main{
+  background-image: url('../../../assets/bg-forum-themes.png');
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: contain;
+  min-height: 53rem;
+}
+.main_light{
+  background-image: url('../../../assets/bg-forum-themes-light.png')
+}
 .wrapper{
     display: flex;
     flex-direction: column;
     gap:2rem;
+    width: 77.56%;
+    max-width: 70rem;
+    margin: 0 auto;
 }
 .header {
   display: grid;

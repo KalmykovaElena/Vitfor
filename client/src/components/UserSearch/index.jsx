@@ -13,6 +13,7 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import styles from './index.module.scss';
 import { jobsCategories } from 'constants/Jobs/jobsData';
 import { getAdvertSections } from 'utils/getAdvertSections';
+import { forumCategories } from 'constants/forumData';
 
 const UserSearch = () => {
   const searchItems = useSelector((state) => state.search.searchItems);
@@ -66,6 +67,9 @@ const UserSearch = () => {
                           );
                         } else if (AdvertCategory === 'finds') {
                           category = 'finds';
+                        } else if (AdvertCategory === 'topics') {
+                          category = 'forum';
+                          sections = forumCategories.find((item) => item.section === searchItem.subsectionName).link;
                         }
                         return (
                           <AdsItem
@@ -74,9 +78,11 @@ const UserSearch = () => {
                             adCategory={category}
                             handleClick={() => {
                               navigate(
-                                `/${category}/${sections.section}/${sections.subsection}/ad/${
-                                  searchItem.advertId || searchItem.jobId
-                                }`
+                                AdvertCategory === 'topics'
+                                  ? `/${category}${sections}/theme/${searchItem.topicId}`
+                                  : `/${category}/${sections.section}/${sections.subsection}/ad/${
+                                      searchItem.advertId || searchItem.jobId
+                                    }`
                               );
                             }}
                           />

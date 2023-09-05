@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Logo from 'components/logo';
 import { getForumTheme } from 'http/Forum/getForumTheme';
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Carousel from 'react-grid-carousel';
 import { useParams } from 'react-router-dom';
 // import { setForumTheme } from 'redux/reducers/forumReducer';
@@ -11,21 +11,21 @@ import { ReactComponent as RightArrow } from 'assets/right-arrow.svg';
 import { ReactComponent as LeftArrow } from 'assets/left-arrow.svg';
 import './index.scss';
 import Comments from 'components/sale-components/comments';
+import { setForumTheme } from 'redux/reducers/forumReducer';
+import { Favourites } from 'components/sale-components/Favourites';
 
 const ThemeFullCard = () => {
-  const { theme } = useSelector((state) => ({
+  const { theme, forumTheme } = useSelector((state) => ({
     theme: state.auth.theme,
-    // forumTheme: state.forum.forumTheme,
+    forumTheme: state.forum.forumTheme,
   }));
-  const [forumTheme, setForumTheme] = useState();
   const { themeId } = useParams();
-  // const dispatch = useDispatch();
-
+  const dispatch = useDispatch();
   useEffect(() => {
     if (themeId) {
-      getForumTheme(themeId, setForumTheme);
+      getForumTheme(themeId);
     }
-    return () => setForumTheme(null);
+    return () => dispatch(setForumTheme(null));
   }, []);
   return (
     <section className={`forum-theme forum-theme__${theme}`}>
@@ -33,6 +33,14 @@ const ThemeFullCard = () => {
         <>
           <div className="theme-header">
             <div className="theme-header__content">
+              <Favourites
+                size="short"
+                id={forumTheme.topicId}
+                checked={forumTheme.isFavourite}
+                adCategory="forum"
+                className="theme-favourite"
+                item={forumTheme}
+              />
               <div className="content-title">
                 <Logo
                   name="user"

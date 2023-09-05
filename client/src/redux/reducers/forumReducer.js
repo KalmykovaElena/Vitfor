@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getForumTheme } from 'http/Forum/getForumTheme';
 
 const initialState = {
-  forumTheme: {},
+  forumTheme: null,
 };
 
 const forumThemeSlice = createSlice({
@@ -12,11 +11,6 @@ const forumThemeSlice = createSlice({
     setForumTheme: (state, action) => {
       state.forumTheme = action.payload;
     },
-  },
-  extraReducers(builder) {
-    builder.addCase(getForumTheme.fulfilled, (state, action) => {
-      state.forumTheme = action.payload;
-    });
   },
 });
 

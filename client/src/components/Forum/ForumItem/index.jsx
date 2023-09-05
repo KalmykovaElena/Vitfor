@@ -4,10 +4,12 @@ import Logo from 'components/logo';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Favourites } from 'components/sale-components/Favourites';
 
-const ForumItem = ({ userName, nickName, userPhoto, title, messagesCount, dateOfLastMessage, topicId }) => {
+const ForumItem = ({ item }) => {
   const theme = useSelector((state) => state.auth.theme);
   const navigate = useNavigate();
+  const { userName, nickName, userPhoto, title, messagesCount, dateOfLastMessage, topicId, isFavourite } = item;
   const itemDate =
     dateOfLastMessage === '0001-01-01T00:00:00'
       ? ''
@@ -25,6 +27,14 @@ const ForumItem = ({ userName, nickName, userPhoto, title, messagesCount, dateOf
       <div className={styles.title}>{title}</div>
       <div className={styles.countMessages}>{messagesCount} сообщений</div>
       <div className={styles.date}>{itemDate}</div>
+      <Favourites
+        size="short"
+        id={topicId}
+        checked={isFavourite}
+        adCategory="forum"
+        className={styles.theme_favourite}
+        item={item}
+      />
     </div>
   );
 };

@@ -1,23 +1,25 @@
+import { url } from 'constants/url';
+import { refreshToken } from 'http/refreshToken';
+import { getFind } from './getFind';
 import store from 'redux/store';
-import { url } from '../../constants/url';
-import { refreshToken } from '../refreshToken';
-import { setForumTheme } from 'redux/reducers/forumReducer';
 
-// eslint-disable-next-line consistent-return
-export const getForumTheme = (topicId) => {
+export const deleteFindComment = (commentId, advertId) => {
   const token = localStorage.getItem('token');
-  fetch(`${url}/Topics/GetTopicCard`, {
-    method: 'POST',
+  fetch(`${url}/FindComments/DeleteFindComment`, {
+    method: 'DELETE',
     headers: {
+      Accept: 'application/json, text/plain',
       'Content-Type': 'application/json;charset=UTF-8',
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ topicId }),
+    body: JSON.stringify({
+      commentId,
+    }),
   })
     .then(async (response) => {
       if (!response.ok) {
         if (response.status === 401) {
-          refreshToken(getForumTheme, topicId);
+          refreshToken(deleteFindComment, commentId, advertId);
         }
         const res = await response.json();
         throw new Error(res.message);
@@ -25,7 +27,8 @@ export const getForumTheme = (topicId) => {
       return response.json();
     })
     .then((result) => {
-      store.dispatch(setForumTheme(result));
+      console.log(result);
+      store.dispatch(getFind(advertId));
     })
     .catch((err) => {
       console.log(err);

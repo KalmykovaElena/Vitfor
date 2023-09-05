@@ -30,9 +30,19 @@ const Comments = ({ advert }) => {
         <div className="comments-content">
           {renderComments.map((comment) => (
             <React.Fragment key={nanoid()}>
-              <CommentsItem item={comment} parentId={advertId || findId} />
+              <CommentsItem
+                item={comment}
+                parentId={advertId || findId || topicId}
+                type={advertId ? 'advert' : findId ? 'find' : 'forum'}
+              />
               {comment.replies?.map((reply) => (
-                <CommentsItem key={nanoid()} item={reply} className="subcomment" parentId={advertId || findId} />
+                <CommentsItem
+                  key={nanoid()}
+                  item={reply}
+                  className="subcomment"
+                  parentId={advertId || findId || topicId}
+                  type={advertId ? 'advert' : findId ? 'find' : 'forum'}
+                />
               ))}
             </React.Fragment>
           ))}
