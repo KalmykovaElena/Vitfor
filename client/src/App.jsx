@@ -38,6 +38,10 @@ import FindsHomePage from 'components/Finds/FindsHomePage';
 import { CreateFind } from 'components/Finds/CreateFind';
 import FindsFullCard from 'components/Finds/FindsFullCard';
 import FindsAds from 'components/Finds/FindsAds';
+import ForumHomePage from 'components/Forum/ForumHomePage';
+import CreateTheme from 'components/Forum/CreateTheme';
+import ForumThemes from 'components/Forum/ForumThemes';
+import ThemeFullCard from 'components/Forum/ThemeFullCard/Index';
 
 const App = () => {
   history.navigate = useNavigate();
@@ -60,7 +64,6 @@ const App = () => {
         <Route path="/" element={<Main />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
-        {/* <Route path="/finds" element={<Finds />} /> */}
         <Route path="/questions" element={<Questions />} />
         <Route path="/chat" element={<ChatPage />} />
         <Route path="/sale/*" element={<Sale />}>
@@ -75,10 +78,16 @@ const App = () => {
 
         <Route path="/finds/*" element={<Finds />}>
           <Route path="" element={<FindsHomePage />} />
-          {/* <Route path=":category" element={<ServicesHomePage />} /> */}
           <Route path=":category/ad/:findId" element={<FindsFullCard />} />
           <Route path=":category" element={<FindsAds />} />
           <Route path="createFind" element={<CreateFind />} />
+        </Route>
+
+        <Route path="/forum/*" element={<Forum />}>
+          <Route path="" element={<ForumHomePage />} />
+          <Route path=":category/theme/:themeId" element={<ThemeFullCard />} />
+          <Route path=":category" element={<ForumThemes />} />
+          <Route path=":category/createTheme" element={<CreateTheme />} />
         </Route>
 
         <Route path="/services/*" element={<Services />}>
@@ -89,7 +98,6 @@ const App = () => {
           <Route path="createService" element={<CreateService />} />
         </Route>
 
-        <Route path="/forum" element={<Forum />} />
         <Route path="/weather" element={<Weather />} />
         <Route path="/search/*" element={<SearchPage />}>
           <Route path="" element={<UserSearch />} />

@@ -5,6 +5,7 @@ import { chatReducer } from './reducers/chatReducer';
 import searchReducer from './reducers/searchReducer';
 import { serviceReducer } from './reducers/serviseReduser';
 import { findsReducer } from './reducers/findsReducer';
+import { forumReducer } from './reducers/forumReducer';
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     search: searchReducer,
     service: serviceReducer,
     find: findsReducer,
+    forum: forumReducer,
   },
 });
 export default store;

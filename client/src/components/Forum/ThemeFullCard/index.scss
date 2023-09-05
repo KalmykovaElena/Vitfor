@@ -1,0 +1,63 @@
+.forum-theme {
+  display: flex;
+  flex-direction: column;
+  gap: 3.69rem;
+  background-image: url('../../../assets/bg-forum-themes.png');
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: contain;
+  min-height: 53rem;
+  .theme-header {
+    width: 76.3%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    &__content {
+      border-radius: 1.25rem 1.25rem 0rem 0rem;
+      border: 2px solid #fa541c;
+      border-bottom: none;
+      width: 77.55%;
+      margin: 0 auto;
+      position: relative;
+      .content-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+      }
+      .content-description {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.5rem;
+        padding: 1.06rem 2.25rem;
+        border-top: 2px solid #fa541c;
+        &:first-child {
+          flex-shrink: 0;
+        }
+      }
+      .theme-favourite {
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        border-radius: 0rem 1.25rem;
+        background: #fa541c;
+        padding: 0.5rem;
+        svg path{
+          fill: #fff;
+        }
+      }
+    }
+    .carousel-item {
+      object-fit: cover;
+      height: 12rem;
+      border-radius: 1.25rem;
+    }
+  }
+  &__light{
+    background-image: url('../../../assets/bg-forum-themes-light.png');
+    .comments-wrapper{
+      background-color: #fff;
+    }
+  }
+}

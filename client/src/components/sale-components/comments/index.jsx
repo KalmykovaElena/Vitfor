@@ -8,13 +8,17 @@ import './index.scss';
 import { setComment } from '../../../http/setComment';
 import { commentInput } from '../../../constants/inputs';
 import { setFindComment } from 'http/Finds/setFindComment';
+import { setForumComment } from 'http/Forum/setForumComment';
 
 const Comments = ({ advert }) => {
   const { isAuth } = useSelector((state) => state.auth);
-  const { advertId, comments, findId } = advert;
+  const { advertId, comments, findId, topicId, messages } = advert;
+  const renderComments = comments || messages;
   const onCommentSubmit = (data) => {
     if (findId) {
       setFindComment(findId, data.comment);
+    } else if (topicId) {
+      setForumComment(topicId, data.comment);
     } else {
       setComment(advertId, data.comment);
     }
@@ -24,11 +28,21 @@ const Comments = ({ advert }) => {
     <div className="comments">
       <div className="comments-wrapper">
         <div className="comments-content">
-          {comments.map((comment) => (
+          {renderComments.map((comment) => (
             <React.Fragment key={nanoid()}>
-              <CommentsItem item={comment} parentId={advertId || findId} />
+              <CommentsItem
+                item={comment}
+                parentId={advertId || findId || topicId}
+                type={advertId ? 'advert' : findId ? 'find' : 'forum'}
+              />
               {comment.replies?.map((reply) => (
-                <CommentsItem key={nanoid()} item={reply} className="subcomment" parentId={advertId || findId} />
+                <CommentsItem
+                  key={nanoid()}
+                  item={reply}
+                  className="subcomment"
+                  parentId={advertId || findId || topicId}
+                  type={advertId ? 'advert' : findId ? 'find' : 'forum'}
+                />
               ))}
             </React.Fragment>
           ))}
