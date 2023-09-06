@@ -42,6 +42,8 @@ import ForumHomePage from 'components/Forum/ForumHomePage';
 import CreateTheme from 'components/Forum/CreateTheme';
 import ForumThemes from 'components/Forum/ForumThemes';
 import ThemeFullCard from 'components/Forum/ThemeFullCard/Index';
+import EventsHomePage from 'components/Events/EventsHomePage';
+import EventsCards from 'components/Events/EventsCards';
 
 const App = () => {
   history.navigate = useNavigate();
@@ -63,7 +65,6 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/events" element={<Events />} />
         <Route path="/questions" element={<Questions />} />
         <Route path="/chat" element={<ChatPage />} />
         <Route path="/sale/*" element={<Sale />}>
@@ -88,6 +89,13 @@ const App = () => {
           <Route path=":category/theme/:themeId" element={<ThemeFullCard />} />
           <Route path=":category" element={<ForumThemes />} />
           <Route path=":category/createTheme" element={<CreateTheme />} />
+        </Route>
+
+        <Route path="/events/*" element={<Events />}>
+          <Route path="" element={<EventsHomePage />} />
+          {/* <Route path=":category/theme/:themeId" element={<ThemeFullCard />} /> */}
+          <Route path=":category" element={<EventsCards />} />
+          {/* <Route path=":category/createTheme" element={<CreateTheme />} /> */}
         </Route>
 
         <Route path="/services/*" element={<Services />}>

@@ -12,7 +12,7 @@ import Icon from '@ant-design/icons/lib/components/Icon';
 import { useOnClickOutside } from 'hooks/useOnClickOutside';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsAuth, setTheme } from 'redux/reducers/authReducer';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import switch1 from 'assets/swtch1.png';
 import switch2 from 'assets/switch2.png';
 
@@ -33,7 +33,6 @@ const ModalMenu = ({ setIsMenuOpen }) => {
   const [openKeys, setOpenKeys] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
   const theme = useSelector((state) => state.auth.theme);
   const ref = useRef();
   useOnClickOutside(ref, () => setIsMenuOpen(false));
@@ -43,9 +42,7 @@ const ModalMenu = ({ setIsMenuOpen }) => {
     dispatch(setTheme('dark'));
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
-    if (location.pathname.includes('personal_info')) {
-      navigate('/');
-    }
+    navigate('/');
   };
   const onOpenChange = (keys) => {
     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);

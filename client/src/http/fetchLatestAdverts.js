@@ -10,6 +10,8 @@ export const fetchLatestAdverts = createAsyncThunk('adverts/fetchAdverts', async
       ? 'Adverts/GetFourNewestAdverts'
       : category === 'finds'
       ? 'Finds/GetFourNewestFinds'
+      : category === 'events'
+      ? 'Events/GetFourNewestEvents'
       : 'Jobs/GetFourNewestJobs';
   try {
     const response = await fetch(`${url}/${path}`, {
