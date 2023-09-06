@@ -76,7 +76,7 @@ const AdCard = () => {
                         <span>Нет фото</span>
                       </>
                     )}
-                    <Favourites size="long" id={advert.advertId} checked={advert.isFavourite} />
+                    <Favourites size="long" id={advert.advertId} checked={advert.isFavourite} item={advert} />
                   </div>
                 )}
                 <div className="add-price">{advert.price} BYN</div>
