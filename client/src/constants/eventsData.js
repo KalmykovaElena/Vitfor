@@ -64,7 +64,13 @@ export const eventsCategories = [
   {
     id: '8',
     name: 'Объявление',
-    link: '/advert',
+    link: '/event',
+    hideSearch: true,
+  },
+  {
+    id: '9',
+    name: 'Создание мероприятия',
+    link: '/createEvent',
     hideSearch: true,
   },
 ];

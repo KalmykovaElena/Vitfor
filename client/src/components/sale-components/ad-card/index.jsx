@@ -17,6 +17,7 @@ import { createChat } from '../../../http/Chat/createChat';
 import { Favourites } from '../Favourites';
 import { setAdvert } from 'redux/reducers/advertReducer';
 import { chapterNames } from 'constants/chapterNames';
+import { KebabMenu } from 'components/common/KebabMenu';
 // import { chatAction } from 'redux/reducers/chatReducer';
 
 const AdCard = () => {
@@ -65,6 +66,7 @@ const AdCard = () => {
                     advertId={advert.advertId}
                     onMainClick={() => setIsModalOpen(true)}
                     isFavourite={advert.isFavourite}
+                    item={advert}
                   />
                 ) : (
                   <div className={`add-photo add-photo__${theme}`}>
@@ -103,22 +105,30 @@ const AdCard = () => {
                       </div>
                     )}
 
-                    <Button
-                      type="primary"
-                      name="Написать сообщение"
-                      icon={messageIcon}
-                      handleClick={() => {
-                        dispatch(
-                          createChat({
-                            advertId: advert.advertId,
-                            receiverUsername: advert.userName,
-                            chapterName: chapterNames[chapter],
-                          })
-                        );
-                        navigate('/chat');
-                      }}
-                      disabled={!isAuth || advert.userName === user.userName}
-                    />
+                    {advert.userName === user.userName ? (
+                      <div className="userAdd-control">
+                        Управлять объявлением
+                        <KebabMenu advert={advert} className="cardKebab" adCategory="sale" />
+                      </div>
+                    ) : (
+                      <Button
+                        type="primary"
+                        name="Написать сообщение"
+                        icon={messageIcon}
+                        handleClick={() => {
+                          dispatch(
+                            createChat({
+                              advertId: advert.advertId,
+                              receiverUsername: advert.userName,
+                              chapterName: chapterNames[chapter],
+                            })
+                          );
+                          navigate('/chat');
+                        }}
+                        // disabled={!isAuth || advert.userName === user.userName}
+                        disabled={!isAuth}
+                      />
+                    )}
                   </div>
                 </div>
               </div>

@@ -74,6 +74,11 @@ const AdPlacing = () => {
           .items.find((sub) => sub.subsection === editAdvert.subsectionName).label
       );
       setValue('phoneNumber', advert.phoneNumber);
+
+      const { section } = saleCategories.find((item) =>
+        item.items.find((subsection) => subsection.subsection === editAdvert.subsectionName)
+      );
+      setValue('sectionName', section);
     }
   }, [advert]);
   const onChange = ({ fileList: newFileList }) => {
@@ -115,7 +120,7 @@ const AdPlacing = () => {
     const { subsection } = saleData
       .find((item) => item.items?.find((e) => e.label === domEvent.target.textContent))
       .items.find((e) => e.label === domEvent.target.textContent);
-    setValue('SectionName', section);
+    setValue('sectionName', section);
     setValue('subSectionName', subsection);
   };
 

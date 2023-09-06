@@ -3,13 +3,15 @@ import './index.scss';
 import { useSelector } from 'react-redux';
 import BreadCrumb from 'components/common/breadcrumb';
 import { eventsCategories } from 'constants/eventsData';
-import { Outlet, useLocation, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import SearchPannel from 'components/searchPannel';
+import Button from 'components/common/button';
 
 const Events = () => {
-  const theme = useSelector((state) => state.auth.theme);
+  const { theme, isAdmin } = useSelector((state) => state.auth);
   const location = useLocation();
   const params = useParams();
+  const navigate = useNavigate();
   const renderPage = eventsCategories.find(
     (category) => category.link === location.pathname || category.link === `/${params.category}`
   );
@@ -35,6 +37,15 @@ const Events = () => {
               </div>
             )}
             <SearchPannel />
+            {isAdmin && (
+              <Button
+                type="primary"
+                name="Создать мероприятие"
+                handleClick={() => {
+                  navigate('/events/createEvent');
+                }}
+              />
+            )}
           </div>
         )}
       </div>

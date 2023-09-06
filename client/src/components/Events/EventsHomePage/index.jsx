@@ -39,7 +39,8 @@ const EventsHomePage = () => {
                 <AdsItem
                   key={advert.eventId}
                   item={advert}
-                  adCategory="finds"
+                  hideFavourite="true"
+                  adCategory="events"
                   handleClick={() => {
                     const { link } = eventsCategories.find((item) => item.section === advert.subsectionName);
                     navigate(`/events${link}/event/${advert.eventId}`);

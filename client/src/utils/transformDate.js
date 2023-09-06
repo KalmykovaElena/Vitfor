@@ -1,4 +1,4 @@
-export const transformDate = (date) => {
+export const transformDate = (date, type) => {
   let newDate = new Date(date)
     .toLocaleString('ru-RU', {
       month: 'long',
@@ -8,7 +8,11 @@ export const transformDate = (date) => {
       hour12: false,
     })
     .split(' ');
+
   newDate.splice(-2, 1);
+  if (type === 'short') {
+    newDate.splice(-1, 1);
+  }
   newDate = newDate.join(' ');
   return newDate;
 };

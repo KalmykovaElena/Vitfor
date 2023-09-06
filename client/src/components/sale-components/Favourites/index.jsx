@@ -18,7 +18,6 @@ export const Favourites = ({ size, id, checked, adCategory, item, className }) =
     user: state.auth.user,
   }));
   const method = isFavourite ? 'DELETE' : 'POST';
-
   const handleClick = (event) => {
     event.stopPropagation();
     if (adCategory) {
