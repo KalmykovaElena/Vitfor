@@ -32,12 +32,9 @@ const Select = ({ data, placeholder, onchangeSelect, error, defaultValue }) => {
       }
       ref={ref}
     >
-      <div className="select__label">
+      <div className="select__label" onClick={() => setSelectActive(selectActive ? '' : 'active')}>
         {selectedValue}
-        <Caret
-          className={selectActive ? `caret-down` : `caret`}
-          onClick={() => setSelectActive(selectActive ? '' : 'active')}
-        />
+        <Caret className={selectActive ? `caret-down` : `caret`} />
       </div>
       <ul className={`select__drop-down ${selectActive}`}>
         {data.map((e) => (

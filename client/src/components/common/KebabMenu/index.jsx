@@ -32,6 +32,7 @@ export const KebabMenu = ({ advert, className, adCategory }) => {
   const theme = useSelector((state) => state.auth.theme);
   const searchItems = useSelector((state) => state.search.searchItems);
   const [isModalShow, setIsModalShow] = useState(false);
+  const [isActive, setIsActive] = useState(advert.status === 'Active');
   const [warningText, setWarningText] = useState('');
   const [isDeleteAdvert, setIsDeleteAdvert] = useState(false);
   const [isAlertShow, setIsAlertShow] = useState(false);
@@ -87,7 +88,7 @@ export const KebabMenu = ({ advert, className, adCategory }) => {
       icon: <Pencil />,
     },
 
-    advert.status === 'Active'
+    isActive
       ? {
           label: 'Снять с публикации',
           key: 'status',
@@ -105,6 +106,9 @@ export const KebabMenu = ({ advert, className, adCategory }) => {
           onClick: () => {
             changeStatus(advert[idName]);
             changeAdvertList('Active');
+            setIsAlertShow(true);
+            setAlertText('Объявление успешно восстановлено');
+            setIsActive(!isActive);
           },
           icon: <Reload />,
         },
@@ -159,6 +163,7 @@ export const KebabMenu = ({ advert, className, adCategory }) => {
                       setTimeout(() => {
                         changeAdvertList('Disabled');
                       }, 4002);
+                      setIsActive(!isActive);
                     }
                   });
                 }

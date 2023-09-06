@@ -15,6 +15,7 @@ import { setService } from 'redux/reducers/serviseReduser';
 import { createChat } from 'http/Chat/createChat';
 import { chapterNames } from 'constants/chapterNames';
 import classNames from 'classnames';
+import { KebabMenu } from 'components/common/KebabMenu';
 // import { chatAction } from 'redux/reducers/chatReducer';
 
 export const ServiceFullCard = () => {
@@ -108,24 +109,30 @@ export const ServiceFullCard = () => {
                   {isPhoneShown && <div className="phone-info">{service.phoneNumber}</div>}
                 </div>
               )}
-
-              <Button
-                type="primary"
-                name="Написать сообщение"
-                icon={messageIcon}
-                className={styles.button}
-                handleClick={() => {
-                  dispatch(
-                    createChat({
-                      advertId: service.jobId,
-                      receiverUsername: service.userName,
-                      chapterName: chapterNames[chapter],
-                    })
-                  );
-                  navigate('/chat');
-                }}
-                disabled={!isAuth || service.userName === user.userName}
-              />
+              {service.userName === user.userName ? (
+                <div className="userAdd-control">
+                  Управлять объявлением
+                  <KebabMenu advert={service} className="cardKebab" adCategory="services" />
+                </div>
+              ) : (
+                <Button
+                  type="primary"
+                  name="Написать сообщение"
+                  icon={messageIcon}
+                  className={styles.button}
+                  handleClick={() => {
+                    dispatch(
+                      createChat({
+                        advertId: service.jobId,
+                        receiverUsername: service.userName,
+                        chapterName: chapterNames[chapter],
+                      })
+                    );
+                    navigate('/chat');
+                  }}
+                  disabled={!isAuth}
+                />
+              )}
             </div>
           </div>
         </>

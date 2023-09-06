@@ -44,6 +44,8 @@ import ForumThemes from 'components/Forum/ForumThemes';
 import ThemeFullCard from 'components/Forum/ThemeFullCard/Index';
 import EventsHomePage from 'components/Events/EventsHomePage';
 import EventsCards from 'components/Events/EventsCards';
+import { CreateEvent } from 'components/Events/CreateEvent';
+import EventFullCard from 'components/Events/EventFullCard';
 
 const App = () => {
   history.navigate = useNavigate();
@@ -93,9 +95,9 @@ const App = () => {
 
         <Route path="/events/*" element={<Events />}>
           <Route path="" element={<EventsHomePage />} />
-          {/* <Route path=":category/theme/:themeId" element={<ThemeFullCard />} /> */}
+          <Route path=":category/event/:eventId" element={<EventFullCard />} />
           <Route path=":category" element={<EventsCards />} />
-          {/* <Route path=":category/createTheme" element={<CreateTheme />} /> */}
+          <Route path="createEvent" element={<CreateEvent />} />
         </Route>
 
         <Route path="/services/*" element={<Services />}>

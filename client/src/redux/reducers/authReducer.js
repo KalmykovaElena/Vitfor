@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isAuth: false,
+  isAdmin: true,
   approval: false,
   profileData: {},
   user: {},
@@ -14,6 +15,9 @@ const authPageSlice = createSlice({
   reducers: {
     setIsAuth: (state, action) => {
       state.isAuth = action.payload;
+    },
+    setIsAdmin: (state, action) => {
+      state.isAdmin = action.payload;
     },
     setApproval: (state, action) => {
       state.approval = action.payload;
@@ -30,6 +34,6 @@ const authPageSlice = createSlice({
   },
 });
 
-export const { setIsAuth, setProfileData, setApproval, setUser, setTheme } = authPageSlice.actions;
+export const { setIsAuth, setProfileData, setApproval, setUser, setTheme, setIsAdmin } = authPageSlice.actions;
 
 export default authPageSlice.reducer;

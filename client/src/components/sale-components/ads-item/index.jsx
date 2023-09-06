@@ -5,12 +5,12 @@ import icon from 'assets/camera.svg';
 import { Favourites } from '../Favourites';
 import { KebabMenu } from '../../common/KebabMenu';
 
-const AdsItem = ({ item, type, handleClick, isUserAds = false, adCategory }) => (
+const AdsItem = ({ item, type, handleClick, isUserAds = false, adCategory, hideFavourite }) => (
   <div className="sale-ads__item">
     <div className="item-image" onClick={handleClick}>
-      {item.mainPhoto ? (
+      {item.mainPhoto || item.poster ? (
         <img
-          src={`data:image/png;base64,${item.mainPhoto}`}
+          src={`data:image/png;base64,${item.mainPhoto || item.poster}`}
           alt="advertisement"
           className="item-image item-image__photo"
         />
@@ -24,7 +24,7 @@ const AdsItem = ({ item, type, handleClick, isUserAds = false, adCategory }) => 
       {item.title}
       {isUserAds ? (
         <KebabMenu advert={item} adCategory={adCategory} />
-      ) : (
+      ) : hideFavourite ? null : (
         <Favourites size="short" id={item.advertId} checked={item.isFavourite} adCategory={adCategory} item={item} />
       )}
     </div>
@@ -34,7 +34,9 @@ const AdsItem = ({ item, type, handleClick, isUserAds = false, adCategory }) => 
         <div className="item-description">{item.description}</div>
       </>
     )}
-    <div className="item-date">{transformDate(item.dateOfCreation)}</div>
+    <div className="item-date">
+      {transformDate(item.dateOfCreation || item.startDate, adCategory === 'events' && 'short')}
+    </div>
   </div>
 );
 

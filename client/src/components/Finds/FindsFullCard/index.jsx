@@ -15,6 +15,7 @@ import { Favourites } from 'components/sale-components/Favourites';
 import Comments from 'components/sale-components/comments';
 import { getFind } from 'http/Finds/getFind';
 import { setFind } from 'redux/reducers/findsReducer';
+import { KebabMenu } from 'components/common/KebabMenu';
 
 const FindsFullCard = () => {
   const dispatch = useDispatch();
@@ -96,23 +97,29 @@ const FindsFullCard = () => {
                         {isPhoneShown && <div className="phone-info">{find.phoneNumber}</div>}
                       </div>
                     )}
-
-                    <Button
-                      type="primary"
-                      name="Написать сообщение"
-                      icon={messageIcon}
-                      handleClick={() => {
-                        dispatch(
-                          createChat({
-                            advertId: find.findId,
-                            receiverUsername: find.userName,
-                            chapterName: chapterNames[chapter],
-                          })
-                        );
-                        navigate('/chat');
-                      }}
-                      disabled={!isAuth || find.userName === user.userName}
-                    />
+                    {find.userName === user.userName ? (
+                      <div className="userAdd-control">
+                        Управлять объявлением
+                        <KebabMenu advert={find} className="cardKebab" adCategory="finds" />
+                      </div>
+                    ) : (
+                      <Button
+                        type="primary"
+                        name="Написать сообщение"
+                        icon={messageIcon}
+                        handleClick={() => {
+                          dispatch(
+                            createChat({
+                              advertId: find.findId,
+                              receiverUsername: find.userName,
+                              chapterName: chapterNames[chapter],
+                            })
+                          );
+                          navigate('/chat');
+                        }}
+                        disabled={!isAuth}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
