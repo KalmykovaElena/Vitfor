@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isAuth: false,
-  isAdmin: true,
+  isAdmin: false,
   approval: false,
   profileData: {},
   user: {},

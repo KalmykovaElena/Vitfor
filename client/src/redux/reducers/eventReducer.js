@@ -3,6 +3,7 @@ import { getEvent } from 'http/Events/getEvent';
 
 const initialState = {
   event: {},
+  events: null,
 };
 
 const eventsSlice = createSlice({
@@ -12,6 +13,9 @@ const eventsSlice = createSlice({
     setEvent: (state, action) => {
       state.event = action.payload;
     },
+    setEvents: (state, action) => {
+      state.events = action.payload;
+    },
   },
   extraReducers(builder) {
     builder.addCase(getEvent.fulfilled, (state, action) => {
@@ -20,5 +24,5 @@ const eventsSlice = createSlice({
   },
 });
 
-export const { setEvent } = eventsSlice.actions;
+export const { setEvent, setEvents } = eventsSlice.actions;
 export const eventsReducer = eventsSlice.reducer;

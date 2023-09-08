@@ -3,9 +3,10 @@ import { refreshToken } from 'http/refreshToken';
 import { setEvents } from 'redux/reducers/eventReducer';
 import store from 'redux/store';
 
-export const getEventBySection = (category) => {
+export const getEventByDate = (date, subsectionName) => {
+  console.log(date, subsectionName);
   const token = localStorage.getItem('token') || '';
-  fetch(`${url}/Events/FindBySubsectionName`, {
+  fetch(`${url}/Events/GetByDateInSubsection`, {
     method: 'POST',
     headers: {
       Accept: 'application/json, text/plain',
@@ -14,14 +15,14 @@ export const getEventBySection = (category) => {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      subsectionName: category,
-      sectionName: 'Events',
+      date,
+      subsectionName,
     }),
   })
     .then(async (response) => {
       if (!response.ok) {
         if (response.status === 401) {
-          refreshToken(getEventBySection, category);
+          refreshToken(getEventByDate, date, subsectionName);
         }
         const res = await response.json();
         throw new Error(res.message);
@@ -29,6 +30,7 @@ export const getEventBySection = (category) => {
       return response.json();
     })
     .then((result) => {
+      console.log(result);
       store.dispatch(setEvents(result));
     })
     .catch((err) => {
