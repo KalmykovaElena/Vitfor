@@ -1,33 +1,37 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import logo from 'assets/sad.png';
 import AdsItem from 'components/sale-components/ads-item';
 import { eventsCategories } from 'constants/eventsData';
 import { getEventBySection } from 'http/Events/getEventBySection';
+import { useDispatch, useSelector } from 'react-redux';
+import { setEvents } from 'redux/reducers/eventReducer';
 
 const EventsCards = () => {
   const { category } = useParams();
-  const [renderData, setRenderData] = useState();
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  const { events } = useSelector((state) => state.event);
   useEffect(() => {
     if (category) {
       const { section } = eventsCategories.find((eventSection) => eventSection.link === `/${category}`);
-      getEventBySection(section, setRenderData);
+      getEventBySection(section);
     }
   }, [category]);
+  useEffect(() => () => dispatch(setEvents(null)), []);
 
   return (
     <section className="sale-ads-wrapper" id="service">
-      {renderData && (
+      <div className="events-title"> Мероприятия</div>
+      {events && (
         <div className="sale-ads">
-          {renderData.length === 0 ? (
+          {events.length === 0 ? (
             <div className="sale-ads__empty">
               <img src={logo} alt="empty" /> <span>Ничего не найдено</span>
             </div>
           ) : (
-            renderData.map((advert) => (
+            events.map((advert) => (
               <AdsItem
                 key={advert.eventId}
                 item={advert}

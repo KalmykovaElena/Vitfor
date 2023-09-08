@@ -98,7 +98,7 @@ export const ServiceFullCard = () => {
             </div>
             <div className={styles.buttonGroup}>
               {service.phoneNumber && (
-                <div className="phone-info">
+                <div className={styles.phoneInfo}>
                   <Button
                     type="primary"
                     name="Показать телефон"

@@ -12,6 +12,7 @@ import { setForumComment } from 'http/Forum/setForumComment';
 
 const Comments = ({ advert }) => {
   const { isAuth } = useSelector((state) => state.auth);
+  const theme = useSelector((state) => state.auth.theme);
   const { advertId, comments, findId, topicId, messages } = advert;
   const renderComments = comments || messages;
   const onCommentSubmit = (data) => {
@@ -26,7 +27,7 @@ const Comments = ({ advert }) => {
 
   return (
     <div className="comments">
-      <div className="comments-wrapper">
+      <div className={`comments-wrapper comments-wrapper__${theme}`}>
         <div className="comments-content">
           {renderComments.map((comment) => (
             <React.Fragment key={nanoid()}>

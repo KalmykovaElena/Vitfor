@@ -60,4 +60,12 @@
       background-color: #fff;
     }
   }
+  &_photos{
+    display: flex;
+    justify-content: center;
+    gap:2rem;
+    img{
+      border-radius: 1.25rem;
+    }
+  }
 }

@@ -55,7 +55,7 @@ const ThemeFullCard = () => {
                 <MessageIcon /> {forumTheme.description}
               </div>
             </div>
-            {forumTheme.files.length > 0 && (
+            {forumTheme.files.length > 0 && forumTheme.files.length > 3 ? (
               <Carousel
                 cols={forumTheme.files.length > 3 ? 3 : forumTheme.files.length > 2 ? 2 : 1}
                 rows={1}
@@ -77,6 +77,18 @@ const ThemeFullCard = () => {
                   </Carousel.Item>
                 ))}
               </Carousel>
+            ) : (
+              <div className="forum-theme_photos">
+                {forumTheme.files.map((e) => (
+                  <img
+                    width="25%"
+                    className="photos-item"
+                    src={`data:image/png;base64,${e.fileString}`}
+                    alt="additional"
+                    role="presentation"
+                  />
+                ))}
+              </div>
             )}
           </div>
           <Comments advert={forumTheme} />
