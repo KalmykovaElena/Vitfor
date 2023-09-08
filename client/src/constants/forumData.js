@@ -52,7 +52,7 @@ export const forumCategories = [
   },
   {
     id: '8',
-    name: 'Компьютеры, электоника, техника',
+    name: 'Компьютеры, электроника, техника',
     link: '/electronics',
     section: 'Electronics',
     color: '#735167',

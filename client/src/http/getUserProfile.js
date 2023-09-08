@@ -1,6 +1,6 @@
 import { url } from 'constants/url';
 import { refreshToken } from 'http/refreshToken';
-import { setIsAuth, setTheme, setUser } from 'redux/reducers/authReducer';
+import { setIsAdmin, setIsAuth, setTheme, setUser } from 'redux/reducers/authReducer';
 // eslint-disable-next-line camelcase
 import jwt_decode from 'jwt-decode';
 import store from 'redux/store';
@@ -28,6 +28,9 @@ export const getUserProfile = () => {
       const decoded = jwt_decode(token);
       store.dispatch(setIsAuth(true));
       store.dispatch(setUser({ ...result, userEmail: decoded.email }));
+      if (decoded.email === 'vitfor@dreamsoft.by') {
+        store.dispatch(setIsAdmin(true));
+      }
       if (result.themeName) store.dispatch(setTheme(result.themeName));
     })
     .catch((err) => {
