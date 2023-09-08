@@ -39,7 +39,7 @@ const Finds = () => {
             {renderPage && renderPage.img && (
               <div className="category-search-name">
                 <div className="category-search-icon">
-                  <img src={renderPage.img3} alt="category" />
+                  <img src={renderPage.img3 || renderPage.img} alt="category" />
                 </div>
                 {renderPage.name}
               </div>

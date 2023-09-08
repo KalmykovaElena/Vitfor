@@ -25,12 +25,13 @@ const SaleAds = () => {
     params.type && params.category !== 'search'
       ? data.items.find((item) => item.search === params.type).subsection
       : '';
+  const advertsCategory = data?.section;
 
   useEffect(() => {
     if (subsection) {
-      getAllAdverts('FindBySubsectionName', 'subsectionName', subsection, setRenderData, sortItems);
+      getAllAdverts('FindBySubsectionName', 'subsectionName', subsection, setRenderData, advertsCategory);
     } else if (section) {
-      getAllAdverts('FindBySectionName', 'sectionName', section, setRenderData, sortItems);
+      getAllAdverts('FindBySectionName', 'sectionName', section, setRenderData);
     }
 
     if (renderData) setRenderData(sortItems(sortCategory, renderData));

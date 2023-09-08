@@ -1,8 +1,12 @@
 import { url } from 'constants/url';
 import { refreshToken } from './refreshToken';
 
-export const getAllAdverts = (type, name, data, setRenderData) => {
+export const getAllAdverts = (type, name, data, setRenderData, category) => {
   const token = localStorage.getItem('token') || '';
+  const sendData = {
+    [name]: data,
+  };
+  if (category) sendData.sectionName = category;
   fetch(`${url}/Adverts/${type}`, {
     method: 'POST',
     headers: {
@@ -11,14 +15,12 @@ export const getAllAdverts = (type, name, data, setRenderData) => {
       'ngrok-skip-browser-warning': '1',
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({
-      [name]: data,
-    }),
+    body: JSON.stringify(sendData),
   })
     .then(async (response) => {
       if (!response.ok) {
         if (response.status === 401) {
-          refreshToken(getAllAdverts, type, name, data, setRenderData);
+          refreshToken(getAllAdverts, type, name, data, setRenderData, category);
         }
         const res = await response.json();
         throw new Error(res.message);
