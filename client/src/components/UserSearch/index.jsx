@@ -14,6 +14,7 @@ import styles from './index.module.scss';
 import { jobsCategories } from 'constants/Jobs/jobsData';
 import { getAdvertSections } from 'utils/getAdvertSections';
 import { forumCategories } from 'constants/forumData';
+import { findsCategories } from 'constants/findsData';
 
 const UserSearch = () => {
   const searchItems = useSelector((state) => state.search.searchItems);
@@ -67,6 +68,7 @@ const UserSearch = () => {
                           );
                         } else if (AdvertCategory === 'finds') {
                           category = 'finds';
+                          sections = findsCategories.find((item) => item.section === searchItem.subsectionName).link;
                         } else if (AdvertCategory === 'topics') {
                           category = 'forum';
                           sections = forumCategories.find((item) => item.section === searchItem.subsectionName).link;
@@ -80,6 +82,8 @@ const UserSearch = () => {
                               navigate(
                                 AdvertCategory === 'topics'
                                   ? `/${category}${sections}/theme/${searchItem.topicId}`
+                                  : AdvertCategory === 'finds'
+                                  ? `/${category}${sections}/ad/${searchItem.findId}`
                                   : `/${category}/${sections.section}/${sections.subsection}/ad/${
                                       searchItem.advertId || searchItem.jobId
                                     }`

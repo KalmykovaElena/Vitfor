@@ -40,6 +40,7 @@ const FindsAds = () => {
                   item={advert}
                   type="long"
                   adCategory="finds"
+                  hidePrice="true"
                   handleClick={() => {
                     const { link } = findsCategories.find((item) => item.section === advert.subsectionName);
                     navigate(`/finds${link}/ad/${advert.findId}`);

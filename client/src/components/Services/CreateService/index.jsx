@@ -142,7 +142,7 @@ export const CreateService = () => {
             name="В начало"
             type="primary"
             handleClick={() => {
-              navigate(success === 'Услуга успешно создана' ? '/services' : '/search/userads');
+              navigate(success === 'Услуга успешно опубликована' ? '/services' : '/search/userads');
             }}
           />
         </div>
@@ -262,7 +262,7 @@ export const CreateService = () => {
                   isDirty={isDirty}
                   isValid={isValid}
                 />
-                <div>
+                <div className={styles.priceInfo}>
                   {' '}
                   <span>Цена</span>
                   <label className={styles.check}>

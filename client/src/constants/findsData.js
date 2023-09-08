@@ -1,7 +1,9 @@
 import losses from 'assets/losses.png';
 import losses2 from 'assets/looses2.png';
+import losses3 from 'assets/close.png';
 import finds from 'assets/finds.png';
 import finds2 from 'assets/finds2.png';
+import finds3 from 'assets/checkmark-done.png';
 import common from 'assets/bag.png';
 
 export const findsCategories = [
@@ -11,6 +13,7 @@ export const findsCategories = [
     label: 'Потеря',
     img: losses,
     img2: losses2,
+    img3: losses3,
     order: '1',
     link: '/lostItems',
     section: 'Losses',
@@ -25,6 +28,7 @@ export const findsCategories = [
     label: 'Находка',
     img: finds,
     img2: finds2,
+    img3: finds3,
     order: '2',
     link: '/foundItems',
     section: 'Finds',
