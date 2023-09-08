@@ -14,5 +14,5 @@ export const transformDate = (date, type) => {
     newDate.splice(-1, 1);
   }
   newDate = newDate.join(' ');
-  return newDate;
+  return date ? newDate : null;
 };

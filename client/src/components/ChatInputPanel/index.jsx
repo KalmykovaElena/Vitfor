@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { PictureOutlined } from '@ant-design/icons';
 import classNames from 'classnames';
 import styles from './index.module.scss';
 import { TextAreaComponent as TextArea } from '../common/TextArea';
@@ -15,7 +14,6 @@ export const ChatInputPanel = ({ handleMessage, clasName }) => {
     <div className={classNames(styles.wrapper, [clasName])}>
       <div className={styles.text}>Сообщение</div>
       <div className={styles.inputPanel}>
-        <PictureOutlined className={styles.icon} />
         <div className={styles.textarea}>
           <TextArea
             value={textAreaValue}
