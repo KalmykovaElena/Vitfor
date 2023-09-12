@@ -14,6 +14,7 @@ import FormInput from '../../common/formInput';
 import { useSelector } from 'react-redux';
 import { eventsCategories } from 'constants/eventsData';
 import { createEvent } from 'http/Events/createEvent';
+import { nanoid } from 'nanoid';
 
 export const CreateEvent = () => {
   const [fileList, setFileList] = useState([]);
@@ -156,6 +157,7 @@ export const CreateEvent = () => {
                       setValue('subsectionName', category.section);
                       clearErrors('subsectionName');
                     }}
+                    key={nanoid()}
                   >
                     <div className={classNames(styles.categoryImg, { [styles.categoryImg_light]: theme === 'light' })}>
                       <img src={category.img} alt="category" />
@@ -260,7 +262,7 @@ export const CreateEvent = () => {
                 </div>
               </div>
               <div>
-                <div>
+                <div className={styles.checkPrice}>
                   {' '}
                   <span>Цена</span>
                   <label className={styles.check}>
